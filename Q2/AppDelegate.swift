@@ -8,6 +8,14 @@
 
 import UIKit
 
+func delay(#seconds: Double, completion:()->()) {
+	let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
+
+	dispatch_after(popTime, dispatch_get_main_queue()) {
+		completion()
+	}
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,7 +23,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// Override point for customization after application launch.
+		self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+		self.window!.backgroundColor = UIColor.whiteColor()
+
+		let infoNavi = InfoNavigationController()
+		infoNavi.tabBarItem = UITabBarItem(title: "Info", image: nil, tag: 0)
+
+		let testNavi = TestNavigationController()
+		testNavi.tabBarItem = UITabBarItem(title: "Test", image: nil, tag: 1)
+
+		let tabbarController = TabBarController()
+		tabbarController.viewControllers = [infoNavi, testNavi]
+
+		self.window?.rootViewController = tabbarController
+
+		self.window?.makeKeyAndVisible()
+
 		return true
 	}
 
