@@ -25,6 +25,7 @@ class TestViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		hidesBottomBarWhenPushed = false
 	}
 
 	override func viewDidAppear(animated: Bool) {

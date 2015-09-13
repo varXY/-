@@ -17,7 +17,7 @@ class Question {
 		var questionMarks = [Int]()
 		var questions = [Question]()
 
-		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 24)
+		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 51)
 
 		for i in questionMarks {
 			questions.append(getQuestion(i)!)
@@ -166,6 +166,141 @@ class Question {
 			return question
 		case 23:
 			question.question = "宾馆客房内的插座应装设漏电保护装置。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 24:
+			question.question = "爆炸危险场所的工作零线应当与保护零线合用。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 25:
+			question.question = "在发生人身触电事故时，可以不经许可，即行断开有关设备的电源，但事后应立即报告调度(或设备运行管理单位)和上级部门。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 26:
+			question.question = "送电操作应当先合上负荷侧隔离开关，后合上电源侧隔离开关，最后合上断路器。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 27:
+			question.question = "工作零线必须经过漏电保护器，保护零线不得经过漏电保护器。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 28:
+			question.question = "电气设备的重复接地装置可以与独立避雷针的接地装置连接起来。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 29:
+			question.question = "送电操作后应检查电压、负荷是否正常。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 30:
+			question.question = "照明及其他单相用电负载要均匀分布在三相电源线上。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 31:
+			question.question = "油料火灾可用水灭火。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 32:
+			question.question = "扑灭电器设备火灾时，首先要切断电源，在切断电源后，可以使用水进行灭火。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 33:
+			question.question = "蓄电池可能有氢气排出，应有良好的通风。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 34:
+			question.question = "泡沫灭火机不能用于带电灭火。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 35:
+			question.question = "停电操作应当先断开断路器，后断开负荷侧隔离开关，最后断开电源侧隔离开关。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 36:
+			question.question = "下面用来保护电力设备的是："
+			question.rightAnswer = "避雷器"
+			question.wrongAnswer = "避雷线"
+			return question
+		case 37:
+			question.question = "运行状态是断路器和隔离开关都处在合闸位置的状态。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 38:
+			question.question = "工作零线和保护零线都应当穿过漏电保护器。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 39:
+			question.question = "接地体上端离地面深度不应小于："
+			question.rightAnswer = "0.6m"
+			question.wrongAnswer = "0.5m"
+			return question
+		case 40:
+			question.question = "阀型避雷器是由火花间隙和什么组成？"
+			question.rightAnswer = "阀电阻片"
+			question.wrongAnswer = "绝缘电阻"
+			return question
+		case 41:
+			question.question = "多少米以上的高楼要有防雷设施？"
+			question.rightAnswer = "45m"
+			question.wrongAnswer = "60m"
+			return question
+		case 42:
+			question.question = "三相电A、B、C的颜色表示分别是："
+			question.rightAnswer = "黄、绿、红"
+			question.wrongAnswer = "红、绿、黄"
+			return question
+		case 43:
+			question.question = "火线、零线、接地线的符号表示分别为："
+			question.rightAnswer = "L、N、PE"
+			question.wrongAnswer = "PE、N、L"
+			return question
+		case 44:
+			question.question = "中国使用的正弦交流电的频率是多少？"
+			question.rightAnswer = "50Hz"
+			question.wrongAnswer = "60Hz"
+			return question
+		case 45:
+			question.question = "钳形电流表上读出的交流电流值是电流的："
+			question.rightAnswer = "有效值"
+			question.wrongAnswer = "平均值"
+			return question
+		case 46:
+			question.question = "低压配电柜背面通道宽度不应低于："
+			question.rightAnswer = "1.0m"
+			question.wrongAnswer = "0.8m"
+			return question
+		case 47:
+			question.question = "高压设备在不带电的情况下，是否允许电气工作人员单独移开或越过遮拦进行工作？"
+			question.rightAnswer = "不允许"
+			question.wrongAnswer = "允许"
+			return question
+		case 48:
+			question.question = "“220V、40W”的电灯L1接到220V电路上，“36V、40W”的电灯接到36V电路上，则："
+			question.rightAnswer = "一样亮"
+			question.wrongAnswer = "L1较亮"
+			return question
+		case 49:
+			question.question = "测量绝缘电阻的仪表是："
+			question.rightAnswer = "摇表"
+			question.wrongAnswer = "万用表"
+			return question
+		case 50:
+			question.question = "导线的允许载流量应该大于导线的最大工作电流。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question

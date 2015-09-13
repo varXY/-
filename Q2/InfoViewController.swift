@@ -16,9 +16,11 @@ class InfoViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 		self.view.backgroundColor = UIColor.grayColor()
 
 		self.title = "常用知识"
+		println(self.view.frame)
 
 		buttons = generator.genButtons()
 
@@ -30,16 +32,6 @@ class InfoViewController: UIViewController {
 			let methodName = String(format: "open_%@", "\(i)")
 			buttons[i].addTarget(self, action: Selector(methodName), forControlEvents: .TouchUpInside)
 		}
-
-
-
-		let test2 = knowledge.getSearchedIcons("电流")
-		println(test2.count)
-		for i in 0..<test2.count {
-			println((test2[i])[0].title)
-		}
-
-
 
 	}
 

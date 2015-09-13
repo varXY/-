@@ -20,12 +20,14 @@ class QuestionViewController: UIViewController {
 
 	var questions = [Question]()
 	var rightCount = 0
+	var gen = Generator()
+	var dotView = UIView()
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		self.title = "1/10"
 		let question = Question()
 		questions = question.getQestions(10)
 
@@ -49,7 +51,11 @@ class QuestionViewController: UIViewController {
 		pageControl.numberOfPages = 10
 		pageControl.currentPage = 0
 		pageControl.userInteractionEnabled = false
+		pageControl.hidden = true
 		view.addSubview(pageControl)
+
+		dotView = gen.genDots()
+		view.addSubview(dotView)
 
 		genQA(0)
 
@@ -58,6 +64,11 @@ class QuestionViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = true
+	}
+
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		hidesBottomBarWhenPushed = false
 	}
 
 	override func viewWillDisappear(animated: Bool) {
@@ -73,14 +84,14 @@ class QuestionViewController: UIViewController {
 	func genQA(page: Int) {
 
 		var label = UILabel()
-		label.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 10, width: 300, height: 200)
+		label.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 10, width: size.width - 20, height: 200)
 		label.numberOfLines = 0
 		label.backgroundColor = UIColor.whiteColor()
 		label.text = questions[page].question
 		scrollView.addSubview(label)
 
 		var button1 = UIButton.buttonWithType(.Custom) as! UIButton
-		button1.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 300, width: 300, height: 60)
+		button1.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 300, width: size.width - 20, height: 60)
 		button1.backgroundColor = UIColor.blueColor()
 		button1.setTitle(questions[page].rightAnswer, forState: .Normal)
 		button1.tag = page * 2 + 1000
@@ -88,7 +99,7 @@ class QuestionViewController: UIViewController {
 		scrollView.addSubview(button1)
 
 		var button2 = UIButton.buttonWithType(.Custom) as! UIButton
-		button2.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 400, width: 300, height: 60)
+		button2.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 400, width: size.width - 20, height: 60)
 		button2.backgroundColor = UIColor.blueColor()
 		button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
 		button2.tag = page * 2 + 1001
@@ -126,6 +137,14 @@ class QuestionViewController: UIViewController {
 		let page = pageControl.currentPage + 1
 		genQA(page)
 		jumpToPage(page)
+
+		if let dot = dotView.viewWithTag(page + 500) {
+			dot.backgroundColor = UIColor.whiteColor()
+		}
+		
+		dispatch_async(dispatch_get_main_queue()) {
+			self.title = "\(page + 1)/10"
+		}
 	}
 
 	func chosen(sender: UIButton) {
@@ -133,10 +152,19 @@ class QuestionViewController: UIViewController {
 		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
 			AudioServicesPlaySystemSound(1008)
 			rightCount += 1
+			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
+				dot.backgroundColor = UIColor.greenColor()
+			}
+			println(questions[2].question.endIndex)
 		}
 
 		if sender.titleLabel?.text == questions[pageControl.currentPage].wrongAnswer {
 			AudioServicesPlaySystemSound(1053)
+
+			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
+				dot.backgroundColor = UIColor.redColor()
+			}
+
 			// AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
 		}
 
@@ -148,43 +176,22 @@ class QuestionViewController: UIViewController {
 		}
 
 		if sender.tag == 1018 || sender.tag == 1019 {
-			var text = ""
 
-			if rightCount < 5 {
-				text = "只答对了\(rightCount)题，再接再厉！"
-			}
-
-			if rightCount == 5 {
-				text = "答对了\(rightCount)题，还行。"
-			}
-
-			if rightCount > 5 && rightCount < 10 {
-				text = "答对了\(rightCount)题，很棒！"
-			}
-
-			if rightCount == 10 {
-				text = "竟然全答对了！屌爆了！"
-			}
 
 			let date = NSDate()
-		record?(rightCount: rightCount, date: date)
+			record?(rightCount: rightCount, date: date)
 
-		let alert = UIAlertController(title: "测试完成", message: text, preferredStyle: .Alert)
-		let okAction = UIAlertAction(title: "完成", style: .Default, handler: { (_) -> Void in
-			let AnsweredQAVC = AnsweredQAViewController()
-			AnsweredQAVC.questions = self.questions
-			self.presentViewController(AnsweredQAVC, animated: true, completion: nil)
-			self.rightCount = 0
-				
-			delay(seconds: 1.0, { () -> () in
-				self.quit()
+			UIView.animateWithDuration(0.8, animations: { () -> Void in
+				self.scrollView.alpha = 0.0
+				self.scrollView.removeFromSuperview()
+				self.view.backgroundColor = UIColor.grayColor()
+			})
+
+			delay(seconds: 0.9, { () -> () in
+				self.showRecord(self.rightCount)
 			})
 
 
-			})
-
-		alert.addAction(okAction)
-		presentViewController(alert, animated: true, completion: nil)
 		}
 	}
 
@@ -204,6 +211,44 @@ class QuestionViewController: UIViewController {
 			self.navigationController?.popViewControllerAnimated(true)
 		}
 		
+	}
+
+	func showRecord(record: Int) {
+		var label = UILabel()
+		label.frame = CGRect(x: 10, y: 10, width: size.width - 20, height: 200)
+		label.numberOfLines = 0
+		label.backgroundColor = UIColor.whiteColor()
+
+		if rightCount < 5 {
+			label.text = "只答对了\(rightCount)题，再接再厉！"
+		}
+
+		if rightCount == 5 {
+			label.text = "答对了\(rightCount)题，还行。"
+		}
+
+		if rightCount > 5 && rightCount < 10 {
+			label.text = "答对了\(rightCount)题，很棒！"
+		}
+
+		if rightCount == 10 {
+			label.text = "竟然全答对了！屌爆了！"
+		}
+
+		let seeQA = gen.genButton("查看题目", position: (Int(size.width / 4 - 50), 220))
+		seeQA?.addTarget(self, action: "seeQA", forControlEvents: .TouchUpInside)
+		let doneButton = gen.genButton("退出", position: (Int(size.width * 3 / 4 - 50), 220))
+		doneButton?.addTarget(self, action: "quit", forControlEvents: .TouchUpInside)
+
+		self.view.addSubview(seeQA!)
+		self.view.addSubview(doneButton!)
+		self.view.addSubview(label)
+	}
+
+	func seeQA() {
+		let AnsweredQAVC = AnsweredQAViewController()
+		AnsweredQAVC.questions = self.questions
+		presentViewController(AnsweredQAVC, animated: true, completion: nil)
 	}
 }
 

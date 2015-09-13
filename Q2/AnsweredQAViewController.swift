@@ -13,6 +13,8 @@ class AnsweredQAViewController: UIViewController {
 	var tableView = UITableView()
 	var questions = [Question]()
 
+	var dismissed: (() -> Void)?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -33,9 +35,22 @@ class AnsweredQAViewController: UIViewController {
 		view.addSubview(tableView)
 	}
 
-	func close() {
-		dismissViewControllerAnimated(true, completion: nil)
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		hidesBottomBarWhenPushed = true
 	}
+
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		hidesBottomBarWhenPushed = true
+	}
+
+	func close() {
+		self.dismissViewControllerAnimated(true, completion: nil)
+
+	}
+
+	
 }
 
 extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
