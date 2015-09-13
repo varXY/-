@@ -19,19 +19,22 @@ class QuestionViewController: UIViewController {
 	var pageControl = UIPageControl()
 
 	var questions = [Question]()
+	var rightCount = 0
+
+	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		let question = Question()
-		questions = question.getQestions(4)
+		questions = question.getQestions(10)
 
 		self.view.backgroundColor = UIColor.whiteColor()
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "quit")
 		quitButton.tintColor = UIColor.redColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 		self.navigationItem.leftBarButtonItem = quitButton
-		// self.navigationController?.navigationItem.leftBarButtonItem = nil
+		self.navigationController?.navigationItem.leftBarButtonItem = nil
 
 		scrollView.frame = view.bounds
 		scrollView.delegate = self
@@ -127,13 +130,61 @@ class QuestionViewController: UIViewController {
 
 	func chosen(sender: UIButton) {
 		println(sender.tag)
-		println(sender.titleLabel?.text)
 		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
 			AudioServicesPlaySystemSound(1008)
-			genJumpButton()
-		} else {
+			rightCount += 1
+		}
+
+		if sender.titleLabel?.text == questions[pageControl.currentPage].wrongAnswer {
 			AudioServicesPlaySystemSound(1053)
 			// AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+		}
+
+		if sender.tag != 1018 && sender.tag != 1019 {
+
+			delay(seconds: 0.5, { () -> () in
+				self.genJumpButton()
+			})
+		}
+
+		if sender.tag == 1018 || sender.tag == 1019 {
+			var text = ""
+
+			if rightCount < 5 {
+				text = "只答对了\(rightCount)题，再接再厉！"
+			}
+
+			if rightCount == 5 {
+				text = "答对了\(rightCount)题，还行。"
+			}
+
+			if rightCount > 5 && rightCount < 10 {
+				text = "答对了\(rightCount)题，很棒！"
+			}
+
+			if rightCount == 10 {
+				text = "竟然全答对了！屌爆了！"
+			}
+
+			let date = NSDate()
+		record?(rightCount: rightCount, date: date)
+
+		let alert = UIAlertController(title: "测试完成", message: text, preferredStyle: .Alert)
+		let okAction = UIAlertAction(title: "完成", style: .Default, handler: { (_) -> Void in
+			let AnsweredQAVC = AnsweredQAViewController()
+			AnsweredQAVC.questions = self.questions
+			self.presentViewController(AnsweredQAVC, animated: true, completion: nil)
+			self.rightCount = 0
+				
+			delay(seconds: 1.0, { () -> () in
+				self.quit()
+			})
+
+
+			})
+
+		alert.addAction(okAction)
+		presentViewController(alert, animated: true, completion: nil)
 		}
 	}
 

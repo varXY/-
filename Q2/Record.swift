@@ -10,5 +10,5 @@ import Foundation
 
 class Record {
 	var record: Int = 0
-	var date = NSData()
+	var date = NSDate()
 }

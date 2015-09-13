@@ -18,22 +18,20 @@ class RecordCell: UITableViewCell {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		recordLabel.frame = CGRect(x: 250, y: 5, width: 50, height: 44)
-		recordLabel.text = "xiaoyao"
 		self.contentView.addSubview(recordLabel)
 
-		let date = NSDate()
-		dateLabel.frame = CGRect(x: 5, y: 5, width: 150, height: 44)
-		dateLabel.text = "\(date)"
+		dateLabel.frame = CGRect(x: 5, y: 5, width: 180, height: 44)
 		self.contentView.addSubview(dateLabel)
+	}
+
+	func configrueForRecordCell(record: Record) {
+		self.recordLabel.text = "\(record.record)"
+		self.dateLabel.text = "\(record.date)"
 	}
 
 	required init(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
 
-	override func awakeFromNib() {
-		super.awakeFromNib()
 
-
-	}
 }

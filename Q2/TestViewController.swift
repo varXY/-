@@ -68,11 +68,19 @@ class TestViewController: UIViewController {
 
 	func start() {
 		// self.navigationItem.hidesBackButton = true
-		self.navigationController?.pushViewController(QuestionViewController(), animated: true)
+		let QuestionVC = QuestionViewController()
+		QuestionVC.record = {(rightCount: Int, date: NSDate) in
+			self.record.record = rightCount
+			self.record.date = date
+			println("testVC's recoed is" +  "\(self.record.record), date is \(self.record.date)")
+		}
+		self.navigationController?.pushViewController(QuestionVC, animated: true)
 	}
 
 	func seeRecord() {
-		self.presentViewController(RecordViewController(), animated: true, completion: nil)
+		let recordVC = RecordViewController()
+		recordVC.record = self.record
+		self.presentViewController(recordVC, animated: true, completion: nil)
 	}
 
 }
