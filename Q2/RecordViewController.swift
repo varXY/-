@@ -9,9 +9,16 @@
 import Foundation
 import UIKit
 
+let dateFormatter: NSDateFormatter = {
+	let formatter = NSDateFormatter()
+	formatter.dateStyle = .ShortStyle
+	formatter.timeStyle = .ShortStyle
+	return formatter
+}()
+
 class RecordViewController: UIViewController {
 	var tableView = UITableView()
-	var record = Record()
+	var records = [Record]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -41,7 +48,7 @@ class RecordViewController: UIViewController {
 extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 20
+		return records.count
 	}
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -55,7 +62,7 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 		if cell == nil {
 			cell = RecordCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID)
 		}
-		cell?.configrueForRecordCell(record)
+		cell?.configrueForRecordCell(records[indexPath.row])
 		return cell!
 	}
 }

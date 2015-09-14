@@ -36,6 +36,7 @@
 		318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */; };
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
+		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsweredQAViewController.swift; sourceTree = "<group>"; };
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsweredQACell.swift; sourceTree = "<group>"; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 			children = (
 				31033AB01BA4096A00DC9141 /* Question.swift */,
 				31033AB61BA416C100DC9141 /* Record.swift */,
+				31D61E531BA6B08D006A7034 /* Records.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				31033AA91BA3E9A800DC9141 /* TestNavigationController.swift in Sources */,
 				314DFCD51BA42DE100E79557 /* ContentViewController.swift in Sources */,
 				314DFCE31BA42EC900E79557 /* ImageCell.swift in Sources */,
+				31D61E541BA6B08D006A7034 /* Records.swift in Sources */,
 				31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */,
 				314DFCEE1BA42F4300E79557 /* UIbutton+genAnimation.swift in Sources */,
 				314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */,

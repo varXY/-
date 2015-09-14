@@ -21,7 +21,6 @@ class InfoViewController: UIViewController {
 		self.view.backgroundColor = UIColor.grayColor()
 
 		self.title = "常用知识"
-		println(self.view.frame)
 
 		buttons = generator.genButtons()
 

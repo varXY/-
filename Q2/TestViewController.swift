@@ -11,7 +11,7 @@ import UIKit
 
 class TestViewController: UIViewController {
 
-	var record = Record()
+	var records = Records()
 	var global = Global()
 
 	override func viewDidLoad() {
@@ -82,28 +82,20 @@ class TestViewController: UIViewController {
 		// self.navigationItem.hidesBackButton = true
 		let QuestionVC = QuestionViewController()
 		QuestionVC.record = {(rightCount: Int, date: NSDate) in
-			self.record.record = rightCount
-			self.record.date = date
-			println("testVC's recoed is" +  "\(self.record.record), date is \(self.record.date)")
+			let record = Record(record: rightCount, date: date)
+			self.records.records.insert(record, atIndex: 0)
 		}
 		self.navigationController?.pushViewController(QuestionVC, animated: true)
 	}
 
 	func seeRecord() {
 		let recordVC = RecordViewController()
-		recordVC.record = self.record
+		recordVC.records = self.records.records
 		self.presentViewController(recordVC, animated: true, completion: nil)
 	}
 
 }
 
-extension TestViewController: RecordDelegate {
-
-	func getRecord(record: Record) {
-		self.record.record = record.record
-		self.record.date = record.date
-	}
-}
 
 
 

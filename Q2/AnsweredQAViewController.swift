@@ -12,6 +12,8 @@ import UIKit
 class AnsweredQAViewController: UIViewController {
 	var tableView = UITableView()
 	var questions = [Question]()
+	var rightOrWrong = [Int]()
+	var global = Global()
 
 	var dismissed: (() -> Void)?
 
@@ -60,7 +62,31 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return 100
+		let question = questions[indexPath.row]
+		var count = 0
+
+		for i in question.question {
+			count += 1
+		}
+
+		let room = global.size.width / CGFloat(count)
+		println(room)
+
+		var high: CGFloat = 0
+
+		if room > 18.0 {
+			high = 52
+		}
+
+		if room < 18 && room > 9 {
+			high = 74
+		}
+
+		if room < 9 {
+			high = 96
+		}
+		
+		return high
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -71,7 +97,8 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 			cell = AnsweredQACell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID)
 		}
 		let question = questions[indexPath.row]
-		cell?.configrueForAnsweredQACell(question)
+		let rightOrWrong = self.rightOrWrong[indexPath.row]
+		cell?.configrueForAnsweredQACell(question, rightOrWrong: rightOrWrong)
 		return cell!
 	}
 }

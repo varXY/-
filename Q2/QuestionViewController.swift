@@ -10,10 +10,6 @@ import Foundation
 import UIKit
 import AudioToolbox
 
-protocol RecordDelegate {
-	func getRecord(record: Record)
-}
-
 class QuestionViewController: UIViewController {
 	var scrollView = UIScrollView()
 	var pageControl = UIPageControl()
@@ -22,6 +18,7 @@ class QuestionViewController: UIViewController {
 
 	var questions = [Question]()
 	var rightCount = 0
+	var rightOrWrong = [Int]()
 	var gen = Generator()
 	var dotView = UIView()
 
@@ -150,18 +147,19 @@ class QuestionViewController: UIViewController {
 	}
 
 	func chosen(sender: UIButton) {
-		println(sender.tag)
+
 		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
 			AudioServicesPlaySystemSound(1008)
 			rightCount += 1
+			rightOrWrong.append(1)
 			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
 				dot.backgroundColor = UIColor.greenColor()
 			}
-			println(questions[2].question.endIndex)
 		}
 
 		if sender.titleLabel?.text == questions[pageControl.currentPage].wrongAnswer {
 			AudioServicesPlaySystemSound(1053)
+			rightOrWrong.append(0)
 
 			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
 				dot.backgroundColor = UIColor.redColor()
@@ -179,7 +177,6 @@ class QuestionViewController: UIViewController {
 
 		if sender.tag == 1018 || sender.tag == 1019 {
 
-
 			let date = NSDate()
 			record?(rightCount: rightCount, date: date)
 
@@ -191,6 +188,7 @@ class QuestionViewController: UIViewController {
 
 			delay(seconds: 0.9, { () -> () in
 				let finalView = self.gen.showTestFinalPage(self.rightCount)
+				self.rightCount = 0
 
 				if let button = finalView.viewWithTag(12345) as? UIButton {
 					button.genAnimation(.appear, delay: 0.0)
@@ -214,7 +212,6 @@ class QuestionViewController: UIViewController {
 		UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: -64.0)
 			}, completion: nil)
-		println(self.scrollView.contentOffset)
 	}
 
 	func quit() {
@@ -229,6 +226,8 @@ class QuestionViewController: UIViewController {
 	func seeQA() {
 		let AnsweredQAVC = AnsweredQAViewController()
 		AnsweredQAVC.questions = self.questions
+		AnsweredQAVC.rightOrWrong = self.rightOrWrong
+		self.rightOrWrong.removeAll(keepCapacity: false)
 		presentViewController(AnsweredQAVC, animated: true, completion: nil)
 	}
 }
@@ -238,7 +237,6 @@ extension QuestionViewController: UIScrollViewDelegate {
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		let width = scrollView.bounds.size.width
 		pageControl.currentPage = Int((scrollView.contentOffset.x + width/2) / width)
-		println(Int((scrollView.contentOffset.x + width/2) / width))
 	}
 
 }

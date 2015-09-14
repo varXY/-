@@ -17,7 +17,7 @@ class Question {
 		var questionMarks = [Int]()
 		var questions = [Question]()
 
-		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 51)
+		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 101)
 
 		for i in questionMarks {
 			questions.append(getQuestion(i)!)
@@ -304,6 +304,257 @@ class Question {
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
+		case 51:
+			question.question = "低压设备停电检修时，将检修设备各方面电源断开后，应立即："
+			question.rightAnswer = "取下熔断器"
+			question.wrongAnswer = "装设接地线"
+			return question
+		case 52:
+			question.question = "测量低压电缆及二次电缆的绝缘电阻时应使用多大的摇表？"
+			question.rightAnswer = "500V"
+			question.wrongAnswer = "1000V"
+			return question
+		case 53:
+			question.question = "母线的颜色有统一规定，其中W相线的颜色规定为？"
+			question.rightAnswer = "红色 "
+			question.wrongAnswer = "黄色"
+			return question
+		case 54:
+			question.question = "在不接地的电压电网的绝缘监视中，当3只电压表读数均为相电压时，则表示电网："
+			question.rightAnswer = "对地绝缘正常"
+			question.wrongAnswer = "某相绝缘恶化"
+			return question
+		case 55:
+			question.question = "在什么线上严禁通过工作电流，且严禁断线？"
+			question.rightAnswer = "PE线"
+			question.wrongAnswer = "N线"
+			return question
+		case 56:
+			question.question = "当负荷电流达到熔断器熔体的额定电流时，熔体将："
+			question.rightAnswer = "不会熔断"
+			question.wrongAnswer = "立即熔断"
+			return question
+		case 57:
+			question.question = "三相对称负载采用三角形接法接到线电压为380V的三相电源上，已知负载电流为10A，则火线中的电流为多少？"
+			question.rightAnswer = "17.32A"
+			question.wrongAnswer = "10A"
+			return question
+		case 58:
+			question.question = "用三只电压表来监视中性点不接地电网的绝缘，当发生单相接地时，接地相电压表读数将会？"
+			question.rightAnswer = "急剧降低"
+			question.wrongAnswer = "显著升高"
+			return question
+		case 59:
+			question.question = "安装单相三孔插座，零线孔在："
+			question.rightAnswer = "左"
+			question.wrongAnswer = "右"
+			return question
+		case 60:
+			question.question = "电容器组不允许装设："
+			question.rightAnswer = "自动复合闸装置"
+			question.wrongAnswer = "熔断器"
+			return question
+		case 61:
+			question.question = "母线的着色有统一规定，其中不接地中性线的颜色规定为："
+			question.rightAnswer = "紫色"
+			question.wrongAnswer = "蓝色"
+			return question
+		case 62:
+			question.question = "在有爆炸性危险场所，配线方式应采用什么配线？"
+			question.rightAnswer = "钢管"
+			question.wrongAnswer = "塑料管"
+			return question
+		case 63:
+			question.question = "碘钨灯等高热灯具与易燃物距离不宜小于："
+			question.rightAnswer = "1000mm"
+			question.wrongAnswer = "800mm"
+			return question
+		case 64:
+			question.question = "电流互感器的二次侧回路采用铜芯绝缘导线，其截面应不小于多少平方毫米？"
+			question.rightAnswer = "2.5"
+			question.wrongAnswer = "1.5"
+			return question
+		case 65:
+			question.question = "在施工地点，临近戴电设备的遮栏上应悬挂什么标示牌？"
+			question.rightAnswer = "止步，高压危险"
+			question.wrongAnswer = "请勿合闸"
+			return question
+		case 66:
+			question.question = "当线路或设备的负荷超过允许范围时，经延时后切断电源的保护方式是什么？"
+			question.rightAnswer = "过载保护"
+			question.wrongAnswer = "缺相保护"
+			return question
+		case 67:
+			question.question = "装拆接地线应由几人进行？"
+			question.rightAnswer = "2人"
+			question.wrongAnswer = "1人"
+			return question
+		case 68:
+			question.question = "按规程规定220V线路允许的电压损失是："
+			question.rightAnswer = "11V"
+			question.wrongAnswer = "22V"
+			return question
+		case 69:
+			question.question = "三相四线制电路中采用漏电保护时，应穿过零序电流互感器的是："
+			question.rightAnswer = "相线和零线"
+			question.wrongAnswer = "相线"
+			return question
+		case 70:
+			question.question = "低压脱扣器的瞬动脱扣器在线路上是作为什么保护使用？"
+			question.rightAnswer = "短路保护"
+			question.wrongAnswer = "过载保护"
+			return question
+		case 71:
+			question.question = "照明线路常见的故障是："
+			question.rightAnswer = "漏电"
+			question.wrongAnswer = "电压过高"
+			return question
+		case 72:
+			question.question = "属于安全电压等级的是："
+			question.rightAnswer = "36V"
+			question.wrongAnswer = "50V"
+			return question
+		case 73:
+			question.question = "与金属导体的电阻有关的因素是："
+			question.rightAnswer = "导体长度"
+			question.wrongAnswer = "所加电压大小"
+			return question
+		case 74:
+			question.question = "电气线路从安全角度考虑对它的要求有："
+			question.rightAnswer = "导电能力"
+			question.wrongAnswer = "横截面大小"
+			return question
+		case 75:
+			question.question = "电容器运行时发生什么情况必须立刻停止使用？"
+			question.rightAnswer = "外壳膨胀"
+			question.wrongAnswer = "三相电流出现不平衡"
+			return question
+		case 76:
+			question.question = "在纯电阻正弦交流电路中："
+			question.rightAnswer = "消耗有功功率"
+			question.wrongAnswer = "消耗无功功率"
+			return question
+		case 77:
+			question.question = "室内配线导线截面的选择主要依据是："
+			question.rightAnswer = "导线的安全电流值"
+			question.wrongAnswer = "导线的绝缘程度"
+			return question
+		case 78:
+			question.question = "重复接地的主要作用是减轻零线断线时造成的触电危险？"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 79:
+			question.question = "避雷器可釉预防高大建筑物免遭雷击？"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 80:
+			question.question = "供电企业低压供电的额定电压：单相为220V三相为380V？"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 81:
+			question.question = "由三个频率相同、电势振幅相等、相位差互差 120 °角的交流电路组成的电力系统，叫三相交流电。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 82:
+			question.question = "两只额定电压相同的电阻，串联接在电路中，则阻值较大的电阻会："
+			question.rightAnswer = "发热量较大"
+			question.wrongAnswer = "发热量较小"
+			return question
+		case 83:
+			question.question = "万用表的开关是用来："
+			question.rightAnswer = "转换测量种类及量程"
+			question.wrongAnswer = "接通电流"
+			return question
+		case 84:
+			question.question = "绝缘手套测验周期为："
+			question.rightAnswer = "六个月一次"
+			question.wrongAnswer = "每年一次"
+			return question
+		case 85:
+			question.question = "绝缘靴的试验周期是："
+			question.rightAnswer = "六个月一次"
+			question.wrongAnswer = "每年一次"
+			return question
+		case 86:
+			question.question = "在值班期间需要移开或越过遮栏时"
+			question.rightAnswer = "必须有监护人在场"
+			question.wrongAnswer = "必须有领导在场"
+			return question
+		case 87:
+			question.question = "接地中线相色漆规定涂为："
+			question.rightAnswer = "黑"
+			question.wrongAnswer = "紫"
+			return question
+		case 88:
+			question.question = "变电站（所）设备接头和线夹的最高允许温度为："
+			question.rightAnswer = "85 ℃"
+			question.wrongAnswer = "95 ℃"
+			return question
+		case 89:
+			question.question = "电力变压器的油起什么作用？"
+			question.rightAnswer = "绝缘和灭弧 "
+			question.wrongAnswer = "绝缘和散热"
+			return question
+		case 90:
+			question.question = "带电设备着火时不得使用"
+			question.rightAnswer = "泡沫灭火器"
+			question.wrongAnswer = "二氧化碳灭火器"
+			return question
+		case 91:
+			question.question = "道闸操作票至少要保存多长时间？"
+			question.rightAnswer = "3个月"
+			question.wrongAnswer = "1个月"
+			return question
+		case 92:
+			question.question = "各断路器的配合中，电路上一级的熔断时间应为下一级熔断器的几倍以上？"
+			question.rightAnswer = "3倍"
+			question.wrongAnswer = "2倍"
+			return question
+		case 93:
+			question.question = "凡接到任何违反电器安全工作规程制度的命令时应："
+			question.rightAnswer = "拒绝执行"
+			question.wrongAnswer = "部分执行"
+			return question
+		case 94:
+			question.question = "指针万用表的优劣，主要看？"
+			question.rightAnswer = "灵敏度高低"
+			question.wrongAnswer = "量程大小"
+			return question
+		case 95:
+			question.question = "交流电机在空载运行时，功率因素很"
+			question.rightAnswer = "低"
+			question.wrongAnswer = "高"
+			return question
+		case 96:
+			question.question = "变压器铁心应接地，但只允许有一点接地。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 97:
+			question.question = "通过人体的安全直流电流在多少以下？"
+			question.rightAnswer = "50mA"
+			question.wrongAnswer = "60mA"
+			return question
+		case 98:
+			question.question = "将一根导线均匀拉长为原长度的3倍,则阻值为原来的几倍？"
+			question.rightAnswer = "9倍"
+			question.wrongAnswer = "3倍"
+			return question
+		case 99:
+			question.question = "阻值不随外加电压或电流的大小而改变的电阻叫："
+			question.rightAnswer = "线性电阻 "
+			question.wrongAnswer = "固定电阻"
+			return question
+		case 100:
+			question.question = "阻值随外加电压或电流的大小而改变的电阻叫："
+			question.rightAnswer = "非线性电阻"
+			question.wrongAnswer = "可变电阻"
+			return question
+
 		default:
 			break
 		}

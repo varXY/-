@@ -13,9 +13,15 @@ class RecordCell: UITableViewCell {
 
 	var recordLabel = UILabel()
 	var dateLabel = UILabel()
+	var colorView = UIView()
+	var global = Global()
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+		colorView.frame = CGRect.zeroRect
+		colorView.backgroundColor = UIColor.redColor()
+		self.contentView.addSubview(colorView)
 
 		recordLabel.frame = CGRect(x: 250, y: 5, width: 50, height: 44)
 		self.contentView.addSubview(recordLabel)
@@ -25,8 +31,9 @@ class RecordCell: UITableViewCell {
 	}
 
 	func configrueForRecordCell(record: Record) {
-		self.recordLabel.text = "\(record.record)"
-		self.dateLabel.text = "\(record.date)"
+		self.colorView.frame = CGRect(x: 0, y: 0, width: self.global.size.width / 10 * CGFloat(record.record), height: 60)
+		self.recordLabel.text = "\(record.record)/10"
+		self.dateLabel.text = "\(dateFormatter.stringFromDate(record.date))"
 	}
 
 	required init(coder aDecoder: NSCoder) {

@@ -21,6 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
+	let records = Records()
+
+	func saveRecord() {
+		records.saveRecords()
+	}
+
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -31,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		let testNavi = TestNavigationController()
 		testNavi.tabBarItem = UITabBarItem(title: "Test", image: nil, tag: 1)
+		let controller = testNavi.viewControllers[0] as! TestViewController
+		controller.records = records
 
 		let tabbarController = TabBarController()
 		tabbarController.viewControllers = [infoNavi, testNavi]
@@ -48,8 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationDidEnterBackground(application: UIApplication) {
-		// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-		// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+		saveRecord()
 	}
 
 	func applicationWillEnterForeground(application: UIApplication) {
@@ -61,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationWillTerminate(application: UIApplication) {
-		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+		saveRecord()
 	}
 
 
