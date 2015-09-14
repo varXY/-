@@ -13,17 +13,18 @@ class AnsweredQACell: UITableViewCell {
 
 	var QLabel = UILabel()
 	var ALabel = UILabel()
+	var global = Global()
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		QLabel.frame = CGRect(x: 10, y: 5, width: size.width - 20, height: 44)
+		QLabel.frame = CGRect(x: 10, y: 5, width: global.size.width - 20, height: 44)
 		println(self.frame.width)
 		QLabel.numberOfLines = 0
 		self.contentView.addSubview(QLabel)
 
 		let date = NSDate()
-		ALabel.frame = CGRect(x: 10, y: 52, width: size.width - 20, height: 44)
+		ALabel.frame = CGRect(x: 10, y: 52, width: global.size.width - 20, height: 44)
 		self.contentView.addSubview(ALabel)
 	}
 

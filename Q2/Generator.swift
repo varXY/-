@@ -18,14 +18,25 @@ class Generator {
 	var maxY : CGFloat = 320
 	let buttonSize : CGFloat = 30.0
 
+	var global = Global()
+
 	func genButtons() -> [UIButton] {
-		var button = genButton("单位公式", position: (Int(size.width / 2 - 50), 140))
+		var buttonSize = global.buttonSize()
+		var marginY = global.margin()
+
+		var buttonX = (global.size.width - buttonSize.width) / 2
+		
+		var marginY_1 = marginY + 64
+		var marginY_2 = marginY * 2 + buttonSize.height + 64
+		var marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
+
+		var button = genButton("单位公式", frame: CGRect(x: buttonX, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
 		buttons.append(button!)
 
-		button = genButton("符号图标", position: (Int(size.width / 2 - 50), 280))
+		button = genButton("图标符号", frame: CGRect(x: buttonX, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
 		buttons.append(button!)
 
-		button = genButton("工具设备", position: (Int(size.width / 2 - 50), 420))
+		button = genButton("工具设备", frame: CGRect(x: buttonX, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
 		buttons.append(button!)
 
 
@@ -82,20 +93,20 @@ class Generator {
 		return true
 	}
 
-	func genButton(title: String, position: (Int, Int)) -> UIButton? {
+	func genButton(title: String, frame: CGRect) -> UIButton? {
 
 		let button = UIButton.buttonWithType(.System) as! UIButton
-		button.frame = CGRect(x: position.0, y: position.1, width: 100, height: 100)
+		button.frame = frame
 		button.setTitle(title, forState: .Normal)
 		button.backgroundColor = UIColor.whiteColor()
-		button.layer.cornerRadius = 50
+		button.layer.cornerRadius = frame.height / 2
 		button.clipsToBounds = true
 		return button
 	}
 
 
 	func genDots() -> UIView {
-		var view = UIView(frame: CGRect(x: (size.width - 155) / 2, y: size.height - 30, width: 155, height: 20))
+		var view = UIView(frame: CGRect(x: (global.size.width - 155) / 2, y: global.size.height - 30, width: 155, height: 20))
 		view.backgroundColor = UIColor.clearColor()
 
 		for i in 0..<10 {
@@ -107,6 +118,65 @@ class Generator {
 			view.addSubview(littleView)
 		}
 
+		return view
+	}
+
+	func showTestFinalPage(rightCount: Int) -> UIView {
+		var view = UIView()
+		view.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)
+
+		var label = UILabel()
+		label.frame = CGRect(x: 10, y: 74, width: global.size.width - 20, height: global.size.width - 20)
+		label.layer.cornerRadius = (global.size.width - 20) / 2
+		label.clipsToBounds = true
+		label.numberOfLines = 0
+		label.textAlignment = .Center
+		label.textColor = UIColor.whiteColor()
+		label.backgroundColor = UIColor.redColor()
+
+		if rightCount < 5 {
+			label.text = "只答对了\(rightCount)题，再接再厉！"
+		}
+
+		if rightCount == 5 {
+			label.text = "答对了\(rightCount)题，还行。"
+		}
+
+		if rightCount > 5 && rightCount < 10 {
+			label.text = "答对了\(rightCount)题，很棒！"
+		}
+
+		if rightCount == 10 {
+			label.text = "竟然全答对了！屌爆了！"
+		}
+
+		view.addSubview(label)
+
+		var buttonWidth = global.testSmallButtonSize().width
+		var buttonHeight = global.testSmallButtonSize().height
+
+		var button = UIButton.buttonWithType(.System) as! UIButton
+		button.frame.size = CGSize(width: buttonWidth + 50, height: buttonHeight + 50)
+		button.frame.origin = CGPoint(x: global.size.width / 4 - (buttonWidth + 50) / 2, y: global.size.width + 54 - buttonHeight / 2)
+		button.layer.cornerRadius = (buttonWidth + 50) / 2
+		button.clipsToBounds = true
+		button.tintColor = UIColor.redColor()
+		button.backgroundColor = UIColor.whiteColor()
+		button.setTitle("查看题目", forState: .Normal)
+		button.tag = 12345
+		view.addSubview(button)
+
+		var button1 = UIButton.buttonWithType(.System) as! UIButton
+		button1.frame.size = CGSize(width: buttonWidth, height: buttonHeight)
+		button1.frame.origin = CGPoint(x: global.size.width * 3 / 4 - buttonWidth / 2, y: global.size.width + 54)
+		button1.backgroundColor = UIColor.whiteColor()
+		button1.setTitle("退出", forState: .Normal)
+		button1.tintColor = UIColor.redColor()
+		button1.layer.cornerRadius = buttonWidth / 2
+		button1.clipsToBounds = true
+		button1.tag = 123456
+		view.addSubview(button1)
+		
 		return view
 	}
 

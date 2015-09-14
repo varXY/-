@@ -18,6 +18,8 @@ class QuestionViewController: UIViewController {
 	var scrollView = UIScrollView()
 	var pageControl = UIPageControl()
 
+	var global = Global()
+
 	var questions = [Question]()
 	var rightCount = 0
 	var gen = Generator()
@@ -84,14 +86,14 @@ class QuestionViewController: UIViewController {
 	func genQA(page: Int) {
 
 		var label = UILabel()
-		label.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 10, width: size.width - 20, height: 200)
+		label.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 10, width: global.size.width - 20, height: 200)
 		label.numberOfLines = 0
 		label.backgroundColor = UIColor.whiteColor()
 		label.text = questions[page].question
 		scrollView.addSubview(label)
 
 		var button1 = UIButton.buttonWithType(.Custom) as! UIButton
-		button1.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 300, width: size.width - 20, height: 60)
+		button1.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 300, width: global.size.width - 20, height: 60)
 		button1.backgroundColor = UIColor.blueColor()
 		button1.setTitle(questions[page].rightAnswer, forState: .Normal)
 		button1.tag = page * 2 + 1000
@@ -99,7 +101,7 @@ class QuestionViewController: UIViewController {
 		scrollView.addSubview(button1)
 
 		var button2 = UIButton.buttonWithType(.Custom) as! UIButton
-		button2.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 400, width: size.width - 20, height: 60)
+		button2.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 400, width: global.size.width - 20, height: 60)
 		button2.backgroundColor = UIColor.blueColor()
 		button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
 		button2.tag = page * 2 + 1001
@@ -188,7 +190,19 @@ class QuestionViewController: UIViewController {
 			})
 
 			delay(seconds: 0.9, { () -> () in
-				self.showRecord(self.rightCount)
+				let finalView = self.gen.showTestFinalPage(self.rightCount)
+
+				if let button = finalView.viewWithTag(12345) as? UIButton {
+					button.genAnimation(.appear, delay: 0.0)
+					button.addTarget(self, action: "seeQA", forControlEvents: .TouchUpInside)
+				}
+
+				if let button = finalView.viewWithTag(123456) as? UIButton {
+					button.genAnimation(.appear, delay: 0.0)
+					button.addTarget(self, action: "quit", forControlEvents: .TouchUpInside)
+				}
+
+				self.view.addSubview(finalView)
 			})
 
 
@@ -204,46 +218,13 @@ class QuestionViewController: UIViewController {
 	}
 
 	func quit() {
-
 		self.scrollView.removeFromSuperview()
 
 		dispatch_async(dispatch_get_main_queue()) {
 			self.navigationController?.popViewControllerAnimated(true)
 		}
-		
 	}
 
-	func showRecord(record: Int) {
-		var label = UILabel()
-		label.frame = CGRect(x: 10, y: 10, width: size.width - 20, height: 200)
-		label.numberOfLines = 0
-		label.backgroundColor = UIColor.whiteColor()
-
-		if rightCount < 5 {
-			label.text = "只答对了\(rightCount)题，再接再厉！"
-		}
-
-		if rightCount == 5 {
-			label.text = "答对了\(rightCount)题，还行。"
-		}
-
-		if rightCount > 5 && rightCount < 10 {
-			label.text = "答对了\(rightCount)题，很棒！"
-		}
-
-		if rightCount == 10 {
-			label.text = "竟然全答对了！屌爆了！"
-		}
-
-		let seeQA = gen.genButton("查看题目", position: (Int(size.width / 4 - 50), 220))
-		seeQA?.addTarget(self, action: "seeQA", forControlEvents: .TouchUpInside)
-		let doneButton = gen.genButton("退出", position: (Int(size.width * 3 / 4 - 50), 220))
-		doneButton?.addTarget(self, action: "quit", forControlEvents: .TouchUpInside)
-
-		self.view.addSubview(seeQA!)
-		self.view.addSubview(doneButton!)
-		self.view.addSubview(label)
-	}
 
 	func seeQA() {
 		let AnsweredQAVC = AnsweredQAViewController()

@@ -13,10 +13,11 @@ class InfoViewController: UIViewController {
 	var generator = Generator()
 	var buttons = [UIButton]()
 	var knowledge = Knowledge()
+	var global = Global()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+		global.size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 		self.view.backgroundColor = UIColor.grayColor()
 
 		self.title = "常用知识"

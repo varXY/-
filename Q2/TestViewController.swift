@@ -12,6 +12,7 @@ import UIKit
 class TestViewController: UIViewController {
 
 	var record = Record()
+	var global = Global()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,6 +27,14 @@ class TestViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = false
+
+		if let startButton = view.viewWithTag(333) as? UIButton {
+			startButton.genAnimation(.appear, delay: 0.0)
+		}
+
+		if let recordButton = view.viewWithTag(444) as? UIButton {
+			recordButton.genAnimation(.appear, delay: 0.0)
+		}
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -39,30 +48,32 @@ class TestViewController: UIViewController {
 	}
 
 	func genStartButton() {
-		var buttonWidth: CGFloat = 150
-		var buttonHeight:CGFloat = 150
+		var buttonWidth: CGFloat = global.testBigButtonSize().width
+		var buttonHeight:CGFloat = global.testBigButtonSize().height
 
 		var startButton = UIButton.buttonWithType(.System) as! UIButton
-		startButton.frame = CGRect(x: self.view.center.x - buttonWidth / 2, y: self.view.center.y - buttonHeight / 2 - 49, width: buttonWidth, height: buttonHeight)
-		startButton.layer.cornerRadius = 75
+		startButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 - 49 , width: buttonWidth, height: buttonHeight)
+		startButton.layer.cornerRadius = global.testBigButtonSize().width / 2
 		startButton.clipsToBounds = true
 		startButton.backgroundColor = UIColor.whiteColor()
 		startButton.setTitle("start", forState: .Normal)
 		startButton.addTarget(self, action: "start", forControlEvents: .TouchUpInside)
+		startButton.tag = 333
 		self.view.addSubview(startButton)
 	}
 
 	func genRecordButton() {
-		var buttonWidth: CGFloat = 100
-		var buttonHeight:CGFloat = 100
+		var buttonWidth: CGFloat = global.testSmallButtonSize().width
+		var buttonHeight:CGFloat = global.testSmallButtonSize().height
 
 		var recordButton = UIButton.buttonWithType(.System) as! UIButton
-		recordButton.frame = CGRect(x: self.view.center.x - buttonWidth / 2, y: self.view.center.y - buttonHeight / 2 - 49 + 200, width: buttonWidth, height: buttonHeight)
-		recordButton.layer.cornerRadius = 50
+		recordButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 + 200, width: buttonWidth, height: buttonHeight)
+		recordButton.layer.cornerRadius = global.testSmallButtonSize().width / 2
 		recordButton.clipsToBounds = true
 		recordButton.backgroundColor = UIColor.whiteColor()
 		recordButton.setTitle("Record", forState: .Normal)
 		recordButton.addTarget(self, action: "seeRecord", forControlEvents: .TouchUpInside)
+		recordButton.tag = 444
 		self.view.addSubview(recordButton)
 	}
 
