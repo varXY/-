@@ -22,7 +22,7 @@ class Knowledge {
 
 		switch number {
 		case 0:
-			for i in 0..<2 {
+			for i in 0..<3 {
 				var icons = [Knowledge]()
 				var rows = titlesInSection.index(0, i).titles.count
 				for j in 0..<rows {
