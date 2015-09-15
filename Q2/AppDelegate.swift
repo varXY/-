@@ -34,8 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let controller = testNavi.viewControllers[0] as! TestViewController
 		controller.records = records
 
+		let scaleNavi = ScaleNavigationController()
+		scaleNavi.tabBarItem = UITabBarItem(title: "Scale", image: nil, tag: 2)
+
 		let tabbarController = TabBarController()
-		tabbarController.viewControllers = [infoNavi, testNavi]
+		tabbarController.viewControllers = [infoNavi, testNavi, scaleNavi]
+		tabbarController.selectedIndex = 1
 
 		self.window?.rootViewController = tabbarController
 

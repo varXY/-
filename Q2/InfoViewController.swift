@@ -23,7 +23,7 @@ class InfoViewController: UIViewController {
 
 		self.title = "常用知识"
 
-		buttons = generator.genButtons()
+		buttons = generator.genButtonsForInfo()
 
 		for button in buttons {
 			self.view.addSubview(button)

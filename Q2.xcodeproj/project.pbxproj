@@ -37,6 +37,10 @@
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
 		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
+		31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */; };
+		31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */; };
+		31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */; };
+		31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D669001BA80BE200A21AF1 /* EquationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +88,10 @@
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsweredQACell.swift; sourceTree = "<group>"; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
+		31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleNavigationController.swift; sourceTree = "<group>"; };
+		31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleViewController.swift; sourceTree = "<group>"; };
+		31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationViewController.swift; sourceTree = "<group>"; };
+		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,7 @@
 				31033AA01BA3BC6800DC9141 /* TabBarController.swift */,
 				31033AA41BA3BCEC00DC9141 /* Info */,
 				31033AA71BA3E97E00DC9141 /* Test */,
+				31D668F71BA7FCB800A21AF1 /* Scale */,
 				314DFCEB1BA42F3D00E79557 /* Generator.swift */,
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
 				314DFCED1BA42F4300E79557 /* UIbutton+genAnimation.swift */,
@@ -248,6 +257,33 @@
 			name = Modal;
 			sourceTree = "<group>";
 		};
+		31D668F71BA7FCB800A21AF1 /* Scale */ = {
+			isa = PBXGroup;
+			children = (
+				31D668FF1BA80BCE00A21AF1 /* View */,
+				31D668FC1BA7FEBC00A21AF1 /* Controller */,
+			);
+			name = Scale;
+			sourceTree = "<group>";
+		};
+		31D668FC1BA7FEBC00A21AF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */,
+				31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */,
+				31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		31D668FF1BA80BCE00A21AF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31D669001BA80BE200A21AF1 /* EquationCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -355,8 +391,10 @@
 				31033AB11BA4096A00DC9141 /* Question.swift in Sources */,
 				31033AB71BA416C100DC9141 /* Record.swift in Sources */,
 				31033AA91BA3E9A800DC9141 /* TestNavigationController.swift in Sources */,
+				31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */,
 				314DFCD51BA42DE100E79557 /* ContentViewController.swift in Sources */,
 				314DFCE31BA42EC900E79557 /* ImageCell.swift in Sources */,
+				31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */,
 				31D61E541BA6B08D006A7034 /* Records.swift in Sources */,
 				31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */,
 				314DFCEE1BA42F4300E79557 /* UIbutton+genAnimation.swift in Sources */,
@@ -364,9 +402,11 @@
 				314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */,
 				31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */,
 				314DFCDB1BA42E7800E79557 /* Knowledge.swift in Sources */,
+				31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */,
 				31033AA31BA3BCAD00DC9141 /* InfoNavigationController.swift in Sources */,
 				314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */,
 				31033AA61BA3BD0300DC9141 /* InfoViewController.swift in Sources */,
+				31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */,
 				314DFCD91BA42E3F00E79557 /* Catalog.swift in Sources */,
 				318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */,
 				318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */,

@@ -20,7 +20,7 @@ class Generator {
 
 	var global = Global()
 
-	func genButtons() -> [UIButton] {
+	func genButtonsForInfo() -> [UIButton] {
 		var buttonSize = global.buttonSize()
 		var marginY = global.margin()
 
@@ -46,7 +46,33 @@ class Generator {
 		}
 		
 		return buttons
+	}
 
+	func genButtonsForScale() -> [UIButton] {
+		var buttonSize = global.buttonSize()
+		var marginY = global.margin()
+
+		var buttonX0 = (global.size.width - buttonSize.width) / 2
+		var buttonX1 = global.size.width / 4 - buttonSize.width / 2
+		var buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
+
+		var marginY_1 = marginY + 64
+		var marginY_2 = marginY * 2 + buttonSize.height + 64
+		var marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
+
+		var button = genButton("欧姆定律", frame: CGRect(x: buttonX0, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		button = genButton("功率", frame: CGRect(x: buttonX1, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		button = genButton("电量", frame: CGRect(x: buttonX2, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		button = genButton("马力", frame: CGRect(x: buttonX0, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		return buttons
 	}
 
 	func generateLittleButtons() -> UIButton {
