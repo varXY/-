@@ -148,25 +148,8 @@ class QuestionViewController: UIViewController {
 
 	func chosen(sender: UIButton) {
 
-		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			AudioServicesPlaySystemSound(1008)
-			rightCount += 1
-			rightOrWrong.append(1)
-			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = UIColor.greenColor()
-			}
-		}
-
-		if sender.titleLabel?.text == questions[pageControl.currentPage].wrongAnswer {
-			AudioServicesPlaySystemSound(1053)
-			rightOrWrong.append(0)
-
-			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = UIColor.redColor()
-			}
-
-			// AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
-		}
+		getResult(sender)
+		disableAndColorButtons(sender)
 
 		if sender.tag != 1018 && sender.tag != 1019 {
 
@@ -180,15 +163,16 @@ class QuestionViewController: UIViewController {
 			let date = NSDate()
 			record?(rightCount: rightCount, date: date)
 
-			UIView.animateWithDuration(0.8, animations: { () -> Void in
-				self.scrollView.alpha = 0.0
-				self.scrollView.removeFromSuperview()
-				self.view.backgroundColor = UIColor.grayColor()
+			delay(seconds: 0.5, { () -> () in
+				UIView.animateWithDuration(0.8, animations: { () -> Void in
+					self.scrollView.alpha = 0.0
+					self.scrollView.removeFromSuperview()
+					self.view.backgroundColor = UIColor.grayColor()
+				})
 			})
 
-			delay(seconds: 0.9, { () -> () in
+			delay(seconds: 1.4, { () -> () in
 				let finalView = self.gen.showTestFinalPage(self.rightCount)
-				self.rightCount = 0
 
 				if let button = finalView.viewWithTag(12345) as? UIButton {
 					button.genAnimation(.appear, delay: 0.0)
@@ -216,6 +200,8 @@ class QuestionViewController: UIViewController {
 
 	func quit() {
 		self.scrollView.removeFromSuperview()
+		self.rightCount = 0
+		self.rightOrWrong.removeAll(keepCapacity: false)
 
 		dispatch_async(dispatch_get_main_queue()) {
 			self.navigationController?.popViewControllerAnimated(true)
@@ -227,8 +213,63 @@ class QuestionViewController: UIViewController {
 		let AnsweredQAVC = AnsweredQAViewController()
 		AnsweredQAVC.questions = self.questions
 		AnsweredQAVC.rightOrWrong = self.rightOrWrong
-		self.rightOrWrong.removeAll(keepCapacity: false)
 		presentViewController(AnsweredQAVC, animated: true, completion: nil)
+	}
+
+	func getResult(sender: UIButton) {
+
+		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
+			AudioServicesPlaySystemSound(1008)
+			rightCount += 1
+			rightOrWrong.append(1)
+			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
+				dot.backgroundColor = UIColor.greenColor()
+			}
+		}
+
+		if sender.titleLabel?.text == questions[pageControl.currentPage].wrongAnswer {
+			AudioServicesPlaySystemSound(1053)
+			rightOrWrong.append(0)
+
+			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
+				dot.backgroundColor = UIColor.redColor()
+			}
+
+			// AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+		}
+	}
+
+	func disableAndColorButtons(sender: UIButton) {
+		sender.enabled = false
+
+		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
+			sender.backgroundColor = UIColor.greenColor()
+		} else {
+			sender.backgroundColor = UIColor.redColor()
+		}
+
+		if sender.tag % 2 == 0 {
+
+			if let button = scrollView.viewWithTag(sender.tag + 1) as? UIButton {
+				button.enabled = false
+
+				if sender.backgroundColor == UIColor.greenColor() {
+					button.backgroundColor = UIColor.redColor()
+				} else {
+					button.backgroundColor = UIColor.greenColor()
+				}
+			}
+		} else {
+			if let button = scrollView.viewWithTag(sender.tag - 1) as? UIButton {
+				button.enabled = false
+
+				if sender.backgroundColor == UIColor.greenColor() {
+					button.backgroundColor = UIColor.redColor()
+				} else {
+					button.backgroundColor = UIColor.greenColor()
+				}
+			}
+		}
 	}
 }
 

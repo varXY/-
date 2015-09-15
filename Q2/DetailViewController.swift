@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
 		textView.frame = view.bounds
 		textView.textContainer.size = CGSize(width: textView.frame.width - 10, height: textView.frame.height)
 		textView.font = UIFont.systemFontOfSize(18)
+		textView.editable = false
 		self.view.addSubview(textView)
 		
 		self.title = knowledege.title

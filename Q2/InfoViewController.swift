@@ -15,6 +15,7 @@ class InfoViewController: UIViewController {
 	var knowledge = Knowledge()
 	var global = Global()
 
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		global.size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)

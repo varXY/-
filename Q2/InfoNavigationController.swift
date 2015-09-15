@@ -11,6 +11,9 @@ import UIKit
 
 class InfoNavigationController: UINavigationController, UINavigationControllerDelegate {
 
+	var statusBarStyle = UIStatusBarStyle.LightContent
+	var statusBarHidden = false
+
 	convenience init() {
 		let infoVC = InfoViewController()
 		self.init(rootViewController: infoVC)
@@ -22,15 +25,26 @@ class InfoNavigationController: UINavigationController, UINavigationControllerDe
 		colorForViewController("type1")
 	}
 
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return statusBarStyle
+	}
+
+	override func prefersStatusBarHidden() -> Bool {
+		return statusBarHidden
+	}
+
 	func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-		// println(navigationController.viewControllers.count)
 
 		if let controller = viewController as? InfoViewController {
+			self.statusBarStyle = UIStatusBarStyle.LightContent
+			super.setNeedsStatusBarAppearanceUpdate()
 			colorForViewController("type1")
+
 		}
 
 		if let controller = viewController as? ContentViewController {
 			colorForViewController("type2")
+
 		}
 
 		if let controller = viewController as? DetailViewController {
@@ -55,6 +69,8 @@ class InfoNavigationController: UINavigationController, UINavigationControllerDe
 				self.navigationBar.barTintColor = UIColor.whiteColor()
 				self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
 				self.navigationBar.tintColor = UIColor.redColor()
+				self.statusBarStyle = UIStatusBarStyle.Default
+				super.setNeedsStatusBarAppearanceUpdate()
 			})
 
 		default:

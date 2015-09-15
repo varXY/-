@@ -150,9 +150,9 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 20:
-			question.question = "接地体离建筑物墙基之间的地下距离不得小于1 m 。"
-			question.rightAnswer = "错误"
-			question.wrongAnswer = "正确"
+			question.question = "接地体离建筑物墙基之间的地下距离不得小于1.5m。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
 			return question
 		case 21:
 			question.question = " PE线不得穿过漏电保护器，但PEN线可以穿过漏电保护器。"
@@ -445,7 +445,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 79:
-			question.question = "避雷器可釉预防高大建筑物免遭雷击？"
+			question.question = "避雷器可以预防高大建筑物免遭雷击？"
 			question.rightAnswer = "错误"
 			question.wrongAnswer = "正确"
 			return question
@@ -455,7 +455,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 81:
-			question.question = "由三个频率相同、电势振幅相等、相位差互差 120 °角的交流电路组成的电力系统，叫三相交流电。"
+			question.question = "由三个频率相同、电势振幅相等、相位差互差 120°角的交流电路组成的电力系统，叫三相交流电。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question

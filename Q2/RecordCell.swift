@@ -30,7 +30,7 @@ class RecordCell: UITableViewCell {
 		self.contentView.addSubview(dateLabel)
 	}
 
-	func configrueForRecordCell(record: Record) {
+	func configureForRecordCell(record: Record) {
 		self.colorView.frame = CGRect(x: 0, y: 0, width: self.global.size.width / 10 * CGFloat(record.record), height: 60)
 		self.recordLabel.text = "\(record.record)/10"
 		self.dateLabel.text = "\(dateFormatter.stringFromDate(record.date))"

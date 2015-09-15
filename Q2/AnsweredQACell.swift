@@ -11,6 +11,7 @@ import UIKit
 
 class AnsweredQACell: UITableViewCell {
 
+	var rowLabel = UILabel()
 	var QLabel = UILabel()
 	var ALabel = UILabel()
 	var global = Global()
@@ -18,10 +19,15 @@ class AnsweredQACell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		// QLabel.frame = CGRect(x: 10, y: 5, width: global.size.width - 20, height: 44)
-		self.contentView.addSubview(QLabel)
+		rowLabel.frame = CGRect(x: 5, y: 10, width: 25, height: 22)
+		rowLabel.font = UIFont.boldSystemFontOfSize(20)
 
-		// ALabel.frame = CGRect(x: 10, y: 52, width: global.size.width - 20, height: 44)
+		QLabel.frame = CGRect(x: 30, y: 10, width: global.size.width - 40, height: 150)
+		QLabel.numberOfLines = 0
+		QLabel.lineBreakMode = .ByClipping
+
+		self.contentView.addSubview(rowLabel)
+		self.contentView.addSubview(QLabel)
 		self.contentView.addSubview(ALabel)
 	}
 
@@ -29,37 +35,15 @@ class AnsweredQACell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func configrueForAnsweredQACell(question: Question, rightOrWrong: Int) {
+	func configureForRowLabel(row: Int) {
+		rowLabel.text = "\(row)"
+	}
 
-		var count = 0
-
-		for i in question.question {
-			count += 1
-		}
-
-		let room = global.size.width / CGFloat(count)
-		println(room)
-
-		if room > 18.0 {
-			QLabel.numberOfLines = 1
-			QLabel.frame = CGRect(x: 10, y: 5, width: global.size.width - 20, height: 22)
-			ALabel.frame = CGRect(x: 10, y: 30, width: global.size.width - 20, height: 22)
-		}
-
-		if room < 18 && room > 9 {
-			QLabel.numberOfLines = 2
-			QLabel.frame = CGRect(x: 10, y: 5, width: global.size.width - 20, height: 44)
-			ALabel.frame = CGRect(x: 10, y: 52, width: global.size.width - 20, height: 22)
-		}
-
-		if room < 9 {
-			QLabel.numberOfLines = 3
-			QLabel.frame = CGRect(x: 10, y: 5, width: global.size.width - 20, height: 66)
-			ALabel.frame = CGRect(x: 10, y: 74, width: global.size.width - 20, height: 22)
-		}
+	func configureForAnsweredQACell(question: Question, rightOrWrong: Int) {
 
 		QLabel.text = question.question
-		println(QLabel.numberOfLines)
+		QLabel.sizeToFit()
+		ALabel.frame = CGRect(x: 30, y: QLabel.frame.height + 15, width: global.size.width - 40, height: 22)
 		ALabel.text = question.rightAnswer
 
 		if rightOrWrong == 1 {

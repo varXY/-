@@ -9,16 +9,12 @@
 import Foundation
 import UIKit
 
-let dateFormatter: NSDateFormatter = {
-	let formatter = NSDateFormatter()
-	formatter.dateStyle = .ShortStyle
-	formatter.timeStyle = .ShortStyle
-	return formatter
-}()
+
 
 class RecordViewController: UIViewController {
 	var tableView = UITableView()
 	var records = [Record]()
+	var global = Global()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -28,13 +24,15 @@ class RecordViewController: UIViewController {
 		titleView.backgroundColor = UIColor.purpleColor()
 		view.addSubview(titleView)
 
-		var backButton = UIButton(frame: CGRect(x: 270, y: 25, width: 30, height: 30))
+		var backButton = UIButton(frame: CGRect(x: global.size.width - 40, y: 30, width: 30, height: 30))
 		backButton.backgroundColor = UIColor.blackColor()
 		backButton.addTarget(self, action: "close", forControlEvents: .TouchUpInside)
 		titleView.addSubview(backButton)
 
 		tableView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: view.bounds.height - 64)
 		tableView.backgroundColor = UIColor.yellowColor()
+
+		tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
@@ -62,7 +60,7 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 		if cell == nil {
 			cell = RecordCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID)
 		}
-		cell?.configrueForRecordCell(records[indexPath.row])
+		cell?.configureForRecordCell(records[indexPath.row])
 		return cell!
 	}
 }
