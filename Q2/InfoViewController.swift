@@ -40,6 +40,10 @@ class InfoViewController: UIViewController {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = false
 
+		for button in buttons {
+			button.hidden = false
+		}
+
 		for i in 0..<3 {
 			self.buttons[i].genAnimation(.appear, delay: 0.2)
 		}
@@ -48,10 +52,6 @@ class InfoViewController: UIViewController {
 			for i in 3..<13 {
 				self.buttons[i].genAnimation(.movingAround, delay: 0.0)
 			}
-		}
-
-		for button in buttons {
-			button.hidden = false
 		}
 
 		self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
