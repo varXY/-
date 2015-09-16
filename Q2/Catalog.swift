@@ -17,6 +17,52 @@ enum Animation {
 	case appear, disappear, touched, movingAround
 }
 
+enum Equation: Int {
+	case zero = 0
+	case one
+	case two
+	case three
+
+	var firstWords: [String] {
+		switch self {
+		case .zero:
+			return ["U", "R", "I"]
+		case .one:
+			return ["U", "I", "P"]
+		case .two:
+			return ["P", "t", "W"]
+		case .three:
+			return ["英制", "P", "公制", "P"]
+		}
+	}
+
+	var lastWords: [String] {
+		switch self {
+		case .zero:
+			return ["V", "Ω", "A"]
+		case .one:
+			return ["V", "A", "W"]
+		case .two:
+			return ["W", "h", "kWh"]
+		case .three:
+			return ["hp", "W", "ps", "W"]
+		}
+	}
+
+	var sectionTitle: String {
+		switch self {
+		case .zero:
+			return "电压U，电阻R，电流I"
+		case .one:
+			return "电压U，电流I，功率P"
+		case .two:
+			return "功率P，时间t，电量W"
+		case .three:
+			return "英制马力hp，公制马力ps，功率P"
+		}
+	}
+}
+
 enum SectionTitle: Int {
 	case zero = 0
 	case one = 1

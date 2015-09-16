@@ -138,6 +138,7 @@
 				31033AA41BA3BCEC00DC9141 /* Info */,
 				31033AA71BA3E97E00DC9141 /* Test */,
 				31D668F71BA7FCB800A21AF1 /* Scale */,
+				314DFCD81BA42E3F00E79557 /* Catalog.swift */,
 				314DFCEB1BA42F3D00E79557 /* Generator.swift */,
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
 				314DFCED1BA42F4300E79557 /* UIbutton+genAnimation.swift */,
@@ -251,7 +252,6 @@
 		318C118E1BA4EAD000CA1EC9 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				314DFCD81BA42E3F00E79557 /* Catalog.swift */,
 				314DFCDA1BA42E7800E79557 /* Knowledge.swift */,
 			);
 			name = Modal;

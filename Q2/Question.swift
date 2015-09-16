@@ -17,7 +17,7 @@ class Question {
 		var questionMarks = [Int]()
 		var questions = [Question]()
 
-		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 101)
+		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 151)
 
 		for i in questionMarks {
 			questions.append(getQuestion(i)!)
@@ -553,6 +553,256 @@ class Question {
 			question.question = "阻值随外加电压或电流的大小而改变的电阻叫："
 			question.rightAnswer = "非线性电阻"
 			question.wrongAnswer = "可变电阻"
+			return question
+		case 101:
+			question.question = "额定电压为220V的灯泡接在110V电源上,灯泡的功率是原来的："
+			question.rightAnswer = "1/4"
+			question.wrongAnswer = "1/2"
+			return question
+		case 102:
+			question.question = "电路主要由负载、线路、电源和什么组成？"
+			question.rightAnswer = "开关"
+			question.wrongAnswer = "仪表"
+			return question
+		case 103:
+			question.question = "交流电的三要素是指最大值、频率和什么？"
+			question.rightAnswer = "初相角"
+			question.wrongAnswer = "相位"
+			return question
+		case 104:
+			question.question = "两根平行导线通过同向电流时,导体之间相互："
+			question.rightAnswer = "吸引"
+			question.wrongAnswer = "排斥"
+			return question
+		case 105:
+			question.question = "集肤效应指：在导体中的电流, 越接近于导体表面, 其什么越大？"
+			question.rightAnswer = "电流"
+			question.wrongAnswer = "电压"
+			return question
+		case 106:
+			question.question = "在三相四线制中,当三相负载不平衡时,三相电压相等, 中性线电流："
+			question.rightAnswer = "不等于零"
+			question.wrongAnswer = "等于零"
+			return question
+		case 107:
+			question.question = "串联电路中, 电压的分配与电阻成："
+			question.rightAnswer = "正比"
+			question.wrongAnswer = "反比"
+			return question
+		case 108:
+			question.question = "并联电路中, 电流的分配与电阻成"
+			question.rightAnswer = "反比"
+			question.wrongAnswer = "正比"
+			return question
+		case 109:
+			question.question = "在纯电感电路中, 没有能量消耗, 只有能量："
+			question.rightAnswer = "交换"
+			question.wrongAnswer = "增强"
+			return question
+		case 110:
+			question.question = "电压互感器的一次绕组的匝数远大于二次绕组的匝数"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 111:
+			question.question = "二极管的主要特性是？"
+			question.rightAnswer = "单向导通"
+			question.wrongAnswer = "整流"
+			return question
+		case 112:
+			question.question = "建筑电气图上的总平面图要精确到："
+			question.rightAnswer = "厘米"
+			question.wrongAnswer = "分米"
+			return question
+		case 113:
+			question.question = "建筑电气安装图一般用什么表示？"
+			question.rightAnswer = "平面图"
+			question.wrongAnswer = "立体图"
+			return question
+		case 114:
+			question.question = "并列运行的变压器其容量之比一般不超过："
+			question.rightAnswer = "3:1"
+			question.wrongAnswer = "4:1"
+			return question
+		case 115:
+			question.question = "为防止分接开关故障, 应测量分接开关接头阻值, 其相差不超过："
+			question.rightAnswer = "2%"
+			question.wrongAnswer = "1.5%"
+			return question
+		case 116:
+			question.question = "油浸变压器在正常情况下为使绝缘油不致过速氧化, 上层油温不宜超过多少度？"
+			question.rightAnswer = "85"
+			question.wrongAnswer = "95"
+			return question
+		case 117:
+			question.question = "变压器绝缘自投入运行后, 在允许条件下运行, 其寿命可达多少年？"
+			question.rightAnswer = "20 ~ 25"
+			question.wrongAnswer = "15 ~ 20"
+			return question
+		case 118:
+			question.question = "变压器在同等负荷及同等冷却条件下, 油温比平时高多少度, 应判断变压器发生内部故障。"
+			question.rightAnswer = "10"
+			question.wrongAnswer = "15"
+			return question
+		case 119:
+			question.question = "电力变压器中短路电压一般为额定电压的："
+			question.rightAnswer = "5% ~ 10%"
+			question.wrongAnswer = "15% ~ 20%"
+			return question
+		case 120:
+			question.question = "电力系统中以“kWh”作为什么的计量单位？"
+			question.rightAnswer = "电能"
+			question.wrongAnswer = "电功率"
+			return question
+		case 121:
+			question.question = "一个实际电源的电压随着负载电流的减小将："
+			question.rightAnswer = "升高"
+			question.wrongAnswer = "降低"
+			return question
+		case 122:
+			question.question = "我国交流电的频率为50Hz，其周期为多少秒？"
+			question.rightAnswer = "0.02"
+			question.wrongAnswer = "0.01"
+			return question
+		case 123:
+			question.question = "参考点也叫零点位点它是由："
+			question.rightAnswer = "人为规定"
+			question.wrongAnswer = "参考方向决定"
+			return question
+		case 124:
+			question.question = "线圈磁场方向的判断方法用："
+			question.rightAnswer = "螺旋管右手定则"
+			question.wrongAnswer = "直导线右手定则"
+			return question
+		case 125:
+			question.question = "一电感线圈接到f=50Hz的交流电路中，感抗XL=50Ω，若改接到f=150Hz的电源时，则感抗XL为："
+			question.rightAnswer = "150Ω"
+			question.wrongAnswer = "250Ω"
+			return question
+		case 126:
+			question.question = "三相电动势的相序为U-V-W称为："
+			question.rightAnswer = "正序"
+			question.wrongAnswer = "零序"
+			return question
+		case 127:
+			question.question = "为示正相序，在变电所三相母线应分别涂以："
+			question.rightAnswer = "黄、绿、红"
+			question.wrongAnswer = "绿、黄 、红"
+			return question
+		case 128:
+			question.question = "正序的顺序是："
+			question.rightAnswer = "U、V、W"
+			question.wrongAnswer = "W、V、U"
+			return question
+		case 129:
+			question.question = "纯电阻单相正弦交流电路中的电压与电流，其瞬间时值遵循欧姆定律。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 130:
+			question.question = "线圈右手螺旋定则是：四指表示电流方向，大拇指表示磁力线方向。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 131:
+			question.question = "电位高低的含义，是指该点对参考点间的电流大小。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 132:
+			question.question = "电动势的实际方向规定为从正极指向负极。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 133:
+			question.question = "没有电压就没有电流，没有电流就没有电压。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 134:
+			question.question = "视在功率就是有功功率加上无功功率。 "
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 135:
+			question.question = "相线间的电压就是线电压。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 136:
+			question.question = "纯电感线圈直流电来说，相当于短路。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 137:
+			question.question = "每相负载的端电压叫负载的相电压。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 138:
+			question.question = "线电压额定是380V，相电压额定是220V"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 139:
+			question.question = "三相电动势达到最大值的先后次序叫相序。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 140:
+			question.question = "从中性点引出的导线叫中性线，当中性线直接接地时称为零线，又叫地线。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 141:
+			question.question = "从各相首端引出的导线叫相线，俗称火线。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 142:
+			question.question = "有中性线的三相供电方式叫三相四线制，它常用于低压配电系统。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 143:
+			question.question = "不引出中性线的三相供电方式叫三相三线制，一般用于高压输电系统"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 144:
+			question.question = "一个线圈电流变化而在另一个线圈产生电磁感应的现象叫："
+			question.rightAnswer = "互感现象"
+			question.wrongAnswer = "自感现象"
+			return question
+		case 145:
+			question.question = "铁芯内部环流称为涡流，涡流所消耗的电功率，称为涡流损耗。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 146:
+			question.question = "三相交流电的相位互差为多少度？"
+			question.rightAnswer = "120"
+			question.wrongAnswer = "90"
+			return question
+		case 147:
+			question.question = "高压断路器具有相当完善的灭弧结构和足够的断流能力。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 148:
+			question.question = "电流互感器，又称仪用变流器，作用是将大电流变成："
+			question.rightAnswer = "小电流"
+			question.wrongAnswer = "更大电流"
+			return question
+		case 149:
+			question.question = "绝缘棒，又称令克棒、绝缘拉杆、操作杆等。绝缘棒由工作头、绝缘杆和握柄三部分构成。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 150:
+			question.question = "发现有人触电时，应当先打120请医生，等医生到达后立即开始人工急救。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
 			return question
 
 		default:
