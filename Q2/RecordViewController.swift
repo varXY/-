@@ -19,12 +19,12 @@ class RecordViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		var titleView = UIView()
+		let titleView = UIView()
 		titleView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 64)
 		titleView.backgroundColor = UIColor.purpleColor()
 		view.addSubview(titleView)
 
-		var backButton = UIButton(frame: CGRect(x: global.size.width - 40, y: 30, width: 30, height: 30))
+		let backButton = UIButton(frame: CGRect(x: global.size.width - 40, y: 30, width: 30, height: 30))
 		backButton.backgroundColor = UIColor.blackColor()
 		backButton.addTarget(self, action: "close", forControlEvents: .TouchUpInside)
 		titleView.addSubview(backButton)

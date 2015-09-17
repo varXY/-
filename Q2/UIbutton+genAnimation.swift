@@ -16,7 +16,7 @@ extension UIButton {
 		case .appear:
 			self.alpha = 0.0
 			self.frame.origin.y += 20
-			UIView.animateWithDuration(0.6, delay: delay, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: nil, animations: { () -> Void in
+			UIView.animateWithDuration(0.6, delay: delay, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
 				self.alpha = 1.0
 				self.frame.origin.y -= 20
 			}, completion: nil)
@@ -62,9 +62,6 @@ extension UIButton {
 
 			// CGAffineTransformMakeTranslation()永远是相对于最初的点。
 
-
-		default:
-			println("hey")
 		}
 	}
 }

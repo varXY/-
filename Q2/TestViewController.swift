@@ -48,10 +48,10 @@ class TestViewController: UIViewController {
 	}
 
 	func genStartButton() {
-		var buttonWidth: CGFloat = global.testBigButtonSize().width
-		var buttonHeight:CGFloat = global.testBigButtonSize().height
+		let buttonWidth: CGFloat = global.testBigButtonSize().width
+		let buttonHeight:CGFloat = global.testBigButtonSize().height
 
-		var startButton = UIButton.buttonWithType(.System) as! UIButton
+		let startButton = UIButton(type: .System)
 		startButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 - 49 , width: buttonWidth, height: buttonHeight)
 		startButton.layer.cornerRadius = global.testBigButtonSize().width / 2
 		startButton.clipsToBounds = true
@@ -63,10 +63,10 @@ class TestViewController: UIViewController {
 	}
 
 	func genRecordButton() {
-		var buttonWidth: CGFloat = global.testSmallButtonSize().width
-		var buttonHeight:CGFloat = global.testSmallButtonSize().height
+		let buttonWidth: CGFloat = global.testSmallButtonSize().width
+		let buttonHeight:CGFloat = global.testSmallButtonSize().height
 
-		var recordButton = UIButton.buttonWithType(.System) as! UIButton
+		let recordButton = UIButton(type: .System)
 		recordButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 + 200, width: buttonWidth, height: buttonHeight)
 		recordButton.layer.cornerRadius = global.testSmallButtonSize().width / 2
 		recordButton.clipsToBounds = true

@@ -161,14 +161,14 @@ extension ContentViewController: UISearchBarDelegate {
 
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
-		let searchedIcons = knowledge.getSearchedIcons(searchBar.text)
+		let searchedIcons = knowledge.getSearchedIcons(searchBar.text!)
 
 		if searchedIcons.isEmpty {
 			tableView.separatorColor = UIColor.clearColor()
 			let hudView = HudView.hudInView(self.view, animated: true)
 			hudView.text = "无结果"
 
-			delay(seconds: 0.5, { () -> () in
+			delay(seconds: 0.5, completion: { () -> () in
 				hudView.removeFromSuperview()
 				self.view.userInteractionEnabled = true
 			})

@@ -49,10 +49,10 @@ class EquationViewController: UIViewController {
 	func genTextField() -> [UITextField] {
 		var textFields = [UITextField]()
 
-		var counts = (firstWords.count == 3 ? 3 : 4)
+		let counts = (firstWords.count == 3 ? 3 : 4)
 
 		for i in 0..<counts {
-			var textField = UITextField()
+			let textField = UITextField()
 			textField.frame = CGRect(x: 45, y: 64 + 32 + CGFloat(44 * i), width: global.size.width - 100, height: 40)
 			textField.backgroundColor = UIColor.lightGrayColor()
 			textField.placeholder = "请输入"
@@ -241,7 +241,7 @@ class EquationViewController: UIViewController {
 
 		if tag == 800 {
 			B = content
-			println(B)
+			print(B)
 
 			if let field0 = view.viewWithTag(400) as? UITextField {
 				A = B / 746
@@ -318,14 +318,14 @@ extension EquationViewController: UITextFieldDelegate {
 	}
 
 	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-		let oldText: NSString = textField.text
+		let oldText: NSString = textField.text!
 		let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
 		content = newText.integerValue
 		if content > 999999 {
 			return false
 		}
 		
-		println(content)
+		print(content)
 		calculateWith(self.index, tag: self.tag, content: content)
 		return true
 	}

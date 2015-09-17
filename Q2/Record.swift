@@ -22,7 +22,7 @@ class Record: NSObject, NSCoding {
 		aCoder.encodeObject(date, forKey: "Date")
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		record = aDecoder.decodeObjectForKey("Record") as! Int
 		date = aDecoder.decodeObjectForKey("Date") as! NSDate
 		super.init()

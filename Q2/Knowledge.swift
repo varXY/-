@@ -24,7 +24,7 @@ class Knowledge {
 		case 0:
 			for i in 0..<3 {
 				var icons = [Knowledge]()
-				var rows = titlesInSection.index(0, i).titles.count
+				let rows = titlesInSection.index(0, i).titles.count
 				for j in 0..<rows {
 					let icon = unitAtIndex((i, j))
 					icons.append(icon)
@@ -35,7 +35,7 @@ class Knowledge {
 		case 1:
 			for i in 0..<10 {
 				var icons = [Knowledge]()
-				var rows = titlesInSection.index(1, i).titles.count
+				let rows = titlesInSection.index(1, i).titles.count
 				for j in 0..<rows {
 					let icon = iconAtIndex((i, j))
 					icons.append(icon)
@@ -46,7 +46,7 @@ class Knowledge {
 		case 2:
 			for i in 0..<5 {
 				var icons = [Knowledge]()
-				var rows = titlesInSection.index(2, i).titles.count
+				let rows = titlesInSection.index(2, i).titles.count
 				for j in 0..<rows {
 					let icon = introAtIndex((i, j))
 					icons.append(icon)
@@ -70,7 +70,7 @@ class Knowledge {
 
 			++i
 
-			var result = filter(icons, { (icon) -> Bool in
+			let result = icons.filter({ (icon) -> Bool in
 				let text = icon.title
 				if text.rangeOfString(searchText) != nil {
 					return true

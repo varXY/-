@@ -19,7 +19,7 @@ class RecordCell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		colorView.frame = CGRect.zeroRect
+		colorView.frame = CGRect.zero
 		colorView.backgroundColor = UIColor.redColor()
 		self.contentView.addSubview(colorView)
 
@@ -36,7 +36,7 @@ class RecordCell: UITableViewCell {
 		self.dateLabel.text = "\(dateFormatter.stringFromDate(record.date))"
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
 

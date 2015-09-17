@@ -27,10 +27,10 @@ extension TestNavigationController: UINavigationControllerDelegate {
 
 	func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
 
-		if let controller = viewController as? TestViewController {
+		if let _ = viewController as? TestViewController {
 		}
 		
-		if let controller = viewController as? QuestionViewController {
+		if let _ = viewController as? QuestionViewController {
 			self.navigationBar.barTintColor = UIColor.blueColor()
 
 		}

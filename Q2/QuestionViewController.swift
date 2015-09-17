@@ -82,14 +82,14 @@ class QuestionViewController: UIViewController {
 
 	func genQA(page: Int) {
 
-		var label = UILabel()
+		let label = UILabel()
 		label.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 10, width: global.size.width - 20, height: 200)
 		label.numberOfLines = 0
 		label.backgroundColor = UIColor.whiteColor()
 		label.text = questions[page].question
 		scrollView.addSubview(label)
 
-		var button1 = UIButton.buttonWithType(.Custom) as! UIButton
+		let button1 = UIButton(type: .Custom)
 		button1.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 300, width: global.size.width - 20, height: 60)
 		button1.backgroundColor = UIColor.blueColor()
 		button1.setTitle(questions[page].rightAnswer, forState: .Normal)
@@ -97,7 +97,7 @@ class QuestionViewController: UIViewController {
 		button1.addTarget(self, action: Selector("chosen:"), forControlEvents: .TouchUpInside)
 		scrollView.addSubview(button1)
 
-		var button2 = UIButton.buttonWithType(.Custom) as! UIButton
+		let button2 = UIButton(type: .Custom)
 		button2.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 400, width: global.size.width - 20, height: 60)
 		button2.backgroundColor = UIColor.blueColor()
 		button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
@@ -116,12 +116,12 @@ class QuestionViewController: UIViewController {
 	}
 
 	func genJumpButton() {
-		var buttonWidth: CGFloat = 100
-		var buttonHeight:CGFloat = 100
-		var x = scrollView.bounds.width * CGFloat(pageControl.currentPage) + scrollView.center.x - buttonWidth / 2
-		var y = scrollView.center.x - buttonWidth / 2
+		let buttonWidth: CGFloat = 100
+		let buttonHeight:CGFloat = 100
+		let x = scrollView.bounds.width * CGFloat(pageControl.currentPage) + scrollView.center.x - buttonWidth / 2
+		let y = scrollView.center.x - buttonWidth / 2
 
-		var jumpButton = UIButton.buttonWithType(.System) as! UIButton
+		let jumpButton = UIButton(type: .System)
 		jumpButton.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
 		jumpButton.layer.cornerRadius = 50
 		jumpButton.clipsToBounds = true
@@ -153,7 +153,7 @@ class QuestionViewController: UIViewController {
 
 		if sender.tag != 1018 && sender.tag != 1019 {
 
-			delay(seconds: 0.5, { () -> () in
+			delay(seconds: 0.5, completion: { () -> () in
 				self.genJumpButton()
 			})
 		}
@@ -163,7 +163,7 @@ class QuestionViewController: UIViewController {
 			let date = NSDate()
 			record?(rightCount: rightCount, date: date)
 
-			delay(seconds: 0.5, { () -> () in
+			delay(seconds: 0.5, completion: { () -> () in
 				UIView.animateWithDuration(0.8, animations: { () -> Void in
 					self.scrollView.alpha = 0.0
 					self.scrollView.removeFromSuperview()
@@ -171,7 +171,7 @@ class QuestionViewController: UIViewController {
 				})
 			})
 
-			delay(seconds: 1.4, { () -> () in
+			delay(seconds: 1.4, completion: { () -> () in
 				let finalView = self.gen.showTestFinalPage(self.rightCount)
 
 				if let button = finalView.viewWithTag(12345) as? UIButton {

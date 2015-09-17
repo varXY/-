@@ -17,7 +17,7 @@ class Question {
 		var questionMarks = [Int]()
 		var questions = [Question]()
 
-		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 151)
+		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 201)
 
 		for i in questionMarks {
 			questions.append(getQuestion(i)!)
@@ -29,9 +29,9 @@ class Question {
 	func getRandomNumbers(amount: Int, uiform: UInt32) -> [Int] {
 		var result = [Int]()
 
-		do {
+		repeat {
 			let number = Int(arc4random_uniform(uiform))
-			if let sameAtIndex = find(result, number) {
+			if let sameAtIndex = result.indexOf(number) {
 				result.removeAtIndex(sameAtIndex)
 			}
 			result.append(number)
@@ -41,7 +41,7 @@ class Question {
 	}
 
 	func getQuestion(number: Int) -> Question? {
-		var question = Question()
+		let question = Question()
 
 		switch number {
 		case 0:
@@ -803,6 +803,256 @@ class Question {
 			question.question = "发现有人触电时，应当先打120请医生，等医生到达后立即开始人工急救。"
 			question.rightAnswer = "错误"
 			question.wrongAnswer = "正确"
+			return question
+		case 151:
+			question.question = "电工作业人员必须年满多少岁？"
+			question.rightAnswer = "18"
+			question.wrongAnswer = "17"
+			return question
+		case 152:
+			question.question = "我国标准规定工频安全电压有效值的限值为："
+			question.rightAnswer = "50V"
+			question.wrongAnswer = "36V"
+			return question
+		case 153:
+			question.question = "装设接地线的顺序为："
+			question.rightAnswer = "先接地端后导体端 "
+			question.wrongAnswer = "先导体端后接地端"
+			return question
+		case 154:
+			question.question = " 一般居民住宅、办公场所，若以防止触电为主要目的时，应选用漏电动作电流为多大的漏电保护开关？"
+			question.rightAnswer = "30mA"
+			question.wrongAnswer = "15mA"
+			return question
+		case 155:
+			question.question = "《劳动法》特别强调从业人员的权利包括在集体合同、劳动合同中，都要载明劳动安全、防止职业危害和工伤社会保险等事项。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 156:
+			question.question = "安全生产法规的出发点是以人为本，为了保护从业人员的安全和健康。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 157:
+			question.question = "新参加电气工作的人员、实习人员和临时参加劳动的人员，工作能力强的,可以单独从事危险工作。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 158:
+			question.question = "万用表的红表笔插在﹙＋﹚的插孔，黑笔插在﹙－﹚的插孔。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 159:
+			question.question = "接地体上端离地面深度不应小于多少米？"
+			question.rightAnswer = "0.6m"
+			question.wrongAnswer = "0.5m"
+			return question
+		case 160:
+			question.question = "《特种作业人员安全操作证》有效期为多少年？"
+			question.rightAnswer = "六年"
+			question.wrongAnswer = "三年"
+			return question
+		case 161:
+			question.question = "《安全生产法》规定的安全生产方针："
+			question.rightAnswer = "安全第一，预防为主"
+			question.wrongAnswer = "防消结合，预防为主"
+			return question
+		case 162:
+			question.question = "能清除皮肤上的油、尘、毒等沾污，使皮肤免受损害的皮肤防护用品称作："
+			question.rightAnswer = "洁肤型护肤剂"
+			question.wrongAnswer = "防油型护肤剂"
+			return question
+		case 163:
+			question.question = "关于电气装置，不属于电工作业的工作是："
+			question.rightAnswer = "购买"
+			question.wrongAnswer = "安装"
+			return question
+		case 164:
+			question.question = "1 kΩ 与2 kΩ 的电阻串联后接到6V 的电压上，流过电的电流为："
+			question.rightAnswer = "2mA"
+			question.wrongAnswer = "2A"
+			return question
+		case 165:
+			question.question = "就对被测电路的影响而言，电压表的内阻："
+			question.rightAnswer = "越大越好"
+			question.wrongAnswer = "适中为好"
+			return question
+		case 166:
+			question.question = "下列最危险的电流途径是："
+			question.rightAnswer = "左手至胸部"
+			question.wrongAnswer = "左手至脚"
+			return question
+		case 167:
+			question.question = "发生心室纤维性颤动时，血液循环实际上："
+			question.rightAnswer = "终止"
+			question.wrongAnswer = "加快"
+			return question
+		case 168:
+			question.question = "漏电保护装置的试验按钮要多长时间按一次？"
+			question.rightAnswer = "一个月"
+			question.wrongAnswer = "三个月"
+			return question
+		case 169:
+			question.question = "工艺过程中产生静电的主要危险是："
+			question.rightAnswer = "引起爆炸和火灾"
+			question.wrongAnswer = "妨碍生产"
+			return question
+		case 170:
+			question.question = "避雷针的接地装置与道路出入口之间的距离不应小于："
+			question.rightAnswer = "3m"
+			question.wrongAnswer = "2m"
+			return question
+		case 171:
+			question.question = "采用扁钢作防雷装置的引下线时，其截面积应不小于多少平方毫米？"
+			question.rightAnswer = "100"
+			question.wrongAnswer = "75"
+			return question
+		case 172:
+			question.question = "低压电力电缆直埋时的最小深度为多少米？"
+			question.rightAnswer = "0.7m"
+			question.wrongAnswer = "0.6m"
+			return question
+		case 173:
+			question.question = "水泥电杆横向裂纹长度不超过电杆周长的："
+			question.rightAnswer = "1/3"
+			question.wrongAnswer = "1/2"
+			return question
+		case 174:
+			question.question = "电工是特殊工种。其特殊性表现之一为与他人安全相关"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 175:
+			question.question = "兆欧表的电压等级有："
+			question.rightAnswer = "500V"
+			question.wrongAnswer = "220V"
+			return question
+		case 176:
+			question.question = "工艺过程中产生的静电具有什么特征？"
+			question.rightAnswer = "电压高"
+			question.wrongAnswer = "电流大"
+			return question
+		case 177:
+			question.question = "防止雷电冲击波侵入室内的方法是："
+			question.rightAnswer = "架空线入户处安装避雷器"
+			question.wrongAnswer = "建筑物上方安装避雷针"
+			return question
+		case 178:
+			question.question = "特种作业人员进行作业前禁止喝含有酒精的饮料。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 179:
+			question.question = "从业人员在生产过程中，发现有危及人身安全的紧急情况时，有权停止作业，但对事故隐患及不安全因素没有报告的义务。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 180:
+			question.question = "口对口呼吸法的吹气次数大约在每分钟12～16次。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 181:
+			question.question = "在生产过程中产生的粉尘称为生产性粉尘，对作业人员身体健康有害。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 182:
+			question.question = "发现有人触电，应赶紧徒手拉其脱离电源。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 183:
+			question.question = "值班人员应熟悉电气设备配置、性能和电气结线。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 184:
+			question.question = "为了防止因导线短路而引起重大安全事故，不同回路、不同电压、交流与直流的导线不得穿在同一根管内。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 185:
+			question.question = "架空地线的接地电阻愈小，屏蔽效果愈好。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 186:
+			question.question = "从功能上讲，高压断路器可以用高压隔离开关、高压负荷开关 代替。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 187:
+			question.question = "能防御焊接作业的火花、熔融金属、高温金属、高温辐射等伤害足部，并能使足部与带电物体绝缘的鞋是："
+			question.rightAnswer = "焊接防护鞋"
+			question.wrongAnswer = "绝缘鞋 "
+			return question
+		case 188:
+			question.question = "人体体内电阻大约为："
+			question.rightAnswer = "数百欧"
+			question.wrongAnswer = "数千欧"
+			return question
+		case 189:
+			question.question = "触电致人死亡的决定因素是："
+			question.rightAnswer = "电流"
+			question.wrongAnswer = "电压"
+			return question
+		case 190:
+			question.question = "漏电保护装置的额定不动作电流不得低于额定动作电流的："
+			question.rightAnswer = "0.5"
+			question.wrongAnswer = "0.75"
+			return question
+		case 191:
+			question.question = "电弧温度最高可达多少度？"
+			question.rightAnswer = "8000℃"
+			question.wrongAnswer = "4000℃"
+			return question
+		case 192:
+			question.question = "土壤电阻的季节系数："
+			question.rightAnswer = "大于或等于1"
+			question.wrongAnswer = "小于或等于1"
+			return question
+		case 193:
+			question.question = "运行中的橡皮导线一般温度不得超过："
+			question.rightAnswer = "65℃"
+			question.wrongAnswer = "70℃"
+			return question
+		case 194:
+			question.question = "当把通信电缆埋设在地面以下时，通信电缆不受强电线电干扰的影响。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 195:
+			question.question = "用于高处作业的主要用具有："
+			question.rightAnswer = "脚手架、梯子"
+			question.wrongAnswer = "安全带、安全网"
+			return question
+		case 196:
+			question.question = "走出可能产生跨步电压的区域应采用的正确方法是："
+			question.rightAnswer = "单脚跳出"
+			question.wrongAnswer = "大步跨出"
+			return question
+		case 197:
+			question.question = "什么操作不需办理操作票？"
+			question.rightAnswer = "事故处理"
+			question.wrongAnswer = "全站停电"
+			return question
+		case 198:
+			question.question = "当电力线与通信线交越时："
+			question.rightAnswer = "必须停电后作业"
+			question.wrongAnswer = "不必停止作业"
+			return question
+		case 199:
+			question.question = "从业人员只要了解其作业场所和工作岗位上的安全生产规章制度和操作规程即可上岗作业。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 200:
+			question.question = "对摔伤者的救护应特别防止在搬动中可能对伤者脊柱的损害。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
 			return question
 
 		default:
