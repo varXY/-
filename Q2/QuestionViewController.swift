@@ -19,7 +19,7 @@ class QuestionViewController: UIViewController {
 	var questions = [Question]()
 	var rightCount = 0
 	var rightOrWrong = [Int]()
-	var gen = Generator()
+	var generator = Generator()
 	var dotView = UIView()
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
@@ -32,14 +32,14 @@ class QuestionViewController: UIViewController {
 
 		self.view.backgroundColor = UIColor.whiteColor()
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "quit")
-		quitButton.tintColor = UIColor.redColor()
+		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 		self.navigationItem.leftBarButtonItem = quitButton
 		self.navigationController?.navigationItem.leftBarButtonItem = nil
 
 		scrollView.frame = view.bounds
 		scrollView.delegate = self
-		scrollView.backgroundColor = UIColor.grayColor()
+		scrollView.backgroundColor = UIColor.whiteColor()
 		scrollView.pagingEnabled = true
 		scrollView.scrollEnabled = false
 		scrollView.contentSize = CGSize(width: self.view.bounds.width * 10, height: self.view.bounds.height)
@@ -53,11 +53,11 @@ class QuestionViewController: UIViewController {
 		pageControl.hidden = true
 		view.addSubview(pageControl)
 
-		dotView = gen.genDots()
+		dotView = generator.genDots()
 		view.addSubview(dotView)
 
-		genQA(0)
-
+		generator.genQA(scrollView, page: 0, questions: questions)
+		addAnimationAndActionToButtons(0, page: 0)
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -80,84 +80,77 @@ class QuestionViewController: UIViewController {
 	}
 
 
-	func genQA(page: Int) {
-
-		let label = UILabel()
-		label.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 10, width: global.size.width - 20, height: 200)
-		label.numberOfLines = 0
-		label.backgroundColor = UIColor.whiteColor()
-		label.text = questions[page].question
-		scrollView.addSubview(label)
-
-		let button1 = UIButton(type: .Custom)
-		button1.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 300, width: global.size.width - 20, height: 60)
-		button1.backgroundColor = UIColor.blueColor()
-		button1.setTitle(questions[page].rightAnswer, forState: .Normal)
-		button1.tag = page * 2 + 1000
-		button1.addTarget(self, action: Selector("chosen:"), forControlEvents: .TouchUpInside)
-		scrollView.addSubview(button1)
-
-		let button2 = UIButton(type: .Custom)
-		button2.frame = CGRect(x: 10 + view.bounds.width * CGFloat(page), y: 400, width: global.size.width - 20, height: 60)
-		button2.backgroundColor = UIColor.blueColor()
-		button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
-		button2.tag = page * 2 + 1001
-		button2.addTarget(self, action: Selector("chosen:"), forControlEvents: .TouchUpInside)
-		scrollView.addSubview(button2)
-
-		let ramdom = arc4random_uniform(2)
-		if ramdom == 0 {
-			button1.setTitle(questions[page].rightAnswer, forState: .Normal)
-			button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
-		} else {
-			button1.setTitle(questions[page].wrongAnswer, forState: .Normal)
-			button2.setTitle(questions[page].rightAnswer, forState: .Normal)
-		}
-	}
-
-	func genJumpButton() {
-		let buttonWidth: CGFloat = 100
-		let buttonHeight:CGFloat = 100
-		let x = scrollView.bounds.width * CGFloat(pageControl.currentPage) + scrollView.center.x - buttonWidth / 2
-		let y = scrollView.center.x - buttonWidth / 2
-
-		let jumpButton = UIButton(type: .System)
-		jumpButton.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
-		jumpButton.layer.cornerRadius = 50
-		jumpButton.clipsToBounds = true
-		jumpButton.backgroundColor = UIColor.whiteColor()
-		jumpButton.setTitle("Next", forState: .Normal)
-		jumpButton.tag = pageControl.currentPage + 2000
-		jumpButton.addTarget(self, action: "jump", forControlEvents: .TouchUpInside)
-		scrollView.addSubview(jumpButton)
-	}
-
-	func jump() {
-		let page = pageControl.currentPage + 1
-		genQA(page)
-		jumpToPage(page)
-
-		if let dot = dotView.viewWithTag(page + 500) {
-			dot.backgroundColor = UIColor.whiteColor()
-		}
-		
-		dispatch_async(dispatch_get_main_queue()) {
-			self.title = "\(page + 1)/10"
-		}
-	}
-
 	func chosen(sender: UIButton) {
-
 		getResult(sender)
 		disableAndColorButtons(sender)
+		genJumpButton(sender)
+		testIsOver(sender)
+	}
 
+
+	func getResult(sender: UIButton) {
+
+		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
+			AudioServicesPlaySystemSound(1008)
+			showRightOrWrongView("right")
+			rightCount += 1
+			rightOrWrong.append(1)
+
+			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
+				dot.backgroundColor = UIColor.greenColor()
+			}
+
+		} else {
+			AudioServicesPlaySystemSound(1053)
+			showRightOrWrongView("wrong")
+			rightOrWrong.append(0)
+
+			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
+				dot.backgroundColor = UIColor.redColor()
+			}
+
+			// AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+		}
+	}
+
+	func disableAndColorButtons(sender: UIButton) {
+		sender.enabled = false
+		let rightAnswer = questions[pageControl.currentPage].rightAnswer
+		let tags = [sender.tag - 1, sender.tag, sender.tag + 1]
+
+		for tag in tags {
+
+			if let button = scrollView.viewWithTag(tag) as? UIButton {
+				button.enabled = false
+
+				if button.titleLabel?.text == rightAnswer {
+					button.genAnimation(.IsRightAnswer, delay: 0.0, distance: 0.0)
+					button.layer.borderColor = global.CGGreenColor
+					button.titleLabel?.textColor = UIColor.greenColor()
+				} else {
+					button.layer.borderColor = global.CGlightGrayColor
+				}
+
+			}
+			
+		}
+		
+	}
+
+	func genJumpButton(sender: UIButton) {
 		if sender.tag != 1018 && sender.tag != 1019 {
 
 			delay(seconds: 0.5, completion: { () -> () in
-				self.genJumpButton()
+				let page = self.pageControl.currentPage
+				self.generator.genJumpButtonForQA(self.scrollView, page: page)
+				self.addAnimationAndActionToButtons(1, page: page)
 			})
 		}
+	}
 
+
+
+	func testIsOver(sender: UIButton) {
 		if sender.tag == 1018 || sender.tag == 1019 {
 
 			let date = NSDate()
@@ -172,31 +165,82 @@ class QuestionViewController: UIViewController {
 			})
 
 			delay(seconds: 1.4, completion: { () -> () in
-				let finalView = self.gen.showTestFinalPage(self.rightCount)
+				let finalView = self.generator.showTestFinalPage(self.rightCount)
 
 				if let button = finalView.viewWithTag(12345) as? UIButton {
-					button.genAnimation(.appear, delay: 0.0)
-					button.addTarget(self, action: "seeQA", forControlEvents: .TouchUpInside)
+					button.addTarget(self, action: "seeAnsweredQA", forControlEvents: .TouchUpInside)
+					button.genAnimation(.Appear, delay: 0.0, distance: 0.0)
 				}
 
 				if let button = finalView.viewWithTag(123456) as? UIButton {
-					button.genAnimation(.appear, delay: 0.0)
 					button.addTarget(self, action: "quit", forControlEvents: .TouchUpInside)
+					button.genAnimation(.Appear, delay: 0.0, distance: 0.0)
 				}
 
 				self.view.addSubview(finalView)
 			})
-
-
+			
+			
 		}
 	}
 
-	func jumpToPage(page: Int) {
+	func showRightOrWrongView(rightOrWrong: String) {
+		let view = generator.genRightOrWrongViewForQA(rightOrWrong)
+		self.view.addSubview(view)
 
+		delay(seconds: 0.4) { () -> () in
+			view.removeFromSuperview()
+		}
+	}
+
+	func addAnimationAndActionToButtons(kind: Int, page: Int) {
+
+		switch kind {
+		case 0:
+			if let button = scrollView.viewWithTag(page * 2 + 1000) as? UIButton {
+				button.addTarget(self, action: "chosen:", forControlEvents: .TouchUpInside)
+			}
+
+			if let button = scrollView.viewWithTag(page * 2 + 1001) as? UIButton {
+				button.addTarget(self, action: "chosen:", forControlEvents: .TouchUpInside)
+			}
+
+		case 1:
+			if let button = scrollView.viewWithTag(page + 2333) as? UIButton {
+				button.addTarget(self, action: "jump", forControlEvents: .TouchUpInside)
+				button.genAnimation(.FromZeroToFull, delay: 1.0, distance: 0.0)
+			}
+
+		default:
+			break
+		}
+	}
+
+
+	func jump() {
+		let page = pageControl.currentPage + 1
+
+		generator.genQA(scrollView, page: page, questions: questions)
+		addAnimationAndActionToButtons(0, page: page)
+
+		jumpToPage(page)
+
+		if let dot = dotView.viewWithTag(page + 500) {
+			dot.backgroundColor = UIColor.lightGrayColor()
+		}
+
+		dispatch_async(dispatch_get_main_queue()) {
+			self.title = "\(page + 1)/10"
+		}
+	}
+
+
+	func jumpToPage(page: Int) {
 		UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: -64.0)
 			}, completion: nil)
 	}
+
 
 	func quit() {
 		self.scrollView.removeFromSuperview()
@@ -209,68 +253,16 @@ class QuestionViewController: UIViewController {
 	}
 
 
-	func seeQA() {
+	func seeAnsweredQA() {
 		let AnsweredQAVC = AnsweredQAViewController()
 		AnsweredQAVC.questions = self.questions
 		AnsweredQAVC.rightOrWrong = self.rightOrWrong
 		presentViewController(AnsweredQAVC, animated: true, completion: nil)
 	}
 
-	func getResult(sender: UIButton) {
 
-		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			AudioServicesPlaySystemSound(1008)
-			rightCount += 1
-			rightOrWrong.append(1)
-			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = UIColor.greenColor()
-			}
-		}
 
-		if sender.titleLabel?.text == questions[pageControl.currentPage].wrongAnswer {
-			AudioServicesPlaySystemSound(1053)
-			rightOrWrong.append(0)
 
-			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = UIColor.redColor()
-			}
-
-			// AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
-		}
-	}
-
-	func disableAndColorButtons(sender: UIButton) {
-		sender.enabled = false
-
-		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			sender.backgroundColor = UIColor.greenColor()
-		} else {
-			sender.backgroundColor = UIColor.redColor()
-		}
-
-		if sender.tag % 2 == 0 {
-
-			if let button = scrollView.viewWithTag(sender.tag + 1) as? UIButton {
-				button.enabled = false
-
-				if sender.backgroundColor == UIColor.greenColor() {
-					button.backgroundColor = UIColor.redColor()
-				} else {
-					button.backgroundColor = UIColor.greenColor()
-				}
-			}
-		} else {
-			if let button = scrollView.viewWithTag(sender.tag - 1) as? UIButton {
-				button.enabled = false
-
-				if sender.backgroundColor == UIColor.greenColor() {
-					button.backgroundColor = UIColor.redColor()
-				} else {
-					button.backgroundColor = UIColor.greenColor()
-				}
-			}
-		}
-	}
 }
 
 extension QuestionViewController: UIScrollViewDelegate {

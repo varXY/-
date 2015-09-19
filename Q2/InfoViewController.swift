@@ -11,7 +11,9 @@ import UIKit
 
 class InfoViewController: UIViewController {
 	var generator = Generator()
-	var buttons = [UIButton]()
+	var BigButtons = [UIButton]()
+	var littleButtons_1 = [UIButton]()
+	var littleButtons_2 = [UIButton]()
 	var knowledge = Knowledge()
 	var global = Global()
 
@@ -23,15 +25,25 @@ class InfoViewController: UIViewController {
 
 		self.title = "常用知识"
 
-		buttons = generator.genButtonsForInfo()
+		littleButtons_1 = generator.genLitteButtons()
+		littleButtons_2 = generator.genLitteButtons()
+		BigButtons = generator.genButtonsForInfo()
 
-		for button in buttons {
+		print(BigButtons.count)
+		print(BigButtons[0].tag)
+
+		for button in littleButtons_1 {
 			self.view.addSubview(button)
 		}
 
-		for i in 0..<3 {
-			let methodName = String(format: "open_%@", "\(i)")
-			buttons[i].addTarget(self, action: Selector(methodName), forControlEvents: .TouchUpInside)
+		for button in littleButtons_2 {
+			button.alpha = 0.0
+			self.view.addSubview(button)
+		}
+
+		for i in 0..<BigButtons.count {
+			BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
+			self.view.addSubview(BigButtons[i])
 		}
 
 	}
@@ -40,21 +52,30 @@ class InfoViewController: UIViewController {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = false
 
-		for button in buttons {
+		for button in BigButtons {
 			button.hidden = false
 		}
 
 		for i in 0..<3 {
-			self.buttons[i].genAnimation(.appear, delay: 0.2)
+			self.BigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
 		}
 
 		delay(seconds: 1.0) { () -> () in
-			for i in 3..<13 {
-				self.buttons[i].genAnimation(.movingAround, delay: 0.0)
+			for button in self.littleButtons_1 {
+				button.genAnimation(.MovingAround, delay: 0.0, distance: 0.0)
 			}
 		}
 
-		self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
+		delay(seconds: 5.0) { () -> () in
+			for button in self.littleButtons_2 {
+				button.alpha = 1.0
+				button.genAnimation(.MovingAround, delay: 0.0, distance: 0.0)
+			}
+		}
+
+
+
+		// self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
 
 	}
 
@@ -76,26 +97,14 @@ class InfoViewController: UIViewController {
 		}
 	}
 
-	func open_0() {
-		showCatalog(0)
-	}
-
-	func open_1() {
-		showCatalog(1)
-	}
-
-	func open_2() {
-		showCatalog(2)
+	func open(sender: UIButton) {
+		showCatalog(sender.tag - 93456)
 	}
 
 	func showCatalog(index: Int) {
 
-		buttons[index].genAnimation(.touched, delay: 0.0)
-		for i in 0..<13 {
-			if i != index {
-				buttons[i].genAnimation(.disappear, delay: 0.0)
-			}
-		}
+		BigButtons[index].genAnimation(.Touched, delay: 0.0, distance: 0.0)
+		
 		delay(seconds: 0.5) { () -> () in
 			let contentVC = ContentViewController()
 			contentVC.index = index

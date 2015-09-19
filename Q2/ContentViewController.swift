@@ -57,7 +57,7 @@ class ContentViewController: UITableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = true
-		self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
+		// self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
 	}
 
 	override func viewWillDisappear(animated: Bool) {

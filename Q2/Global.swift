@@ -27,6 +27,13 @@ func delay(seconds seconds: Double, completion:()->()) {
 class Global {
 	
 	var size = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+	var center = CGPoint(x: UIScreen.mainScreen().bounds.width / 2, y: UIScreen.mainScreen().bounds.height / 2)
+	var rowHeight = UIScreen.mainScreen().bounds.height / 12
+
+	let CGRedColor = UIColor.redColor().CGColor
+	let CGGreenColor = UIColor.greenColor().CGColor
+	let CGlightGrayColor = UIColor.lightGrayColor().CGColor
+	let CGGrayColor = UIColor.grayColor().CGColor
 
 	func buttonSize() -> CGSize {
 		var size = CGSize()

@@ -15,19 +15,16 @@ class AnsweredQACell: UITableViewCell {
 	var QLabel = UILabel()
 	var ALabel = UILabel()
 	var global = Global()
+	var QLabelHeight = CGFloat()
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		rowLabel.frame = CGRect(x: 5, y: 10, width: 25, height: 22)
+		rowLabel.frame = CGRect(x: 5, y: 10, width: 30, height: 30)
 		rowLabel.font = UIFont.boldSystemFontOfSize(20)
 
-		QLabel.frame = CGRect(x: 30, y: 10, width: global.size.width - 40, height: 150)
-		QLabel.numberOfLines = 0
-		QLabel.lineBreakMode = .ByClipping
-
+		self.addSubview(QLabel)
 		self.contentView.addSubview(rowLabel)
-		self.contentView.addSubview(QLabel)
 		self.contentView.addSubview(ALabel)
 	}
 
@@ -35,22 +32,24 @@ class AnsweredQACell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func configureForRowLabel(row: Int) {
+	func configureForAnsweredQACell(QLabel: UILabel, rightOrWrong: Int, row: Int, rightAnswer: String) {
+		copyLabel(QLabel)
+		QLabelHeight = QLabel.frame.height
+		ALabel.frame = CGRect(x: 35, y: QLabelHeight + 15, width: global.size.width - 45, height: 30)
+		ALabel.text = rightAnswer
 		rowLabel.text = "\(row)"
-	}
-
-	func configureForAnsweredQACell(question: Question, rightOrWrong: Int) {
-
-		QLabel.text = question.question
-		QLabel.sizeToFit()
-		ALabel.frame = CGRect(x: 30, y: QLabel.frame.height + 15, width: global.size.width - 40, height: 22)
-		ALabel.text = question.rightAnswer
 
 		if rightOrWrong == 1 {
 			self.contentView.backgroundColor = UIColor.greenColor()
 		} else {
 			self.contentView.backgroundColor = UIColor.redColor()
 		}
+	}
+
+	func copyLabel(label: UILabel) {
+		QLabel.frame = label.frame
+		QLabel.numberOfLines = 0
+		QLabel.text = label.text
 	}
 
 }

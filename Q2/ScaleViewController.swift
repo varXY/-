@@ -19,14 +19,23 @@ class ScaleViewController: UIViewController {
 		self.view.backgroundColor = UIColor.grayColor()
 
 		let buttons = generator.genButtonsForScale()
-		var tag = -1
-		for i in buttons {
-			tag++
-			i.addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
-			i.tag = tag
-			self.view.addSubview(i)
+
+		for i in 0..<4 {
+			buttons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
+			buttons[i].tag = i + 345
+			self.view.addSubview(buttons[i])
 		}
-		
+
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+
+		for i in 0..<4 {
+			let button = self.view.viewWithTag(i + 345) as! UIButton
+			let j = ( i != 0 && i != 1 ? i - 1 : i)
+			button.genAnimation(.Appear, delay: 0.1 * Double(j), distance: 30 + CGFloat(j) * 40)
+		}
 	}
 
 	func open(sender: UIButton) {

@@ -16,15 +16,12 @@ class Records {
 	}
 
 	func documentDiretory() -> String {
-		let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) 
+		let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 		return paths[0]
 	}
 
 	func dataFilePath() -> String {
-		let fileURl = NSURL(fileURLWithPath: documentDiretory(), isDirectory: true)
-		fileURl.URLByAppendingPathComponent("Records.plist", isDirectory: true)
-		return fileURl.path!
-		// documentDiretory().stringByAppendingPathComponent("Records.plist")
+		return "\(documentDiretory())/Records.plist"
 	}
 
 	func saveRecords() {

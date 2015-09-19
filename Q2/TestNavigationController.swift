@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class TestNavigationController: UINavigationController {
+class TestNavigationController: UINavigationController, UINavigationControllerDelegate {
+	var statusBarStyle = UIStatusBarStyle.LightContent
 
 	convenience init() {
 		let testVC = TestViewController()
@@ -19,20 +20,57 @@ class TestNavigationController: UINavigationController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.delegate = self
-		self.navigationBar.tintColor = UIColor.redColor()
+		self.navigationBar.translucent = true
+		colorForViewController("type1")
 	}
-}
 
-extension TestNavigationController: UINavigationControllerDelegate {
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return statusBarStyle
+	}
 
 	func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
 
 		if let _ = viewController as? TestViewController {
-		}
-		
-		if let _ = viewController as? QuestionViewController {
-			self.navigationBar.barTintColor = UIColor.blueColor()
+			self.statusBarStyle = UIStatusBarStyle.LightContent
+			super.setNeedsStatusBarAppearanceUpdate()
+			colorForViewController("type1")
 
 		}
+
+		if let _ = viewController as? ContentViewController {
+			colorForViewController("type2")
+
+		}
+
+		if let _ = viewController as? DetailViewController {
+			colorForViewController("type2")
+		}
+
 	}
+
+	func colorForViewController(type: String) {
+		switch type {
+		case "type1":
+
+			UIView.animateWithDuration(1.0, animations: { () -> Void in
+				self.navigationBar.barTintColor = UIColor.redColor()
+				self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+				self.navigationBar.tintColor = UIColor.whiteColor()
+			})
+
+		case "type2":
+
+			UIView.animateWithDuration(1.0, animations: { () -> Void in
+				self.navigationBar.barTintColor = UIColor.whiteColor()
+				self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+				self.navigationBar.tintColor = UIColor.redColor()
+				self.statusBarStyle = UIStatusBarStyle.Default
+				super.setNeedsStatusBarAppearanceUpdate()
+			})
+
+		default:
+			break
+		}
+	}
+
 }

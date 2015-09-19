@@ -14,8 +14,7 @@ class AnsweredQAViewController: UIViewController {
 	var questions = [Question]()
 	var rightOrWrong = [Int]()
 	var global = Global()
-
-	var dismissed: (() -> Void)?
+	var generator = Generator()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,19 +50,6 @@ class AnsweredQAViewController: UIViewController {
 
 	func close() {
 		self.dismissViewControllerAnimated(true, completion: nil)
-
-	}
-
-	func heightToFit(question: Question) -> CGFloat {
-		let label = UILabel()
-		var height: CGFloat?
-		label.frame = CGRect(x: 10, y: 5, width: self.global.size.width - 40, height: 150)
-		label.numberOfLines = 0
-		label.lineBreakMode = .ByClipping
-		label.text = question.question
-		label.sizeToFit()
-		height = label.frame.height + 40
-		return height!
 	}
 
 }
@@ -75,8 +61,8 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		let height = heightToFit(questions[indexPath.row])
-		return height
+		let label = generator.genQLabelForAnsweredCell(questions[indexPath.row])
+		return label.frame.height + 60
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -84,15 +70,15 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 		var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as? AnsweredQACell
 
 		if cell == nil {
-			cell = AnsweredQACell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID)
+			cell = AnsweredQACell(style: .Default, reuseIdentifier: cellID)
 		}
-		
-		let question = questions[indexPath.row]
+
+		let label = generator.genQLabelForAnsweredCell(questions[indexPath.row])
 		let rightOrWrong = self.rightOrWrong[indexPath.row]
 		let rowForShow = indexPath.row + 1
+		let rightAnswer = questions[indexPath.row].rightAnswer
 
-		cell?.configureForRowLabel(rowForShow)
-		cell?.configureForAnsweredQACell(question, rightOrWrong: rightOrWrong)
+		cell?.configureForAnsweredQACell(label, rightOrWrong: rightOrWrong, row: rowForShow, rightAnswer: rightAnswer)
 		return cell!
 	}
 }

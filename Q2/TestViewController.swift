@@ -12,6 +12,7 @@ import UIKit
 class TestViewController: UIViewController {
 
 	var records = Records()
+	var generator = Generator()
 	var global = Global()
 
 	override func viewDidLoad() {
@@ -19,8 +20,13 @@ class TestViewController: UIViewController {
 		self.view.backgroundColor = UIColor.grayColor()
 		self.navigationItem.hidesBackButton = true
 
-		genStartButton()
-		genRecordButton()
+		let startButton = generator.genStartButtonForTest()
+		startButton.addTarget(self, action: "start", forControlEvents: .TouchUpInside)
+		view.addSubview(startButton)
+
+		let recordButton = generator.genRecordButtonForTest()
+		recordButton.addTarget(self, action: "seeRecord", forControlEvents: .TouchUpInside)
+		view.addSubview(recordButton)
 
 	}
 
@@ -29,11 +35,11 @@ class TestViewController: UIViewController {
 		hidesBottomBarWhenPushed = false
 
 		if let startButton = view.viewWithTag(333) as? UIButton {
-			startButton.genAnimation(.appear, delay: 0.0)
+			startButton.genAnimation(.Appear, delay: 0.0, distance: 30)
 		}
 
 		if let recordButton = view.viewWithTag(444) as? UIButton {
-			recordButton.genAnimation(.appear, delay: 0.0)
+			recordButton.genAnimation(.Appear, delay: 0.1, distance: 70)
 		}
 	}
 
@@ -46,37 +52,6 @@ class TestViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		hidesBottomBarWhenPushed = false
 	}
-
-	func genStartButton() {
-		let buttonWidth: CGFloat = global.testBigButtonSize().width
-		let buttonHeight:CGFloat = global.testBigButtonSize().height
-
-		let startButton = UIButton(type: .System)
-		startButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 - 49 , width: buttonWidth, height: buttonHeight)
-		startButton.layer.cornerRadius = global.testBigButtonSize().width / 2
-		startButton.clipsToBounds = true
-		startButton.backgroundColor = UIColor.whiteColor()
-		startButton.setTitle("start", forState: .Normal)
-		startButton.addTarget(self, action: "start", forControlEvents: .TouchUpInside)
-		startButton.tag = 333
-		self.view.addSubview(startButton)
-	}
-
-	func genRecordButton() {
-		let buttonWidth: CGFloat = global.testSmallButtonSize().width
-		let buttonHeight:CGFloat = global.testSmallButtonSize().height
-
-		let recordButton = UIButton(type: .System)
-		recordButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 + 200, width: buttonWidth, height: buttonHeight)
-		recordButton.layer.cornerRadius = global.testSmallButtonSize().width / 2
-		recordButton.clipsToBounds = true
-		recordButton.backgroundColor = UIColor.whiteColor()
-		recordButton.setTitle("Record", forState: .Normal)
-		recordButton.addTarget(self, action: "seeRecord", forControlEvents: .TouchUpInside)
-		recordButton.tag = 444
-		self.view.addSubview(recordButton)
-	}
-
 
 	func start() {
 		// self.navigationItem.hidesBackButton = true

@@ -13,8 +13,14 @@ enum roundButton {
 	case button1L, button2L, button3L
 }
 
-enum Animation {
-	case appear, disappear, touched, movingAround
+enum AnimationType {
+	case Appear
+	case Disappear
+	case Touched
+	case MovingAround
+	case IsRightAnswer
+	case FromZeroToFull
+	case Other
 }
 
 enum Equation: Int {
@@ -23,16 +29,29 @@ enum Equation: Int {
 	case two
 	case three
 
+	var navigationTitle: String {
+		switch self {
+		case .zero:
+			return "I = U / R"
+		case .one:
+			return "P = U * I"
+		case .two:
+			return "W = P * t"
+		case .three:
+			return "马力就是功率"
+		}
+	}
+
 	var firstWords: [String] {
 		switch self {
 		case .zero:
 			return ["U", "R", "I"]
 		case .one:
-			return ["U", "I", "P"]
+			return ["U", "I", "P", "PF", "有功", "无功"]
 		case .two:
 			return ["P", "t", "W"]
 		case .three:
-			return ["英制", "P", "公制", "P"]
+			return ["公制", "P", "英制", "P"]
 		}
 	}
 
@@ -41,11 +60,11 @@ enum Equation: Int {
 		case .zero:
 			return ["V", "Ω", "A"]
 		case .one:
-			return ["V", "A", "W"]
+			return ["V", "A", "W", "0~1", "W", "W"]
 		case .two:
 			return ["W", "h", "kWh"]
 		case .three:
-			return ["hp", "W", "ps", "W"]
+			return ["ps", "W", "hp", "W"]
 		}
 	}
 
@@ -54,11 +73,11 @@ enum Equation: Int {
 		case .zero:
 			return "电压U，电阻R，电流I"
 		case .one:
-			return "电压U，电流I，功率P"
+			return "电压U，电流I，功率P，功率因素PF（小于等于1）"
 		case .two:
-			return "功率P，时间t，电量W"
+			return "功率P，时间t（小写），电量W（单位：度）"
 		case .three:
-			return "英制马力hp，公制马力ps，功率P"
+			return "公制马力ps，英制马力hp，功率P"
 		}
 	}
 }

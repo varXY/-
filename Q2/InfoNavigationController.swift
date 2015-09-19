@@ -43,12 +43,12 @@ class InfoNavigationController: UINavigationController, UINavigationControllerDe
 		}
 
 		if let _ = viewController as? ContentViewController {
-			colorForViewController("type2")
+			// colorForViewController("type2")
 
 		}
 
 		if let _ = viewController as? DetailViewController {
-			colorForViewController("type2")
+			// colorForViewController("type2")
 		}
 
 	}

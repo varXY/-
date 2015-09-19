@@ -13,15 +13,28 @@ class EquationCell: UITableViewCell {
 
 	var titleLabel = UILabel()
 	var unitLabel = UILabel()
+	var equalLabel =  UILabel()
 	var global = Global()
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		titleLabel.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+		self.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.rowHeight)
+
+		titleLabel.frame = CGRect(x: 15, y: 0, width: 40, height: self.frame.height)
+		titleLabel.font = UIFont.boldSystemFontOfSize(20)
+		titleLabel.textAlignment = .Center
+		titleLabel.textColor = UIColor.redColor()
 		self.contentView.addSubview(titleLabel)
 
-		unitLabel.frame = CGRect(x: global.size.width - 35, y: 5, width: 40, height: 40)
+		equalLabel.frame = CGRect(x: 55, y: 0, width: 20, height: self.frame.height)
+		equalLabel.textAlignment = .Right
+		equalLabel.textColor = UIColor.lightGrayColor()
+		self.contentView.addSubview(equalLabel)
+
+		unitLabel.frame = CGRect(x: global.size.width - 55, y: 0, width: 40, height: self.frame.height)
+		unitLabel.textColor = UIColor.lightGrayColor()
+		unitLabel.textAlignment = .Left
 		self.contentView.addSubview(unitLabel)
 	}
 
@@ -31,6 +44,7 @@ class EquationCell: UITableViewCell {
 
 	func configureForEquationCell(first: String, last: String) {
 		self.titleLabel.text = first
+		self.equalLabel.text = "="
 		self.unitLabel.text = last
 	}
 

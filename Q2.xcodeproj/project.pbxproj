@@ -32,15 +32,17 @@
 		314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCE61BA42ED400E79557 /* IntroCell.swift */; };
 		314DFCEA1BA42F0E00E79557 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCE91BA42F0E00E79557 /* HudView.swift */; };
 		314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCEB1BA42F3D00E79557 /* Generator.swift */; };
-		314DFCEE1BA42F4300E79557 /* UIbutton+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCED1BA42F4300E79557 /* UIbutton+genAnimation.swift */; };
+		314DFCEE1BA42F4300E79557 /* UIView+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCED1BA42F4300E79557 /* UIView+genAnimation.swift */; };
 		318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */; };
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
+		31A492521BACE65C009077FD /* UIButton+ genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A492511BACE65C009077FD /* UIButton+ genAnimation.swift */; settings = {ASSET_TAGS = (); }; };
 		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
 		31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */; };
 		31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */; };
 		31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */; };
 		31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D669001BA80BE200A21AF1 /* EquationCell.swift */; };
+		31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,18 +64,18 @@
 		31033A951BA3BB5F00DC9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31033A961BA3BB5F00DC9141 /* Q2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q2Tests.swift; sourceTree = "<group>"; };
 		31033AA01BA3BC6800DC9141 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		31033AA21BA3BCAD00DC9141 /* InfoNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoNavigationController.swift; sourceTree = "<group>"; };
-		31033AA51BA3BD0300DC9141 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		31033AA21BA3BCAD00DC9141 /* InfoNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InfoNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		31033AA51BA3BD0300DC9141 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InfoViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AA81BA3E9A800DC9141 /* TestNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNavigationController.swift; sourceTree = "<group>"; };
 		31033AAA1BA3E9BC00DC9141 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		31033AAC1BA3EBE200DC9141 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		31033AAC1BA3EBE200DC9141 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AB01BA4096A00DC9141 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		31033AB41BA4143400DC9141 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		31033AB61BA416C100DC9141 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		314DFCD21BA42A0900E79557 /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
-		314DFCD41BA42DE100E79557 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		314DFCD41BA42DE100E79557 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCD61BA42E1B00E79557 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		314DFCD81BA42E3F00E79557 /* Catalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
+		314DFCD81BA42E3F00E79557 /* Catalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Catalog.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCDA1BA42E7800E79557 /* Knowledge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knowledge.swift; sourceTree = "<group>"; };
 		314DFCDC1BA42EB400E79557 /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
 		314DFCDE1BA42EBB00E79557 /* DescribeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescribeCell.swift; sourceTree = "<group>"; };
@@ -83,15 +85,17 @@
 		314DFCE61BA42ED400E79557 /* IntroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroCell.swift; sourceTree = "<group>"; };
 		314DFCE91BA42F0E00E79557 /* HudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		314DFCEB1BA42F3D00E79557 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
-		314DFCED1BA42F4300E79557 /* UIbutton+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIbutton+genAnimation.swift"; sourceTree = "<group>"; };
-		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsweredQAViewController.swift; sourceTree = "<group>"; };
+		314DFCED1BA42F4300E79557 /* UIView+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+genAnimation.swift"; sourceTree = "<group>"; };
+		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQAViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsweredQACell.swift; sourceTree = "<group>"; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		31A492511BACE65C009077FD /* UIButton+ genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ genAnimation.swift"; sourceTree = "<group>"; };
 		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleNavigationController.swift; sourceTree = "<group>"; };
 		31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleViewController.swift; sourceTree = "<group>"; };
 		31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationViewController.swift; sourceTree = "<group>"; };
 		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationCell.swift; sourceTree = "<group>"; };
+		31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +145,8 @@
 				314DFCD81BA42E3F00E79557 /* Catalog.swift */,
 				314DFCEB1BA42F3D00E79557 /* Generator.swift */,
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
-				314DFCED1BA42F4300E79557 /* UIbutton+genAnimation.swift */,
+				314DFCED1BA42F4300E79557 /* UIView+genAnimation.swift */,
+				31A492511BACE65C009077FD /* UIButton+ genAnimation.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
 				31033A871BA3BB5F00DC9141 /* Images.xcassets */,
 				31033A7C1BA3BB5F00DC9141 /* Supporting Files */,
@@ -280,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				31D669001BA80BE200A21AF1 /* EquationCell.swift */,
+				31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -389,17 +395,19 @@
 			files = (
 				314DFCD71BA42E1B00E79557 /* DetailViewController.swift in Sources */,
 				318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */,
+				31A492521BACE65C009077FD /* UIButton+ genAnimation.swift in Sources */,
 				31033A7F1BA3BB5F00DC9141 /* AppDelegate.swift in Sources */,
 				31033AB11BA4096A00DC9141 /* Question.swift in Sources */,
 				31033AB71BA416C100DC9141 /* Record.swift in Sources */,
 				31033AA91BA3E9A800DC9141 /* TestNavigationController.swift in Sources */,
 				31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */,
 				314DFCD51BA42DE100E79557 /* ContentViewController.swift in Sources */,
+				31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */,
 				314DFCE31BA42EC900E79557 /* ImageCell.swift in Sources */,
 				31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */,
 				31D61E541BA6B08D006A7034 /* Records.swift in Sources */,
 				31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */,
-				314DFCEE1BA42F4300E79557 /* UIbutton+genAnimation.swift in Sources */,
+				314DFCEE1BA42F4300E79557 /* UIView+genAnimation.swift in Sources */,
 				314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */,
 				314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */,
 				31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */,
