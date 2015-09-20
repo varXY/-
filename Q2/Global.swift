@@ -97,9 +97,9 @@ class Global {
 
 		switch size.height {
 		case 480:
-			buttonSize = CGSize(width: 70, height: 70)
+			buttonSize = CGSize(width: 85, height: 85)
 		case 568:
-			buttonSize = CGSize(width: 70, height: 70)
+			buttonSize = CGSize(width: 85, height: 85)
 		case 667:
 			buttonSize = CGSize(width: 100, height: 100)
 		case 736:

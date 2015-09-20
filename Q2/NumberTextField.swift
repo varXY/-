@@ -28,7 +28,7 @@ class NumberTextfield: UITextField {
 		let textField = NumberTextfield()
 		textField.frame = frame
 		textField.layer.cornerRadius = 8
-		textField.layer.borderWidth = 0.5
+		textField.layer.borderWidth = 1.0
 		textField.tintColor = UIColor.redColor()
 		let redColor = UIColor.redColor().CGColor
 		textField.layer.borderColor = redColor

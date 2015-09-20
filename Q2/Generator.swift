@@ -19,7 +19,7 @@ class Generator {
 	var global = Global()
 
 	func genRightOrWrongViewForQA(rightOrWrong: String, page: Int) -> UIView {
-		let view = UIView(frame: CGRect(x: global.center.x - 50 + global.size.width * CGFloat(page), y: global.center.y - 50 - 64, width: 100, height: 100))
+		let view = UIView(frame: CGRect(x: global.center.x - 50 + global.size.width * CGFloat(page), y: global.center.y - 50 - 64 - 30, width: 100, height: 100))
 		view.layer.cornerRadius = 50
 		
 		switch rightOrWrong {
@@ -52,7 +52,7 @@ class Generator {
 		let buttonWidth: CGFloat = 100
 		let buttonHeight:CGFloat = 100
 		let x = global.size.width * CGFloat(page) + global.center.x - buttonWidth / 2
-		let y = global.center.y - buttonWidth / 2 - 64
+		let y = global.center.y - buttonWidth / 2 - 64 - 30
 
 		let jumpButton = UIButton(type: .System)
 		jumpButton.backgroundColor = UIColor.clearColor()
@@ -68,7 +68,7 @@ class Generator {
 		let redColor = UIColor.redColor().CGColor
 
 		let label = UILabel()
-		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 5 - 64, width: global.size.width - 30, height: 200)
+		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 5.5 - 64, width: global.size.width - 30, height: 200)
 		label.numberOfLines = 0
 		label.backgroundColor = UIColor.whiteColor()
 		label.font = UIFont.systemFontOfSize(23)
@@ -110,6 +110,18 @@ class Generator {
 		}
 	}
 
+	func genLabelForTest() -> UILabel {
+		let label = UILabel()
+		label.text = "精选电工考试题目"
+		label.textAlignment = .Center
+		label.font = UIFont.boldSystemFontOfSize(22)
+		label.textColor = UIColor.whiteColor()
+		label.sizeToFit()
+		label.frame.origin = CGPoint(x: (global.size.width - label.frame.width) / 2, y: 104)
+
+		return label
+	}
+
 	// MARK: - Big Buttons
 
 	func genButtonsForInfo() -> [UIButton] {
@@ -146,11 +158,12 @@ class Generator {
 		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
 		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
 
-		var button = genButton("start", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
+		var button = genButton("开始", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
+		button?.titleLabel?.font = UIFont.systemFontOfSize(22)
 		button!.tag = 333
 		buttons.append(button!)
 
-		button = genButton("Record", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: (global.size.height - smallbuttonHeight) / 2 + 200, width: smallbuttonWidth, height: smallbuttonHeight))
+		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 150, width: smallbuttonWidth, height: smallbuttonHeight))
 		button!.tag = 334
 		buttons.append(button!)
 
@@ -320,8 +333,11 @@ class Generator {
 		button.frame = frame
 		button.tintColor = UIColor.redColor()
 		button.setTitle(title, forState: .Normal)
+		button.titleLabel?.font = UIFont.systemFontOfSize(18)
 		button.backgroundColor = UIColor.whiteColor()
 		button.layer.cornerRadius = frame.height / 2
+		// button.layer.borderWidth = 1.0
+		// button.layer.borderColor = global.CGRedColor
 		button.clipsToBounds = true
 		return button
 	}

@@ -23,12 +23,12 @@ class HudView: UIView {
 	}
 
 	override func drawRect(rect: CGRect) {
-		let boxWidth: CGFloat = 150
-		let boxHeight: CGFloat = 150
+		let boxWidth: CGFloat = 130
+		let boxHeight: CGFloat = 130
 
 		let boxRect = CGRect(x: round((bounds.size.width - boxWidth) / 2), y: round((bounds.size.height - boxHeight) / 2), width: boxWidth, height: boxHeight)
 
-		let roundedRect = UIBezierPath(roundedRect: boxRect, cornerRadius: 15)
+		let roundedRect = UIBezierPath(roundedRect: boxRect, cornerRadius: 20)
 		UIColor(white: 0.3, alpha: 0.8).setFill()
 		roundedRect.fill()
 

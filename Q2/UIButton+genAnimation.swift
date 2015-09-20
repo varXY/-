@@ -45,18 +45,14 @@ extension UIButton {
 			})
 
 		case .MovingAround:
-			UIView.animateKeyframesWithDuration(12.0, delay: delay, options: .Repeat, animations: { () -> Void in
 
-				UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.3, animations: { () -> Void in
-					self.transform = CGAffineTransformMakeTranslation(0.0, 200.0)
+			UIView.animateKeyframesWithDuration(8.0, delay: delay, options: .Repeat, animations: { () -> Void in
+
+				UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in
 					self.alpha = 0.0
 					})
 
-				UIView.addKeyframeWithRelativeStartTime(0.3, relativeDuration: 0.3, animations: { () -> Void in
-					self.transform = CGAffineTransformMakeTranslation(0.0, 0.0)
-					})
-
-				UIView.addKeyframeWithRelativeStartTime(0.6, relativeDuration: 0.3, animations: { () -> Void in
+				UIView.addKeyframeWithRelativeStartTime(0.6, relativeDuration: 0.4, animations: { () -> Void in
 					self.alpha = 1.0
 					})
 

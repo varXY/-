@@ -38,7 +38,7 @@ enum Equation: Int {
 		case .two:
 			return "W = P * t"
 		case .three:
-			return "马力就是功率"
+			return "马力&功率"
 		}
 	}
 
@@ -75,7 +75,7 @@ enum Equation: Int {
 		case .one:
 			return "电压U，电流I，功率P，功率因素PF（小于等于1）"
 		case .two:
-			return "功率P，时间t（小写），电量W（单位：度）"
+			return "功率P，时间t，电量W（单位：度）"
 		case .three:
 			return "公制马力ps，英制马力hp，功率P"
 		}

@@ -159,7 +159,7 @@ class QuestionViewController: UIViewController {
 			let date = NSDate()
 			record?(rightCount: rightCount, date: date)
 
-			delay(seconds: 0.5, completion: { () -> () in
+			delay(seconds: 2.0, completion: { () -> () in
 				UIView.animateWithDuration(0.8, animations: { () -> Void in
 					self.scrollView.alpha = 0.0
 					self.scrollView.removeFromSuperview()
@@ -167,17 +167,17 @@ class QuestionViewController: UIViewController {
 				})
 			})
 
-			delay(seconds: 1.4, completion: { () -> () in
+			delay(seconds: 3.0, completion: { () -> () in
 				let finalView = self.generator.showTestFinalPage(self.rightCount)
 
 				if let button = finalView.viewWithTag(12345) as? UIButton {
 					button.addTarget(self, action: "seeAnsweredQA", forControlEvents: .TouchUpInside)
-					button.genAnimation(.Appear, delay: 0.0, distance: 0.0)
+					button.genAnimation(.Appear, delay: 0.0, distance: 40)
 				}
 
 				if let button = finalView.viewWithTag(123456) as? UIButton {
 					button.addTarget(self, action: "quit", forControlEvents: .TouchUpInside)
-					button.genAnimation(.Appear, delay: 0.0, distance: 0.0)
+					button.genAnimation(.Appear, delay: 0.1, distance: 80)
 				}
 
 				finalView.tag = 9999999

@@ -23,7 +23,7 @@ class RecordViewController: UIViewController {
 		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 
-		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.bounds.height - 64)
+		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
 		tableView.separatorColor = UIColor.clearColor()
 
 		tableView.delegate = self

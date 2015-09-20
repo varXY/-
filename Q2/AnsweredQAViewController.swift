@@ -19,12 +19,12 @@ class AnsweredQAViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.title = "答过的题目"
+		self.title = "题目及答案"
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
 		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 
-		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.bounds.height - 64)
+		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
 		tableView.separatorColor = UIColor.redColor()
 		tableView.delegate = self
 		tableView.dataSource = self

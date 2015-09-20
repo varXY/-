@@ -32,6 +32,7 @@ class ContentViewController: UITableViewController {
 			iconsToDisplay = knowledge.getAll(1)
 			tableView.separatorColor = UIColor.redColor()
 			searchBar.placeholder = "搜索"
+			searchBar.tintColor = UIColor.redColor()
 			searchBar.delegate = self
 			tableView.tableHeaderView = searchBar
 		case 2:

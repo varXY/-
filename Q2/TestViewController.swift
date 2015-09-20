@@ -22,6 +22,9 @@ class TestViewController: UIViewController {
 		self.view.backgroundColor = UIColor.grayColor()
 		self.navigationItem.hidesBackButton = true
 
+		let label = generator.genLabelForTest()
+		view.addSubview(label)
+
 		buttons = generator.genButtonsForTest()
 
 		for button in buttons {

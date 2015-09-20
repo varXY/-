@@ -12,7 +12,7 @@ import UIKit
 class InfoViewController: UIViewController {
 	var generator = Generator()
 	var BigButtons = [UIButton]()
-	var littleButtons_1 = [UIButton]()
+	var littleButtons = [UIButton]()
 	var littleButtons_2 = [UIButton]()
 	var knowledge = Knowledge()
 	var global = Global()
@@ -25,20 +25,12 @@ class InfoViewController: UIViewController {
 
 		self.title = "常用知识"
 
-		littleButtons_1 = generator.genLitteButtons()
-		// littleButtons_2 = generator.genLitteButtons()
+		littleButtons = generator.genLitteButtons()
 		BigButtons = generator.genButtonsForInfo()
 
-		for button in littleButtons_1 {
+		for button in littleButtons {
 			self.view.addSubview(button)
 		}
-
-/*
-		for button in littleButtons_2 {
-			button.alpha = 0.0
-			self.view.addSubview(button)
-		}
-*/
 
 		for i in 0..<BigButtons.count {
 			BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
@@ -59,10 +51,9 @@ class InfoViewController: UIViewController {
 			self.BigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
 		}
 
-		delay(seconds: 1.0) { () -> () in
-			for button in self.littleButtons_1 {
-				button.genAnimation(.MovingAround, delay: 0.0, distance: 0.0)
-			}
+		for button in self.littleButtons {
+			let delay = arc4random_uniform(4)
+			button.genAnimation(.MovingAround, delay: Double(delay), distance: 0.0)
 		}
 
 		// self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
