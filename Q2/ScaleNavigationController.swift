@@ -24,6 +24,7 @@ class ScaleNavigationController: UINavigationController, UINavigationControllerD
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.delegate = self
+		self.navigationBar.translucent = true
 		colorForViewController("type1")
 	}
 

@@ -32,11 +32,12 @@
 		314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCE61BA42ED400E79557 /* IntroCell.swift */; };
 		314DFCEA1BA42F0E00E79557 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCE91BA42F0E00E79557 /* HudView.swift */; };
 		314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCEB1BA42F3D00E79557 /* Generator.swift */; };
-		314DFCEE1BA42F4300E79557 /* UIView+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCED1BA42F4300E79557 /* UIView+genAnimation.swift */; };
+		315F62F41BAD51D5008E9157 /* DetailNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
+		3182E46D1BAE2F8B00C96501 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3182E46C1BAE2F8B00C96501 /* RoundButton.swift */; settings = {ASSET_TAGS = (); }; };
 		318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */; };
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
-		31A492521BACE65C009077FD /* UIButton+ genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A492511BACE65C009077FD /* UIButton+ genAnimation.swift */; settings = {ASSET_TAGS = (); }; };
+		31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A492511BACE65C009077FD /* UIButton+genAnimation.swift */; settings = {ASSET_TAGS = (); }; };
 		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
 		31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */; };
 		31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */; };
@@ -85,11 +86,12 @@
 		314DFCE61BA42ED400E79557 /* IntroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroCell.swift; sourceTree = "<group>"; };
 		314DFCE91BA42F0E00E79557 /* HudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		314DFCEB1BA42F3D00E79557 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
-		314DFCED1BA42F4300E79557 /* UIView+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+genAnimation.swift"; sourceTree = "<group>"; };
+		315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNavigationController.swift; sourceTree = "<group>"; };
+		3182E46C1BAE2F8B00C96501 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQAViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsweredQACell.swift; sourceTree = "<group>"; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		31A492511BACE65C009077FD /* UIButton+ genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ genAnimation.swift"; sourceTree = "<group>"; };
+		31A492511BACE65C009077FD /* UIButton+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+genAnimation.swift"; sourceTree = "<group>"; };
 		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleNavigationController.swift; sourceTree = "<group>"; };
 		31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleViewController.swift; sourceTree = "<group>"; };
@@ -145,9 +147,9 @@
 				314DFCD81BA42E3F00E79557 /* Catalog.swift */,
 				314DFCEB1BA42F3D00E79557 /* Generator.swift */,
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
-				314DFCED1BA42F4300E79557 /* UIView+genAnimation.swift */,
-				31A492511BACE65C009077FD /* UIButton+ genAnimation.swift */,
+				31A492511BACE65C009077FD /* UIButton+genAnimation.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
+				3182E46C1BAE2F8B00C96501 /* RoundButton.swift */,
 				31033A871BA3BB5F00DC9141 /* Images.xcassets */,
 				31033A7C1BA3BB5F00DC9141 /* Supporting Files */,
 			);
@@ -205,6 +207,7 @@
 				31033AA81BA3E9A800DC9141 /* TestNavigationController.swift */,
 				31033AAA1BA3E9BC00DC9141 /* TestViewController.swift */,
 				31033AAC1BA3EBE200DC9141 /* QuestionViewController.swift */,
+				315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */,
 				31033AB41BA4143400DC9141 /* RecordViewController.swift */,
 				318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */,
 			);
@@ -395,10 +398,11 @@
 			files = (
 				314DFCD71BA42E1B00E79557 /* DetailViewController.swift in Sources */,
 				318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */,
-				31A492521BACE65C009077FD /* UIButton+ genAnimation.swift in Sources */,
+				31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */,
 				31033A7F1BA3BB5F00DC9141 /* AppDelegate.swift in Sources */,
 				31033AB11BA4096A00DC9141 /* Question.swift in Sources */,
 				31033AB71BA416C100DC9141 /* Record.swift in Sources */,
+				315F62F41BAD51D5008E9157 /* DetailNavigationController.swift in Sources */,
 				31033AA91BA3E9A800DC9141 /* TestNavigationController.swift in Sources */,
 				31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */,
 				314DFCD51BA42DE100E79557 /* ContentViewController.swift in Sources */,
@@ -407,8 +411,8 @@
 				31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */,
 				31D61E541BA6B08D006A7034 /* Records.swift in Sources */,
 				31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */,
-				314DFCEE1BA42F4300E79557 /* UIView+genAnimation.swift in Sources */,
 				314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */,
+				3182E46D1BAE2F8B00C96501 /* RoundButton.swift in Sources */,
 				314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */,
 				31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */,
 				314DFCDB1BA42E7800E79557 /* Knowledge.swift in Sources */,

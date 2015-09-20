@@ -20,8 +20,11 @@ class AnsweredQACell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		rowLabel.frame = CGRect(x: 5, y: 10, width: 30, height: 30)
+		rowLabel.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
 		rowLabel.font = UIFont.boldSystemFontOfSize(20)
+		rowLabel.textAlignment = .Center
+
+		ALabel.textColor = UIColor.grayColor()
 
 		self.addSubview(QLabel)
 		self.contentView.addSubview(rowLabel)
@@ -40,9 +43,9 @@ class AnsweredQACell: UITableViewCell {
 		rowLabel.text = "\(row)"
 
 		if rightOrWrong == 1 {
-			self.contentView.backgroundColor = UIColor.greenColor()
+			self.rowLabel.textColor = UIColor.greenColor()
 		} else {
-			self.contentView.backgroundColor = UIColor.redColor()
+			self.rowLabel.textColor = UIColor.redColor()
 		}
 	}
 

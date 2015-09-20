@@ -21,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		records.saveRecords()
 	}
 
+	func customizeAppearance() {
+		let tintColor = UIColor.redColor()
+		UITabBar.appearance().tintColor = tintColor
+	}
+
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -42,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		tabbarController.selectedIndex = 1
 
 		self.window?.rootViewController = tabbarController
+		customizeAppearance()
 
 		self.window?.makeKeyAndVisible()
 

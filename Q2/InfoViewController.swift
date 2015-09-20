@@ -26,20 +26,19 @@ class InfoViewController: UIViewController {
 		self.title = "常用知识"
 
 		littleButtons_1 = generator.genLitteButtons()
-		littleButtons_2 = generator.genLitteButtons()
+		// littleButtons_2 = generator.genLitteButtons()
 		BigButtons = generator.genButtonsForInfo()
-
-		print(BigButtons.count)
-		print(BigButtons[0].tag)
 
 		for button in littleButtons_1 {
 			self.view.addSubview(button)
 		}
 
+/*
 		for button in littleButtons_2 {
 			button.alpha = 0.0
 			self.view.addSubview(button)
 		}
+*/
 
 		for i in 0..<BigButtons.count {
 			BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
@@ -65,15 +64,6 @@ class InfoViewController: UIViewController {
 				button.genAnimation(.MovingAround, delay: 0.0, distance: 0.0)
 			}
 		}
-
-		delay(seconds: 5.0) { () -> () in
-			for button in self.littleButtons_2 {
-				button.alpha = 1.0
-				button.genAnimation(.MovingAround, delay: 0.0, distance: 0.0)
-			}
-		}
-
-
 
 		// self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
 
@@ -103,8 +93,14 @@ class InfoViewController: UIViewController {
 
 	func showCatalog(index: Int) {
 
-		BigButtons[index].genAnimation(.Touched, delay: 0.0, distance: 0.0)
-		
+		for button in BigButtons {
+			if index == BigButtons.indexOf(button) {
+				button.genAnimation(.Touched, delay: 0.0, distance: 0.0)
+			} else {
+				button.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
+			}
+		}
+
 		delay(seconds: 0.5) { () -> () in
 			let contentVC = ContentViewController()
 			contentVC.index = index

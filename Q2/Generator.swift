@@ -14,14 +14,12 @@ class Generator {
 
 	var button: UIButton?
 	var littleButtons = [UIButton]()
-	var maxX : CGFloat = 320
-	var maxY : CGFloat = 320
 	let buttonSize : CGFloat = 30.0
 
 	var global = Global()
 
-	func genRightOrWrongViewForQA(rightOrWrong: String) -> UIView {
-		let view = UIView(frame: CGRect(x: global.center.x - 50, y: global.center.y - 50, width: 100, height: 100))
+	func genRightOrWrongViewForQA(rightOrWrong: String, page: Int) -> UIView {
+		let view = UIView(frame: CGRect(x: global.center.x - 50 + global.size.width * CGFloat(page), y: global.center.y - 50 - 64, width: 100, height: 100))
 		view.layer.cornerRadius = 50
 		
 		switch rightOrWrong {
@@ -48,6 +46,8 @@ class Generator {
 		return QLabel
 	}
 
+
+
 	func genJumpButtonForQA(superView: UIView, page: Int) {
 		let buttonWidth: CGFloat = 100
 		let buttonHeight:CGFloat = 100
@@ -55,11 +55,11 @@ class Generator {
 		let y = global.center.y - buttonWidth / 2 - 64
 
 		let jumpButton = UIButton(type: .System)
-		jumpButton.backgroundColor = UIColor.purpleColor()
+		jumpButton.backgroundColor = UIColor.clearColor()
+		// jumpButton.alpha = 0.0
 		jumpButton.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
 		jumpButton.layer.cornerRadius = 50
 		jumpButton.clipsToBounds = true
-		jumpButton.setTitle("Next", forState: .Normal)
 		jumpButton.tag = page + 2333
 		superView.addSubview(jumpButton)
 	}
@@ -68,7 +68,7 @@ class Generator {
 		let redColor = UIColor.redColor().CGColor
 
 		let label = UILabel()
-		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 4.5 - 64, width: global.size.width - 30, height: 200)
+		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 5 - 64, width: global.size.width - 30, height: 200)
 		label.numberOfLines = 0
 		label.backgroundColor = UIColor.whiteColor()
 		label.font = UIFont.systemFontOfSize(23)
@@ -80,7 +80,7 @@ class Generator {
 		button1.frame = CGRect(x: 20 + global.size.width * CGFloat(page), y: global.size.height * 0.65 - 64, width: global.size.width - 40, height: 60)
 		button1.layer.cornerRadius = 10
 		button1.layer.borderColor = redColor
-		button1.layer.borderWidth = 0.5
+		button1.layer.borderWidth = 1.0
 		button1.titleLabel?.font = UIFont.systemFontOfSize(20)
 		button1.tintColor = UIColor.redColor()
 		button1.backgroundColor = UIColor.whiteColor()
@@ -94,7 +94,7 @@ class Generator {
 		button2.tintColor = UIColor.redColor()
 		button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
 		button2.layer.borderColor = redColor
-		button2.layer.borderWidth = 0.5
+		button2.layer.borderWidth = 1.0
 		button2.backgroundColor = UIColor.whiteColor()
 		button2.titleLabel?.font = UIFont.systemFontOfSize(20)
 		button2.tag = page * 2 + 1001
@@ -110,35 +110,7 @@ class Generator {
 		}
 	}
 
-	func genStartButtonForTest() -> UIButton {
-		let buttonWidth: CGFloat = global.testBigButtonSize().width
-		let buttonHeight:CGFloat = global.testBigButtonSize().height
-
-		let startButton = UIButton(type: .System)
-		startButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 - 49 , width: buttonWidth, height: buttonHeight)
-		startButton.layer.cornerRadius = global.testBigButtonSize().width / 2
-		startButton.clipsToBounds = true
-		startButton.backgroundColor = UIColor.whiteColor()
-		startButton.setTitle("start", forState: .Normal)
-		startButton.tag = 333
-
-		return startButton
-	}
-
-	func genRecordButtonForTest() -> UIButton {
-		let buttonWidth: CGFloat = global.testSmallButtonSize().width
-		let buttonHeight:CGFloat = global.testSmallButtonSize().height
-
-		let recordButton = UIButton(type: .System)
-		recordButton.frame = CGRect(x: (global.size.width - buttonWidth) / 2, y: (global.size.height - buttonHeight) / 2 + 200, width: buttonWidth, height: buttonHeight)
-		recordButton.layer.cornerRadius = global.testSmallButtonSize().width / 2
-		recordButton.clipsToBounds = true
-		recordButton.backgroundColor = UIColor.whiteColor()
-		recordButton.setTitle("Record", forState: .Normal)
-		recordButton.tag = 444
-
-		return recordButton
-	}
+	// MARK: - Big Buttons
 
 	func genButtonsForInfo() -> [UIButton] {
 		let buttonSize = global.buttonSize()
@@ -146,7 +118,7 @@ class Generator {
 		var buttons = [UIButton]()
 
 		let buttonX = (global.size.width - buttonSize.width) / 2
-		
+
 		let marginY_1 = marginY + 64
 		let marginY_2 = marginY * 2 + buttonSize.height + 64
 		let marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
@@ -162,18 +134,27 @@ class Generator {
 		button = genButton("工具设备", frame: CGRect(x: buttonX, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
 		button?.tag = 93458
 		buttons.append(button!)
-		
+
 		return buttons
 	}
 
-	func genLitteButtons() -> [UIButton] {
+	func genButtonsForTest() -> [UIButton] {
+		var buttons = [UIButton]()
 
-		for _ in 0..<15 {
-			let button = generateLittleButtons()
-			littleButtons.append(button)
-		}
+		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
+		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
+		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
+		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
 
-		return littleButtons
+		var button = genButton("start", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
+		button!.tag = 333
+		buttons.append(button!)
+
+		button = genButton("Record", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: (global.size.height - smallbuttonHeight) / 2 + 200, width: smallbuttonWidth, height: smallbuttonHeight))
+		button!.tag = 334
+		buttons.append(button!)
+
+		return buttons
 	}
 
 	func genButtonsForScale() -> [UIButton] {
@@ -204,6 +185,21 @@ class Generator {
 		return buttons
 	}
 
+	// MARK: - Little Buttons
+
+
+	func genLitteButtons() -> [UIButton] {
+
+		for _ in 0..<20 {
+			let button = generateLittleButtons()
+			littleButtons.append(button)
+		}
+
+		return littleButtons
+	}
+
+
+
 	func generateLittleButtons() -> UIButton {
 		let frame = randomFrame()
 		let color = UIColor.clearColor()
@@ -226,12 +222,14 @@ class Generator {
 	}
 
 	func randomFrame() -> CGRect {
-		var guess = CGRectMake(60, 60, 30, 30)
+		var guess = CGRectMake(64, 64, 30, 30)
 
 		repeat {
-			let guessX = CGFloat(arc4random_uniform(291))
-			let guessY = CGFloat(arc4random_uniform(490) + 60)
-			guess = CGRectMake(guessX, guessY, buttonSize + 5, buttonSize + 5)
+			let maxX = UInt32(global.size.width - 30)
+			let maxY = UInt32(global.size.height - 79)
+			let guessX = CGFloat(arc4random_uniform(maxX))
+			let guessY = CGFloat(arc4random_uniform(maxY))
+			guess = CGRectMake(guessX, guessY, buttonSize, buttonSize)
 		} while(!doesNotCollide(guess)) 
 
 		return guess
@@ -239,25 +237,19 @@ class Generator {
 	}
 
 	func doesNotCollide(testRect: CGRect) -> Bool {
-		for button: UIButton in littleButtons {
+		for button in littleButtons {
+			button.transform = CGAffineTransformMakeScale(1.5, 1.5)
 			let viewRect = button.frame
 			if(CGRectIntersectsRect(testRect, viewRect)) {
 				return false
 			}
+			button.transform = CGAffineTransformMakeScale(1.0, 1.0)
+
 		}
 		return true
 	}
 
-	func genButton(title: String, frame: CGRect) -> UIButton? {
-
-		let button = UIButton(type: .System)
-		button.frame = frame
-		button.setTitle(title, forState: .Normal)
-		button.backgroundColor = UIColor.whiteColor()
-		button.layer.cornerRadius = frame.height / 2
-		button.clipsToBounds = true
-		return button
-	}
+	// MARK: -
 
 
 	func genDots() -> UIView {
@@ -310,29 +302,28 @@ class Generator {
 		let buttonWidth = global.testSmallButtonSize().width
 		let buttonHeight = global.testSmallButtonSize().height
 
-		let button = UIButton(type: .System)
-		button.frame.size = CGSize(width: buttonWidth + 50, height: buttonHeight + 50)
-		button.frame.origin = CGPoint(x: global.size.width / 4 - (buttonWidth + 50) / 2, y: global.size.width + 54 - buttonHeight / 2)
-		button.layer.cornerRadius = (buttonWidth + 50) / 2
-		button.clipsToBounds = true
-		button.tintColor = UIColor.redColor()
-		button.backgroundColor = UIColor.whiteColor()
-		button.setTitle("查看题目", forState: .Normal)
-		button.tag = 12345
-		view.addSubview(button)
+		var button = genButton("查看题目", frame: CGRect(x: global.size.width / 4 - (buttonWidth + 50) / 2, y: global.size.width + 54 - buttonHeight / 2, width: buttonWidth + 50, height: buttonHeight + 50))
+		button!.tag = 12345
+		view.addSubview(button!)
 
-		let button1 = UIButton(type: .System)
-		button1.frame.size = CGSize(width: buttonWidth, height: buttonHeight)
-		button1.frame.origin = CGPoint(x: global.size.width * 3 / 4 - buttonWidth / 2, y: global.size.width + 54)
-		button1.backgroundColor = UIColor.whiteColor()
-		button1.setTitle("退出", forState: .Normal)
-		button1.tintColor = UIColor.redColor()
-		button1.layer.cornerRadius = buttonWidth / 2
-		button1.clipsToBounds = true
-		button1.tag = 123456
-		view.addSubview(button1)
+		button = genButton("退出", frame: CGRect(x: global.size.width * 3 / 4 - buttonWidth / 2, y: global.size.width + 54, width: buttonWidth, height: buttonHeight))
+		button!.tag = 123456
+		view.addSubview(button!)
 		
 		return view
+	}
+
+
+	func genButton(title: String, frame: CGRect) -> UIButton? {
+
+		let button = UIButton(type: .System)
+		button.frame = frame
+		button.tintColor = UIColor.redColor()
+		button.setTitle(title, forState: .Normal)
+		button.backgroundColor = UIColor.whiteColor()
+		button.layer.cornerRadius = frame.height / 2
+		button.clipsToBounds = true
+		return button
 	}
 
 

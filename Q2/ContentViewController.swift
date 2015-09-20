@@ -161,6 +161,7 @@ extension ContentViewController: UISearchBarDelegate {
 
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
+		tableView.separatorColor = UIColor.redColor()
 		let searchedIcons = knowledge.getSearchedIcons(searchBar.text!)
 
 		if searchedIcons.isEmpty {

@@ -22,6 +22,7 @@ class InfoNavigationController: UINavigationController, UINavigationControllerDe
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.delegate = self
+		self.navigationBar.translucent = true
 		colorForViewController("type1")
 	}
 

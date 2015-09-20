@@ -40,7 +40,7 @@ class ScaleViewController: UIViewController {
 
 	func open(sender: UIButton) {
 		let equationVC = EquationViewController()
-		equationVC.index = sender.tag
+		equationVC.index = sender.tag - 345
 		self.navigationController?.pushViewController(equationVC, animated: true)
 	}
 }

@@ -19,20 +19,13 @@ class AnsweredQAViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let titleView = UIView()
-		titleView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 64)
-		titleView.backgroundColor = UIColor.purpleColor()
-		view.addSubview(titleView)
+		self.title = "答过的题目"
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
+		quitButton.tintColor = UIColor.whiteColor()
+		self.navigationItem.rightBarButtonItem = quitButton
 
-		let backButton = UIButton(frame: CGRect(x: global.size.width - 40, y: 30, width: 30, height: 30))
-		backButton.backgroundColor = UIColor.blackColor()
-		backButton.addTarget(self, action: "close", forControlEvents: .TouchUpInside)
-		titleView.addSubview(backButton)
-
-		tableView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: view.bounds.height - 64)
-		tableView.backgroundColor = UIColor.yellowColor()
-
-
+		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.bounds.height - 64)
+		tableView.separatorColor = UIColor.redColor()
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
@@ -40,12 +33,16 @@ class AnsweredQAViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		hidesBottomBarWhenPushed = true
+		// hidesBottomBarWhenPushed = true
 	}
 
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		hidesBottomBarWhenPushed = true
+		// hidesBottomBarWhenPushed = true
+	}
+
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
 	}
 
 	func close() {
@@ -80,6 +77,10 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 
 		cell?.configureForAnsweredQACell(label, rightOrWrong: rightOrWrong, row: rowForShow, rightAnswer: rightAnswer)
 		return cell!
+	}
+
+	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+		return nil
 	}
 }
 

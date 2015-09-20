@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 
-
 class RecordViewController: UIViewController {
 	var tableView = UITableView()
 	var records = [Record]()
@@ -19,23 +18,21 @@ class RecordViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let titleView = UIView()
-		titleView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 64)
-		titleView.backgroundColor = UIColor.purpleColor()
-		view.addSubview(titleView)
+		self.title = "答题纪录"
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
+		quitButton.tintColor = UIColor.whiteColor()
+		self.navigationItem.rightBarButtonItem = quitButton
 
-		let backButton = UIButton(frame: CGRect(x: global.size.width - 40, y: 30, width: 30, height: 30))
-		backButton.backgroundColor = UIColor.blackColor()
-		backButton.addTarget(self, action: "close", forControlEvents: .TouchUpInside)
-		titleView.addSubview(backButton)
+		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.bounds.height - 64)
+		tableView.separatorColor = UIColor.clearColor()
 
-		tableView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: view.bounds.height - 64)
-		tableView.backgroundColor = UIColor.yellowColor()
-
-		tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
+	}
+
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
 	}
 
 	func close() {
@@ -62,6 +59,10 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 		}
 		cell?.configureForRecordCell(records[indexPath.row])
 		return cell!
+	}
+
+	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+		return nil
 	}
 }
 

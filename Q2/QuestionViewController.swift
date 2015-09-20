@@ -31,7 +31,7 @@ class QuestionViewController: UIViewController {
 		questions = question.getQestions(10)
 
 		self.view.backgroundColor = UIColor.whiteColor()
-		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "quit")
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "confirmToQuit")
 		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 		self.navigationItem.leftBarButtonItem = quitButton
@@ -83,7 +83,9 @@ class QuestionViewController: UIViewController {
 	func chosen(sender: UIButton) {
 		getResult(sender)
 		disableAndColorButtons(sender)
-		genJumpButton(sender)
+		delay(seconds: 0.2) { () -> () in
+			self.genJumpButton(sender)
+		}
 		testIsOver(sender)
 	}
 
@@ -114,20 +116,21 @@ class QuestionViewController: UIViewController {
 	}
 
 	func disableAndColorButtons(sender: UIButton) {
-		sender.enabled = false
 		let rightAnswer = questions[pageControl.currentPage].rightAnswer
 		let tags = [sender.tag - 1, sender.tag, sender.tag + 1]
 
 		for tag in tags {
 
 			if let button = scrollView.viewWithTag(tag) as? UIButton {
-				button.enabled = false
 
 				if button.titleLabel?.text == rightAnswer {
+					button.userInteractionEnabled = false
 					button.genAnimation(.IsRightAnswer, delay: 0.0, distance: 0.0)
+					button.tintColor = UIColor.whiteColor()
 					button.layer.borderColor = global.CGGreenColor
-					button.titleLabel?.textColor = UIColor.greenColor()
+					button.backgroundColor = UIColor.greenColor()
 				} else {
+					button.enabled = false
 					button.layer.borderColor = global.CGlightGrayColor
 				}
 
@@ -177,6 +180,7 @@ class QuestionViewController: UIViewController {
 					button.genAnimation(.Appear, delay: 0.0, distance: 0.0)
 				}
 
+				finalView.tag = 9999999
 				self.view.addSubview(finalView)
 			})
 			
@@ -185,12 +189,24 @@ class QuestionViewController: UIViewController {
 	}
 
 	func showRightOrWrongView(rightOrWrong: String) {
-		let view = generator.genRightOrWrongViewForQA(rightOrWrong)
-		self.view.addSubview(view)
+		let view = generator.genRightOrWrongViewForQA(rightOrWrong, page: pageControl.currentPage)
+		scrollView.addSubview(view)
 
 		delay(seconds: 0.4) { () -> () in
-			view.removeFromSuperview()
+			view.transform = CGAffineTransformMakeScale(0.0, 0.0)
+			view.hidden = true
 		}
+
+		delay(seconds: 0.8) { () -> () in
+			UIView.animateWithDuration(0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
+				view.backgroundColor = UIColor.greenColor()
+				view.hidden = false
+				view.transform = CGAffineTransformMakeScale(1.0, 1.0)
+				}, completion: nil)
+
+		}
+
+		scrollView.bringSubviewToFront(view)
 	}
 
 	func addAnimationAndActionToButtons(kind: Int, page: Int) {
@@ -208,7 +224,6 @@ class QuestionViewController: UIViewController {
 		case 1:
 			if let button = scrollView.viewWithTag(page + 2333) as? UIButton {
 				button.addTarget(self, action: "jump", forControlEvents: .TouchUpInside)
-				button.genAnimation(.FromZeroToFull, delay: 1.0, distance: 0.0)
 			}
 
 		default:
@@ -246,18 +261,39 @@ class QuestionViewController: UIViewController {
 		self.scrollView.removeFromSuperview()
 		self.rightCount = 0
 		self.rightOrWrong.removeAll(keepCapacity: false)
+		self.navigationController?.popViewControllerAnimated(true)
+	}
 
-		dispatch_async(dispatch_get_main_queue()) {
-			self.navigationController?.popViewControllerAnimated(true)
+	func confirmToQuit() {
+
+		if self.view.viewWithTag(9999999) == nil {
+			let alert = UIAlertController(title: "提示", message: "答题还没完成，确定退出吗？", preferredStyle: .Alert)
+
+			let action = UIAlertAction(title: "确定", style: .Destructive, handler: ({ _ in self.quit() }))
+			alert.addAction(action)
+
+			let action1 = UIAlertAction(title: "取消", style: .Destructive, handler: nil)
+			alert.view.tintColor = UIColor.redColor()
+			alert.addAction(action1)
+
+			presentViewController(alert, animated: true, completion: nil)
+		} else {
+			self.quit()
 		}
+
 	}
 
 
 	func seeAnsweredQA() {
+		
 		let AnsweredQAVC = AnsweredQAViewController()
 		AnsweredQAVC.questions = self.questions
 		AnsweredQAVC.rightOrWrong = self.rightOrWrong
-		presentViewController(AnsweredQAVC, animated: true, completion: nil)
+
+		let detailNV = DetailNavigationController(rootViewController: AnsweredQAVC)
+		detailNV.toolbarHidden = true
+
+		presentViewController(detailNV, animated: true, completion: nil)
 	}
 
 
