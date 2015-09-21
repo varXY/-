@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AudioToolbox
+import AVFoundation
 
 class QuestionViewController: UIViewController {
 	var scrollView = UIScrollView()
@@ -22,7 +23,8 @@ class QuestionViewController: UIViewController {
 	var generator = Generator()
 	var dotView = UIView()
 
-	// var soundID: SystemSoundID = 0
+	var player0 = AVAudioPlayer()
+	var player1 = AVAudioPlayer()
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
@@ -61,8 +63,9 @@ class QuestionViewController: UIViewController {
 		generator.genQA(scrollView, page: 0, questions: questions)
 		addAnimationAndActionToButtons(0, page: 0)
 
-		loadSoundEffect("right.caf", soundID: 0)
-		loadSoundEffect("wrong.caf", soundID: 1)
+		// prepareAudios()
+
+
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -98,7 +101,8 @@ class QuestionViewController: UIViewController {
 	func getResult(sender: UIButton) {
 
 		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			AudioServicesPlaySystemSound(0)
+			// AudioServicesPlaySystemSound(4097)
+			player0.play()
 			showRightOrWrongView("right")
 			rightCount += 1
 			rightOrWrong.append(1)
@@ -108,7 +112,7 @@ class QuestionViewController: UIViewController {
 			}
 
 		} else {
-			AudioServicesPlaySystemSound(1)
+			player1.play()
 			AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
 			//AudioServicesPlaySystemSound(1053)
 			showRightOrWrongView("wrong")
@@ -306,18 +310,14 @@ class QuestionViewController: UIViewController {
 
 	// MARK: - Sound Effect
 
-	func loadSoundEffect(name: String, soundID: SystemSoundID) {
-		var soundID = soundID
-		if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
-			let fileURL = NSURL.fileURLWithPath(path, isDirectory: false)
-			_ = AudioServicesCreateSystemSoundID(fileURL, &soundID)
-		}
+	func prepareAudios() {
+		let rightSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("right", ofType: "caf")!)
+		let wrongSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrong", ofType: "caf")!)
+		try!  player0 = AVAudioPlayer(contentsOfURL: rightSound)
+		try!  player1 = AVAudioPlayer(contentsOfURL: wrongSound)
+		player0.prepareToPlay()
+		player1.prepareToPlay()
 	}
-
-	func playSoundEffect(sounID: SystemSoundID) {
-		AudioServicesPlaySystemSound(sounID)
-	}
-
 
 
 

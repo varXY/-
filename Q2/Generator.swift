@@ -331,9 +331,7 @@ class Generator {
 	func genButton(title: String, frame: CGRect) -> UIButton? {
 
 		let button = UIButton(type: .System)
-		print(frame)
-		button.frame = CGRect(x: round(frame.origin.x), y: round(frame.origin.x), width: round(frame.size.width), height: round(frame.size.height))
-		print(button.frame)
+		button.frame = CGRect(x: round(frame.origin.x), y: round(frame.origin.y), width: round(frame.size.width), height: round(frame.size.height))
 		button.tintColor = Global.redColor()
 		button.setTitle(title, forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(18)
