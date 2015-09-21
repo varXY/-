@@ -22,6 +22,8 @@ class QuestionViewController: UIViewController {
 	var generator = Generator()
 	var dotView = UIView()
 
+	// var soundID: SystemSoundID = 0
+
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
 	override func viewDidLoad() {
@@ -58,6 +60,9 @@ class QuestionViewController: UIViewController {
 
 		generator.genQA(scrollView, page: 0, questions: questions)
 		addAnimationAndActionToButtons(0, page: 0)
+
+		loadSoundEffect("right.caf", soundID: 0)
+		loadSoundEffect("wrong.caf", soundID: 1)
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -93,7 +98,7 @@ class QuestionViewController: UIViewController {
 	func getResult(sender: UIButton) {
 
 		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			AudioServicesPlaySystemSound(1008)
+			AudioServicesPlaySystemSound(0)
 			showRightOrWrongView("right")
 			rightCount += 1
 			rightOrWrong.append(1)
@@ -103,15 +108,17 @@ class QuestionViewController: UIViewController {
 			}
 
 		} else {
-			AudioServicesPlaySystemSound(1053)
+			AudioServicesPlaySystemSound(1)
+			AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+			//AudioServicesPlaySystemSound(1053)
 			showRightOrWrongView("wrong")
 			rightOrWrong.append(0)
 
 			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = UIColor.redColor()
+				dot.backgroundColor = Global.redColor()
 			}
 
-			// AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+
 		}
 	}
 
@@ -163,7 +170,7 @@ class QuestionViewController: UIViewController {
 				UIView.animateWithDuration(0.8, animations: { () -> Void in
 					self.scrollView.alpha = 0.0
 					self.scrollView.removeFromSuperview()
-					self.view.backgroundColor = UIColor.grayColor()
+					self.view.backgroundColor = Global.grayColor()
 				})
 			})
 
@@ -273,7 +280,7 @@ class QuestionViewController: UIViewController {
 			alert.addAction(action)
 
 			let action1 = UIAlertAction(title: "取消", style: .Destructive, handler: nil)
-			alert.view.tintColor = UIColor.redColor()
+			alert.view.tintColor = Global.redColor()
 			alert.addAction(action1)
 
 			presentViewController(alert, animated: true, completion: nil)
@@ -294,6 +301,21 @@ class QuestionViewController: UIViewController {
 		detailNV.toolbarHidden = true
 
 		presentViewController(detailNV, animated: true, completion: nil)
+	}
+
+
+	// MARK: - Sound Effect
+
+	func loadSoundEffect(name: String, soundID: SystemSoundID) {
+		var soundID = soundID
+		if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
+			let fileURL = NSURL.fileURLWithPath(path, isDirectory: false)
+			_ = AudioServicesCreateSystemSoundID(fileURL, &soundID)
+		}
+	}
+
+	func playSoundEffect(sounID: SystemSoundID) {
+		AudioServicesPlaySystemSound(sounID)
 	}
 
 

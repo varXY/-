@@ -24,7 +24,7 @@ class EquationCell: UITableViewCell {
 		titleLabel.frame = CGRect(x: 15, y: 0, width: 40, height: self.frame.height)
 		titleLabel.font = UIFont.boldSystemFontOfSize(20)
 		titleLabel.textAlignment = .Center
-		titleLabel.textColor = UIColor.redColor()
+		titleLabel.textColor = Global.redColor()
 		self.contentView.addSubview(titleLabel)
 
 		equalLabel.frame = CGRect(x: 55, y: 0, width: 20, height: self.frame.height)

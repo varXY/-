@@ -109,7 +109,7 @@ class EquationViewController: UIViewController {
 	func showAlert() {
 		let alert = UIAlertController(title: "输入有误", message: "功率因素须在0到1之间", preferredStyle: .Alert)
 		let action = UIAlertAction(title: "确定", style: .Destructive, handler: nil)
-		alert.view.tintColor = UIColor.redColor()
+		alert.view.tintColor = Global.redColor()
 		alert.addAction(action) 
 		presentViewController(alert, animated: true, completion: nil)
 	}

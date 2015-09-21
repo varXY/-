@@ -24,7 +24,7 @@ class AnsweredQACell: UITableViewCell {
 		rowLabel.font = UIFont.boldSystemFontOfSize(20)
 		rowLabel.textAlignment = .Center
 
-		ALabel.textColor = UIColor.grayColor()
+		ALabel.textColor = Global.grayColor()
 
 		self.addSubview(QLabel)
 		self.contentView.addSubview(rowLabel)
@@ -45,7 +45,7 @@ class AnsweredQACell: UITableViewCell {
 		if rightOrWrong == 1 {
 			self.rowLabel.textColor = UIColor.greenColor()
 		} else {
-			self.rowLabel.textColor = UIColor.redColor()
+			self.rowLabel.textColor = Global.redColor()
 		}
 	}
 

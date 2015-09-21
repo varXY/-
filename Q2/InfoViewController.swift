@@ -21,7 +21,7 @@ class InfoViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		global.size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
-		self.view.backgroundColor = UIColor.grayColor()
+		self.view.backgroundColor = Global.grayColor()
 
 		self.title = "常用知识"
 

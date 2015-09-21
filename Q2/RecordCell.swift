@@ -20,13 +20,13 @@ class RecordCell: UITableViewCell {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		colorView.frame = CGRect.zero
-		colorView.backgroundColor = UIColor.grayColor()
+		colorView.backgroundColor = Global.grayColor()
 		colorView.alpha = 0.3
 		self.contentView.addSubview(colorView)
 
 		recordLabel.frame = CGRect(x: global.size.width - 60, y: 10, width: 50, height: 44)
 		// recordLabel.font = UIFont.boldSystemFontOfSize(17)
-		recordLabel.textColor = UIColor.redColor()
+		recordLabel.textColor = Global.redColor()
 		self.contentView.addSubview(recordLabel)
 
 		dateLabel.frame = CGRect(x: 20, y: 10, width: global.size.width - 80, height: 44)

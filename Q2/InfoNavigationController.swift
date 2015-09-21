@@ -59,7 +59,7 @@ class InfoNavigationController: UINavigationController, UINavigationControllerDe
 		case "type1":
 
 			UIView.animateWithDuration(1.0, animations: { () -> Void in
-				self.navigationBar.barTintColor = UIColor.redColor()
+				self.navigationBar.barTintColor = Global.redColor()
 				self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 				self.navigationBar.tintColor = UIColor.whiteColor()
 			})
@@ -69,7 +69,7 @@ class InfoNavigationController: UINavigationController, UINavigationControllerDe
 			UIView.animateWithDuration(1.0, animations: { () -> Void in
 				self.navigationBar.barTintColor = UIColor.whiteColor()
 				self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-				self.navigationBar.tintColor = UIColor.redColor()
+				self.navigationBar.tintColor = Global.redColor()
 				self.statusBarStyle = UIStatusBarStyle.Default
 				super.setNeedsStatusBarAppearanceUpdate()
 			})

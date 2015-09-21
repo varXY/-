@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func customizeAppearance() {
-		let tintColor = UIColor.redColor()
+		let tintColor = Global.redColor()
 		UITabBar.appearance().tintColor = tintColor
 	}
 

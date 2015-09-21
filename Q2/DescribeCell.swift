@@ -19,7 +19,7 @@ class DescribeCell: UITableViewCell {
         super.awakeFromNib()
 
 		selectedBackgroundView = UIView()
-		selectedBackgroundView!.backgroundColor = UIColor.redColor()
+		selectedBackgroundView!.backgroundColor = Global.redColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

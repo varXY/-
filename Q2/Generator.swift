@@ -65,7 +65,7 @@ class Generator {
 	}
 
 	func genQA(superView: UIView, page: Int, questions: [Question]) {
-		let redColor = UIColor.redColor().CGColor
+		let redColor = Global.redColor().CGColor
 
 		let label = UILabel()
 		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 5.5 - 64, width: global.size.width - 30, height: 200)
@@ -82,7 +82,7 @@ class Generator {
 		button1.layer.borderColor = redColor
 		button1.layer.borderWidth = 1.0
 		button1.titleLabel?.font = UIFont.systemFontOfSize(20)
-		button1.tintColor = UIColor.redColor()
+		button1.tintColor = Global.redColor()
 		button1.backgroundColor = UIColor.whiteColor()
 		button1.setTitle(questions[page].rightAnswer, forState: .Normal)
 		button1.tag = page * 2 + 1000
@@ -91,7 +91,7 @@ class Generator {
 		let button2 = UIButton(type: .System)
 		button2.frame = CGRect(x: 20 + global.size.width * CGFloat(page), y: global.size.height * 0.65 + 90 - 64, width: global.size.width - 40, height: 60)
 		button2.layer.cornerRadius = 10
-		button2.tintColor = UIColor.redColor()
+		button2.tintColor = Global.redColor()
 		button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
 		button2.layer.borderColor = redColor
 		button2.layer.borderWidth = 1.0
@@ -218,6 +218,7 @@ class Generator {
 		let color = UIColor.clearColor()
 		let newbutton = addLittlebutton(frame, color: color)
 		newbutton.setTitle(randomLetter(), forState: .Normal)
+		// newbutton.titleLabel?.textColor = Global.lightGrayColor()
 		newbutton.alpha = 1.0
 		return newbutton
 	}
@@ -273,7 +274,7 @@ class Generator {
 			let littleView = UIView(frame: CGRect(x: 5 + 15 * i, y: 5, width: 10, height: 10))
 			littleView.layer.cornerRadius = 5
 			littleView.clipsToBounds = true
-			littleView.backgroundColor = UIColor.darkGrayColor()
+			littleView.backgroundColor = Global.grayColor()
 			littleView.tag = i + 500
 			view.addSubview(littleView)
 		}
@@ -292,7 +293,7 @@ class Generator {
 		label.numberOfLines = 0
 		label.textAlignment = .Center
 		label.textColor = UIColor.whiteColor()
-		label.backgroundColor = UIColor.redColor()
+		label.backgroundColor = Global.redColor()
 
 		if rightCount < 5 {
 			label.text = "只答对了\(rightCount)题，再接再厉！"
@@ -330,8 +331,10 @@ class Generator {
 	func genButton(title: String, frame: CGRect) -> UIButton? {
 
 		let button = UIButton(type: .System)
-		button.frame = frame
-		button.tintColor = UIColor.redColor()
+		print(frame)
+		button.frame = CGRect(x: round(frame.origin.x), y: round(frame.origin.x), width: round(frame.size.width), height: round(frame.size.height))
+		print(button.frame)
+		button.tintColor = Global.redColor()
 		button.setTitle(title, forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(18)
 		button.backgroundColor = UIColor.whiteColor()

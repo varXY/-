@@ -30,14 +30,14 @@ class ContentViewController: UITableViewController {
 		case 1:
 			self.title = "符号图标"
 			iconsToDisplay = knowledge.getAll(1)
-			tableView.separatorColor = UIColor.redColor()
+			tableView.separatorColor = Global.redColor()
 			searchBar.placeholder = "搜索"
-			searchBar.tintColor = UIColor.redColor()
+			searchBar.tintColor = Global.redColor()
 			searchBar.delegate = self
 			tableView.tableHeaderView = searchBar
 		case 2:
 			self.title = "工具设备"
-			tableView.separatorColor = UIColor.redColor()
+			tableView.separatorColor = Global.redColor()
 			iconsToDisplay = knowledge.getAll(2)
 		default:
 			break
@@ -155,14 +155,14 @@ extension ContentViewController: UISearchBarDelegate {
 	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
 		searchBar.setShowsCancelButton(false, animated: true)
-		tableView.separatorColor = UIColor.redColor()
+		tableView.separatorColor = Global.redColor()
 		iconsToDisplay = knowledge.getAll(1)
 		tableView.reloadData()
 	}
 
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
-		tableView.separatorColor = UIColor.redColor()
+		tableView.separatorColor = Global.redColor()
 		let searchedIcons = knowledge.getSearchedIcons(searchBar.text!)
 
 		if searchedIcons.isEmpty {

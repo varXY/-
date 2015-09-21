@@ -29,8 +29,8 @@ class NumberTextfield: UITextField {
 		textField.frame = frame
 		textField.layer.cornerRadius = 8
 		textField.layer.borderWidth = 1.0
-		textField.tintColor = UIColor.redColor()
-		let redColor = UIColor.redColor().CGColor
+		textField.tintColor = Global.redColor()
+		let redColor = Global.redColor().CGColor
 		textField.layer.borderColor = redColor
 		textField.placeholder = "请输入"
 		textField.keyboardType = .DecimalPad

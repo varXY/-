@@ -16,7 +16,7 @@ class ScaleViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.title = "公式换算"
-		self.view.backgroundColor = UIColor.grayColor()
+		self.view.backgroundColor = Global.grayColor()
 
 		let buttons = generator.genButtonsForScale()
 

@@ -19,7 +19,7 @@ class TestViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.title = "电工试题"
-		self.view.backgroundColor = UIColor.grayColor()
+		self.view.backgroundColor = Global.grayColor()
 		self.navigationItem.hidesBackButton = true
 
 		let label = generator.genLabelForTest()

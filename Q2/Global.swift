@@ -30,10 +30,22 @@ class Global {
 	var center = CGPoint(x: UIScreen.mainScreen().bounds.width / 2, y: UIScreen.mainScreen().bounds.height / 2)
 	var rowHeight = UIScreen.mainScreen().bounds.height / 12
 
-	let CGRedColor = UIColor.redColor().CGColor
+	let CGRedColor = Global.redColor().CGColor
 	let CGGreenColor = UIColor.greenColor().CGColor
 	let CGlightGrayColor = UIColor.lightGrayColor().CGColor
-	let CGGrayColor = UIColor.grayColor().CGColor
+	let CGGrayColor = Global.grayColor().CGColor
+
+	class func redColor() -> UIColor {
+		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 1.0)
+	}
+
+	class func grayColor() -> UIColor {
+		return UIColor(red: 66/255, green: 70/255, blue: 77/225, alpha: 1.0)
+	}
+
+	class func lightGrayColor() -> UIColor {
+		return UIColor(red: 150/255, green: 154/255, blue: 152/255, alpha: 1.0)
+	}
 
 	func buttonSize() -> CGSize {
 		var size = CGSize()

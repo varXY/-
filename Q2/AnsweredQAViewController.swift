@@ -25,7 +25,7 @@ class AnsweredQAViewController: UIViewController {
 		self.navigationItem.rightBarButtonItem = quitButton
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
-		tableView.separatorColor = UIColor.redColor()
+		tableView.separatorColor = Global.redColor()
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)

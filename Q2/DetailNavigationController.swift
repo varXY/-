@@ -11,10 +11,13 @@ import UIKit
 
 class DetailNavigationController: UINavigationController {
 
+	var global = Global()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationBar.barTintColor = UIColor.redColor()
+		self.navigationBar.barTintColor = Global.redColor()
 		self.navigationBar.tintColor = UIColor.whiteColor()
+		self.navigationBar.translucent = true
 		self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 		self.toolbarHidden = true
 	}
