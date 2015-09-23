@@ -52,6 +52,16 @@ class EquationViewController: UIViewController {
 		textFields[0].becomeFirstResponder()
 	}
 
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		hidesBottomBarWhenPushed = true
+	}
+
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		hidesBottomBarWhenPushed = true
+	}
+
 	func customTextField(index: Int) {
 		if index == 1 {
 			let field4 = view.viewWithTag(2000) as! UITextField
@@ -108,8 +118,8 @@ class EquationViewController: UIViewController {
 
 	func showAlert() {
 		let alert = UIAlertController(title: "输入有误", message: "功率因素须在0到1之间", preferredStyle: .Alert)
-		let action = UIAlertAction(title: "确定", style: .Destructive, handler: nil)
-		alert.view.tintColor = Global.redColor()
+		let action = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
+		// alert.view.tintColor = Global.redColor()
 		alert.addAction(action) 
 		presentViewController(alert, animated: true, completion: nil)
 	}

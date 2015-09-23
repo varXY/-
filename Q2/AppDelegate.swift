@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,15 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.window!.backgroundColor = UIColor.whiteColor()
 
 		let infoNavi = InfoNavigationController()
-		infoNavi.tabBarItem = UITabBarItem(title: "常用知识", image: nil, tag: 0)
+		infoNavi.tabBarItem = UITabBarItem(title: "常用知识", image: UIImage(named: "常用知识"), tag: 0)
 
 		let testNavi = TestNavigationController()
-		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: nil, tag: 1)
+		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: UIImage(named: "电工试题"), tag: 1)
 		let controller = testNavi.viewControllers[0] as! TestViewController
 		controller.records = records
 
 		let scaleNavi = ScaleNavigationController()
-		scaleNavi.tabBarItem = UITabBarItem(title: "公式换算", image: nil, tag: 2)
+		scaleNavi.tabBarItem = UITabBarItem(title: "公式换算", image: UIImage(named: "公式换算"), tag: 2)
 
 		let tabbarController = TabBarController()
 		tabbarController.viewControllers = [infoNavi, testNavi, scaleNavi]
@@ -48,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		self.window?.rootViewController = tabbarController
 		customizeAppearance()
+
+
+		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+	
 
 		self.window?.makeKeyAndVisible()
 

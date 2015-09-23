@@ -25,12 +25,14 @@ class InfoViewController: UIViewController {
 
 		self.title = "常用知识"
 
-		littleButtons = generator.genLitteButtons()
+		littleButtons = generator.genLitteButtons(0)
 		BigButtons = generator.genButtonsForInfo()
 
+		/*
 		for button in littleButtons {
 			self.view.addSubview(button)
 		}
+		*/
 
 		for i in 0..<BigButtons.count {
 			BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
@@ -51,7 +53,7 @@ class InfoViewController: UIViewController {
 			self.BigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
 		}
 
-		for button in self.littleButtons {
+		for button in littleButtons {
 			let delay = arc4random_uniform(4)
 			button.genAnimation(.MovingAround, delay: Double(delay), distance: 0.0)
 		}

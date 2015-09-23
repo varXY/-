@@ -32,6 +32,8 @@
 		314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCE61BA42ED400E79557 /* IntroCell.swift */; };
 		314DFCEA1BA42F0E00E79557 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCE91BA42F0E00E79557 /* HudView.swift */; };
 		314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCEB1BA42F3D00E79557 /* Generator.swift */; };
+		31523AA51BAFE9A100526881 /* right.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA31BAFE9A100526881 /* right.caf */; settings = {ASSET_TAGS = (); }; };
+		31523AA61BAFE9A100526881 /* wrong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA41BAFE9A100526881 /* wrong.caf */; settings = {ASSET_TAGS = (); }; };
 		315F62F41BAD51D5008E9157 /* DetailNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		3182E46D1BAE2F8B00C96501 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3182E46C1BAE2F8B00C96501 /* RoundButton.swift */; settings = {ASSET_TAGS = (); }; };
 		318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */; };
@@ -86,8 +88,8 @@
 		314DFCE61BA42ED400E79557 /* IntroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IntroCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCE91BA42F0E00E79557 /* HudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		314DFCEB1BA42F3D00E79557 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Generator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		31523A971BAFE5E300526881 /* right.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = right.caf; sourceTree = "<group>"; };
-		31523A981BAFE5E300526881 /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
+		31523AA31BAFE9A100526881 /* right.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = right.caf; sourceTree = "<group>"; };
+		31523AA41BAFE9A100526881 /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
 		315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DetailNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3182E46C1BAE2F8B00C96501 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQAViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -153,7 +155,7 @@
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
 				3182E46C1BAE2F8B00C96501 /* RoundButton.swift */,
 				31033A871BA3BB5F00DC9141 /* Images.xcassets */,
-				31B16AB51BAFD36B00B50D08 /* Sound */,
+				31523AA21BAFE9A100526881 /* Sound5.0 */,
 				31033A7C1BA3BB5F00DC9141 /* Supporting Files */,
 			);
 			path = Q2;
@@ -249,6 +251,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		31523AA21BAFE9A100526881 /* Sound5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				31523AA31BAFE9A100526881 /* right.caf */,
+				31523AA41BAFE9A100526881 /* wrong.caf */,
+			);
+			path = Sound5.0;
+			sourceTree = "<group>";
+		};
 		318C118D1BA4EAB000CA1EC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,15 +277,6 @@
 				314DFCDA1BA42E7800E79557 /* Knowledge.swift */,
 			);
 			name = Modal;
-			sourceTree = "<group>";
-		};
-		31B16AB51BAFD36B00B50D08 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				31523A971BAFE5E300526881 /* right.caf */,
-				31523A981BAFE5E300526881 /* wrong.caf */,
-			);
-			path = Sound;
 			sourceTree = "<group>";
 		};
 		31D668F71BA7FCB800A21AF1 /* Scale */ = {
@@ -390,6 +392,8 @@
 				314DFCE11BA42EC300E79557 /* ImageCell.xib in Resources */,
 				314DFCDD1BA42EB400E79557 /* DescribeCell.xib in Resources */,
 				314DFCE51BA42ECF00E79557 /* IntroCell.xib in Resources */,
+				31523AA51BAFE9A100526881 /* right.caf in Resources */,
+				31523AA61BAFE9A100526881 /* wrong.caf in Resources */,
 				31033A881BA3BB5F00DC9141 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

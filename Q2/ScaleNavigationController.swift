@@ -38,20 +38,11 @@ class ScaleNavigationController: UINavigationController, UINavigationControllerD
 
 	func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
 
-		if let _ = viewController as? InfoViewController {
+		if let _ = viewController as? UINavigationController {
 			self.statusBarStyle = UIStatusBarStyle.LightContent
 			super.setNeedsStatusBarAppearanceUpdate()
 			colorForViewController("type1")
 
-		}
-
-		if let _ = viewController as? ContentViewController {
-			colorForViewController("type2")
-
-		}
-
-		if let _ = viewController as? DetailViewController {
-			colorForViewController("type2")
 		}
 
 	}

@@ -16,7 +16,7 @@ class IntroCell: UITableViewCell {
 		super.awakeFromNib()
 
 		selectedBackgroundView = UIView()
-		selectedBackgroundView!.backgroundColor = Global.redColor()
+		selectedBackgroundView!.backgroundColor = Global.lightRedColor()
 	}
 
 	func configureForIntroCell(knowledge: Knowledge) {

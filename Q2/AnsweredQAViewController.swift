@@ -25,7 +25,7 @@ class AnsweredQAViewController: UIViewController {
 		self.navigationItem.rightBarButtonItem = quitButton
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
-		tableView.separatorColor = Global.redColor()
+		// tableView.separatorColor = Global.redColor()
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
@@ -59,7 +59,7 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		let label = generator.genQLabelForAnsweredCell(questions[indexPath.row])
-		return label.frame.height + 60
+		return label.frame.height + 45
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

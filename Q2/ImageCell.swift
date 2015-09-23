@@ -17,7 +17,7 @@ class ImageCell: UITableViewCell {
 		super.awakeFromNib()
 
 		selectedBackgroundView = UIView()
-		selectedBackgroundView!.backgroundColor = Global.redColor()
+		selectedBackgroundView!.backgroundColor = Global.lightRedColor()
 	}
 
 	func configureForImageCell(knowledge: Knowledge) {

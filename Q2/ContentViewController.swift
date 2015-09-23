@@ -19,6 +19,10 @@ class ContentViewController: UITableViewController {
 
 	var searchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 44))
 
+	convenience init() {
+		self.init(style: UITableViewStyle.Grouped)
+	}
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,20 +34,17 @@ class ContentViewController: UITableViewController {
 		case 1:
 			self.title = "符号图标"
 			iconsToDisplay = knowledge.getAll(1)
-			tableView.separatorColor = Global.redColor()
+			// tableView.separatorColor = Global.redColor()
 			searchBar.placeholder = "搜索"
 			searchBar.tintColor = Global.redColor()
 			searchBar.delegate = self
 			tableView.tableHeaderView = searchBar
 		case 2:
 			self.title = "工具设备"
-			tableView.separatorColor = Global.redColor()
 			iconsToDisplay = knowledge.getAll(2)
 		default:
 			break
 		}
-
-		tableView.backgroundColor = UIColor(red: 212/255, green: 214/255, blue: 217/255, alpha: 1.0)
 
 		var cellNib = UINib(nibName: "DescribeCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "DescribeCell")
@@ -58,6 +59,19 @@ class ContentViewController: UITableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = true
+
+		tableView.layoutIfNeeded()
+
+
+		let label = UILabel(frame: CGRect(x: 0, y: tableView.contentSize.height + 20, width: self.view.bounds.width, height: 20))
+		label.backgroundColor = UIColor.clearColor()
+		label.text = "部分内容源自网络"
+		label.textColor = Global.lightRedColor()
+		label.font = UIFont.systemFontOfSize(13)
+		label.textAlignment = .Center
+		// label.sizeToFit()
+		tableView.addSubview(label)
+
 		// self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
 	}
 
@@ -132,9 +146,11 @@ class ContentViewController: UITableViewController {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
+	/*
 	override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		return 30
 	}
+	*/
 
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let icons = iconsToDisplay[section]
@@ -148,6 +164,7 @@ extension ContentViewController: UISearchBarDelegate {
 	func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
 
 		tableView.reloadData()
+
 		searchBar.setShowsCancelButton(true, animated: true)
 		return true
 	}
@@ -155,14 +172,14 @@ extension ContentViewController: UISearchBarDelegate {
 	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
 		searchBar.setShowsCancelButton(false, animated: true)
-		tableView.separatorColor = Global.redColor()
+		// tableView.separatorColor = Global.redColor()
 		iconsToDisplay = knowledge.getAll(1)
 		tableView.reloadData()
 	}
 
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
-		tableView.separatorColor = Global.redColor()
+		// tableView.separatorColor = Global.redColor()
 		let searchedIcons = knowledge.getSearchedIcons(searchBar.text!)
 
 		if searchedIcons.isEmpty {

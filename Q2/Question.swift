@@ -920,7 +920,7 @@ class Question {
 			question.wrongAnswer = "1/2"
 			return question
 		case 174:
-			question.question = "电工是特殊工种。其特殊性表现之一为与他人安全相关"
+			question.question = "电工是特殊工种。其特殊性表现之一为与他人安全相关。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question

@@ -11,8 +11,9 @@ import UIKit
 
 let dateFormatter: NSDateFormatter = {
 	let formatter = NSDateFormatter()
-	formatter.dateStyle = .ShortStyle
-	formatter.timeStyle = .ShortStyle
+	formatter.dateFormat = "dd/MM/yy, HH:mm"
+	// formatter.dateStyle = .ShortStyle
+	// formatter.timeStyle = .ShortStyle
 	return formatter
 	}()
 
@@ -31,20 +32,30 @@ class Global {
 	var rowHeight = UIScreen.mainScreen().bounds.height / 12
 
 	let CGRedColor = Global.redColor().CGColor
-	let CGGreenColor = UIColor.greenColor().CGColor
+	let CGGreenColor = Global.greenColor().CGColor
 	let CGlightGrayColor = UIColor.lightGrayColor().CGColor
 	let CGGrayColor = Global.grayColor().CGColor
+	let CGWhiteColor = UIColor.whiteColor().CGColor
+	let CGBlackColor = UIColor.blackColor().CGColor
 
 	class func redColor() -> UIColor {
 		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 1.0)
 	}
 
+	class func lightRedColor() -> UIColor {
+		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 0.7)
+	}
+
 	class func grayColor() -> UIColor {
-		return UIColor(red: 66/255, green: 70/255, blue: 77/225, alpha: 1.0)
+		return UIColor.whiteColor()
 	}
 
 	class func lightGrayColor() -> UIColor {
 		return UIColor(red: 150/255, green: 154/255, blue: 152/255, alpha: 1.0)
+	}
+
+	class func greenColor() -> UIColor {
+		return UIColor(red: 30/255, green: 240/255, blue: 30/255, alpha: 1.0)
 	}
 
 	func buttonSize() -> CGSize {
@@ -56,9 +67,9 @@ class Global {
 		case 568:
 			size = CGSize(width: 100, height: 100)
 		case 667:
-			size = CGSize(width: 140, height: 140)
+			size = CGSize(width: 117, height: 117)
 		case 736:
-			size = CGSize(width: 160, height: 160)
+			size = CGSize(width: 129, height: 129)
 		default:
 			size = CGSize(width: 100, height: 100)
 		}
@@ -75,9 +86,9 @@ class Global {
 		case 568:
 			marginY = 38
 		case 667:
-			marginY = 33.5
+			marginY = 50
 		case 736:
-			marginY = 35.7
+			marginY = 59
 		default:
 			marginY = 12
 		}
@@ -94,9 +105,9 @@ class Global {
 		case 568:
 			buttonSize = CGSize(width: 150, height: 150)
 		case 667:
-			buttonSize = CGSize(width: 170, height: 170)
+			buttonSize = CGSize(width: 176, height: 176)
 		case 736:
-			buttonSize = CGSize(width: 180, height: 180)
+			buttonSize = CGSize(width: 194, height: 194)
 		default:
 			break
 		}
@@ -113,7 +124,7 @@ class Global {
 		case 568:
 			buttonSize = CGSize(width: 85, height: 85)
 		case 667:
-			buttonSize = CGSize(width: 100, height: 100)
+			buttonSize = CGSize(width: 99.5, height: 99.5)
 		case 736:
 			buttonSize = CGSize(width: 110, height: 110)
 		default:

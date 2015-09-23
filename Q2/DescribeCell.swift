@@ -17,9 +17,10 @@ class DescribeCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+		picLabel.textColor = Global.redColor()
+		picLabel.alpha = 0.8
 		selectedBackgroundView = UIView()
-		selectedBackgroundView!.backgroundColor = Global.redColor()
+		selectedBackgroundView!.backgroundColor = Global.lightRedColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

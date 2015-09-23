@@ -58,12 +58,14 @@ class QuestionViewController: UIViewController {
 		view.addSubview(pageControl)
 
 		dotView = generator.genDots()
+		let firstDot = dotView.subviews[0]
+		firstDot.backgroundColor = UIColor.lightGrayColor()
 		view.addSubview(dotView)
 
 		generator.genQA(scrollView, page: 0, questions: questions)
-		addAnimationAndActionToButtons(0, page: 0)
+		addActionToButtons(0, page: 0)
 
-		// prepareAudios()
+		prepareAudios()
 
 
 	}
@@ -71,6 +73,19 @@ class QuestionViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = true
+
+		if let page = self.view.viewWithTag(9999999) {
+
+			let seeButton = page.viewWithTag(12345) as! UIButton
+			seeButton.hidden = false
+			seeButton.genAnimation(.Appear, delay: 0.0, distance: 30)
+
+			let quitButton = page.viewWithTag(123456) as! UIButton
+			quitButton.hidden = false
+			quitButton.genAnimation(.Appear, delay: 0.1, distance: 70)
+		}
+
+
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -101,20 +116,18 @@ class QuestionViewController: UIViewController {
 	func getResult(sender: UIButton) {
 
 		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			// AudioServicesPlaySystemSound(4097)
 			player0.play()
 			showRightOrWrongView("right")
 			rightCount += 1
 			rightOrWrong.append(1)
 
 			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = UIColor.greenColor()
+				dot.backgroundColor = Global.greenColor()
 			}
 
 		} else {
 			player1.play()
 			AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
-			//AudioServicesPlaySystemSound(1053)
 			showRightOrWrongView("wrong")
 			rightOrWrong.append(0)
 
@@ -139,7 +152,7 @@ class QuestionViewController: UIViewController {
 					button.genAnimation(.IsRightAnswer, delay: 0.0, distance: 0.0)
 					button.tintColor = UIColor.whiteColor()
 					button.layer.borderColor = global.CGGreenColor
-					button.backgroundColor = UIColor.greenColor()
+					button.backgroundColor = Global.greenColor()
 				} else {
 					button.enabled = false
 					button.layer.borderColor = global.CGlightGrayColor
@@ -157,7 +170,7 @@ class QuestionViewController: UIViewController {
 			delay(seconds: 0.5, completion: { () -> () in
 				let page = self.pageControl.currentPage
 				self.generator.genJumpButtonForQA(self.scrollView, page: page)
-				self.addAnimationAndActionToButtons(1, page: page)
+				self.addActionToButtons(1, page: page)
 			})
 		}
 	}
@@ -187,7 +200,7 @@ class QuestionViewController: UIViewController {
 				}
 
 				if let button = finalView.viewWithTag(123456) as? UIButton {
-					button.addTarget(self, action: "quit", forControlEvents: .TouchUpInside)
+					button.addTarget(self, action: "animatedAndQuit", forControlEvents: .TouchUpInside)
 					button.genAnimation(.Appear, delay: 0.1, distance: 80)
 				}
 
@@ -203,24 +216,27 @@ class QuestionViewController: UIViewController {
 		let view = generator.genRightOrWrongViewForQA(rightOrWrong, page: pageControl.currentPage)
 		scrollView.addSubview(view)
 
-		delay(seconds: 0.4) { () -> () in
-			view.transform = CGAffineTransformMakeScale(0.0, 0.0)
-			view.hidden = true
+		delay(seconds: 1.0) { () -> () in
+			view.alpha = 0.0
+			view.transform = CGAffineTransformMakeScale(0.7, 0.7)
+			view.frame.origin.y += 30
 		}
 
-		delay(seconds: 0.8) { () -> () in
-			UIView.animateWithDuration(0.8, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
-				view.backgroundColor = UIColor.greenColor()
-				view.hidden = false
-				view.transform = CGAffineTransformMakeScale(1.0, 1.0)
-				}, completion: nil)
+		if pageControl.currentPage != 9 {
+			delay(seconds: 2.0) { () -> () in
 
+				UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
+					view.backgroundColor = UIColor(patternImage: UIImage(named: "下一题")!)
+					view.alpha = 0.7
+					view.frame.origin.y -= 30
+					}, completion: nil)
+				
+			}
 		}
 
-		scrollView.bringSubviewToFront(view)
 	}
 
-	func addAnimationAndActionToButtons(kind: Int, page: Int) {
+	func addActionToButtons(kind: Int, page: Int) {
 
 		switch kind {
 		case 0:
@@ -247,7 +263,7 @@ class QuestionViewController: UIViewController {
 		let page = pageControl.currentPage + 1
 
 		generator.genQA(scrollView, page: page, questions: questions)
-		addAnimationAndActionToButtons(0, page: page)
+		addActionToButtons(0, page: page)
 
 		jumpToPage(page)
 
@@ -269,6 +285,8 @@ class QuestionViewController: UIViewController {
 
 
 	func quit() {
+		player0.stop()
+		player1.stop()
 		self.scrollView.removeFromSuperview()
 		self.rightCount = 0
 		self.rightOrWrong.removeAll(keepCapacity: false)
@@ -283,8 +301,8 @@ class QuestionViewController: UIViewController {
 			let action = UIAlertAction(title: "确定", style: .Destructive, handler: ({ _ in self.quit() }))
 			alert.addAction(action)
 
-			let action1 = UIAlertAction(title: "取消", style: .Destructive, handler: nil)
-			alert.view.tintColor = Global.redColor()
+			let action1 = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+			// alert.view.tintColor = Global.greenColor()
 			alert.addAction(action1)
 
 			presentViewController(alert, animated: true, completion: nil)
@@ -296,6 +314,14 @@ class QuestionViewController: UIViewController {
 
 
 	func seeAnsweredQA() {
+
+		let page = self.view.viewWithTag(9999999)
+
+		let seeButton = page?.viewWithTag(12345) as! UIButton
+		seeButton.genAnimation(.Touched, delay: 0.0, distance: 0.0)
+
+		let quitButton = page?.viewWithTag(123456) as! UIButton
+		quitButton.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
 		
 		let AnsweredQAVC = AnsweredQAViewController()
 		AnsweredQAVC.questions = self.questions
@@ -304,7 +330,24 @@ class QuestionViewController: UIViewController {
 		let detailNV = DetailNavigationController(rootViewController: AnsweredQAVC)
 		detailNV.toolbarHidden = true
 
-		presentViewController(detailNV, animated: true, completion: nil)
+		delay(seconds: 0.5) { () -> () in
+			self.presentViewController(detailNV, animated: true, completion: nil)
+		}
+
+	}
+
+	func animatedAndQuit() {
+		let page = self.view.viewWithTag(9999999)
+
+		let seeButton = page?.viewWithTag(12345) as! UIButton
+		seeButton.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
+
+		let quitButton = page?.viewWithTag(123456) as! UIButton
+		quitButton.genAnimation(.Touched, delay: 0.0, distance: 0.0)
+
+		delay(seconds: 0.7) { () -> () in
+			self.quit()
+		}
 	}
 
 
@@ -313,12 +356,12 @@ class QuestionViewController: UIViewController {
 	func prepareAudios() {
 		let rightSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("right", ofType: "caf")!)
 		let wrongSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrong", ofType: "caf")!)
-		try!  player0 = AVAudioPlayer(contentsOfURL: rightSound)
-		try!  player1 = AVAudioPlayer(contentsOfURL: wrongSound)
-		player0.prepareToPlay()
-		player1.prepareToPlay()
-	}
 
+		try! player0 = AVAudioPlayer(contentsOfURL: rightSound)
+		try! player1 = AVAudioPlayer(contentsOfURL: wrongSound)
+
+
+	}
 
 
 }

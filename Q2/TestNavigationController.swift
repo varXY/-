@@ -37,15 +37,6 @@ class TestNavigationController: UINavigationController, UINavigationControllerDe
 
 		}
 
-		if let _ = viewController as? ContentViewController {
-			colorForViewController("type2")
-
-		}
-
-		if let _ = viewController as? DetailViewController {
-			colorForViewController("type2")
-		}
-
 	}
 
 	func colorForViewController(type: String) {
