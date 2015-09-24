@@ -13,15 +13,10 @@ class ImageCell: UITableViewCell {
 	@IBOutlet weak var iconView: UIImageView!
 	@IBOutlet weak var meanLabel: UILabel!
 
-	override func awakeFromNib() {
-		super.awakeFromNib()
-
-		selectedBackgroundView = UIView()
-		selectedBackgroundView!.backgroundColor = Global.lightRedColor()
-	}
-
 	func configureForImageCell(knowledge: Knowledge) {
 		iconView.image = knowledge.Image
+
+		meanLabel.textColor = UIColor.grayColor()
 		meanLabel.text = knowledge.title
 	}
 	

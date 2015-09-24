@@ -46,8 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		tabbarController.selectedIndex = 1
 
 		self.window?.rootViewController = tabbarController
-		customizeAppearance()
 
+		customizeAppearance()
 
 		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
 	

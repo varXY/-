@@ -38,6 +38,9 @@ class EquationViewController: UIViewController {
 		tableView.backgroundColor = UIColor.whiteColor()
 		// tableView.separatorColor = UIColor.whiteColor()
 		tableView.scrollEnabled = true
+
+		tableView.allowsSelection = false
+
 		tableView.dataSource = self
 		tableView.delegate = self
 		view.addSubview(tableView)
@@ -117,7 +120,7 @@ class EquationViewController: UIViewController {
 
 
 	func showAlert() {
-		let alert = UIAlertController(title: "输入有误", message: "功率因素须在0到1之间", preferredStyle: .Alert)
+		let alert = UIAlertController(title: "输入有误", message: "功率因素在0到1之间", preferredStyle: .Alert)
 		let action = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
 		// alert.view.tintColor = Global.redColor()
 		alert.addAction(action) 
@@ -156,10 +159,6 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return sectionTitle
-	}
-
-	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-		return nil
 	}
 
 }
@@ -271,6 +270,11 @@ extension EquationViewController {
 			calculatedA = (A == 0 ? true : false)
 			C = A * B
 
+			if D >= 0 && D <= 1 && C != 0 {
+				field4.text = (D == 0 ? "" : "\(C * D)")
+				field5.text = (D == 0 ? "" : "\(C * (1 - D))")
+			}
+
 			field2.text = (C == 0 ? "" : "\(C)")
 
 		case 800:
@@ -280,6 +284,11 @@ extension EquationViewController {
 				A = (B == 0 ? 0 : C / B)
 			} else {
 				C = A * B
+
+				if D >= 0 && D <= 1 && C != 0 {
+					field4.text = (D == 0 ? "" : "\(C * D)")
+					field5.text = (D == 0 ? "" : "\(C * (1 - D))")
+				}
 			}
 
 			field0.text = (A == 0 ? "" : "\(A)")

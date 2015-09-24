@@ -35,7 +35,6 @@
 		31523AA51BAFE9A100526881 /* right.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA31BAFE9A100526881 /* right.caf */; settings = {ASSET_TAGS = (); }; };
 		31523AA61BAFE9A100526881 /* wrong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA41BAFE9A100526881 /* wrong.caf */; settings = {ASSET_TAGS = (); }; };
 		315F62F41BAD51D5008E9157 /* DetailNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
-		3182E46D1BAE2F8B00C96501 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3182E46C1BAE2F8B00C96501 /* RoundButton.swift */; settings = {ASSET_TAGS = (); }; };
 		318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */; };
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
@@ -91,7 +90,6 @@
 		31523AA31BAFE9A100526881 /* right.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = right.caf; sourceTree = "<group>"; };
 		31523AA41BAFE9A100526881 /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
 		315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DetailNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3182E46C1BAE2F8B00C96501 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQAViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQACell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Global.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -153,7 +151,6 @@
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
 				31A492511BACE65C009077FD /* UIButton+genAnimation.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
-				3182E46C1BAE2F8B00C96501 /* RoundButton.swift */,
 				31033A871BA3BB5F00DC9141 /* Images.xcassets */,
 				31523AA21BAFE9A100526881 /* Sound5.0 */,
 				31033A7C1BA3BB5F00DC9141 /* Supporting Files */,
@@ -428,7 +425,6 @@
 				31D61E541BA6B08D006A7034 /* Records.swift in Sources */,
 				31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */,
 				314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */,
-				3182E46D1BAE2F8B00C96501 /* RoundButton.swift in Sources */,
 				314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */,
 				31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */,
 				314DFCDB1BA42E7800E79557 /* Knowledge.swift in Sources */,

@@ -500,12 +500,12 @@ class Question {
 			question.wrongAnswer = "绝缘和散热"
 			return question
 		case 90:
-			question.question = "带电设备着火时不得使用"
+			question.question = "带电设备着火时不得使用："
 			question.rightAnswer = "泡沫灭火器"
 			question.wrongAnswer = "二氧化碳灭火器"
 			return question
 		case 91:
-			question.question = "道闸操作票至少要保存多长时间？"
+			question.question = "倒闸操作票至少要保存多长时间？"
 			question.rightAnswer = "3个月"
 			question.wrongAnswer = "1个月"
 			return question
@@ -1042,7 +1042,7 @@ class Question {
 		case 198:
 			question.question = "当电力线与通信线交越时："
 			question.rightAnswer = "必须停电后作业"
-			question.wrongAnswer = "不必停止作业"
+			question.wrongAnswer = "不必停电后作业"
 			return question
 		case 199:
 			question.question = "从业人员只要了解其作业场所和工作岗位上的安全生产规章制度和操作规程即可上岗作业。"

@@ -20,19 +20,10 @@ class InfoViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		global.size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 		self.view.backgroundColor = Global.grayColor()
-
 		self.title = "常用知识"
 
-		littleButtons = generator.genLitteButtons(0)
 		BigButtons = generator.genButtonsForInfo()
-
-		/*
-		for button in littleButtons {
-			self.view.addSubview(button)
-		}
-		*/
 
 		for i in 0..<BigButtons.count {
 			BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)

@@ -20,51 +20,131 @@ class Generator {
 
 	var global = Global()
 
-	func genRightOrWrongViewForQA(rightOrWrong: String, page: Int) -> UIView {
-		let view = UIView(frame: CGRect(x: global.center.x - 50 + global.size.width * CGFloat(page), y: global.center.y - 50 - 64 - 30, width: 100, height: 100))
-		view.layer.cornerRadius = 50
-		
-		switch rightOrWrong {
-		case "right":
-			view.backgroundColor = UIColor(patternImage: UIImage(named: "正确")!)
-		case "wrong":
-			view.backgroundColor = UIColor(patternImage: UIImage(named: "错误")!)
+
+
+	// MARK: - Big Buttons
+
+	func genButtonsForInfo() -> [UIButton] {
+		let buttonSize = global.buttonSize()
+		let marginY = global.margin()
+		var buttons = [UIButton]()
+
+		let buttonX = (global.size.width - buttonSize.width) / 2
+
+		let marginY_1 = marginY + 64
+		let marginY_2 = marginY * 2 + buttonSize.height + 64
+		let marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
+
+		var button = genButton("单位公式", frame: CGRect(x: buttonX, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
+		button?.tag = 93456
+		buttons.append(button!)
+
+		button = genButton("图标符号", frame: CGRect(x: buttonX, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		button?.tag = 93457
+		buttons.append(button!)
+
+		button = genButton("工具设备", frame: CGRect(x: buttonX, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
+		button?.tag = 93458
+		buttons.append(button!)
+
+		return buttons
+	}
+
+	func genButtonsForTest() -> [UIButton] {
+		var buttons = [UIButton]()
+
+		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
+		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
+		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
+		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
+
+		var button = genButton("开始答题", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
+		button?.titleLabel?.font = UIFont.systemFontOfSize(24)
+		button?.tag = 33893
+		buttons.append(button!)
+
+		testBigButtonY = (button?.frame.origin.y)!
+
+		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight, width: smallbuttonWidth, height: smallbuttonHeight))
+		button?.tag = 33894
+		buttons.append(button!)
+
+		return buttons
+	}
+
+	func genButtonsForScale() -> [UIButton] {
+		let buttonSize = global.buttonSize()
+		let marginY = global.margin()
+		var buttons = [UIButton]()
+
+		let buttonX0 = (global.size.width - buttonSize.width) / 2
+		let buttonX1 = global.size.width / 4 - buttonSize.width / 2
+		let buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
+
+		let marginY_1 = marginY + 64
+		let marginY_2 = marginY * 2 + buttonSize.height + 64
+		let marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
+
+		var button = genButton("欧姆定律", frame: CGRect(x: buttonX0, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		button = genButton("功率", frame: CGRect(x: buttonX1, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		button = genButton("电量", frame: CGRect(x: buttonX2, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		button = genButton("马力", frame: CGRect(x: buttonX0, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
+		buttons.append(button!)
+
+		return buttons
+	}
+
+
+	// MARK: - Test
+
+
+	func genLabelForTest() -> UILabel {
+		let label = UILabel()
+		label.text = "精选电工考试题目"
+		label.textAlignment = .Center
+		label.font = UIFont.boldSystemFontOfSize(22)
+		label.textColor = UIColor.grayColor()
+		label.sizeToFit()
+		label.frame.origin = CGPoint(x: (global.size.width - label.frame.width) / 2, y: (global.size.height - global.testBigButtonSize().height) / 2 - global.testBigButtonSize().height / 2 - 49)
+
+		return label
+	}
+
+
+	func genDots() -> UIView {
+		var frame = CGRect()
+
+		switch global.size.height {
+
+		case 480:
+			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 15, width: 135, height: 15)
 		default:
-			break
+			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 30, width: 135, height: 20)
+		}
+
+		let view = UIView(frame: frame)
+		view.backgroundColor = UIColor.clearColor()
+
+		for i in 0..<10 {
+			let littleView = UIView(frame: CGRect(x: 5 + 13 * i, y: 5, width: 8, height: 8))
+			littleView.layer.cornerRadius = 4
+			littleView.clipsToBounds = true
+			littleView.backgroundColor = UIColor.grayColor()
+			littleView.tag = i + 500
+			view.addSubview(littleView)
 		}
 
 		return view
-
-	}
-
-	func genQLabelForAnsweredCell(question: Question) -> UILabel {
-		let QLabel = UILabel()
-		QLabel.frame = CGRect(x: 35, y: 10, width: global.size.width - 45, height: 150)
-		QLabel.numberOfLines = 0
-		QLabel.lineBreakMode = .ByClipping
-		QLabel.text = question.question
-		QLabel.sizeToFit()
-
-		return QLabel
 	}
 
 
 
-	func genJumpButtonForQA(superView: UIView, page: Int) {
-		let buttonWidth: CGFloat = 100
-		let buttonHeight:CGFloat = 100
-		let x = global.size.width * CGFloat(page) + global.center.x - buttonWidth / 2
-		let y = global.center.y - buttonWidth / 2 - 64 - 30
-
-		let jumpButton = UIButton(type: .System)
-		jumpButton.backgroundColor = UIColor.clearColor()
-		// jumpButton.alpha = 0.0
-		jumpButton.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
-		jumpButton.layer.cornerRadius = 50
-		jumpButton.clipsToBounds = true
-		jumpButton.tag = page + 2333
-		superView.addSubview(jumpButton)
-	}
 
 	func genQA(superView: UIView, page: Int, questions: [Question]) {
 
@@ -114,191 +194,40 @@ class Generator {
 		return button
 	}
 
-	func genLabelForTest() -> UILabel {
-		let label = UILabel()
-		label.text = "精选电工考试题目"
-		label.textAlignment = .Center
-		label.font = UIFont.boldSystemFontOfSize(22)
-		label.textColor = UIColor.grayColor()
-		label.sizeToFit()
-		label.frame.origin = CGPoint(x: (global.size.width - label.frame.width) / 2, y: 90)
+	func genRightOrWrongViewForQA(rightOrWrong: String, page: Int) -> UIView {
+		let view = UIView(frame: CGRect(x: global.center.x - 50 + global.size.width * CGFloat(page), y: global.center.y - 50 - 64 - 30, width: 100, height: 100))
+		view.layer.cornerRadius = 50
 
-		return label
-	}
-
-	// MARK: - Big Buttons
-
-	func genButtonsForInfo() -> [UIButton] {
-		let buttonSize = global.buttonSize()
-		let marginY = global.margin()
-		var buttons = [UIButton]()
-
-		let buttonX = (global.size.width - buttonSize.width) / 2
-
-		let marginY_1 = marginY + 64
-		let marginY_2 = marginY * 2 + buttonSize.height + 64
-		let marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
-
-		var button = genButton("单位公式", frame: CGRect(x: buttonX, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
-		button?.tag = 93456
-		buttons.append(button!)
-
-		button = genButton("图标符号", frame: CGRect(x: buttonX, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
-		button?.tag = 93457
-		buttons.append(button!)
-
-		button = genButton("工具设备", frame: CGRect(x: buttonX, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
-		button?.tag = 93458
-		buttons.append(button!)
-
-		return buttons
-	}
-
-	func genButtonsForTest() -> [UIButton] {
-		var buttons = [UIButton]()
-
-		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
-		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
-		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
-		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
-
-		var button = genButton("开始", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
-		button?.titleLabel?.font = UIFont.systemFontOfSize(22)
-		button?.tag = 33893
-		buttons.append(button!)
-
-		testBigButtonY = (button?.frame.origin.y)!
-
-		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 150, width: smallbuttonWidth, height: smallbuttonHeight))
-		button?.tag = 33894
-		buttons.append(button!)
-
-		return buttons
-	}
-
-	func genButtonsForScale() -> [UIButton] {
-		let buttonSize = global.buttonSize()
-		let marginY = global.margin()
-		var buttons = [UIButton]()
-
-		let buttonX0 = (global.size.width - buttonSize.width) / 2
-		let buttonX1 = global.size.width / 4 - buttonSize.width / 2
-		let buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
-
-		let marginY_1 = marginY + 64
-		let marginY_2 = marginY * 2 + buttonSize.height + 64
-		let marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
-
-		var button = genButton("欧姆定律", frame: CGRect(x: buttonX0, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
-		buttons.append(button!)
-
-		button = genButton("功率", frame: CGRect(x: buttonX1, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
-		buttons.append(button!)
-
-		button = genButton("电量", frame: CGRect(x: buttonX2, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
-		buttons.append(button!)
-
-		button = genButton("马力", frame: CGRect(x: buttonX0, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
-		buttons.append(button!)
-
-		return buttons
-	}
-
-	// MARK: - Little Buttons
-
-
-	func genLitteButtons(index: Int) -> [UIButton] {
-
-		for _ in 0..<20 {
-			let button = newLittleButton(index)
-			littleButtons.append(button)
-		}
-
-		return littleButtons
-	}
-
-	func newLittleButton(index: Int) -> UIButton {
-		let frame = randomFrame()
-		let color = UIColor.clearColor()
-		let newbutton = addLittlebutton(frame, color: color)
-		newbutton.setTitle(randomLetter(index), forState: .Normal)
-		newbutton.tintColor = UIColor.lightGrayColor()
-		
-		newbutton.alpha = 1.0
-		return newbutton
-	}
-
-	func addLittlebutton(location: CGRect, color: UIColor) -> UIButton {
-		let newbutton = UIButton(type: .System)
-		newbutton.frame = location
-		newbutton.backgroundColor = color
-		return newbutton
-	}
-
-	func randomLetter(index: Int) -> String {
-		var letters = [String]()
-		switch index {
-		case 0:
-			letters = ["U","I", "P", "μ", "Ω", "ρ", "Hz", "φ", "var", "VA", "S", "f", "W", "kW", "R"]
-		case 1:
-			letters = ["!", "?"]
-		case 2:
-			letters = ["=", "+", "-", "*", "%", "/", "<", ">"]
+		switch rightOrWrong {
+		case "right":
+			view.backgroundColor = UIColor(patternImage: UIImage(named: "正确")!)
+		case "wrong":
+			view.backgroundColor = UIColor(patternImage: UIImage(named: "错误")!)
 		default:
 			break
 		}
 
-		let range = UInt32(letters.count)
-		let random = Int(arc4random_uniform(range))
-		return letters[random]
-	}
-
-	func randomFrame() -> CGRect {
-		var guess = CGRectMake(64, 64, 30, 30)
-
-		repeat {
-			let maxX = UInt32(global.size.width - 30)
-			let maxY = UInt32(global.size.height - 79)
-			let guessX = CGFloat(arc4random_uniform(maxX))
-			let guessY = CGFloat(arc4random_uniform(maxY))
-			guess = CGRectMake(guessX, guessY, buttonSize, buttonSize)
-		} while(!doesNotCollide(guess)) 
-
-		return guess
-
-	}
-
-	func doesNotCollide(testRect: CGRect) -> Bool {
-		for button in littleButtons {
-			button.transform = CGAffineTransformMakeScale(1.5, 1.5)
-			let viewRect = button.frame
-			if(CGRectIntersectsRect(testRect, viewRect)) {
-				return false
-			}
-			button.transform = CGAffineTransformMakeScale(1.0, 1.0)
-
-		}
-		return true
-	}
-
-	// MARK: -
-
-
-	func genDots() -> UIView {
-		let view = UIView(frame: CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 30, width: 135, height: 20))
-		view.backgroundColor = UIColor.clearColor()
-
-		for i in 0..<10 {
-			let littleView = UIView(frame: CGRect(x: 5 + 13 * i, y: 5, width: 8, height: 8))
-			littleView.layer.cornerRadius = 4
-			littleView.clipsToBounds = true
-			littleView.backgroundColor = UIColor.grayColor()
-			littleView.tag = i + 500
-			view.addSubview(littleView)
-		}
-
 		return view
+		
 	}
+
+	func genJumpButtonForQA(superView: UIView, page: Int) {
+		let buttonWidth: CGFloat = 100
+		let buttonHeight:CGFloat = 100
+		let x = global.size.width * CGFloat(page) + global.center.x - buttonWidth / 2
+		let y = global.center.y - buttonWidth / 2 - 64 - 30
+
+		let jumpButton = UIButton(type: .System)
+		jumpButton.backgroundColor = UIColor.clearColor()
+		// jumpButton.alpha = 0.0
+		jumpButton.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
+		jumpButton.layer.cornerRadius = 50
+		jumpButton.clipsToBounds = true
+		jumpButton.tag = page + 2333
+		superView.addSubview(jumpButton)
+	}
+
+
 
 	func showTestFinalPage(rightCount: Int) -> UIView {
 		let view = UIView()
@@ -329,7 +258,7 @@ class Generator {
 		}
 
 		if rightCount == 10 {
-			label.text = "竟然全答对了！屌爆了！"
+			label.text = "竟然全答对了！太棒了！"
 		}
 
 		view.addSubview(label)
@@ -347,6 +276,24 @@ class Generator {
 		
 		return view
 	}
+
+
+
+	func genQLabelForAnsweredCell(question: Question) -> UILabel {
+		let QLabel = UILabel()
+		QLabel.frame = CGRect(x: 35, y: 10, width: global.size.width - 45, height: 150)
+		QLabel.numberOfLines = 0
+		QLabel.lineBreakMode = .ByClipping
+		QLabel.text = question.question
+		QLabel.sizeToFit()
+
+		return QLabel
+	}
+
+
+
+	//MARK: -
+
 
 
 	func genButton(title: String, frame: CGRect) -> UIButton? {
@@ -377,13 +324,15 @@ class Generator {
 		button.layer.shadowOffset = CGSizeMake(0, 0)
 	}
 
+	/*
 	func genShadowForUIView(view: UIView) {
 		view.layer.masksToBounds = false
 		view.layer.shadowRadius = 10
 		view.layer.shadowOpacity = 0.5
 		view.layer.shadowColor = UIColor.lightGrayColor().CGColor
-		view.layer.shadowOffset = CGSizeMake(0, 5)
+		view.layer.shadowOffset = CGSizeMake(0, 3)
 	}
+	*/
 
 
 }

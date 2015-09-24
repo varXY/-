@@ -60,6 +60,7 @@ class Knowledge {
 
 
 	}
+	
 
 	func getSearchedIcons(searchText: String) -> [[Knowledge]] {
 		let allIcons = getAll(1)
@@ -88,6 +89,9 @@ class Knowledge {
 		}
 		return searchedAllIcons
 	}
+
+
+
 
 	func unitAtIndex(index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()

@@ -18,16 +18,8 @@ class ScaleViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.title = "公式换算"
-		self.view.backgroundColor = Global.grayColor()
 
 		buttons = generator.genButtonsForScale()
-		littleButtons = generator.genLitteButtons(2)
-
-		/*
-		for button in littleButtons {
-			self.view.addSubview(button)
-		}
-		*/
 		
 		for i in 0..<4 {
 			buttons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)

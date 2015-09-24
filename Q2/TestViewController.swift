@@ -23,16 +23,7 @@ class TestViewController: UIViewController {
 		self.view.backgroundColor = Global.grayColor()
 		self.navigationItem.hidesBackButton = true
 
-
-
 		buttons = generator.genButtonsForTest()
-		littleButtons = generator.genLitteButtons(1)
-
-		/*
-		for button in littleButtons {
-			self.view.addSubview(button)
-		}
-		*/
 
 		for button in buttons {
 			self.view.addSubview(button)

@@ -229,6 +229,12 @@ class QuestionViewController: UIViewController {
 					view.backgroundColor = UIColor(patternImage: UIImage(named: "下一题")!)
 					view.alpha = 0.7
 					view.frame.origin.y -= 30
+
+					view.layer.masksToBounds = false
+					view.layer.shadowColor = UIColor.lightGrayColor().CGColor
+					view.layer.shadowOpacity = 0.5
+					view.layer.shadowRadius = 10
+					view.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
 					}, completion: nil)
 				
 			}

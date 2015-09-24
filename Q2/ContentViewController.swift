@@ -38,6 +38,7 @@ class ContentViewController: UITableViewController {
 			searchBar.placeholder = "搜索"
 			searchBar.tintColor = Global.redColor()
 			searchBar.delegate = self
+			tableView.allowsSelection = false
 			tableView.tableHeaderView = searchBar
 		case 2:
 			self.title = "工具设备"
@@ -161,10 +162,10 @@ class ContentViewController: UITableViewController {
 
 extension ContentViewController: UISearchBarDelegate {
 
+
 	func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-
+		tableView.separatorColor = UIColor(red: 0.783922, green: 0.780392, blue: 0.8, alpha: 1.0)
 		tableView.reloadData()
-
 		searchBar.setShowsCancelButton(true, animated: true)
 		return true
 	}
@@ -172,7 +173,7 @@ extension ContentViewController: UISearchBarDelegate {
 	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
 		searchBar.setShowsCancelButton(false, animated: true)
-		// tableView.separatorColor = Global.redColor()
+		tableView.separatorColor = UIColor(red: 0.783922, green: 0.780392, blue: 0.8, alpha: 1.0)
 		iconsToDisplay = knowledge.getAll(1)
 		tableView.reloadData()
 	}

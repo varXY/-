@@ -26,6 +26,9 @@ class AnsweredQAViewController: UIViewController {
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
 		// tableView.separatorColor = Global.redColor()
+
+		tableView.allowsSelection = false
+
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
@@ -79,8 +82,5 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 		return cell!
 	}
 
-	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-		return nil
-	}
 }
 

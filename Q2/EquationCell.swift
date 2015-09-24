@@ -38,9 +38,6 @@ class EquationCell: UITableViewCell {
 		self.contentView.addSubview(unitLabel)
 	}
 
-	override func awakeFromNib() {
-		super.awakeFromNib()
-	}
 
 	func configureForEquationCell(first: String, last: String) {
 		self.titleLabel.text = first

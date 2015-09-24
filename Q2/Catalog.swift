@@ -9,9 +9,6 @@
 import Foundation
 import UIKit
 
-enum roundButton {
-	case button1L, button2L, button3L
-}
 
 enum AnimationType {
 	case Appear

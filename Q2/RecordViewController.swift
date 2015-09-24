@@ -26,6 +26,8 @@ class RecordViewController: UIViewController {
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
 		tableView.separatorColor = UIColor.clearColor()
 
+		tableView.allowsSelection = false
+
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
@@ -61,9 +63,6 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 		return cell!
 	}
 
-	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-		return nil
-	}
 }
 
 
