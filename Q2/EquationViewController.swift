@@ -31,12 +31,12 @@ class EquationViewController: UIViewController {
 		self.title = Equation(rawValue: index)?.navigationTitle
 
 		getWords(index)
-		self.view.backgroundColor = UIColor.lightGrayColor()
+		self.view.backgroundColor = Global.backgroundColor()
 
 		let rect = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)
 		tableView = UITableView(frame: rect, style: .Grouped)
-		tableView.backgroundColor = UIColor.whiteColor()
-		// tableView.separatorColor = UIColor.whiteColor()
+		tableView.backgroundColor = Global.backgroundColor()
+		// tableView.separatorColor = Global.backgroundColor()
 		tableView.scrollEnabled = true
 
 		tableView.allowsSelection = false

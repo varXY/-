@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 		self.window!.backgroundColor = UIColor.whiteColor()
 
+		// sleep(1)
+
 		let infoNavi = InfoNavigationController()
 		infoNavi.tabBarItem = UITabBarItem(title: "常用知识", image: UIImage(named: "常用知识"), tag: 0)
 

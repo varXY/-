@@ -20,6 +20,7 @@ class EquationCell: UITableViewCell {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		self.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.rowHeight)
+		// self.backgroundColor = Global.backgroundColor()
 
 		titleLabel.frame = CGRect(x: 15, y: 0, width: 40, height: self.frame.height)
 		titleLabel.font = UIFont.boldSystemFontOfSize(20)

@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "可调电阻2@2x.png"
+      "filename" : "可调电阻2@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "1电路符号图标.png",
       "scale" : "3x"
     }
   ],

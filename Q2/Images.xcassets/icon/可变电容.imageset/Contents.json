@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "可变电容@2x.png"
+      "filename" : "可变电容@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "-13.png",
       "scale" : "3x"
     }
   ],

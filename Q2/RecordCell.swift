@@ -45,5 +45,10 @@ class RecordCell: UITableViewCell {
 		self.dateLabel.text = "\(dateFormatter.stringFromDate(record.date))"
 	}
 
+	func showNoRecord() {
+		self.dateLabel.textColor = UIColor.grayColor()
+		self.dateLabel.text = "你还没有答题记录。"
+	}
+
 
 }

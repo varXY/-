@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		31033A7F1BA3BB5F00DC9141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */; };
-		31033A881BA3BB5F00DC9141 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31033A871BA3BB5F00DC9141 /* Images.xcassets */; };
 		31033A971BA3BB5F00DC9141 /* Q2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033A961BA3BB5F00DC9141 /* Q2Tests.swift */; };
 		31033AA11BA3BC6800DC9141 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AA01BA3BC6800DC9141 /* TabBarController.swift */; };
 		31033AA31BA3BCAD00DC9141 /* InfoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AA21BA3BCAD00DC9141 /* InfoNavigationController.swift */; };
@@ -19,6 +18,7 @@
 		31033AB11BA4096A00DC9141 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AB01BA4096A00DC9141 /* Question.swift */; };
 		31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AB41BA4143400DC9141 /* RecordViewController.swift */; };
 		31033AB71BA416C100DC9141 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AB61BA416C100DC9141 /* Record.swift */; };
+		312DA30D1BB512DF00130A33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 312DA30C1BB512DF00130A33 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
 		314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCD21BA42A0900E79557 /* RecordCell.swift */; };
 		314DFCD51BA42DE100E79557 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCD41BA42DE100E79557 /* ContentViewController.swift */; };
 		314DFCD71BA42E1B00E79557 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCD61BA42E1B00E79557 /* DetailViewController.swift */; };
@@ -61,7 +61,6 @@
 		31033A791BA3BB5F00DC9141 /* Q2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31033A7D1BA3BB5F00DC9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		31033A871BA3BB5F00DC9141 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31033A901BA3BB5F00DC9141 /* Q2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Q2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31033A951BA3BB5F00DC9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31033A961BA3BB5F00DC9141 /* Q2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q2Tests.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		31033AB01BA4096A00DC9141 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		31033AB41BA4143400DC9141 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		31033AB61BA416C100DC9141 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		312DA30C1BB512DF00130A33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		314DFCD21BA42A0900E79557 /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RecordCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCD41BA42DE100E79557 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCD61BA42E1B00E79557 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
 				31A492511BACE65C009077FD /* UIButton+genAnimation.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
-				31033A871BA3BB5F00DC9141 /* Images.xcassets */,
+				312DA30C1BB512DF00130A33 /* Images.xcassets */,
 				31523AA21BAFE9A100526881 /* Sound5.0 */,
 				31033A7C1BA3BB5F00DC9141 /* Supporting Files */,
 			);
@@ -389,9 +389,9 @@
 				314DFCE11BA42EC300E79557 /* ImageCell.xib in Resources */,
 				314DFCDD1BA42EB400E79557 /* DescribeCell.xib in Resources */,
 				314DFCE51BA42ECF00E79557 /* IntroCell.xib in Resources */,
+				312DA30D1BB512DF00130A33 /* Images.xcassets in Resources */,
 				31523AA51BAFE9A100526881 /* right.caf in Resources */,
 				31523AA61BAFE9A100526881 /* wrong.caf in Resources */,
-				31033A881BA3BB5F00DC9141 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "myname.com.$(PRODUCT_NAME:rfc1034identifier)";
@@ -561,7 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "myname.com.$(PRODUCT_NAME:rfc1034identifier)";

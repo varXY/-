@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "扬声器@2x.png"
+      "filename" : "扬声器@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "-13.png",
       "scale" : "3x"
     }
   ],

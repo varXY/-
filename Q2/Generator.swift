@@ -151,7 +151,7 @@ class Generator {
 		let label = UILabel()
 		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 5.5 - 64, width: global.size.width - 30, height: 200)
 		label.numberOfLines = 0
-		label.backgroundColor = UIColor.whiteColor()
+		label.backgroundColor = Global.backgroundColor()
 		label.font = UIFont.systemFontOfSize(23)
 		label.text = questions[page].question
 		label.sizeToFit()

@@ -28,6 +28,8 @@ class QuestionViewController: UIViewController {
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
+	var fakeButton = UIView()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.title = "1/10"
@@ -43,7 +45,7 @@ class QuestionViewController: UIViewController {
 
 		scrollView.frame = view.bounds
 		scrollView.delegate = self
-		scrollView.backgroundColor = UIColor.whiteColor()
+		scrollView.backgroundColor = Global.backgroundColor()
 		scrollView.pagingEnabled = true
 		scrollView.scrollEnabled = false
 		scrollView.contentSize = CGSize(width: self.view.bounds.width * 10, height: self.view.bounds.height)
@@ -187,7 +189,7 @@ class QuestionViewController: UIViewController {
 				UIView.animateWithDuration(0.8, animations: { () -> Void in
 					self.scrollView.alpha = 0.0
 					self.scrollView.removeFromSuperview()
-					self.view.backgroundColor = Global.grayColor()
+					self.view.backgroundColor = Global.backgroundColor()
 				})
 			})
 
@@ -220,6 +222,7 @@ class QuestionViewController: UIViewController {
 			view.alpha = 0.0
 			view.transform = CGAffineTransformMakeScale(0.7, 0.7)
 			view.frame.origin.y += 30
+			self.fakeButton = view
 		}
 
 		if pageControl.currentPage != 9 {
@@ -227,7 +230,7 @@ class QuestionViewController: UIViewController {
 
 				UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
 					view.backgroundColor = UIColor(patternImage: UIImage(named: "下一题")!)
-					view.alpha = 0.7
+					view.alpha = 1.0
 					view.frame.origin.y -= 30
 
 					view.layer.masksToBounds = false
@@ -268,10 +271,12 @@ class QuestionViewController: UIViewController {
 	func jump() {
 		let page = pageControl.currentPage + 1
 
+		self.fakeButton.alpha = 0.5
+
 		generator.genQA(scrollView, page: page, questions: questions)
 		addActionToButtons(0, page: page)
 
-		jumpToPage(page)
+		self.jumpToPage(page)
 
 		if let dot = dotView.viewWithTag(page + 500) {
 			dot.backgroundColor = UIColor.lightGrayColor()

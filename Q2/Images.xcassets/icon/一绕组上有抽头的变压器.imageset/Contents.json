@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "一绕组上有抽头的变压器@2x.png"
+      "filename" : "一绕组上有抽头的变压器@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "-3.png",
       "scale" : "3x"
     }
   ],

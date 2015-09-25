@@ -19,6 +19,8 @@ class RecordViewController: UIViewController {
 		super.viewDidLoad()
 
 		self.title = "答题纪录"
+		self.view.backgroundColor = Global.backgroundColor()
+		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
 		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
@@ -45,7 +47,11 @@ class RecordViewController: UIViewController {
 extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return records.count
+		if records.count != 0 {
+			return records.count
+		} else {
+			return 1
+		}
 	}
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -59,7 +65,12 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 		if cell == nil {
 			cell = RecordCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID)
 		}
-		cell?.configureForRecordCell(records[indexPath.row])
+
+		if records.count != 0 {
+			cell?.configureForRecordCell(records[indexPath.row])
+		} else {
+			cell?.showNoRecord()
+		}
 		return cell!
 	}
 

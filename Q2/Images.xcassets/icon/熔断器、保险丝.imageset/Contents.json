@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "熔断器、保险丝@2x.png"
+      "filename" : "熔断器、保险丝@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "-14.png",
       "scale" : "3x"
     }
   ],

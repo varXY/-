@@ -17,7 +17,7 @@ class Question {
 		var questionMarks = [Int]()
 		var questions = [Question]()
 
-		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 201)
+		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 251)
 
 		for i in questionMarks {
 			questions.append(getQuestion(i)!)
@@ -540,7 +540,7 @@ class Question {
 			question.wrongAnswer = "60mA"
 			return question
 		case 98:
-			question.question = "将一根导线均匀拉长为原长度的3倍,则阻值为原来的几倍？"
+			question.question = "将一根导线均匀拉长为原长度的3倍，则阻值为原来的几倍？"
 			question.rightAnswer = "9倍"
 			question.wrongAnswer = "3倍"
 			return question
@@ -570,32 +570,32 @@ class Question {
 			question.wrongAnswer = "相位"
 			return question
 		case 104:
-			question.question = "两根平行导线通过同向电流时,导体之间相互："
+			question.question = "两根平行导线通过同向电流时，导体之间相互："
 			question.rightAnswer = "吸引"
 			question.wrongAnswer = "排斥"
 			return question
 		case 105:
-			question.question = "集肤效应指：在导体中的电流, 越接近于导体表面, 其什么越大？"
+			question.question = "集肤效应指：在导体中的电流，越接近于导体表面，其什么越大？"
 			question.rightAnswer = "电流"
 			question.wrongAnswer = "电压"
 			return question
 		case 106:
-			question.question = "在三相四线制中,当三相负载不平衡时,三相电压相等, 中性线电流："
+			question.question = "在三相四线制中，当三相负载不平衡时，三相电压会相等，中性线电流："
 			question.rightAnswer = "不等于零"
 			question.wrongAnswer = "等于零"
 			return question
 		case 107:
-			question.question = "串联电路中, 电压的分配与电阻成："
+			question.question = "串联电路中，电压的分配与电阻成："
 			question.rightAnswer = "正比"
 			question.wrongAnswer = "反比"
 			return question
 		case 108:
-			question.question = "并联电路中, 电流的分配与电阻成"
+			question.question = "并联电路中，电流的分配与电阻成"
 			question.rightAnswer = "反比"
 			question.wrongAnswer = "正比"
 			return question
 		case 109:
-			question.question = "在纯电感电路中, 没有能量消耗, 只有能量："
+			question.question = "在纯电感电路中，没有能量消耗，只有能量："
 			question.rightAnswer = "交换"
 			question.wrongAnswer = "增强"
 			return question
@@ -625,22 +625,22 @@ class Question {
 			question.wrongAnswer = "4:1"
 			return question
 		case 115:
-			question.question = "为防止分接开关故障, 应测量分接开关接头阻值, 其相差不超过："
+			question.question = "为防止分接开关故障，应测量分接开关接头阻值，其相差不超过："
 			question.rightAnswer = "2%"
 			question.wrongAnswer = "1.5%"
 			return question
 		case 116:
-			question.question = "油浸变压器在正常情况下为使绝缘油不致过速氧化, 上层油温不宜超过多少度？"
+			question.question = "油浸变压器在正常情况下为使绝缘油不致过速氧化，上层油温不宜超过多少度？"
 			question.rightAnswer = "85"
 			question.wrongAnswer = "95"
 			return question
 		case 117:
-			question.question = "变压器绝缘自投入运行后, 在允许条件下运行, 其寿命可达多少年？"
+			question.question = "变压器绝缘自投入运行后，在允许条件下运行，其寿命可达多少年？"
 			question.rightAnswer = "20 ~ 25"
 			question.wrongAnswer = "15 ~ 20"
 			return question
 		case 118:
-			question.question = "变压器在同等负荷及同等冷却条件下, 油温比平时高多少度, 应判断变压器发生内部故障。"
+			question.question = "变压器在同等负荷及同等冷却条件下，油温比平时高多少度，应判断变压器发生内部故障。"
 			question.rightAnswer = "10"
 			question.wrongAnswer = "15"
 			return question
@@ -730,7 +730,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 136:
-			question.question = "纯电感线圈直流电来说，相当于短路。"
+			question.question = "纯电感线圈对直流电来说，相当于短路。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
@@ -870,7 +870,7 @@ class Question {
 			question.wrongAnswer = "安装"
 			return question
 		case 164:
-			question.question = "1 kΩ 与2 kΩ 的电阻串联后接到6V 的电压上，流过电的电流为："
+			question.question = "1kΩ与2kΩ的电阻串联后接到6V的电压上，流过电的电流为："
 			question.rightAnswer = "2mA"
 			question.wrongAnswer = "2A"
 			return question
@@ -1053,6 +1053,256 @@ class Question {
 			question.question = "对摔伤者的救护应特别防止在搬动中可能对伤者脊柱的损害。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
+			return question
+		case 201:
+			question.question = "万用表的红表笔插在﹙＋﹚的插孔，黑笔插在﹙－﹚的插孔。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 202:
+			question.question = "摆脱电流是人能自主摆脱带电体的最大电流，人的工频摆脱电流约为10A。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 203:
+			question.question = "在直流电路中电流和电压的大小和方向都不随时间变化。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 204:
+			question.question = "在正弦交流电压的波形图坐标系中，横坐标表示时间，纵坐标表示："
+			question.rightAnswer = "电压瞬时值"
+			question.wrongAnswer = "电压平均值"
+			return question
+		case 205:
+			question.question = "铁心是变压器的_磁_通道.铁心多用彼此绝缘的硅钢片叠成目的是为了减小涡流和磁带"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 206:
+			question.question = "在电磁感应现象中，感应电流的磁场的方向总是："
+			question.rightAnswer = "与原磁场的方向相反"
+			question.wrongAnswer = "阻碍原磁场的变化"
+			return question
+		case 207:
+			question.question = "如果通电直导体在匀强磁场中受到的磁场力最大，则说明该导体与磁力线夹角为多少度？"
+			question.rightAnswer = "90"
+			question.wrongAnswer = "60"
+			return question
+		case 208:
+			question.question = "三相对称的额定工作电压为380V，有我国供电系统供电，该三相负载应接成："
+			question.rightAnswer = "Y形接法"
+			question.wrongAnswer = "三角形接法"
+			return question
+		case 209:
+			question.question = "旋转磁场的转速与："
+			question.rightAnswer = "频率成正比"
+			question.wrongAnswer = "电压电源成正比"
+			return question
+		case 210:
+			question.question = "我国发电厂发出交流电的频率都是50HZ习惯上称为："
+			question.rightAnswer = "工频"
+			question.wrongAnswer = "频率"
+			return question
+		case 211:
+			question.question = "角频率的单位是："
+			question.rightAnswer = "radls"
+			question.wrongAnswer = "Hz"
+			return question
+		case 212:
+			question.question = "正弦交流电的三要素分别是振幅、频率和："
+			question.rightAnswer = "初相"
+			question.wrongAnswer = "电流"
+			return question
+		case 213:
+			question.question = "变压器主要由铁心和什么组成？"
+			question.rightAnswer = "绕组"
+			question.wrongAnswer = "绝缘漆"
+			return question
+		case 214:
+			question.question = "电感是储能元件，不消耗电能，其有功功率为："
+			question.rightAnswer = "零"
+			question.wrongAnswer = "不知"
+			return question
+		case 215:
+			question.question = "周期和频率之间有什么关系？"
+			question.rightAnswer = "倒数"
+			question.wrongAnswer = "乘数"
+			return question
+		case 216:
+			question.question = "视在功率用什么表示？"
+			question.rightAnswer = "S"
+			question.wrongAnswer = "P"
+			return question
+		case 217:
+			question.question = "串联电路中, 电压的分配与电阻成："
+			question.rightAnswer = "正比"
+			question.wrongAnswer = "反比"
+			return question
+		case 218:
+			question.question = "并联电路中, 电流的分配与电阻成："
+			question.rightAnswer = "反比"
+			question.wrongAnswer = "正比"
+			return question
+		case 219:
+			question.question = "变压器运行中的电压不应超过额定电压的："
+			question.rightAnswer = "±5% "
+			question.wrongAnswer = "±10%"
+			return question
+		case 220:
+			question.question = "电位高低的含义，是指该点对参考点间的电流大小。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 221:
+			question.question = "没有电压就没有电流，没有电流就没有电压。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 222:
+			question.question = "将一根条形磁铁截去一段仍为条形磁铁,它仍然具有两个磁极。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 223:
+			question.question = "相线与零线间的电压就叫相电压。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 224:
+			question.question = "从各相首端引出的导线叫相线，俗称火线。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 225:
+			question.question = "有中性线的三相供电方式叫三相四线制，它常用于低压配电系统。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 226:
+			question.question = "不引出中性线的三相供电方式叫三相三线制，一般用于高压输电系统。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 227:
+			question.question = "各断路器的配合中，电路上一级的熔断时间应为下一级熔断器的多少倍以上？"
+			question.rightAnswer = "三倍"
+			question.wrongAnswer = "两倍"
+			return question
+		case 228:
+			question.question = "在额定负载恒转矩负载下运行的三相异步电动机，若电源电压下降，则电机的温度将会："
+			question.rightAnswer = "升高"
+			question.wrongAnswer = "降低"
+			return question
+		case 229:
+			question.question = "真空断路器的触点常采取："
+			question.rightAnswer = "对接式触头"
+			question.wrongAnswer = "桥式触头"
+			return question
+		case 230:
+			question.question = "1安培等于多少微安？"
+			question.rightAnswer = "106"
+			question.wrongAnswer = "109"
+			return question
+		case 231:
+			question.question = "半导体的电阻随温度的升高而："
+			question.rightAnswer = "减小"
+			question.wrongAnswer = "增大"
+			return question
+		case 232:
+			question.question = "电场力做功与所经过的路径无关, 参考点确定后, 电场中各点的电位之值便唯一确定, 这是电位的什么原理？"
+			question.rightAnswer = "唯一性"
+			question.wrongAnswer = "稳定性"
+			return question
+		case 233:
+			question.question = "磁通的单位是："
+			question.rightAnswer = "WB"
+			question.wrongAnswer = "MB"
+			return question
+		case 234:
+			question.question = "对称三相电势在任一瞬间的什么等于零？"
+			question.rightAnswer = "代数和"
+			question.wrongAnswer = "频率"
+			return question
+		case 235:
+			question.question = "电场力在单位时间内所做的功称为："
+			question.rightAnswer = "电功率"
+			question.wrongAnswer = "功耗"
+			return question
+		case 236:
+			question.question = "电流互感器的准确度D级是用于接："
+			question.rightAnswer = "差动保护"
+			question.wrongAnswer = "微机保护"
+			return question
+		case 237:
+			question.question = "电压互感器的一次绕组的匝数远大于二次绕组的匝数"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 238:
+			question.question = "在加有滤波电容的整流电路中, 二极管的导通总是："
+			question.rightAnswer = "小于1800"
+			question.wrongAnswer = "大于1800"
+			return question
+		case 239:
+			question.question = "双极型晶体管的控制信号为："
+			question.rightAnswer = "电压"
+			question.wrongAnswer = "电流"
+			return question
+		case 240:
+			question.question = "场效应晶体管的控制信号为："
+			question.rightAnswer = "电流"
+			question.wrongAnswer = "电压"
+			return question
+		case 241:
+			question.question = "三相半波可控整流电路带阻性负载时, 当控制角大于多少时, 输出电流开始断续？"
+			question.rightAnswer = "900"
+			question.wrongAnswer = "600"
+			return question
+		case 242:
+			question.question = "三极管基极的作用是什么？"
+			question.rightAnswer = "输送控制载流子"
+			question.wrongAnswer = "放大载流子"
+			return question
+		case 243:
+			question.question = "解决放大器截止失真的方法是："
+			question.rightAnswer = "减小偏置电阻"
+			question.wrongAnswer = "增大下偏电阻"
+			return question
+		case 244:
+			question.question = "二极管的主要特性就是："
+			question.rightAnswer = "单向通导"
+			question.wrongAnswer = "整流"
+			return question
+		case 245:
+			question.question = "在整流电路的输出端并一个电容, 主要是利用电容的什么特性, 使脉动电压变得较平稳？"
+			question.rightAnswer = "充放电"
+			question.wrongAnswer = "升压"
+			return question
+		case 246:
+			question.question = "为防止分接开关故障, 应测量分接开关接头阻值, 其相差不超过："
+			question.rightAnswer = "2%"
+			question.wrongAnswer = "1.5%"
+			return question
+		case 247:
+			question.question = "电力变压器中短路电压一般为额定电压的："
+			question.rightAnswer = "5%～10%"
+			question.wrongAnswer = "11%～15%"
+			return question
+		case 248:
+			question.question = "运动导体切割磁力线而产生最大电动势时，导体与磁力线间的夹角应为"
+			question.rightAnswer = "90°"
+			question.wrongAnswer = "45°"
+			return question
+		case 249:
+			question.question = "如果把一个24V的电源正极接地,则负极的电位是-24V。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 250:
+			question.question = "正弦交流电的周期与角频率的关系是互为倒数。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
 			return question
 
 		default:
