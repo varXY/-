@@ -61,17 +61,6 @@ class ContentViewController: UITableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		hidesBottomBarWhenPushed = true
-
-		tableView.layoutIfNeeded()
-
-		let label = UILabel(frame: CGRect(x: 0, y: tableView.contentSize.height + 20, width: self.view.bounds.width, height: 20))
-		label.backgroundColor = UIColor.clearColor()
-		label.text = "部分内容源自网络"
-		label.textColor = Global.lightRedColor()
-		label.font = UIFont.systemFontOfSize(13)
-		label.textAlignment = .Center
-		tableView.addSubview(label)
-
 	}
 
 	override func viewWillDisappear(animated: Bool) {

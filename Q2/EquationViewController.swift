@@ -192,17 +192,16 @@ extension EquationViewController: UITextFieldDelegate {
 
 		let oldText: NSString = textField.text!
 		let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
-
+		
 		content = newText.doubleValue
-
-		if content > 9999999 {
-			return false
-		}
-
 		calculateWith(self.index, tag: self.tag, content: content)
 		
 		return true
 
+	}
+
+	func textFieldShouldClear(textField: UITextField) -> Bool {
+		return true
 	}
 }
 
@@ -228,6 +227,7 @@ extension EquationViewController {
 
 	}
 
+
 	func calculate_0(tag: Int, content: Double) {
 		let field0 = view.viewWithTag(400) as! UITextField
 		let field1 = view.viewWithTag(800) as! UITextField
@@ -239,7 +239,7 @@ extension EquationViewController {
 			calculatedA = (A == 0 ? true : false)
 			C = (B == 0 ? 0 : A / B)
 
-			field2.text = (C == 0 ? "" : "\(C)")
+			field2.text = (C == 0 ? "" : sv(C))
 
 		case 800:
 			B = content
@@ -250,8 +250,8 @@ extension EquationViewController {
 				C = (B == 0 ? 0 : A / B)
 			}
 
-			field0.text = (A == 0 ? "" : "\(A)")
-			field2.text = (C == 0 ? "" : "\(C)")
+			field0.text = (A == 0 ? "" : sv(A))
+			field2.text = (C == 0 ? "" : sv(C))
 
 		case 1200:
 			C = content
@@ -262,8 +262,8 @@ extension EquationViewController {
 				B = (C == 0 ? 0 : A / C)
 			}
 
-			field0.text = (A == 0 ? "" : "\(A)")
-			field1.text = (B == 0 ? "" : "\(B)")
+			field0.text = (A == 0 ? "" : sv(A))
+			field1.text = (B == 0 ? "" : sv(B))
 
 		default:
 			break
@@ -287,8 +287,8 @@ extension EquationViewController {
 			C = A * B
 
 			if D >= 0 && D <= 1 && C != 0 {
-				field4.text = (D == 0 ? "" : "\(C * D)")
-				field5.text = (D == 0 ? "" : "\(C * (1 - D))")
+				field4.text = (D == 0 ? "" : sv(C * D))
+				field5.text = (D == 0 ? "" : sv(C - C * D))
 			}
 
 			field2.text = (C == 0 ? "" : "\(C)")
@@ -302,13 +302,13 @@ extension EquationViewController {
 				C = A * B
 
 				if D >= 0 && D <= 1 && C != 0 {
-					field4.text = (D == 0 ? "" : "\(C * D)")
-					field5.text = (D == 0 ? "" : "\(C * (1 - D))")
+					field4.text = (D == 0 ? "" : sv(C * D))
+					field5.text = (D == 0 ? "" : sv(C - C * D))
 				}
 			}
 
-			field0.text = (A == 0 ? "" : "\(A)")
-			field2.text = (C == 0 ? "" : "\(C)")
+			field0.text = (A == 0 ? "" : sv(A))
+			field2.text = (C == 0 ? "" : sv(C))
 
 		case 1200:
 			C = content
@@ -320,19 +320,20 @@ extension EquationViewController {
 			}
 
 			if D != 0 {
-				field4.text = (C == 0 ? "" : "\(C * D)")
-				field5.text = (C == 0 ? "" : "\(C * (1 - D))")
+				field4.text = (C == 0 ? "" : sv(C * D))
+				field5.text = (C == 0 ? "" : sv(C - C * D))
 			}
 
-			field0.text = (A == 0 ? "" : "\(A)")
-			field1.text = (B == 0 ? "" : "\(B)")
+			field0.text = (A == 0 ? "" : sv(A))
+			field1.text = (B == 0 ? "" : sv(B))
+
 		case 1600:
 			D = content
 
 			if D >= 0 && D <= 1 {
 				if C != 0 {
-					field4.text = (D == 0 ? "" : "\(C * D)")
-					field5.text = (D == 0 ? "" : "\(C * (1 - D))")
+					field4.text = (D == 0 ? "" : sv(C * D))
+					field5.text = (D == 0 ? "" : sv(C - C * D))
 				}
 			} else {
 				showAlert()
@@ -355,7 +356,7 @@ extension EquationViewController {
 			calculatedA = (A == 0 ? true : false)
 			C = A * B / 1000
 
-			field2.text = (C == 0 ? "" : "\(C)")
+			field2.text = (C == 0 ? "" : sv(C))
 
 		case 800:
 			B = content
@@ -366,8 +367,8 @@ extension EquationViewController {
 				C = A * B / 1000
 			}
 
-			field0.text = (A == 0 ? "" : "\(A)")
-			field2.text = (C == 0 ? "" : "\(C)")
+			field0.text = (A == 0 ? "" : sv(A))
+			field2.text = (C == 0 ? "" : sv(C))
 
 		case 1200:
 			C = content
@@ -378,8 +379,8 @@ extension EquationViewController {
 				B = (A == 0 ? 0 : C * 1000 / A)
 			}
 
-			field0.text = (A == 0 ? "" : "\(A)")
-			field1.text = (B == 0 ? "" : "\(B)")
+			field0.text = (A == 0 ? "" : sv(A))
+			field1.text = (B == 0 ? "" : sv(B))
 
 		default:
 			break
@@ -395,20 +396,37 @@ extension EquationViewController {
 		switch tag {
 		case 400:
 			A = content
-			field1.text = (A == 0 ? "" : "\(A * 735.49875)")
-			field2.text = (A == 0 ? "" : "\(A)")
-			field3.text = (A == 0 ? "" : "\(A * 745.699872)")
+			field1.text = (A == 0 ? "" : sv(A * 735.49875))
+			field2.text = (A == 0 ? "" : sv(A))
+			field3.text = (A == 0 ? "" : sv(A * 745.699872))
 
 		case 800:
 			B = content
-			field0.text = (B == 0 ? "" : "\(B / 735.49875)")
-			field2.text = (B == 0 ? "" : "\(B / 745.699872)")
-			field3.text = (B == 0 ? "" : "\(B)")
+			field0.text = (B == 0 ? "" : sv(B / 735.49875))
+			field2.text = (B == 0 ? "" : sv(B / 745.699872))
+			field3.text = (B == 0 ? "" : sv(B))
 
 		default:
 			break
 		}
 	}
+
+	// Get string value
+
+	func sv(x: Double) -> String {
+		let afterCut: Double = floor(x)
+
+		if afterCut == x {
+			var string = "\(afterCut)"
+			string = String(string.characters.dropLast())
+			string = String(string.characters.dropLast())
+			return string
+		} else {
+			return "\(x)"
+		}
+
+	}
+
 
 }
 
