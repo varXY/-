@@ -12,8 +12,6 @@ import UIKit
 let dateFormatter: NSDateFormatter = {
 	let formatter = NSDateFormatter()
 	formatter.dateFormat = "dd/MM/yy, HH:mm"
-	// formatter.dateStyle = .ShortStyle
-	// formatter.timeStyle = .ShortStyle
 	return formatter
 	}()
 
@@ -23,21 +21,21 @@ func delay(seconds seconds: Double, completion:()->()) {
 	dispatch_after(popTime, dispatch_get_main_queue()) {
 		completion()
 	}
+
 }
+
 
 class Global {
 	
-	var size = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
-	var center = CGPoint(x: UIScreen.mainScreen().bounds.width / 2, y: UIScreen.mainScreen().bounds.height / 2)
-	var rowHeight = UIScreen.mainScreen().bounds.height / 12
+	let size = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+	let center = CGPoint(x: UIScreen.mainScreen().bounds.width / 2, y: UIScreen.mainScreen().bounds.height / 2)
+	let rowHeight = UIScreen.mainScreen().bounds.height / 12
 
 	let CGRedColor = Global.redColor().CGColor
 	let CGGreenColor = Global.greenColor().CGColor
 	let CGlightGrayColor = UIColor.lightGrayColor().CGColor
 	let CGWhiteColor = UIColor.whiteColor().CGColor
 	let CGBlackColor = UIColor.blackColor().CGColor
-
-	let CGBlueColor = UIColor(red: 30/255, green: 150/255, blue: 255/255, alpha: 1.0).CGColor
 
 	class func redColor() -> UIColor {
 		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 1.0)

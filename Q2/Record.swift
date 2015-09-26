@@ -9,6 +9,7 @@
 import Foundation
 
 class Record: NSObject, NSCoding {
+	
 	var record: Int = 0
 	var date = NSDate()
 

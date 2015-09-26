@@ -14,7 +14,6 @@ extension UIButton {
 	func genAnimation(animationType: AnimationType, delay: Double, distance: CGFloat) {
 
 		switch animationType {
-
 		case .Appear:
 			self.alpha = 0.0
 			self.frame.origin.y += distance
@@ -44,34 +43,16 @@ extension UIButton {
 					self.alpha = 1.0
 			})
 
-		case .MovingAround:
-
-			UIView.animateKeyframesWithDuration(8.0, delay: delay, options: .Repeat, animations: { () -> Void in
-
-				UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in
-					self.alpha = 0.0
-					})
-
-				UIView.addKeyframeWithRelativeStartTime(0.6, relativeDuration: 0.4, animations: { () -> Void in
-					self.alpha = 1.0
-					})
-
-				}, completion: nil)
-
 		case .IsRightAnswer:
 			UIView.animateWithDuration(0.4, delay: delay, usingSpringWithDamping: 1.0, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
 				self.transform = CGAffineTransformMakeScale(1.06, 1.06)
 				}, completion: nil)
 
-		case .FromZeroToFull:
-			self.transform = CGAffineTransformMakeScale(0.0, 0.0)
-
-			UIView.animateWithDuration(0.8, delay: delay, usingSpringWithDamping: 1.0, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
-				self.transform = CGAffineTransformMakeScale(1.0, 1.0)
-				}, completion: nil)
-
 		default:
 			break
 		}
+
 	}
+
+	
 }

@@ -8,35 +8,37 @@
 
 import Foundation
 import UIKit
-import AudioToolbox
 import AVFoundation
 
 class QuestionViewController: UIViewController {
-	var scrollView = UIScrollView()
-	var pageControl = UIPageControl()
 
 	var global = Global()
+	var generator = Generator()
 
 	var questions = [Question]()
 	var rightCount = 0
 	var rightOrWrong = [Int]()
-	var generator = Generator()
+
+	var scrollView = UIScrollView()
+	var pageControl = UIPageControl()
 	var dotView = UIView()
+	var fakeButton = UIView()
 
 	var player0 = AVAudioPlayer()
 	var player1 = AVAudioPlayer()
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
-	var fakeButton = UIView()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
 		self.title = "1/10"
+		self.view.backgroundColor = UIColor.whiteColor()
+
 		let question = Question()
 		questions = question.getQestions(10)
 
-		self.view.backgroundColor = UIColor.whiteColor()
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "confirmToQuit")
 		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
@@ -49,7 +51,6 @@ class QuestionViewController: UIViewController {
 		scrollView.pagingEnabled = true
 		scrollView.scrollEnabled = false
 		scrollView.contentSize = CGSize(width: self.view.bounds.width * 10, height: self.view.bounds.height)
-		// scrollView.bounces = false
 		view.addSubview(scrollView)
 
 		pageControl.frame = CGRect(x: 0, y: 520, width: 320, height: 30)
@@ -69,7 +70,6 @@ class QuestionViewController: UIViewController {
 
 		prepareAudios()
 
-
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -87,7 +87,6 @@ class QuestionViewController: UIViewController {
 			quitButton.genAnimation(.Appear, delay: 0.1, distance: 70)
 		}
 
-
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -100,17 +99,16 @@ class QuestionViewController: UIViewController {
 		hidesBottomBarWhenPushed = true
 	}
 
-	override func viewWillLayoutSubviews() {
-		super.viewWillLayoutSubviews()
-	}
 
 
 	func chosen(sender: UIButton) {
 		getResult(sender)
 		disableAndColorButtons(sender)
+
 		delay(seconds: 0.2) { () -> () in
 			self.genJumpButton(sender)
 		}
+
 		testIsOver(sender)
 	}
 
@@ -153,11 +151,9 @@ class QuestionViewController: UIViewController {
 					button.userInteractionEnabled = false
 					button.genAnimation(.IsRightAnswer, delay: 0.0, distance: 0.0)
 					button.tintColor = UIColor.whiteColor()
-					button.layer.borderColor = global.CGGreenColor
 					button.backgroundColor = Global.greenColor()
 				} else {
 					button.enabled = false
-					button.layer.borderColor = global.CGlightGrayColor
 				}
 
 			}
@@ -209,9 +205,9 @@ class QuestionViewController: UIViewController {
 				finalView.tag = 9999999
 				self.view.addSubview(finalView)
 			})
-			
-			
+
 		}
+
 	}
 
 	func showRightOrWrongView(rightOrWrong: String) {
@@ -226,6 +222,7 @@ class QuestionViewController: UIViewController {
 		}
 
 		if pageControl.currentPage != 9 {
+
 			delay(seconds: 2.0) { () -> () in
 
 				UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
@@ -241,6 +238,7 @@ class QuestionViewController: UIViewController {
 					}, completion: nil)
 				
 			}
+
 		}
 
 	}
@@ -265,6 +263,7 @@ class QuestionViewController: UIViewController {
 		default:
 			break
 		}
+
 	}
 
 
@@ -282,22 +281,22 @@ class QuestionViewController: UIViewController {
 			dot.backgroundColor = UIColor.lightGrayColor()
 		}
 
-		dispatch_async(dispatch_get_main_queue()) {
-			self.title = "\(page + 1)/10"
-		}
+		self.title = "\(page + 1)/10"
+
 	}
 
 
 	func jumpToPage(page: Int) {
+
 		UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: -64.0)
 			}, completion: nil)
+
 	}
 
 
 	func quit() {
-		player0.stop()
-		player1.stop()
+
 		self.scrollView.removeFromSuperview()
 		self.rightCount = 0
 		self.rightOrWrong.removeAll(keepCapacity: false)
@@ -313,7 +312,6 @@ class QuestionViewController: UIViewController {
 			alert.addAction(action)
 
 			let action1 = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
-			// alert.view.tintColor = Global.greenColor()
 			alert.addAction(action1)
 
 			presentViewController(alert, animated: true, completion: nil)
@@ -325,7 +323,6 @@ class QuestionViewController: UIViewController {
 
 
 	func seeAnsweredQA() {
-
 		let page = self.view.viewWithTag(9999999)
 
 		let seeButton = page?.viewWithTag(12345) as! UIButton
@@ -339,7 +336,6 @@ class QuestionViewController: UIViewController {
 		AnsweredQAVC.rightOrWrong = self.rightOrWrong
 
 		let detailNV = DetailNavigationController(rootViewController: AnsweredQAVC)
-		detailNV.toolbarHidden = true
 
 		delay(seconds: 0.5) { () -> () in
 			self.presentViewController(detailNV, animated: true, completion: nil)
@@ -371,7 +367,6 @@ class QuestionViewController: UIViewController {
 		try! player0 = AVAudioPlayer(contentsOfURL: rightSound)
 		try! player1 = AVAudioPlayer(contentsOfURL: wrongSound)
 
-
 	}
 
 
@@ -381,7 +376,7 @@ extension QuestionViewController: UIScrollViewDelegate {
 
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		let width = scrollView.bounds.size.width
-		pageControl.currentPage = Int((scrollView.contentOffset.x + width/2) / width)
+		pageControl.currentPage = Int((scrollView.contentOffset.x + width / 2) / width)
 	}
 
 }

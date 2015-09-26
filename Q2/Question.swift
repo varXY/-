@@ -9,6 +9,7 @@
 import Foundation
 
 class Question {
+
 	var question: String = ""
 	var rightAnswer: String = ""
 	var wrongAnswer: String = ""
@@ -17,7 +18,7 @@ class Question {
 		var questionMarks = [Int]()
 		var questions = [Question]()
 
-		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 251)
+		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
 
 		for i in questionMarks {
 			questions.append(getQuestion(i)!)
@@ -1100,7 +1101,7 @@ class Question {
 			question.wrongAnswer = "电压电源成正比"
 			return question
 		case 210:
-			question.question = "我国发电厂发出交流电的频率都是50HZ习惯上称为："
+			question.question = "我国发电厂发出交流电的频率都是50Hz习惯上称为："
 			question.rightAnswer = "工频"
 			question.wrongAnswer = "频率"
 			return question
@@ -1303,6 +1304,256 @@ class Question {
 			question.question = "正弦交流电的周期与角频率的关系是互为倒数。"
 			question.rightAnswer = "错误"
 			question.wrongAnswer = "正确"
+			return question
+		case 251:
+			question.question = "下面那种电路工作状态是必须禁止的？"
+			question.rightAnswer = "短路"
+			question.wrongAnswer = "开路"
+			return question
+		case 252:
+			question.question = " 晶体三极管的三种工作状态是饱和状态、截止状态和："
+			question.rightAnswer = "放大状态"
+			question.wrongAnswer = "缩小状态"
+			return question
+		case 253:
+			question.question = "瓦数越大的白炽灯其电阻："
+			question.rightAnswer = "越小"
+			question.wrongAnswer = "越大"
+			return question
+		case 254:
+			question.question = "电路在同一节点处，各支路的电流之和为："
+			question.rightAnswer = "零"
+			question.wrongAnswer = "大于零"
+			return question
+		case 255:
+			question.question = "磁场中磁力线的方向总是："
+			question.rightAnswer = "N极指向S极"
+			question.wrongAnswer = "S极指向N极"
+			return question
+		case 256:
+			question.question = "一个正弦交流电压，其有效值为100V,则其最大值为："
+			question.rightAnswer = "141.4V"
+			question.wrongAnswer = "120.5V"
+			return question
+		case 257:
+			question.question = "回路中，电感电容都是储能元件而电阻是耗能元件。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 258:
+			question.question = "线路的绝缘电阻的大小和测试电压："
+			question.rightAnswer = "无关"
+			question.wrongAnswer = "有关"
+			return question
+		case 259:
+			question.question = "市电220伏是指交流电的："
+			question.rightAnswer = "有效值"
+			question.wrongAnswer = "平均值"
+			return question
+		case 260:
+			question.question = "串联负反馈使输入电阻："
+			question.rightAnswer = "增大"
+			question.wrongAnswer = "减小"
+			return question
+		case 261:
+			question.question = "描绘磁场的磁力线在磁体内由："
+			question.rightAnswer = "S -> N"
+			question.wrongAnswer = "N -> S"
+			return question
+		case 262:
+			question.question = "某直流稳压电源，输出电压为6V，将它接到匝比为1∶10的变压器次级，则其初级的电压为:"
+			question.rightAnswer = "60V"
+			question.wrongAnswer = "600V"
+			return question
+		case 263:
+			question.question = "万用表测量三极管时万用表应放在哪一档上？"
+			question.rightAnswer = "R×1000Ω"
+			question.wrongAnswer = "R×1Ω"
+			return question
+		case 264:
+			question.question = "并联电容个数愈多，其等效电容越大。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 265:
+			question.question = "导电体全是金属材料。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 266:
+			question.question = " 用电压表测量电路中的电压时，应并联在电路中。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 267:
+			question.question = "两瓦数不同的灯泡串联起来接到电源上，瓦数大的暗。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 268:
+			question.question = "放大器中为什么要加负反馈？"
+			question.rightAnswer = "提高放大器的稳定性"
+			question.wrongAnswer = "降低功耗"
+			return question
+		case 269:
+			question.question = "用叠加原理计算复杂电路, 就是把一个复杂电路化为什么电路进行计算的？"
+			question.rightAnswer = "单电源"
+			question.wrongAnswer = "较小"
+			return question
+		case 270:
+			question.question = "电荷的基本单位不是："
+			question.rightAnswer = "安培"
+			question.wrongAnswer = "库仑"
+			return question
+		case 271:
+			question.question = "正弦交流电的有效值等于最大值的："
+			question.rightAnswer = "0.7"
+			question.wrongAnswer = "0.5"
+			return question
+		case 272:
+			question.question = "实际电压源在供电时,它的端电压低于它的电动势。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 273:
+			question.question = "已知交流电路中，某元件的阻抗与频率成反比，则元件是："
+			question.rightAnswer = "电容"
+			question.wrongAnswer = "电感"
+			return question
+		case 274:
+			question.question = "减小涡流损耗可以采用："
+			question.rightAnswer = "增大铁芯的电阻率"
+			question.wrongAnswer = "增大铁芯的磁导率"
+			return question
+		case 275:
+			question.question = "三相四线制系统中，相电压是指火线和零线之间的电压，线电压是指火线和火线之间的电压。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 276:
+			question.question = "在几级及以上的大风以及暴雷电、冰雹、大雾、沙尘暴等恶劣天气下，应停止露天高处作业？"
+			question.rightAnswer = "6级"
+			question.wrongAnswer = "7级"
+			return question
+		case 277:
+			question.question = "在带电的导线、设备、变压器、油开关附近，不应使用钢卷尺和带金属丝的线尺。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 278:
+			question.question = "行灯或移动式电灯的电压，应不高于36V。在金属容器和潮湿地点作业，安全电压应不超过12V。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 279:
+			question.question = "人站在干燥的木梯上带电安装灯具，为了站稳，可以一手安装，另一手："
+			question.rightAnswer = "可戴绝缘手套扶墙"
+			question.wrongAnswer = "可扶墙"
+			return question
+		case 280:
+			question.question = "高压设备接地，室内不得在接地点几米以内？"
+			question.rightAnswer = "4米"
+			question.wrongAnswer = "6米"
+			return question
+		case 281:
+			question.question = "变压器试运行应进行几次全电压冲击试验？"
+			question.rightAnswer = "5次"
+			question.wrongAnswer = "3次"
+			return question
+		case 282:
+			question.question = "真空断路器大修周期是："
+			question.rightAnswer = "两年"
+			question.wrongAnswer = "200次操作"
+			return question
+		case 283:
+			question.question = "变压器大修的周期是投入运行后5年内一次，以后每间隔十年吊芯检查一次。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 284:
+			question.question = "运行中的电流互感器的二次回路开路，则电流互感器会："
+			question.rightAnswer = "烧毁"
+			question.wrongAnswer = "空载运行"
+			return question
+		case 285:
+			question.question = "运行中的电压互感器工作在："
+			question.rightAnswer = "近似空载状态"
+			question.wrongAnswer = "近似短路状态"
+			return question
+		case 286:
+			question.question = "2006年新国标将S9系列中的损耗值规定为："
+			question.rightAnswer = "能效限定值"
+			question.wrongAnswer = "节能评价值"
+			return question
+		case 287:
+			question.question = "接地线为多股软铜线，其截面积不少于多少平方毫米？"
+			question.rightAnswer = "25"
+			question.wrongAnswer = "16"
+			return question
+		case 288:
+			question.question = "三相二元件电能表不能用于什么系统中，否则少计电能。"
+			question.rightAnswer = "三相四线制系统"
+			question.wrongAnswer = "三相三线制系统"
+			return question
+		case 289:
+			question.question = "好的变压器油是："
+			question.rightAnswer = "浅黄色"
+			question.wrongAnswer = "浅红色"
+			return question
+		case 290:
+			question.question = "好的变压器油无味或略带一点："
+			question.rightAnswer = "煤油味"
+			question.wrongAnswer = "酸味"
+			return question
+		case 291:
+			question.question = "值班巡检时，人体与10KV带电设备间的安全距离为多少米？"
+			question.rightAnswer = "0.7"
+			question.wrongAnswer = "1.0"
+			return question
+		case 292:
+			question.question = "变压器绕组为A级绝缘，其最高允许温度为："
+			question.rightAnswer = "105℃"
+			question.wrongAnswer = "130℃"
+			return question
+		case 293:
+			question.question = "触电急救的第一步是："
+			question.rightAnswer = "迅速脱离电源"
+			question.wrongAnswer = "心肺复苏"
+			return question
+		case 294:
+			question.question = "用利器切断低压电源线时应："
+			question.rightAnswer = "逐相切断"
+			question.wrongAnswer = "一次切断"
+			return question
+		case 295:
+			question.question = "窃电时间无法查明，窃电日数至少按多少天计算？"
+			question.rightAnswer = "180天"
+			question.wrongAnswer = "90天"
+			return question
+		case 296:
+			question.question = "变压器小修周期为："
+			question.rightAnswer = "一年"
+			question.wrongAnswer = "二年"
+			return question
+		case 297:
+			question.question = "在母线倒闸操作程中，母联断路器的操作电源应："
+			question.rightAnswer = "拉开"
+			question.wrongAnswer = "合上"
+			return question
+		case 298:
+			question.question = "铝合金制的设备接头过热后，其颜色会："
+			question.rightAnswer = "呈灰白色"
+			question.wrongAnswer = "呈黑色"
+			return question
+		case 299:
+			question.question = "有功功率最优分配的准则是："
+			question.rightAnswer = "按等耗量微增率分配"
+			question.wrongAnswer = "按消耗量"
+			return question
+		case 300:
+			question.question = "在系统的初始运行条件、故障持续时间均完全相同的情况下，导致系统的暂态稳定性最差的故障应为："
+			question.rightAnswer = "三相短路"
+			question.wrongAnswer = "断相故障"
 			return question
 
 		default:

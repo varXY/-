@@ -10,12 +10,11 @@ import UIKit
 
 class HudView: UIView {
 
-	var  text = ""
+	var text = ""
 
 	class func hudInView(view: UIView, animated: Bool) -> HudView {
 		let hudView = HudView(frame: view.bounds)
 		hudView.opaque = false
-
 		view.addSubview(hudView)
 		view.userInteractionEnabled = false
 		hudView.showAnimated(animated)
@@ -39,13 +38,17 @@ class HudView: UIView {
 	}
 
 	func showAnimated(animated: Bool) {
+
 		if animated {
 			alpha = 0
 			transform = CGAffineTransformMakeScale(1.3, 1.3)
+
 			UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
 				self.alpha = 1
 				self.transform = CGAffineTransformIdentity
 			}, completion: nil)
+			
 		}
+
 	}
 }

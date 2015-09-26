@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 class Knowledge {
+
 	var sectionTitle = ""
 	var title: String = ""
 	var subtitle: String = ""
 	var stringImage: String = ""
 	var Image = UIImage()
 	var textBody: String = ""
+
 
 	func getAll(number: Int) -> [[Knowledge]] {
 		var allIcons = [[Knowledge]]()
@@ -32,6 +34,7 @@ class Knowledge {
 				allIcons.append(icons)
 			}
 			return allIcons
+
 		case 1:
 			for i in 0..<10 {
 				var icons = [Knowledge]()
@@ -43,6 +46,7 @@ class Knowledge {
 				allIcons.append(icons)
 			}
 			return allIcons
+
 		case 2:
 			for i in 0..<5 {
 				var icons = [Knowledge]()
@@ -54,20 +58,20 @@ class Knowledge {
 				allIcons.append(icons)
 			}
 			return allIcons
+
 		default:
 			return [[Knowledge]]()
 		}
 
-
 	}
 	
 
-	func getSearchedIcons(searchText: String) -> [[Knowledge]] {
-		let allIcons = getAll(1)
-		var searchedAllIcons = [[Knowledge]]()
+	func getSearchedAll(searchText: String) -> [[Knowledge]] {
+		let all = getAll(1)
+		var searchedAll = [[Knowledge]]()
 		var i = 0
 
-		for icons in allIcons {
+		for icons in all {
 
 			++i
 
@@ -80,18 +84,20 @@ class Knowledge {
 			})
 
 			if !result.isEmpty {
-				searchedAllIcons.append(result)
+				searchedAll.append(result)
 			}
 
-			if i == allIcons.count {
+			if i == all.count {
 				break
 			}
 		}
-		return searchedAllIcons
+
+		return searchedAll
+
 	}
 
 
-
+	//MARK: - Individual
 
 	func unitAtIndex(index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()

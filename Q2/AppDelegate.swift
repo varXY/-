@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		customizeAppearance()
 
 		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-	
 
 		self.window?.makeKeyAndVisible()
 

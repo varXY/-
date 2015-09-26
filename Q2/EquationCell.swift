@@ -11,16 +11,17 @@ import UIKit
 
 class EquationCell: UITableViewCell {
 
+	var global = Global()
+
 	var titleLabel = UILabel()
 	var unitLabel = UILabel()
 	var equalLabel =  UILabel()
-	var global = Global()
 
+	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		self.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.rowHeight)
-		// self.backgroundColor = Global.backgroundColor()
 
 		titleLabel.frame = CGRect(x: 15, y: 0, width: 40, height: self.frame.height)
 		titleLabel.font = UIFont.boldSystemFontOfSize(20)
@@ -39,6 +40,10 @@ class EquationCell: UITableViewCell {
 		self.contentView.addSubview(unitLabel)
 	}
 
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
 
 	func configureForEquationCell(first: String, last: String) {
 		self.titleLabel.text = first
@@ -46,9 +51,7 @@ class EquationCell: UITableViewCell {
 		self.unitLabel.text = last
 	}
 
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+
 	
 	
 }

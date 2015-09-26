@@ -11,9 +11,12 @@ import UIKit
 
 
 class RecordViewController: UIViewController {
-	var tableView = UITableView()
+
 	var records = [Record]()
 	var global = Global()
+
+	var tableView = UITableView()
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -22,22 +25,16 @@ class RecordViewController: UIViewController {
 		self.view.backgroundColor = Global.backgroundColor()
 		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
-		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
 		tableView.separatorColor = UIColor.clearColor()
-
 		tableView.allowsSelection = false
-
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
 	}
 
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
-	}
 
 	func close() {
 		dismissViewControllerAnimated(true, completion: nil)
@@ -71,6 +68,7 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 		} else {
 			cell?.showNoRecord()
 		}
+		
 		return cell!
 	}
 

@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-class TestNavigationController: UINavigationController, UINavigationControllerDelegate {
-	var statusBarStyle = UIStatusBarStyle.LightContent
+class TestNavigationController: UINavigationController {
 
 	convenience init() {
 		let testVC = TestViewController()
@@ -19,49 +18,15 @@ class TestNavigationController: UINavigationController, UINavigationControllerDe
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.delegate = self
+
+		self.navigationBar.barTintColor = Global.redColor()
+		self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+		self.navigationBar.tintColor = UIColor.whiteColor()
 		self.navigationBar.translucent = true
-		colorForViewController("type1")
 	}
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return statusBarStyle
-	}
-
-	func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-
-		if let _ = viewController as? TestViewController {
-			self.statusBarStyle = UIStatusBarStyle.LightContent
-			super.setNeedsStatusBarAppearanceUpdate()
-			colorForViewController("type1")
-
-		}
-
-	}
-
-	func colorForViewController(type: String) {
-		switch type {
-		case "type1":
-
-			UIView.animateWithDuration(1.0, animations: { () -> Void in
-				self.navigationBar.barTintColor = Global.redColor()
-				self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-				self.navigationBar.tintColor = UIColor.whiteColor()
-			})
-
-		case "type2":
-
-			UIView.animateWithDuration(1.0, animations: { () -> Void in
-				self.navigationBar.barTintColor = UIColor.whiteColor()
-				self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-				self.navigationBar.tintColor = Global.redColor()
-				self.statusBarStyle = UIStatusBarStyle.Default
-				super.setNeedsStatusBarAppearanceUpdate()
-			})
-
-		default:
-			break
-		}
+		return .LightContent
 	}
 
 }

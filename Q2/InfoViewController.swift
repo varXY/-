@@ -10,10 +10,9 @@ import Foundation
 import UIKit
 
 class InfoViewController: UIViewController {
+
 	var generator = Generator()
 	var BigButtons = [UIButton]()
-	var littleButtons = [UIButton]()
-	var littleButtons_2 = [UIButton]()
 	var knowledge = Knowledge()
 	var global = Global()
 
@@ -24,7 +23,6 @@ class InfoViewController: UIViewController {
 		self.title = "常用知识"
 
 		BigButtons = generator.genButtonsForInfo()
-
 		for i in 0..<BigButtons.count {
 			BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
 			self.view.addSubview(BigButtons[i])
@@ -44,13 +42,6 @@ class InfoViewController: UIViewController {
 			self.BigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
 		}
 
-		for button in littleButtons {
-			let delay = arc4random_uniform(4)
-			button.genAnimation(.MovingAround, delay: Double(delay), distance: 0.0)
-		}
-
-		// self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
-
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -62,13 +53,6 @@ class InfoViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		hidesBottomBarWhenPushed = false
 
-	}
-
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "ShowDetail" {
-			let controller = segue.destinationViewController as! ContentViewController
-			controller.index = sender as! Int
-		}
 	}
 
 	func open(sender: UIButton) {

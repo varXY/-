@@ -12,11 +12,12 @@ import UIKit
 class EquationViewController: UIViewController {
 
 	var index = 0
-	var tableView = UITableView()
 	var global = Global()
+
 	var sectionTitle = ""
 	var firstWords = [String]()
 	var lastWords = [String]()
+
 	var tag = 0
 	var content: Double = 0
 	var A: Double = 0
@@ -26,21 +27,22 @@ class EquationViewController: UIViewController {
 	var calculatedA = true
 	var allowInput = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",  "."]
 
+	var tableView = UITableView()
+
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		self.title = Equation(rawValue: index)?.navigationTitle
+		self.view.backgroundColor = Global.backgroundColor()
 
 		getWords(index)
-		self.view.backgroundColor = Global.backgroundColor()
 
 		let rect = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)
 		tableView = UITableView(frame: rect, style: .Grouped)
 		tableView.backgroundColor = Global.backgroundColor()
-		// tableView.separatorColor = Global.backgroundColor()
 		tableView.scrollEnabled = true
-
 		tableView.allowsSelection = false
-
 		tableView.dataSource = self
 		tableView.delegate = self
 		view.addSubview(tableView)
@@ -49,7 +51,6 @@ class EquationViewController: UIViewController {
 		for textfield in textFields {
 			tableView.addSubview(textfield)
 		}
-
 
 		customTextField(index)
 		textFields[0].becomeFirstResponder()
@@ -65,11 +66,39 @@ class EquationViewController: UIViewController {
 		hidesBottomBarWhenPushed = true
 	}
 
+
+
+	func getWords(index: Int) {
+		sectionTitle = Equation(rawValue: index)!.sectionTitle
+		firstWords = Equation(rawValue: index)!.firstWords
+		lastWords = Equation(rawValue: index)!.lastWords
+	}
+
+
+	func genTextField() -> [UITextField] {
+		var textFields = [UITextField]()
+		let counts = firstWords.count
+
+		for i in 0..<counts {
+			let numberTextField = NumberTextfield()
+			let rect = CGRect(x: 75, y: 30 + (global.rowHeight) * CGFloat(i) + 3, width: global.size.width - 150, height: global.rowHeight - 6)
+			let textField = numberTextField.getTextFields(rect)
+			textField.delegate = self
+			textField.tag = (i + 1) * 400
+			textFields.append(textField)
+		}
+
+		return textFields
+	}
+
+
 	func customTextField(index: Int) {
+
 		if index == 1 {
 			let field4 = view.viewWithTag(2000) as! UITextField
 			let field5 = view.viewWithTag(2400) as! UITextField
 			let lightGrayColor = UIColor.lightGrayColor().CGColor
+
 			field4.layer.borderColor = lightGrayColor
 			field5.layer.borderColor = lightGrayColor
 
@@ -94,40 +123,21 @@ class EquationViewController: UIViewController {
 			field2.userInteractionEnabled = false
 			field3.userInteractionEnabled = false
 		}
-	}
 
-	func genTextField() -> [UITextField] {
-		var textFields = [UITextField]()
-		let counts = firstWords.count
-
-		for i in 0..<counts {
-			let numberTextField = NumberTextfield()
-			let rect = CGRect(x: 75, y: 30 + (global.rowHeight) * CGFloat(i) + 3, width: global.size.width - 150, height: global.rowHeight - 6)
-			let textField = numberTextField.getTextFields(rect)
-			textField.delegate = self
-			textField.tag = (i + 1) * 400
-			textFields.append(textField)
-		}
-
-		return textFields
-	}
-
-	func getWords(index: Int) {
-		sectionTitle = Equation(rawValue: index)!.sectionTitle
-		firstWords = Equation(rawValue: index)!.firstWords
-		lastWords = Equation(rawValue: index)!.lastWords
 	}
 
 
 	func showAlert() {
 		let alert = UIAlertController(title: "输入有误", message: "功率因素在0到1之间", preferredStyle: .Alert)
 		let action = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
-		// alert.view.tintColor = Global.redColor()
-		alert.addAction(action) 
+		alert.addAction(action)
 		presentViewController(alert, animated: true, completion: nil)
 	}
 
+
 }
+
+
 
 // MARK: - TableView
 
@@ -150,6 +160,7 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate {
 		}
 		
 		cell!.configureForEquationCell(firstWords[indexPath.row], last: lastWords[indexPath.row])
+
 		return cell!
 	}
 
@@ -163,6 +174,8 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate {
 
 }
 
+
+
 // MARK: - TextFieldDelegate
 
 extension EquationViewController: UITextFieldDelegate {
@@ -172,6 +185,7 @@ extension EquationViewController: UITextFieldDelegate {
 	}
 
 	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+
 		if allowInput.indexOf(string) == nil && !string.isEmpty {
 			return false
 		}
@@ -186,10 +200,12 @@ extension EquationViewController: UITextFieldDelegate {
 		}
 
 		calculateWith(self.index, tag: self.tag, content: content)
-			return true
+		
+		return true
 
 	}
 }
+
 
 
 // MARK: - Calculation

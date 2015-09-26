@@ -14,23 +14,24 @@ class TestViewController: UIViewController {
 	var records = Records()
 	var generator = Generator()
 	var global = Global()
+
 	var buttons = [UIButton]()
 	var littleButtons = [UIButton]()
 
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
 		self.title = "电工试题"
 		self.view.backgroundColor = Global.backgroundColor()
 		self.navigationItem.hidesBackButton = true
 
 		buttons = generator.genButtonsForTest()
-
+		buttons[0].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
+		buttons[1].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
 		for button in buttons {
 			self.view.addSubview(button)
 		}
-
-		buttons[0].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
-		buttons[1].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
 
 		let label = generator.genLabelForTest()
 		view.addSubview(label)
@@ -45,10 +46,6 @@ class TestViewController: UIViewController {
 			buttons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + 40 * CGFloat(i))
 		}
 
-		for button in littleButtons {
-			let delay = arc4random_uniform(4)
-			button.genAnimation(.MovingAround, delay: Double(delay), distance: 0.0)
-		}
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -79,7 +76,6 @@ class TestViewController: UIViewController {
 		switch index {
 		case 0:
 			let QuestionVC = QuestionViewController()
-
 			QuestionVC.record = {(rightCount: Int, date: NSDate) in
 				let record = Record(record: rightCount, date: date)
 				self.records.records.insert(record, atIndex: 0)
@@ -88,7 +84,6 @@ class TestViewController: UIViewController {
 			delay(seconds: 0.5, completion: { () -> () in
 				self.navigationController?.pushViewController(QuestionVC, animated: true)
 			})
-
 
 		case 1:
 			let recordVC = RecordViewController()

@@ -11,17 +11,17 @@ import UIKit
 
 class ContentViewController: UITableViewController {
 
-	var mainTitle = ""
-	var index = 0
-	var knowledge = Knowledge()
-
-	var iconsToDisplay = [[Knowledge]]()
-
-	var searchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 44))
-
 	convenience init() {
 		self.init(style: UITableViewStyle.Grouped)
 	}
+
+
+	var index = 0
+
+	var knowledge = Knowledge()
+	var knowledges = [[Knowledge]]()
+
+	var searchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 44))
 
 
 	override func viewDidLoad() {
@@ -30,19 +30,20 @@ class ContentViewController: UITableViewController {
 		switch index {
 		case 0:
 			self.title = "单位公式"
-			iconsToDisplay = knowledge.getAll(0)
+			knowledges = knowledge.getAll(0)
 		case 1:
 			self.title = "符号图标"
-			iconsToDisplay = knowledge.getAll(1)
-			// tableView.separatorColor = Global.redColor()
+			knowledges = knowledge.getAll(1)
+
+			tableView.allowsSelection = false
+
 			searchBar.placeholder = "搜索"
 			searchBar.tintColor = Global.redColor()
 			searchBar.delegate = self
-			tableView.allowsSelection = false
 			tableView.tableHeaderView = searchBar
 		case 2:
 			self.title = "工具设备"
-			iconsToDisplay = knowledge.getAll(2)
+			knowledges = knowledge.getAll(2)
 		default:
 			break
 		}
@@ -63,17 +64,14 @@ class ContentViewController: UITableViewController {
 
 		tableView.layoutIfNeeded()
 
-
 		let label = UILabel(frame: CGRect(x: 0, y: tableView.contentSize.height + 20, width: self.view.bounds.width, height: 20))
 		label.backgroundColor = UIColor.clearColor()
 		label.text = "部分内容源自网络"
 		label.textColor = Global.lightRedColor()
 		label.font = UIFont.systemFontOfSize(13)
 		label.textAlignment = .Center
-		// label.sizeToFit()
 		tableView.addSubview(label)
 
-		// self.navigationController?.delegate?.navigationController!(self.navigationController!, willShowViewController: self, animated: true)
 	}
 
 	override func viewWillDisappear(animated: Bool) {
@@ -81,14 +79,16 @@ class ContentViewController: UITableViewController {
 		hidesBottomBarWhenPushed = true
 	}
 
+
+
 	// MARK: - TableView
 
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return iconsToDisplay.count
+		return knowledges.count
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return iconsToDisplay[section].count
+		return knowledges[section].count
 	}
 
 	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -104,7 +104,7 @@ class ContentViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-		let all = iconsToDisplay[indexPath.section]
+		let all = knowledges[indexPath.section]
 		knowledge = all[indexPath.row]
 
 		switch index {
@@ -122,8 +122,6 @@ class ContentViewController: UITableViewController {
 			return cell
 		}
 
-
-
 	}
 
 	override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
@@ -139,7 +137,7 @@ class ContentViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-		let knowledges = iconsToDisplay[indexPath.section]
+		let knowledges = self.knowledges[indexPath.section]
 		let knowledge = knowledges[indexPath.row]
 		let detailVC = DetailViewController()
 		detailVC.knowledege = knowledge
@@ -147,21 +145,14 @@ class ContentViewController: UITableViewController {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
-	/*
-	override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 30
-	}
-	*/
-
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		let icons = iconsToDisplay[section]
+		let icons = knowledges[section]
 		return icons[0].sectionTitle
 	}
 
 }
 
 extension ContentViewController: UISearchBarDelegate {
-
 
 	func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
 		tableView.separatorColor = UIColor(red: 0.783922, green: 0.780392, blue: 0.8, alpha: 1.0)
@@ -174,15 +165,14 @@ extension ContentViewController: UISearchBarDelegate {
 		searchBar.resignFirstResponder()
 		searchBar.setShowsCancelButton(false, animated: true)
 		tableView.separatorColor = UIColor(red: 0.783922, green: 0.780392, blue: 0.8, alpha: 1.0)
-		iconsToDisplay = knowledge.getAll(1)
+		knowledges = knowledge.getAll(1)
 		tableView.reloadData()
 	}
 
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
-		// tableView.separatorColor = Global.redColor()
-		let searchedIcons = knowledge.getSearchedIcons(searchBar.text!)
 
+		let searchedIcons = knowledge.getSearchedAll(searchBar.text!)
 		if searchedIcons.isEmpty {
 			tableView.separatorColor = UIColor.clearColor()
 			let hudView = HudView.hudInView(self.view, animated: true)
@@ -193,7 +183,8 @@ extension ContentViewController: UISearchBarDelegate {
 				self.view.userInteractionEnabled = true
 			})
 		}
-		iconsToDisplay = searchedIcons
+
+		knowledges = searchedIcons
 		tableView.reloadData()
 	}
 	

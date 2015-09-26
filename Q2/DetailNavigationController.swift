@@ -16,10 +16,9 @@ class DetailNavigationController: UINavigationController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.navigationBar.barTintColor = Global.redColor()
-		self.navigationBar.tintColor = Global.redColor()
+		self.navigationBar.tintColor = UIColor.whiteColor()
 		self.navigationBar.translucent = true
 		self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-		self.toolbarHidden = true
 	}
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {

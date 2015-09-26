@@ -12,16 +12,16 @@ import UIKit
 class ScaleViewController: UIViewController {
 
 	var generator = Generator()
+
 	var buttons = [UIButton]()
-	var littleButtons = [UIButton]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
 		self.title = "公式换算"
 		self.view.backgroundColor = Global.backgroundColor()
 
 		buttons = generator.genButtonsForScale()
-		
 		for i in 0..<4 {
 			buttons[i].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
 			buttons[i].tag = i + 345
@@ -45,10 +45,6 @@ class ScaleViewController: UIViewController {
 			button.genAnimation(.Appear, delay: 0.1 * Double(j), distance: 30 + CGFloat(j) * 40)
 		}
 
-		for button in littleButtons {
-			let delay = arc4random_uniform(4)
-			button.genAnimation(.MovingAround, delay: Double(delay), distance: 0.0)
-		}
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -60,6 +56,7 @@ class ScaleViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		hidesBottomBarWhenPushed = false
 	}
+
 
 	func open(sender: UIButton) {
 		let index = sender.tag - 345

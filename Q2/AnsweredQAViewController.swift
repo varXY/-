@@ -10,11 +10,14 @@ import Foundation
 import UIKit
 
 class AnsweredQAViewController: UIViewController {
-	var tableView = UITableView()
+
 	var questions = [Question]()
-	var rightOrWrong = [Int]()
 	var global = Global()
 	var generator = Generator()
+	var rightOrWrong = [Int]()
+
+	var tableView = UITableView()
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,27 +26,13 @@ class AnsweredQAViewController: UIViewController {
 		self.view.backgroundColor = Global.backgroundColor()
 		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
-		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
-		// tableView.separatorColor = Global.redColor()
-
 		tableView.allowsSelection = false
-
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
-	}
-
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		// hidesBottomBarWhenPushed = true
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		// hidesBottomBarWhenPushed = true
 	}
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -79,8 +68,8 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 		let rightOrWrong = self.rightOrWrong[indexPath.row]
 		let rowForShow = indexPath.row + 1
 		let rightAnswer = questions[indexPath.row].rightAnswer
-
 		cell?.configureForAnsweredQACell(label, rightOrWrong: rightOrWrong, row: rowForShow, rightAnswer: rightAnswer)
+
 		return cell!
 	}
 

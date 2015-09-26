@@ -11,10 +11,11 @@ import UIKit
 
 class RecordCell: UITableViewCell {
 
+	var global = Global()
+
 	var recordLabel = UILabel()
 	var dateLabel = UILabel()
 	var colorView = UIView()
-	var global = Global()
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,7 +26,6 @@ class RecordCell: UITableViewCell {
 		self.contentView.addSubview(colorView)
 
 		recordLabel.frame = CGRect(x: global.size.width - 60, y: 10, width: 50, height: 44)
-		// recordLabel.font = UIFont.boldSystemFontOfSize(17)
 		recordLabel.textColor = UIColor.lightGrayColor()
 		self.contentView.addSubview(recordLabel)
 
@@ -38,6 +38,7 @@ class RecordCell: UITableViewCell {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+
 
 	func configureForRecordCell(record: Record) {
 		self.colorView.frame = CGRect(x: 0, y: 5, width: self.global.size.width / 10 * CGFloat(record.record), height: 56)

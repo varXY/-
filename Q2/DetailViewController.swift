@@ -12,10 +12,11 @@ import UIKit
 class DetailViewController: UIViewController {
 
 	var knowledege = Knowledge()
+	var global = Global()
+
 	var label = UILabel()
 	var textView = UITextView()
 
-	var global = Global()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

@@ -12,12 +12,6 @@ import Foundation
 
 class Generator {
 
-	var button: UIButton?
-	var littleButtons = [UIButton]()
-	let buttonSize: CGFloat = 30.0
-
-	var testBigButtonY: CGFloat = 0
-
 	var global = Global()
 
 
@@ -50,6 +44,7 @@ class Generator {
 		return buttons
 	}
 
+
 	func genButtonsForTest() -> [UIButton] {
 		var buttons = [UIButton]()
 
@@ -63,14 +58,13 @@ class Generator {
 		button?.tag = 33893
 		buttons.append(button!)
 
-		testBigButtonY = (button?.frame.origin.y)!
-
 		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight, width: smallbuttonWidth, height: smallbuttonHeight))
 		button?.tag = 33894
 		buttons.append(button!)
 
 		return buttons
 	}
+
 
 	func genButtonsForScale() -> [UIButton] {
 		let buttonSize = global.buttonSize()
@@ -101,8 +95,8 @@ class Generator {
 	}
 
 
-	// MARK: - Test
 
+	// MARK: - For Test
 
 	func genLabelForTest() -> UILabel {
 		let label = UILabel()
@@ -194,6 +188,7 @@ class Generator {
 		return button
 	}
 
+
 	func genRightOrWrongViewForQA(rightOrWrong: String, page: Int) -> UIView {
 		let view = UIView(frame: CGRect(x: global.center.x - 50 + global.size.width * CGFloat(page), y: global.center.y - 50 - 64 - 30, width: 100, height: 100))
 		view.layer.cornerRadius = 50
@@ -211,6 +206,7 @@ class Generator {
 		
 	}
 
+
 	func genJumpButtonForQA(superView: UIView, page: Int) {
 		let buttonWidth: CGFloat = 100
 		let buttonHeight:CGFloat = 100
@@ -219,14 +215,12 @@ class Generator {
 
 		let jumpButton = UIButton(type: .System)
 		jumpButton.backgroundColor = UIColor.clearColor()
-		// jumpButton.alpha = 0.0
 		jumpButton.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
 		jumpButton.layer.cornerRadius = 50
 		jumpButton.clipsToBounds = true
 		jumpButton.tag = page + 2333
 		superView.addSubview(jumpButton)
 	}
-
 
 
 	func showTestFinalPage(rightCount: Int) -> UIView {
@@ -278,7 +272,6 @@ class Generator {
 	}
 
 
-
 	func genQLabelForAnsweredCell(question: Question) -> UILabel {
 		let QLabel = UILabel()
 		QLabel.frame = CGRect(x: 35, y: 10, width: global.size.width - 45, height: 150)
@@ -292,12 +285,9 @@ class Generator {
 
 
 
-	//MARK: -
-
-
+	//MARK: - Base
 
 	func genButton(title: String, frame: CGRect) -> UIButton? {
-
 		let button = UIButton(type: .System)
 		button.frame = CGRect(x: round(frame.origin.x), y: round(frame.origin.y), width: round(frame.size.width), height: round(frame.size.height))
 		button.tintColor = UIColor.redColor()
@@ -309,13 +299,10 @@ class Generator {
 
 		genShadowForButton(button)
 
-		// let rect = CGRect(x: 0, y: 0, width: 200, height: 200)
-		// let path = UIBezierPath(rect: rect)
-		// button.layer.shadowPath = path.CGPath
-
 		return button
 	}
 
+	
 	func genShadowForButton(button: UIButton) {
 		button.layer.masksToBounds = false
 		button.layer.shadowRadius = 10
@@ -323,16 +310,6 @@ class Generator {
 		button.layer.shadowColor = UIColor.lightGrayColor().CGColor
 		button.layer.shadowOffset = CGSizeMake(0, 0)
 	}
-
-	/*
-	func genShadowForUIView(view: UIView) {
-		view.layer.masksToBounds = false
-		view.layer.shadowRadius = 10
-		view.layer.shadowOpacity = 0.5
-		view.layer.shadowColor = UIColor.lightGrayColor().CGColor
-		view.layer.shadowOffset = CGSizeMake(0, 3)
-	}
-	*/
 
 
 }

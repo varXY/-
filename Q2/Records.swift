@@ -34,12 +34,16 @@ class Records {
 
 	func loadRecords() {
 		let path = dataFilePath()
+
 		if NSFileManager.defaultManager().fileExistsAtPath(path) {
+
 			if let data = NSData(contentsOfFile: path) {
 				let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
 				records = unarchiver.decodeObjectForKey("Records") as! [Record]
 				unarchiver.finishDecoding()
 			}
+
 		}
+		
 	}
 }

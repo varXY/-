@@ -24,14 +24,12 @@ class NumberTextfield: UITextField {
 	}
 
 	func getTextFields(frame: CGRect) -> NumberTextfield {
-
 		let textField = NumberTextfield()
 		textField.frame = frame
 		textField.layer.cornerRadius = 8
 		textField.layer.borderWidth = 1.0
 		textField.tintColor = Global.redColor()
-		let redColor = Global.redColor().CGColor
-		textField.layer.borderColor = redColor
+		textField.layer.borderColor = Global.redColor().CGColor
 		textField.placeholder = "请输入"
 		textField.keyboardType = .DecimalPad
 		textField.textAlignment = .Right
