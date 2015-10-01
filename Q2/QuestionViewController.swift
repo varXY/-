@@ -287,16 +287,17 @@ class QuestionViewController: UIViewController {
 
 
 	func jumpToPage(page: Int) {
+		let duration = Double(global.size.width / 640)
 
-		UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: -64.0)
 			}, completion: nil)
 
+		
 	}
 
 
 	func quit() {
-
 		self.scrollView.removeFromSuperview()
 		self.rightCount = 0
 		self.rightOrWrong.removeAll(keepCapacity: false)
@@ -308,10 +309,10 @@ class QuestionViewController: UIViewController {
 		if self.view.viewWithTag(9999999) == nil {
 			let alert = UIAlertController(title: "提示", message: "答题还没完成，确定退出吗？", preferredStyle: .Alert)
 
-			let action = UIAlertAction(title: "确定", style: .Destructive, handler: ({ _ in self.quit() }))
+			let action = UIAlertAction(title: "确定", style: .Default, handler: ({ _ in self.quit() }))
 			alert.addAction(action)
 
-			let action1 = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+			let action1 = UIAlertAction(title: "取消", style: .Default, handler: nil)
 			alert.addAction(action1)
 
 			presentViewController(alert, animated: true, completion: nil)

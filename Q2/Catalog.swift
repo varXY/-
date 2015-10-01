@@ -196,9 +196,9 @@ enum textBodies {
 		case .index(1, 4):
 			return "额定功率P：指设备的有功功率。\n\n单位：瓦（W）\n\n公式：P = UIcosφ\n\n标识设备能转换的电功率。"
 		case .index(1, 5):
-			return "功率因素(cosφ)：有功功率和视在功率的比值。\n\n英文Power Factor，简称PF。\n\n公式：cosφ = P/S\n\n电阻负荷的功率因素为1，具有电感性负载的电路功率因素都小于1"
+			return "功率因素(cosφ)：有功功率和视在功率的比值。\n\n英文Power Factor，简称PF。\n\n公式：cosφ = P/S\n\n电阻负荷的功率因素为1，具有电感性负载的电路功率因素都小于1。"
 		case .index(2, 0):
-			return "用电设备的功率（额定，有功，无功）除以1h，等于该设备1h消耗的电能。\n单位: 千瓦/时（kW/h)，无功电量的单位是（kvar/h)。\n1度电 = 1kW/h"
+			return "用电设备的功率（额定，有功，无功）除以1h，等于该设备1h消耗的电能。\n\n单位: 千瓦/时（kW/h)，无功电量的单位是（kvar/h)。\n\n1度电 = 1kW/h"
 		default:
 			return "Nothing Found"
 		}

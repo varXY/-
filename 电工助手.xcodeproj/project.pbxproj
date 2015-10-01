@@ -39,6 +39,7 @@
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
 		31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A492511BACE65C009077FD /* UIButton+genAnimation.swift */; settings = {ASSET_TAGS = (); }; };
+		31BD7AB11BBBA754005656E1 /* Knowledge1.1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BD7AB01BBBA754005656E1 /* Knowledge1.1.swift */; settings = {ASSET_TAGS = (); }; };
 		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
 		31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */; };
 		31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */; };
@@ -58,10 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		31033A791BA3BB5F00DC9141 /* Q2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Q2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31033A791BA3BB5F00DC9141 /* 电工助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "电工助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31033A7D1BA3BB5F00DC9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		31033A901BA3BB5F00DC9141 /* Q2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Q2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		31033A901BA3BB5F00DC9141 /* 电工助手.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "电工助手.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31033A951BA3BB5F00DC9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31033A961BA3BB5F00DC9141 /* Q2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q2Tests.swift; sourceTree = "<group>"; };
 		31033AA01BA3BC6800DC9141 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQACell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Global.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31A492511BACE65C009077FD /* UIButton+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+genAnimation.swift"; sourceTree = "<group>"; };
+		31BD7AB01BBBA754005656E1 /* Knowledge1.1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knowledge1.1.swift; sourceTree = "<group>"; };
 		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScaleNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScaleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -132,8 +134,8 @@
 		31033A7A1BA3BB5F00DC9141 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31033A791BA3BB5F00DC9141 /* Q2.app */,
-				31033A901BA3BB5F00DC9141 /* Q2Tests.xctest */,
+				31033A791BA3BB5F00DC9141 /* 电工助手.app */,
+				31033A901BA3BB5F00DC9141 /* 电工助手.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				314DFCDA1BA42E7800E79557 /* Knowledge.swift */,
+				31BD7AB01BBBA754005656E1 /* Knowledge1.1.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -307,9 +310,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		31033A781BA3BB5F00DC9141 /* Q2 */ = {
+		31033A781BA3BB5F00DC9141 /* 电工助手 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 31033A9A1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "Q2" */;
+			buildConfigurationList = 31033A9A1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "电工助手" */;
 			buildPhases = (
 				31033A751BA3BB5F00DC9141 /* Sources */,
 				31033A761BA3BB5F00DC9141 /* Frameworks */,
@@ -319,14 +322,14 @@
 			);
 			dependencies = (
 			);
-			name = Q2;
+			name = "电工助手";
 			productName = Q2;
-			productReference = 31033A791BA3BB5F00DC9141 /* Q2.app */;
+			productReference = 31033A791BA3BB5F00DC9141 /* 电工助手.app */;
 			productType = "com.apple.product-type.application";
 		};
-		31033A8F1BA3BB5F00DC9141 /* Q2Tests */ = {
+		31033A8F1BA3BB5F00DC9141 /* 电工助手Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 31033A9D1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "Q2Tests" */;
+			buildConfigurationList = 31033A9D1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "电工助手Tests" */;
 			buildPhases = (
 				31033A8C1BA3BB5F00DC9141 /* Sources */,
 				31033A8D1BA3BB5F00DC9141 /* Frameworks */,
@@ -337,9 +340,9 @@
 			dependencies = (
 				31033A921BA3BB5F00DC9141 /* PBXTargetDependency */,
 			);
-			name = Q2Tests;
+			name = "电工助手Tests";
 			productName = Q2Tests;
-			productReference = 31033A901BA3BB5F00DC9141 /* Q2Tests.xctest */;
+			productReference = 31033A901BA3BB5F00DC9141 /* 电工助手.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -355,6 +358,7 @@
 				TargetAttributes = {
 					31033A781BA3BB5F00DC9141 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 9VT3ZYNA9Y;
 					};
 					31033A8F1BA3BB5F00DC9141 = {
 						CreatedOnToolsVersion = 6.4;
@@ -362,7 +366,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 31033A741BA3BB5F00DC9141 /* Build configuration list for PBXProject "Q2" */;
+			buildConfigurationList = 31033A741BA3BB5F00DC9141 /* Build configuration list for PBXProject "电工助手" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -375,8 +379,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				31033A781BA3BB5F00DC9141 /* Q2 */,
-				31033A8F1BA3BB5F00DC9141 /* Q2Tests */,
+				31033A781BA3BB5F00DC9141 /* 电工助手 */,
+				31033A8F1BA3BB5F00DC9141 /* 电工助手Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -438,6 +442,7 @@
 				318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */,
 				31033AAB1BA3E9BC00DC9141 /* TestViewController.swift in Sources */,
 				314DFCDF1BA42EBB00E79557 /* DescribeCell.swift in Sources */,
+				31BD7AB11BBBA754005656E1 /* Knowledge1.1.swift in Sources */,
 				31033AA11BA3BC6800DC9141 /* TabBarController.swift in Sources */,
 				314DFCEA1BA42F0E00E79557 /* HudView.swift in Sources */,
 			);
@@ -456,7 +461,7 @@
 /* Begin PBXTargetDependency section */
 		31033A921BA3BB5F00DC9141 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 31033A781BA3BB5F00DC9141 /* Q2 */;
+			target = 31033A781BA3BB5F00DC9141 /* 电工助手 */;
 			targetProxy = 31033A911BA3BB5F00DC9141 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -549,10 +554,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "myname.com.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.ElectricicanHelper;
+				PRODUCT_NAME = "电工助手";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -562,10 +570,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "myname.com.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.ElectricicanHelper;
+				PRODUCT_NAME = "电工助手";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -582,8 +593,8 @@
 				INFOPLIST_FILE = Q2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "myname.com.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Q2.app/Q2";
+				PRODUCT_NAME = "电工助手";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/电工助手.app/电工助手";
 			};
 			name = Debug;
 		};
@@ -595,15 +606,15 @@
 				INFOPLIST_FILE = Q2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "myname.com.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Q2.app/Q2";
+				PRODUCT_NAME = "电工助手";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/电工助手.app/电工助手";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		31033A741BA3BB5F00DC9141 /* Build configuration list for PBXProject "Q2" */ = {
+		31033A741BA3BB5F00DC9141 /* Build configuration list for PBXProject "电工助手" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				31033A981BA3BB5F00DC9141 /* Debug */,
@@ -612,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		31033A9A1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "Q2" */ = {
+		31033A9A1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "电工助手" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				31033A9B1BA3BB5F00DC9141 /* Debug */,
@@ -621,7 +632,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		31033A9D1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "Q2Tests" */ = {
+		31033A9D1BA3BB5F00DC9141 /* Build configuration list for PBXNativeTarget "电工助手Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				31033A9E1BA3BB5F00DC9141 /* Debug */,

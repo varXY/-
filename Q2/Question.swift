@@ -481,7 +481,7 @@ class Question {
 			question.wrongAnswer = "每年一次"
 			return question
 		case 86:
-			question.question = "在值班期间需要移开或越过遮栏时"
+			question.question = "在值班期间需要移开或越过遮栏时："
 			question.rightAnswer = "必须有监护人在场"
 			question.wrongAnswer = "必须有领导在场"
 			return question
@@ -556,7 +556,7 @@ class Question {
 			question.wrongAnswer = "可变电阻"
 			return question
 		case 101:
-			question.question = "额定电压为220V的灯泡接在110V电源上,灯泡的功率是原来的："
+			question.question = "额定电压为220V的灯泡接在110V电源上，灯泡的功率是原来的："
 			question.rightAnswer = "1/4"
 			question.wrongAnswer = "1/2"
 			return question
@@ -591,7 +591,7 @@ class Question {
 			question.wrongAnswer = "反比"
 			return question
 		case 108:
-			question.question = "并联电路中，电流的分配与电阻成"
+			question.question = "并联电路中，电流的分配与电阻成："
 			question.rightAnswer = "反比"
 			question.wrongAnswer = "正比"
 			return question
@@ -601,7 +601,7 @@ class Question {
 			question.wrongAnswer = "增强"
 			return question
 		case 110:
-			question.question = "电压互感器的一次绕组的匝数远大于二次绕组的匝数"
+			question.question = "电压互感器的一次绕组的匝数远大于二次绕组的匝数。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
@@ -741,7 +741,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 138:
-			question.question = "线电压额定是380V，相电压额定是220V"
+			question.question = "线电压额定是380V，相电压额定是220V。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
@@ -766,7 +766,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 143:
-			question.question = "不引出中性线的三相供电方式叫三相三线制，一般用于高压输电系统"
+			question.question = "不引出中性线的三相供电方式叫三相三线制，一般用于高压输电系统。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
@@ -836,7 +836,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 157:
-			question.question = "新参加电气工作的人员、实习人员和临时参加劳动的人员，工作能力强的,可以单独从事危险工作。"
+			question.question = "新参加电气工作的人员、实习人员和临时参加劳动的人员，工作能力强的，可以单独从事危险工作。"
 			question.rightAnswer = "错误"
 			question.wrongAnswer = "正确"
 			return question
@@ -981,7 +981,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 186:
-			question.question = "从功能上讲，高压断路器可以用高压隔离开关、高压负荷开关 代替。"
+			question.question = "从功能上讲，高压断路器可以用高压隔离开关、高压负荷开关代替。"
 			question.rightAnswer = "错误"
 			question.wrongAnswer = "正确"
 			return question
@@ -1076,7 +1076,7 @@ class Question {
 			question.wrongAnswer = "电压平均值"
 			return question
 		case 205:
-			question.question = "铁心是变压器的_磁_通道.铁心多用彼此绝缘的硅钢片叠成目的是为了减小涡流和磁带"
+			question.question = "铁心是变压器的磁通道，铁心多用彼此绝缘的硅钢片叠成目的是为了减小涡流和磁带。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
@@ -1091,7 +1091,7 @@ class Question {
 			question.wrongAnswer = "60"
 			return question
 		case 208:
-			question.question = "三相对称的额定工作电压为380V，有我国供电系统供电，该三相负载应接成："
+			question.question = "三相对称的额定工作电压为380V，由我国供电系统供电，该三相负载应接成："
 			question.rightAnswer = "Y形接法"
 			question.wrongAnswer = "三角形接法"
 			return question
@@ -1136,12 +1136,12 @@ class Question {
 			question.wrongAnswer = "P"
 			return question
 		case 217:
-			question.question = "串联电路中, 电压的分配与电阻成："
+			question.question = "串联电路中，电压的分配与电阻成："
 			question.rightAnswer = "正比"
 			question.wrongAnswer = "反比"
 			return question
 		case 218:
-			question.question = "并联电路中, 电流的分配与电阻成："
+			question.question = "并联电路中，电流的分配与电阻成："
 			question.rightAnswer = "反比"
 			question.wrongAnswer = "正比"
 			return question
@@ -1161,7 +1161,7 @@ class Question {
 			question.wrongAnswer = "正确"
 			return question
 		case 222:
-			question.question = "将一根条形磁铁截去一段仍为条形磁铁,它仍然具有两个磁极。"
+			question.question = "将一根条形磁铁截去一段仍为条形磁铁，它仍然具有两个磁极。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
@@ -1211,7 +1211,7 @@ class Question {
 			question.wrongAnswer = "增大"
 			return question
 		case 232:
-			question.question = "电场力做功与所经过的路径无关, 参考点确定后, 电场中各点的电位之值便唯一确定, 这是电位的什么原理？"
+			question.question = "电场力做功与所经过的路径无关，参考点确定后，电场中各点的电位之值便唯一确定，这是电位的什么原理？"
 			question.rightAnswer = "唯一性"
 			question.wrongAnswer = "稳定性"
 			return question
@@ -1236,12 +1236,12 @@ class Question {
 			question.wrongAnswer = "微机保护"
 			return question
 		case 237:
-			question.question = "电压互感器的一次绕组的匝数远大于二次绕组的匝数"
+			question.question = "电压互感器的一次绕组的匝数远大于二次绕组的匝数。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
 		case 238:
-			question.question = "在加有滤波电容的整流电路中, 二极管的导通总是："
+			question.question = "在加有滤波电容的整流电路中，二极管的导通总是："
 			question.rightAnswer = "小于1800"
 			question.wrongAnswer = "大于1800"
 			return question
@@ -1256,7 +1256,7 @@ class Question {
 			question.wrongAnswer = "电压"
 			return question
 		case 241:
-			question.question = "三相半波可控整流电路带阻性负载时, 当控制角大于多少时, 输出电流开始断续？"
+			question.question = "三相半波可控整流电路带阻性负载时，当控制角大于多少时，输出电流开始断续？"
 			question.rightAnswer = "900"
 			question.wrongAnswer = "600"
 			return question
@@ -1276,12 +1276,12 @@ class Question {
 			question.wrongAnswer = "整流"
 			return question
 		case 245:
-			question.question = "在整流电路的输出端并一个电容, 主要是利用电容的什么特性, 使脉动电压变得较平稳？"
+			question.question = "在整流电路的输出端并一个电容，主要是利用电容的什么特性，使脉动电压变得较平稳？"
 			question.rightAnswer = "充放电"
 			question.wrongAnswer = "升压"
 			return question
 		case 246:
-			question.question = "为防止分接开关故障, 应测量分接开关接头阻值, 其相差不超过："
+			question.question = "为防止分接开关故障，应测量分接开关接头阻值，其相差不超过："
 			question.rightAnswer = "2%"
 			question.wrongAnswer = "1.5%"
 			return question
@@ -1291,12 +1291,12 @@ class Question {
 			question.wrongAnswer = "11%～15%"
 			return question
 		case 248:
-			question.question = "运动导体切割磁力线而产生最大电动势时，导体与磁力线间的夹角应为"
+			question.question = "运动导体切割磁力线而产生最大电动势时，导体与磁力线间的夹角应为："
 			question.rightAnswer = "90°"
 			question.wrongAnswer = "45°"
 			return question
 		case 249:
-			question.question = "如果把一个24V的电源正极接地,则负极的电位是-24V。"
+			question.question = "如果把一个24V的电源正极接地，则负极的电位是-24V。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
@@ -1331,7 +1331,7 @@ class Question {
 			question.wrongAnswer = "S极指向N极"
 			return question
 		case 256:
-			question.question = "一个正弦交流电压，其有效值为100V,则其最大值为："
+			question.question = "一个正弦交流电压，其有效值为100V，则其最大值为："
 			question.rightAnswer = "141.4V"
 			question.wrongAnswer = "120.5V"
 			return question
@@ -1361,7 +1361,7 @@ class Question {
 			question.wrongAnswer = "N -> S"
 			return question
 		case 262:
-			question.question = "某直流稳压电源，输出电压为6V，将它接到匝比为1∶10的变压器次级，则其初级的电压为:"
+			question.question = "某直流稳压电源，输出电压为6V，将它接到匝比为1∶10的变压器次级，则其初级的电压为："
 			question.rightAnswer = "60V"
 			question.wrongAnswer = "600V"
 			return question
@@ -1396,7 +1396,7 @@ class Question {
 			question.wrongAnswer = "降低功耗"
 			return question
 		case 269:
-			question.question = "用叠加原理计算复杂电路, 就是把一个复杂电路化为什么电路进行计算的？"
+			question.question = "用叠加原理计算复杂电路，就是把一个复杂电路化为什么电路进行计算的？"
 			question.rightAnswer = "单电源"
 			question.wrongAnswer = "较小"
 			return question
@@ -1411,7 +1411,7 @@ class Question {
 			question.wrongAnswer = "0.5"
 			return question
 		case 272:
-			question.question = "实际电压源在供电时,它的端电压低于它的电动势。"
+			question.question = "实际电压源在供电时，它的端电压低于它的电动势。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
 			return question
