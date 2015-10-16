@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class DetailNavigationController: UINavigationController {
 
 	var global = Global()

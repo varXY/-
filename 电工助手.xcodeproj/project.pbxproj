@@ -39,7 +39,6 @@
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
 		31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A492511BACE65C009077FD /* UIButton+genAnimation.swift */; settings = {ASSET_TAGS = (); }; };
-		31BD7AB11BBBA754005656E1 /* Knowledge1.1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BD7AB01BBBA754005656E1 /* Knowledge1.1.swift */; settings = {ASSET_TAGS = (); }; };
 		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
 		31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */; };
 		31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */; };
@@ -95,7 +94,6 @@
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQACell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Global.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31A492511BACE65C009077FD /* UIButton+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+genAnimation.swift"; sourceTree = "<group>"; };
-		31BD7AB01BBBA754005656E1 /* Knowledge1.1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knowledge1.1.swift; sourceTree = "<group>"; };
 		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScaleNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScaleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -125,7 +123,7 @@
 		31033A701BA3BB5F00DC9141 = {
 			isa = PBXGroup;
 			children = (
-				31033A7B1BA3BB5F00DC9141 /* Q2 */,
+				31033A7B1BA3BB5F00DC9141 /* ElectricicanHelper */,
 				31033A931BA3BB5F00DC9141 /* Q2Tests */,
 				31033A7A1BA3BB5F00DC9141 /* Products */,
 			);
@@ -140,7 +138,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		31033A7B1BA3BB5F00DC9141 /* Q2 */ = {
+		31033A7B1BA3BB5F00DC9141 /* ElectricicanHelper */ = {
 			isa = PBXGroup;
 			children = (
 				31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */,
@@ -157,6 +155,7 @@
 				31523AA21BAFE9A100526881 /* Sound5.0 */,
 				31033A7C1BA3BB5F00DC9141 /* Supporting Files */,
 			);
+			name = ElectricicanHelper;
 			path = Q2;
 			sourceTree = "<group>";
 		};
@@ -274,7 +273,6 @@
 			isa = PBXGroup;
 			children = (
 				314DFCDA1BA42E7800E79557 /* Knowledge.swift */,
-				31BD7AB01BBBA754005656E1 /* Knowledge1.1.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -442,7 +440,6 @@
 				318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */,
 				31033AAB1BA3E9BC00DC9141 /* TestViewController.swift in Sources */,
 				314DFCDF1BA42EBB00E79557 /* DescribeCell.swift in Sources */,
-				31BD7AB11BBBA754005656E1 /* Knowledge1.1.swift in Sources */,
 				31033AA11BA3BC6800DC9141 /* TabBarController.swift in Sources */,
 				314DFCEA1BA42F0E00E79557 /* HudView.swift in Sources */,
 			);

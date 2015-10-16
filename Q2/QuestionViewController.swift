@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
+
 class QuestionViewController: UIViewController {
 
 	var global = Global()
