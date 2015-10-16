@@ -2,8 +2,11 @@
 iOS App
 
 名称：电工助手，ElectricianHelper，Q2
+
 开发时间：2015年9月
+
 App Store地址：https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8
+
 开发博客：http://www.cnblogs.com/xiaoyaonotes/
 
 描述：教育、工具类应用，开源，免费，本人第一个上架应用。
