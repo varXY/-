@@ -36,6 +36,10 @@ class EquationViewController: UIViewController {
 		self.title = Equation(rawValue: index)?.navigationTitle
 		self.view.backgroundColor = Global.backgroundColor()
 
+		let rightSwipe = UISwipeGestureRecognizer(target: self, action: "back")
+		rightSwipe.direction = .Right
+		self.view.addGestureRecognizer(rightSwipe)
+
 		getWords(index)
 
 		let rect = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)
@@ -64,6 +68,10 @@ class EquationViewController: UIViewController {
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 		hidesBottomBarWhenPushed = true
+	}
+
+	func back() {
+		self.navigationController?.popViewControllerAnimated(true)
 	}
 
 
@@ -395,8 +403,8 @@ extension EquationViewController {
 		case 400:
 			A = content
 			field1.text = (A == 0 ? "" : sv(A * 735.49875))
-			field2.text = (A == 0 ? "" : sv(A))
-			field3.text = (A == 0 ? "" : sv(A * 745.699872))
+			field2.text = (A == 0 ? "" : sv(A * 735.49875 / 745.699872))
+			field3.text = (A == 0 ? "" : sv(A * 735.49875))
 
 		case 800:
 			B = content

@@ -20,6 +20,8 @@ class RecordCell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+		self.contentView.backgroundColor = Global.backgroundColor()
+
 		colorView.frame = CGRect.zero
 		colorView.backgroundColor = Global.lightRedColor()
 		colorView.alpha = 0.3
@@ -41,7 +43,7 @@ class RecordCell: UITableViewCell {
 
 
 	func configureForRecordCell(record: Record) {
-		self.colorView.frame = CGRect(x: 0, y: 5, width: self.global.size.width / 10 * CGFloat(record.record), height: 56)
+		self.colorView.frame = CGRect(x: 0, y: 5, width: self.global.size.width / 10 * CGFloat(record.record), height: 55)
 		self.recordLabel.text = "\(record.record)/10"
 		self.dateLabel.text = "\(dateFormatter.stringFromDate(record.date))"
 	}

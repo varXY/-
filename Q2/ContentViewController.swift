@@ -27,6 +27,12 @@ class ContentViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		tableView.backgroundColor = Global.backgroundColor()
+
+		let rightSwipe = UISwipeGestureRecognizer(target: self, action: "back")
+		rightSwipe.direction = .Right
+		self.view.addGestureRecognizer(rightSwipe)
+
 		switch index {
 		case 0:
 			self.title = "单位公式"
@@ -66,6 +72,10 @@ class ContentViewController: UITableViewController {
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 		hidesBottomBarWhenPushed = true
+	}
+
+	func back() {
+		self.navigationController?.popViewControllerAnimated(true)
 	}
 
 

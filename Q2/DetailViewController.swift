@@ -23,6 +23,10 @@ class DetailViewController: UIViewController {
 		view.backgroundColor = UIColor.whiteColor()
 		self.title = knowledege.title
 
+		let rightSwipe = UISwipeGestureRecognizer(target: self, action: "back")
+		rightSwipe.direction = .Right
+		self.view.addGestureRecognizer(rightSwipe)
+
 		label.frame = CGRect(x: 0, y: 0, width: global.size.width - 10, height: global.size.height)
 		label.font = UIFont.systemFontOfSize(18)
 		label.numberOfLines = 0
@@ -37,5 +41,9 @@ class DetailViewController: UIViewController {
 		textView.contentOffset = CGPoint(x: 0.0, y: 0.0)
 		view.addSubview(textView)
 
+	}
+
+	func back() {
+		self.navigationController?.popViewControllerAnimated(true)
 	}
 }
