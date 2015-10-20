@@ -60,16 +60,6 @@ class EquationViewController: UIViewController {
 		textFields[0].becomeFirstResponder()
 	}
 
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		hidesBottomBarWhenPushed = true
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		hidesBottomBarWhenPushed = true
-	}
-
 	func back() {
 		self.navigationController?.popViewControllerAnimated(true)
 	}

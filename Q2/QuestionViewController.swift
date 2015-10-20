@@ -43,8 +43,7 @@ class QuestionViewController: UIViewController {
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "confirmToQuit")
 		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
-		self.navigationItem.leftBarButtonItem = quitButton
-		self.navigationController?.navigationItem.leftBarButtonItem = nil
+		self.navigationItem.setHidesBackButton(true, animated: true)
 
 		scrollView.frame = view.bounds
 		scrollView.delegate = self
@@ -75,7 +74,6 @@ class QuestionViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		hidesBottomBarWhenPushed = true
 
 		if let page = self.view.viewWithTag(9999999) {
 
@@ -89,17 +87,6 @@ class QuestionViewController: UIViewController {
 		}
 
 	}
-
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		hidesBottomBarWhenPushed = false
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		hidesBottomBarWhenPushed = true
-	}
-
 
 
 	func chosen(sender: UIButton) {

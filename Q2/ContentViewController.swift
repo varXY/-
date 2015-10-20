@@ -27,6 +27,10 @@ class ContentViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		if traitCollection.forceTouchCapability == .Available && index != 1 {
+			registerForPreviewingWithDelegate(self, sourceView: view)
+		}
+
 		tableView.backgroundColor = Global.backgroundColor()
 
 		let rightSwipe = UISwipeGestureRecognizer(target: self, action: "back")
@@ -62,16 +66,6 @@ class ContentViewController: UITableViewController {
 
 		cellNib = UINib(nibName: "IntroCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "IntroCell")
-	}
-
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		hidesBottomBarWhenPushed = true
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		hidesBottomBarWhenPushed = true
 	}
 
 	func back() {
@@ -140,6 +134,7 @@ class ContentViewController: UITableViewController {
 		let knowledge = knowledges[indexPath.row]
 		let detailVC = DetailViewController()
 		detailVC.knowledege = knowledge
+		detailVC.hidesBottomBarWhenPushed = true
 		self.navigationController?.pushViewController(detailVC, animated: true)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
@@ -186,7 +181,33 @@ extension ContentViewController: UISearchBarDelegate {
 		knowledges = searchedIcons
 		tableView.reloadData()
 	}
-	
-	
-	
+
 }
+
+extension ContentViewController: UIViewControllerPreviewingDelegate {
+
+	func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+		guard let indexPath = tableView.indexPathForRowAtPoint(location), cell = tableView.cellForRowAtIndexPath(indexPath) else { return nil }
+
+		let knowledges = self.knowledges[indexPath.section]
+		let knowledge = knowledges[indexPath.row]
+		let detailVC = DetailViewController()
+		detailVC.knowledege = knowledge
+
+		detailVC.preferredContentSize = CGSize(width: 0.0, height: 0.0)
+		previewingContext.sourceRect = cell.frame
+
+		return detailVC
+	}
+
+	func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+		showViewController(viewControllerToCommit, sender: self)
+	}
+}
+
+
+
+
+
+
+

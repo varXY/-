@@ -25,7 +25,6 @@ class TestViewController: UIViewController {
 
 		self.title = "电工试题"
 		self.view.backgroundColor = Global.backgroundColor()
-		self.navigationItem.hidesBackButton = true
 
 		buttons = generator.genButtonsForTest()
 		buttons[0].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
@@ -40,23 +39,12 @@ class TestViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		hidesBottomBarWhenPushed = false
 
 		for i in 0..<2 {
 			buttons[i].hidden = false
 			buttons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + 40 * CGFloat(i))
 		}
 
-	}
-
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		hidesBottomBarWhenPushed = true
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		hidesBottomBarWhenPushed = false
 	}
 
 	func open(sender: UIButton) {
@@ -81,6 +69,8 @@ class TestViewController: UIViewController {
 				let record = Record(record: rightCount, date: date)
 				self.records.records.insert(record, atIndex: 0)
 			}
+
+			QuestionVC.hidesBottomBarWhenPushed = true
 
 			delay(seconds: 0.5, completion: { () -> () in
 				self.navigationController?.pushViewController(QuestionVC, animated: true)

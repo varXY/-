@@ -32,7 +32,6 @@ class InfoViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		hidesBottomBarWhenPushed = false
 
 		for button in BigButtons {
 			button.hidden = false
@@ -44,16 +43,6 @@ class InfoViewController: UIViewController {
 
 	}
 
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		hidesBottomBarWhenPushed = true
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		hidesBottomBarWhenPushed = false
-
-	}
 
 	func open(sender: UIButton) {
 		showCatalog(sender.tag - 93456)
@@ -72,6 +61,7 @@ class InfoViewController: UIViewController {
 		delay(seconds: 0.5) { () -> () in
 			let contentVC = ContentViewController()
 			contentVC.index = index
+			contentVC.hidesBottomBarWhenPushed = true
 			self.navigationController?.pushViewController(contentVC, animated: true)
 		}
 	}

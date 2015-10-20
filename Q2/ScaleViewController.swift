@@ -33,8 +33,6 @@ class ScaleViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 
-		hidesBottomBarWhenPushed = false
-
 		for button in buttons {
 			button.hidden = false
 		}
@@ -45,16 +43,6 @@ class ScaleViewController: UIViewController {
 			button.genAnimation(.Appear, delay: 0.1 * Double(j), distance: 30 + CGFloat(j) * 40)
 		}
 
-	}
-
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		hidesBottomBarWhenPushed = true
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		hidesBottomBarWhenPushed = false
 	}
 
 
@@ -71,6 +59,7 @@ class ScaleViewController: UIViewController {
 
 		let equationVC = EquationViewController()
 		equationVC.index = index
+		equationVC.hidesBottomBarWhenPushed = true
 
 		delay(seconds: 0.5) { () -> () in
 			self.navigationController?.pushViewController(equationVC, animated: true)
