@@ -19,7 +19,6 @@ class TestViewController: UIViewController {
 	var buttons = [UIButton]()
 	var littleButtons = [UIButton]()
 
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
