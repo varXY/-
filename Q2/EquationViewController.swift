@@ -36,10 +36,6 @@ class EquationViewController: UIViewController {
 		self.title = Equation(rawValue: index)?.navigationTitle
 		self.view.backgroundColor = Global.backgroundColor()
 
-		let rightSwipe = UISwipeGestureRecognizer(target: self, action: "back")
-		rightSwipe.direction = .Right
-		self.view.addGestureRecognizer(rightSwipe)
-
 		getWords(index)
 
 		let rect = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)

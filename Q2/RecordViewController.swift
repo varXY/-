@@ -14,6 +14,7 @@ class RecordViewController: UIViewController {
 
 	var records = [Record]()
 	var global = Global()
+	var generator = Generator()
 
 	var tableView = UITableView()
 
@@ -34,12 +35,62 @@ class RecordViewController: UIViewController {
 		tableView.delegate = self
 		tableView.dataSource = self
 		view.addSubview(tableView)
+
+		let shareButton = generator.genShareButton(CGPointMake(20, global.size.height - 60), tag: 160)
+		shareButton.addTarget(self, action: "share", forControlEvents: .TouchUpInside)
+		view.addSubview(shareButton)
 	}
 
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		let button = view.viewWithTag(160) as! UIButton
+
+		if records.count == 0 {
+			button.hidden = true
+			return
+		}
+
+		button.hidden = false
+		button.genAnimation(.Appear, delay: 0.5, distance: 60)
+	}
+
+	func share() {
+
+		tableView.layoutIfNeeded()
+
+		let button = view.viewWithTag(160) as! UIButton
+		UIView.animateWithDuration(0.3) { () -> Void in
+			button.transform = CGAffineTransformMakeTranslation(0.0, 60)
+		}
+
+		delay(seconds: 0.3) { () -> () in
+			let text: String = "我最近一次电工试题问答，10道题答对了\(self.records[0].record)道。"
+			let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
+
+			guard let navi = self.navigationController as? DetailNavigationController else { return }
+			let image = navi.captureScreen()
+
+			let arr: [AnyObject] = [text, link, image]
+
+			let share1 = UIActivityViewController(activityItems: arr, applicationActivities: [])
+			share1.completionWithItemsHandler = { (type:String?, complete:Bool, arr:[AnyObject]?, error:NSError?) -> Void in
+				let button = self.view.viewWithTag(160) as! UIButton
+				delay(seconds: 0.0, completion: { () -> () in
+					UIView.animateWithDuration(0.5) { () -> Void in
+						button.transform = CGAffineTransformMakeTranslation(0.0, 0.0)
+					}
+				})
+
+			}
+			self.presentViewController(share1, animated: true, completion: nil)
+		}
+
+	}
 
 	func close() {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
+
 }
 
 extension RecordViewController: UITableViewDataSource, UITableViewDelegate {

@@ -284,6 +284,30 @@ class Generator {
 	}
 
 
+	func genShareButton(point: CGPoint, tag: Int) -> UIButton {
+		let button = UIButton(type: .System)
+		button.frame.origin = point
+		button.frame.size = CGSize(width: global.size.width - 40, height: 120)
+		button.tintColor = UIColor.grayColor()
+		button.layer.cornerRadius = 10
+		button.clipsToBounds = true
+
+		let label = UILabel(frame: CGRect(x: 0, y: 0, width: button.frame.size.width, height: button.frame.size.height / 2))
+		label.text = "分享"
+		label.font = UIFont.systemFontOfSize(20)
+		label.textColor = Global.redColor()
+		label.textAlignment = .Center
+		button.addSubview(label)
+
+		genShadowForButton(button)
+
+		button.backgroundColor = UIColor.whiteColor()
+		button.tag = tag
+
+		return button
+	}
+
+
 
 	//MARK: - Base
 

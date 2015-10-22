@@ -60,8 +60,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		case ShortcutIdentifier.First.type:
 			controller.selectedIndex = 1
 			guard let naviTestVC = controller.selectedViewController as! TestNavigationController? else { return false }
-			guard let testVC = naviTestVC.topViewController as! TestViewController? else { return false }
-			testVC.pushOrPresent(0)
+			let topVC = naviTestVC.topViewController
+
+			if topVC!.isKindOfClass(TestViewController) {
+				let testVC = topVC as! TestViewController
+				testVC.pushOrPresent(0)
+			}
+
 			handled = true
 			break
 		case ShortcutIdentifier.Second.type:
@@ -109,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 
-			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "常用知识", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Search), userInfo: [
+			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "常用知识", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "常用知识"), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 

@@ -19,6 +19,8 @@ class TestViewController: UIViewController {
 	var buttons = [UIButton]()
 	var littleButtons = [UIButton]()
 
+	let defaults = NSUserDefaults.standardUserDefaults()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -39,12 +41,52 @@ class TestViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 
+		let time1 = (records.records.count == 8 && records.showTimes == 1)
+		let time2 = (records.records.count == 16 && records.showTimes == 2)
+		let time3 = (records.records.count == 24 && records.showTimes == 3)
+
+		if time1 || time2 || time3 {
+			askForComment()
+			records.showTimes += 1
+			records.saveRecords()
+		}
+
+
 		for i in 0..<2 {
 			buttons[i].hidden = false
 			buttons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + 40 * CGFloat(i))
 		}
 
 	}
+
+
+	func askForComment() {
+		let alertVC = UIAlertController(title: "希望得到你的反馈", message: "去评分提建议或者分享一下吧！", preferredStyle: .Alert)
+
+		let action = UIAlertAction(title: "评分留言", style: .Default, handler: { (action) -> Void in
+			UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
+		})
+
+		let action1 = UIAlertAction(title: "分享", style: .Default, handler: { (_) -> Void in
+			let text: String = "电工助手：电工的最爱，学习电学知识的好伙伴！"
+			let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
+			let image: UIImage = UIImage(named: "Screen Shot")!
+			let arr: [AnyObject] = [text, link, image]
+
+			let share1 = UIActivityViewController(activityItems: arr, applicationActivities: nil)
+			self.presentViewController(share1, animated: true, completion: nil)
+		})
+
+		let action2 = UIAlertAction(title: "取消", style: .Default, handler: nil)
+
+		alertVC.addAction(action)
+		alertVC.addAction(action1)
+		alertVC.addAction(action2)
+
+		self.presentViewController(alertVC, animated: true, completion: nil)
+	}
+
+
 
 	func open(sender: UIButton) {
 		let index = sender.tag - 33893

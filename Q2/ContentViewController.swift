@@ -33,10 +33,6 @@ class ContentViewController: UITableViewController {
 
 		tableView.backgroundColor = Global.backgroundColor()
 
-		let rightSwipe = UISwipeGestureRecognizer(target: self, action: "back")
-		rightSwipe.direction = .Right
-		self.view.addGestureRecognizer(rightSwipe)
-
 		switch index {
 		case 0:
 			self.title = "单位公式"

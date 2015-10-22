@@ -10,6 +10,7 @@ import Foundation
 
 class Records {
 	var records = [Record]()
+	var showTimes: Int32 = 1
 
 	init() {
 		loadRecords()
@@ -28,6 +29,7 @@ class Records {
 		let data = NSMutableData()
 		let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
 		archiver.encodeObject(records, forKey: "Records")
+		archiver.encodeInt32(showTimes, forKey: "ShowTimes")
 		archiver.finishEncoding()
 		data.writeToFile(dataFilePath(), atomically: true)
 	}
@@ -40,6 +42,7 @@ class Records {
 			if let data = NSData(contentsOfFile: path) {
 				let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
 				records = unarchiver.decodeObjectForKey("Records") as! [Record]
+				showTimes = unarchiver.decodeInt32ForKey("ShowTimes")
 				unarchiver.finishDecoding()
 			}
 
