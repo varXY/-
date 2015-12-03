@@ -174,6 +174,7 @@ class QuestionViewController: UIViewController {
 					self.scrollView.alpha = 0.0
 					self.scrollView.removeFromSuperview()
 					self.view.backgroundColor = Global.backgroundColor()
+					self.title = "完成"
 				})
 			})
 

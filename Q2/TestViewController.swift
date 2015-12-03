@@ -44,8 +44,9 @@ class TestViewController: UIViewController {
 		let time1 = (records.records.count == 8 && records.showTimes == 1)
 		let time2 = (records.records.count == 16 && records.showTimes == 2)
 		let time3 = (records.records.count == 24 && records.showTimes == 3)
+		let time4 = (records.records.count == 32 && records.showTimes == 4)
 
-		if time1 || time2 || time3 {
+		if time1 || time2 || time3 || time4 {
 			askForComment()
 			records.showTimes += 1
 			records.saveRecords()
@@ -63,7 +64,7 @@ class TestViewController: UIViewController {
 	func askForComment() {
 		let alertVC = UIAlertController(title: "希望得到你的反馈", message: "去评分提建议或者分享一下吧！", preferredStyle: .Alert)
 
-		let action = UIAlertAction(title: "评分留言", style: .Default, handler: { (action) -> Void in
+		let action0 = UIAlertAction(title: "评分留言", style: .Default, handler: { (action) -> Void in
 			UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
 		})
 
@@ -79,7 +80,7 @@ class TestViewController: UIViewController {
 
 		let action2 = UIAlertAction(title: "取消", style: .Default, handler: nil)
 
-		alertVC.addAction(action)
+		alertVC.addAction(action0)
 		alertVC.addAction(action1)
 		alertVC.addAction(action2)
 

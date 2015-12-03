@@ -23,18 +23,15 @@ class DetailViewController: UIViewController {
 		view.backgroundColor = UIColor.whiteColor()
 		self.title = knowledege.title
 
-		let rightSwipe = UISwipeGestureRecognizer(target: self, action: "back")
-		rightSwipe.direction = .Right
-		self.view.addGestureRecognizer(rightSwipe)
-
 		label.frame = CGRect(x: 0, y: 0, width: global.size.width - 10, height: global.size.height)
 		label.font = UIFont.systemFontOfSize(18)
 		label.numberOfLines = 0
 		label.text = knowledege.textBody
 		label.sizeToFit()
 
-		textView.frame = CGRect(x: 5, y: 5, width: global.size.width - 10, height: global.size.height)
+		textView.frame = CGRect(x: 0, y: 5, width: global.size.width, height: global.size.height)
 		textView.contentSize = CGSize(width: label.frame.width, height: label.frame.height)
+		textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 10, right: 5)
 		textView.text = knowledege.textBody
 		textView.font = UIFont.systemFontOfSize(18)
 		textView.editable = false
