@@ -14,14 +14,19 @@ class Question {
 	var rightAnswer: String = ""
 	var wrongAnswer: String = ""
 
-	func getQestions(numberOfQuestions: Int) -> [Question] {
+	func getQestions(numberOfQuestions: Int, type: Int) -> [Question] {
 		var questionMarks = [Int]()
 		var questions = [Question]()
 
-		questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
-
-		for i in questionMarks {
-			questions.append(getQuestion(i)!)
+		switch type {
+		case 0:
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
+			for i in questionMarks { questions.append(getBeginnerQuestion(i)!) }
+		case 1:
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 51)
+			for i in questionMarks { questions.append(getIntermediateQuestions(i)!) }
+		default:
+			break
 		}
 
 		return questions
@@ -41,7 +46,7 @@ class Question {
 		return result
 	}
 
-	func getQuestion(number: Int) -> Question? {
+	func getBeginnerQuestion(number: Int) -> Question? {
 		let question = Question()
 
 		switch number {
@@ -446,7 +451,7 @@ class Question {
 			question.wrongAnswer = "错误"
 			return question
 		case 79:
-			question.question = "避雷器可以预防高大建筑物免遭雷击？"
+			question.question = "避雷器可以预防高大建筑物免遭雷击。"
 			question.rightAnswer = "错误"
 			question.wrongAnswer = "正确"
 			return question
@@ -1561,4 +1566,280 @@ class Question {
 		}
 		return nil
 	}
+
+	func getIntermediateQuestions(number: Int) -> Question? {
+		let question = Question()
+
+		switch number {
+		case 0:
+			question.question = "在电力系统中，使用ZnO避雷器的主要原因是："
+			question.rightAnswer = "保护性能好"
+			question.wrongAnswer = "不用维护"
+			return question
+		case 1:
+			question.question = "在正常运行情况下，中性点不接地系统中性点位移电压不得超过："
+			question.rightAnswer = "15%"
+			question.wrongAnswer = "20%"
+			return question
+		case 2:
+			question.question = "500kV变压器过励磁保护本保护反映的是："
+			question.rightAnswer = "励磁电压"
+			question.wrongAnswer = "励磁电抗"
+			return question
+		case 3:
+			question.question = "过流保护加装负荷电压闭锁可以："
+			question.rightAnswer = "提高保护的灵敏性"
+			question.wrongAnswer = "增加保护的可靠性"
+			return question
+		case 4:
+			question.question = "在发生非全相运行时，应闭锁什么保护？"
+			question.rightAnswer = "距离一段"
+			question.wrongAnswer = "零序二段"
+			return question
+		case 5:
+			question.question = "电压表的内阻为3kΩ最大量程为3V，先将它串联一个电阻改装成一个15V的电压表，则串联电阻的阻值为："
+			question.rightAnswer = "12kΩ"
+			question.wrongAnswer = "9kΩ"
+			return question
+		case 6:
+			question.question = "有一块内阻为0.15Ω，最大量程为1A的电流表，先将它并联一个0.05Ω的电阻则这块电流表的量程将扩大为："
+			question.rightAnswer = "4A"
+			question.wrongAnswer = "2A"
+			return question
+		case 7:
+			question.question = "零序电流的分布，主要取决于："
+			question.rightAnswer = "变压器中性点接地数目"
+			question.wrongAnswer = "发电机是否接地"
+			return question
+		case 8:
+			question.question = "零序电压的特性是："
+			question.rightAnswer = "接地故障点最高"
+			question.wrongAnswer = "接地故障点最低"
+			return question
+		case 9:
+			question.question = "测量1000kVA以下变压器绕组的直流电阻标准是：各相绕组电阻互相间的差别应不大于三相平均值的："
+			question.rightAnswer = "2%"
+			question.wrongAnswer = "4%"
+			return question
+		case 10:
+			question.question = "变电站的母线电量不平衡率，一般要求不超过："
+			question.rightAnswer = "±(1%-2%)"
+			question.wrongAnswer = "±(1%-5%)"
+			return question
+		case 11:
+			question.question = "电容器的无功输出功率与电容器的电容："
+			question.rightAnswer = "成正比"
+			question.wrongAnswer = "成反比"
+			return question
+		case 12:
+			question.question = "当电力系统无功容量严重不足时，会使系统："
+			question.rightAnswer = "瓦解"
+			question.wrongAnswer = "电压质量下降"
+			return question
+		case 13:
+			question.question = "系统向客户提供的无功功率最小，用户电压就："
+			question.rightAnswer = "越低"
+			question.wrongAnswer = "越高"
+			return question
+		case 14:
+			question.question = "发生那些情况可以联系调度处理："
+			question.rightAnswer = "套管油漏油"
+			question.wrongAnswer = "电容器爆炸"
+			return question
+		case 15:
+			question.question = "三相电容器之间的差值，不应超过单向总容量的："
+			question.rightAnswer = "5%"
+			question.wrongAnswer = "10%"
+			return question
+		case 16:
+			question.question = "对于同一电容器，两次连续投切中间应断开多长时间以上？"
+			question.rightAnswer = "5min"
+			question.wrongAnswer = "10min"
+			return question
+		case 17:
+			question.question = "当电容器额定电压等于线路额定相电压时，则应接成什么形并入电网？"
+			question.rightAnswer = "星形"
+			question.wrongAnswer = "三角形"
+			return question
+		case 18:
+			question.question = "电容器不允许在多少额定电压下长期运行？"
+			question.rightAnswer = "130%"
+			question.wrongAnswer = "100%"
+			return question
+		case 19:
+			question.question = "电容器的电容允许值最大变动范围为："
+			question.rightAnswer = "+10%"
+			question.wrongAnswer = "+5%"
+			return question
+		case 20:
+			question.question = "接入重合闸不灵敏一段的保护定值是按躲开非全相运行时的不平衡电流值整定的。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 21:
+			question.question = "母差保护的毫安表中出现的微小电流是电流互感器的："
+			question.rightAnswer = "误差电流"
+			question.wrongAnswer = "开路电流"
+			return question
+		case 22:
+			question.question = "接入距离保护的阻抗继电器的测量阻抗与保护安装处至故障点的距离成正比。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 23:
+			question.question = "距离保护第一段动作时间是保护装置与断路器固有的动作时间。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 24:
+			question.question = "距离保护一段的保护范围是被保护线路的："
+			question.rightAnswer = "80%-85%"
+			question.wrongAnswer = "全长"
+			return question
+		case 25:
+			question.question = "距离保护二段的时间是比相邻线路的一段加一个延时Δt。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 26:
+			question.question = "距离保护二段保护范围是："
+			question.rightAnswer = "线路全长延伸至下一段"
+			question.wrongAnswer = "不足线路全长"
+			return question
+		case 27:
+			question.question = "单电源线路速断保护范围是："
+			question.rightAnswer = "线路的20%-50%"
+			question.wrongAnswer = "线路的70%"
+			return question
+		case 28:
+			question.question = "三绕组变压器的零序保护是保护区外单相接地故障的后备保护和："
+			question.rightAnswer = "高压侧绕组"
+			question.wrongAnswer = "中压侧绕组"
+			return question
+		case 29:
+			question.question = "如果二次回路故障导致重瓦斯保护误动作变压器跳闸，恢复运行应将重瓦斯保护："
+			question.rightAnswer = "退出变压器"
+			question.wrongAnswer = "继续运行变压器"
+			return question
+		case 30:
+			question.question = "线路带电作业时重合闸："
+			question.rightAnswer = "退出"
+			question.wrongAnswer = "投入"
+			return question
+		case 31:
+			question.question = "当一条母线停电时相位比较式母差保护应改："
+			question.rightAnswer = "非选"
+			question.wrongAnswer = "有选"
+			return question
+		case 32:
+			question.question = "当瓦斯保护本身故障，为了防止保护误动作，值班人员应："
+			question.rightAnswer = "打开跳闸连接片"
+			question.wrongAnswer = "取下保护直流"
+			return question
+		case 33:
+			question.question = "中央信号装置按其复归方法分为："
+			question.rightAnswer = "就地复归和中央复归"
+			question.wrongAnswer = "仅中央复归"
+			return question
+		case 34:
+			question.question = "预告信号装置分为："
+			question.rightAnswer = "延时和瞬时"
+			question.wrongAnswer = "仅瞬时"
+			return question
+		case 35:
+			question.question = "发预告信号时光字牌内两只灯是："
+			question.rightAnswer = "并联"
+			question.wrongAnswer = "串联"
+			return question
+		case 36:
+			question.question = "检查光字牌时两只灯是："
+			question.rightAnswer = "串联"
+			question.wrongAnswer = "并联"
+			return question
+		case 37:
+			question.question = "测量电流互感器极性的目的是："
+			question.rightAnswer = "保护外部接线正确"
+			question.wrongAnswer = "满足负载要求"
+			return question
+		case 38:
+			question.question = "变压器差动保护范围为变压器两侧电流互感器之间的设备。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 39:
+			question.question = "中性点接地开关合上后其什么投入？"
+			question.rightAnswer = "中性点零序过流"
+			question.wrongAnswer = "间隙过流"
+			return question
+		case 40:
+			question.question = "变压器差动保护投入前测相量、差电压要："
+			question.rightAnswer = "带负荷"
+			question.wrongAnswer = "不带负荷"
+			return question
+		case 41:
+			question.question = "电力系统发生短路时，通常还发生电压："
+			question.rightAnswer = "下降"
+			question.wrongAnswer = "上升"
+			return question
+		case 42:
+			question.question = "变压器瓦斯保护动作原因是由于变压器："
+			question.rightAnswer = "内部故障"
+			question.wrongAnswer = "套管故障"
+			return question
+		case 43:
+			question.question = "距离二段定值整定按照："
+			question.rightAnswer = "线路末端有一定灵敏度考虑"
+			question.wrongAnswer = "按线路全长80%"
+			return question
+		case 44:
+			question.question = "IOJSCK意思是："
+			question.rightAnswer = "零序加速出口"
+			question.wrongAnswer = "距离保护出口"
+			return question
+		case 45:
+			question.question = "操作票应根据值班调度员或谁下达的操作计划和操作综合令？"
+			question.rightAnswer = "值班长"
+			question.wrongAnswer = "监护人"
+			return question
+		case 46:
+			question.question = "操作票由谁填写？"
+			question.rightAnswer = "操作人"
+			question.wrongAnswer = "值班长"
+			return question
+		case 47:
+			question.question = "操作票上的操作项目包括检查项目必须填写双重名称，即设备："
+			question.rightAnswer = "名称和编号"
+			question.wrongAnswer = "名称和位置"
+			return question
+		case 48:
+			question.question = "操作转换开关用术语是："
+			question.rightAnswer = "切至"
+			question.wrongAnswer = "拉开、合上"
+			return question
+		case 49:
+			question.question = "并、解列检查负荷分配，并在该项的末尾记上什么实际数值？"
+			question.rightAnswer = "电流"
+			question.wrongAnswer = "有功"
+			return question
+		case 50:
+			question.question = "操作票中的“下令时间”是指调度下达操作的："
+			question.rightAnswer = "动令时间"
+			question.wrongAnswer = "预令时间"
+			return question
+		case 51:
+			question.question = "操作票中的“下令时间”，对于自行掌握的操作，是指调度批准的时间。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		default:
+			break
+		}
+
+		return nil
+	}
 }
+
+
+
+
+

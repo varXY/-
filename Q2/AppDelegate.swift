@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		switch (shortCutType) {
 		case ShortcutIdentifier.First.type:
 			controller.selectedIndex = 1
-			guard let naviTestVC = controller.selectedViewController as! TestNavigationController? else { return false }
+			guard let naviTestVC = controller.selectedViewController as! NavigationController? else { return false }
 			let topVC = naviTestVC.topViewController
 
 			if topVC!.isKindOfClass(TestViewController) {
@@ -122,16 +122,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 
 		// MARK: Base
-
-		let infoNavi = InfoNavigationController()
+		let infoVC = InfoViewController()
+		let infoNavi = NavigationController(viewController: infoVC)
 		infoNavi.tabBarItem = UITabBarItem(title: "常用知识", image: UIImage(named: "常用知识"), tag: 0)
 
-		let testNavi = TestNavigationController()
+		let testVC = TestViewController()
+		let testNavi = NavigationController(viewController: testVC)
 		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: UIImage(named: "电工试题"), tag: 1)
 		let controller = testNavi.viewControllers[0] as! TestViewController
 		controller.records = records
 
-		let scaleNavi = ScaleNavigationController()
+		let scaleVC = ScaleViewController()
+		let scaleNavi = NavigationController(viewController: scaleVC)
 		scaleNavi.tabBarItem = UITabBarItem(title: "公式换算", image: UIImage(named: "公式换算"), tag: 2)
 
 		let tabbarController = TabBarController()

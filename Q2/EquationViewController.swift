@@ -29,17 +29,16 @@ class EquationViewController: UIViewController {
 
 	var tableView = UITableView()
 
+	var textFields = [UITextField]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		self.title = Equation(rawValue: index)?.navigationTitle
 		self.view.backgroundColor = Global.backgroundColor()
 
 		getWords(index)
 
-		let rect = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)
-		tableView = UITableView(frame: rect, style: .Grouped)
+		tableView = UITableView(frame: view.bounds, style: .Grouped)
 		tableView.backgroundColor = Global.backgroundColor()
 		tableView.scrollEnabled = true
 		tableView.allowsSelection = false
@@ -47,12 +46,17 @@ class EquationViewController: UIViewController {
 		tableView.delegate = self
 		view.addSubview(tableView)
 
-		let textFields = genTextField()
+		genTextField()
 		for textfield in textFields {
 			tableView.addSubview(textfield)
 		}
 
 		customTextField(index)
+
+	}
+
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
 		textFields[0].becomeFirstResponder()
 	}
 
@@ -69,8 +73,7 @@ class EquationViewController: UIViewController {
 	}
 
 
-	func genTextField() -> [UITextField] {
-		var textFields = [UITextField]()
+	func genTextField() {
 		let counts = firstWords.count
 
 		for i in 0..<counts {
@@ -81,41 +84,35 @@ class EquationViewController: UIViewController {
 			textField.tag = (i + 1) * 400
 			textFields.append(textField)
 		}
-
-		return textFields
 	}
 
 
 	func customTextField(index: Int) {
 
 		if index == 1 {
-			let field4 = view.viewWithTag(2000) as! UITextField
-			let field5 = view.viewWithTag(2400) as! UITextField
 			let lightGrayColor = UIColor.lightGrayColor().CGColor
 
-			field4.layer.borderColor = lightGrayColor
-			field5.layer.borderColor = lightGrayColor
+			textFields[4].layer.borderColor = lightGrayColor
+			textFields[5].layer.borderColor = lightGrayColor
 
-			field4.placeholder = ""
-			field5.placeholder = ""
+			textFields[4].placeholder = ""
+			textFields[5].placeholder = ""
 
-			field4.userInteractionEnabled = false
-			field5.userInteractionEnabled = false
+			textFields[4].userInteractionEnabled = false
+			textFields[5].userInteractionEnabled = false
 		}
 
 		if index == 3 {
-			let field2 = view.viewWithTag(1200) as! UITextField
-			let field3 = view.viewWithTag(1600) as! UITextField
 			let lightGrayColor = UIColor.lightGrayColor().CGColor
 
-			field2.layer.borderColor = lightGrayColor
-			field3.layer.borderColor = lightGrayColor
+			textFields[2].layer.borderColor = lightGrayColor
+			textFields[3].layer.borderColor = lightGrayColor
 
-			field2.placeholder = ""
-			field3.placeholder = ""
+			textFields[2].placeholder = ""
+			textFields[3].placeholder = ""
 
-			field2.userInteractionEnabled = false
-			field3.userInteractionEnabled = false
+			textFields[2].userInteractionEnabled = false
+			textFields[3].userInteractionEnabled = false
 		}
 
 	}
@@ -174,10 +171,6 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension EquationViewController: UITextFieldDelegate {
 
-	func textFieldDidBeginEditing(textField: UITextField) {
-		tag = textField.tag
-	}
-
 	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
 
 		if allowInput.indexOf(string) == nil && !string.isEmpty {
@@ -188,7 +181,7 @@ extension EquationViewController: UITextFieldDelegate {
 		let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
 		
 		content = newText.doubleValue
-		calculateWith(self.index, tag: self.tag, content: content)
+		calculateWith(self.index, tag: textField.tag, content: content)
 		
 		return true
 
@@ -221,9 +214,6 @@ extension EquationViewController {
 
 
 	func calculate_0(tag: Int, content: Double) {
-		let field0 = view.viewWithTag(400) as! UITextField
-		let field1 = view.viewWithTag(800) as! UITextField
-		let field2 = view.viewWithTag(1200) as! UITextField
 
 		switch tag {
 		case 400:
@@ -231,7 +221,7 @@ extension EquationViewController {
 			calculatedA = (A == 0 ? true : false)
 			C = (B == 0 ? 0 : A / B)
 
-			field2.text = (C == 0 ? "" : sv(C))
+			textFields[2].text = (C == 0 ? "" : sv(C))
 
 		case 800:
 			B = content
@@ -242,8 +232,8 @@ extension EquationViewController {
 				C = (B == 0 ? 0 : A / B)
 			}
 
-			field0.text = (A == 0 ? "" : sv(A))
-			field2.text = (C == 0 ? "" : sv(C))
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[2].text = (C == 0 ? "" : sv(C))
 
 		case 1200:
 			C = content
@@ -254,8 +244,8 @@ extension EquationViewController {
 				B = (C == 0 ? 0 : A / C)
 			}
 
-			field0.text = (A == 0 ? "" : sv(A))
-			field1.text = (B == 0 ? "" : sv(B))
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[1].text = (B == 0 ? "" : sv(B))
 
 		default:
 			break
@@ -266,11 +256,6 @@ extension EquationViewController {
 
 
 	func calculate_1(tag: Int, content: Double) {
-		let field0 = view.viewWithTag(400) as! UITextField
-		let field1 = view.viewWithTag(800) as! UITextField
-		let field2 = view.viewWithTag(1200) as! UITextField
-		let field4 = view.viewWithTag(2000) as! UITextField
-		let field5 = view.viewWithTag(2400) as! UITextField
 
 		switch tag {
 		case 400:
@@ -279,11 +264,11 @@ extension EquationViewController {
 			C = A * B
 
 			if D >= 0 && D <= 1 && C != 0 {
-				field4.text = (D == 0 ? "" : sv(C * D))
-				field5.text = (D == 0 ? "" : sv(C - C * D))
+				textFields[4].text = (D == 0 ? "" : sv(C * D))
+				textFields[5].text = (D == 0 ? "" : sv(C - C * D))
 			}
 
-			field2.text = (C == 0 ? "" : "\(C)")
+			textFields[2].text = (C == 0 ? "" : "\(C)")
 
 		case 800:
 			B = content
@@ -294,13 +279,13 @@ extension EquationViewController {
 				C = A * B
 
 				if D >= 0 && D <= 1 && C != 0 {
-					field4.text = (D == 0 ? "" : sv(C * D))
-					field5.text = (D == 0 ? "" : sv(C - C * D))
+					textFields[4].text = (D == 0 ? "" : sv(C * D))
+					textFields[5].text = (D == 0 ? "" : sv(C - C * D))
 				}
 			}
 
-			field0.text = (A == 0 ? "" : sv(A))
-			field2.text = (C == 0 ? "" : sv(C))
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[2].text = (C == 0 ? "" : sv(C))
 
 		case 1200:
 			C = content
@@ -312,20 +297,20 @@ extension EquationViewController {
 			}
 
 			if D != 0 {
-				field4.text = (C == 0 ? "" : sv(C * D))
-				field5.text = (C == 0 ? "" : sv(C - C * D))
+				textFields[4].text = (C == 0 ? "" : sv(C * D))
+				textFields[5].text = (C == 0 ? "" : sv(C - C * D))
 			}
 
-			field0.text = (A == 0 ? "" : sv(A))
-			field1.text = (B == 0 ? "" : sv(B))
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[1].text = (B == 0 ? "" : sv(B))
 
 		case 1600:
 			D = content
 
 			if D >= 0 && D <= 1 {
 				if C != 0 {
-					field4.text = (D == 0 ? "" : sv(C * D))
-					field5.text = (D == 0 ? "" : sv(C - C * D))
+					textFields[4].text = (D == 0 ? "" : sv(C * D))
+					textFields[5].text = (D == 0 ? "" : sv(C - C * D))
 				}
 			} else {
 				showAlert()
@@ -338,9 +323,6 @@ extension EquationViewController {
 	}
 
 	func calculate_2(tag: Int, content: Double) {
-		let field0 = view.viewWithTag(400) as! UITextField
-		let field1 = view.viewWithTag(800) as! UITextField
-		let field2 = view.viewWithTag(1200) as! UITextField
 
 		switch tag {
 		case 400:
@@ -348,7 +330,7 @@ extension EquationViewController {
 			calculatedA = (A == 0 ? true : false)
 			C = A * B / 1000
 
-			field2.text = (C == 0 ? "" : sv(C))
+			textFields[2].text = (C == 0 ? "" : sv(C))
 
 		case 800:
 			B = content
@@ -359,8 +341,8 @@ extension EquationViewController {
 				C = A * B / 1000
 			}
 
-			field0.text = (A == 0 ? "" : sv(A))
-			field2.text = (C == 0 ? "" : sv(C))
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[2].text = (C == 0 ? "" : sv(C))
 
 		case 1200:
 			C = content
@@ -371,8 +353,8 @@ extension EquationViewController {
 				B = (A == 0 ? 0 : C * 1000 / A)
 			}
 
-			field0.text = (A == 0 ? "" : sv(A))
-			field1.text = (B == 0 ? "" : sv(B))
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[1].text = (B == 0 ? "" : sv(B))
 
 		default:
 			break
@@ -380,23 +362,19 @@ extension EquationViewController {
 	}
 
 	func calculate_3(tag: Int, content: Double) {
-		let field0 = view.viewWithTag(400) as! UITextField
-		let field1 = view.viewWithTag(800) as! UITextField
-		let field2 = view.viewWithTag(1200) as! UITextField
-		let field3 = view.viewWithTag(1600) as! UITextField
 
 		switch tag {
 		case 400:
 			A = content
-			field1.text = (A == 0 ? "" : sv(A * 735.49875))
-			field2.text = (A == 0 ? "" : sv(A * 735.49875 / 745.699872))
-			field3.text = (A == 0 ? "" : sv(A * 735.49875))
+			textFields[1].text = (A == 0 ? "" : sv(A * 735.49875))
+			textFields[2].text = (A == 0 ? "" : sv(A * 735.49875 / 745.699872))
+			textFields[3].text = (A == 0 ? "" : sv(A * 735.49875))
 
 		case 800:
 			B = content
-			field0.text = (B == 0 ? "" : sv(B / 735.49875))
-			field2.text = (B == 0 ? "" : sv(B / 745.699872))
-			field3.text = (B == 0 ? "" : sv(B))
+			textFields[0].text = (B == 0 ? "" : sv(B / 735.49875))
+			textFields[2].text = (B == 0 ? "" : sv(B / 745.699872))
+			textFields[3].text = (B == 0 ? "" : sv(B))
 
 		default:
 			break

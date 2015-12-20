@@ -67,7 +67,7 @@ class RecordViewController: UIViewController {
 			let text: String = "我最近一次电工试题问答，10道题答对了\(self.records[0].record)道。"
 			let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
 
-			guard let navi = self.navigationController as? DetailNavigationController else { return }
+			guard let navi = self.navigationController as? NavigationController else { return }
 			let image = navi.captureScreen()
 
 			let arr: [AnyObject] = [text, link, image]

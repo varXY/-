@@ -16,6 +16,7 @@ class QuestionViewController: UIViewController {
 	var global = Global()
 	var generator = Generator()
 
+	var type = 0
 	var questions = [Question]()
 	var rightCount = 0
 	var rightOrWrong = [Int]()
@@ -38,7 +39,7 @@ class QuestionViewController: UIViewController {
 		self.view.backgroundColor = UIColor.whiteColor()
 
 		let question = Question()
-		questions = question.getQestions(10)
+		questions = question.getQestions(10, type: type)
 
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "confirmToQuit")
 		quitButton.tintColor = UIColor.whiteColor()
@@ -321,14 +322,14 @@ class QuestionViewController: UIViewController {
 		let quitButton = page?.viewWithTag(123456) as! UIButton
 		quitButton.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
 		
-		let AnsweredQAVC = AnsweredQAViewController()
-		AnsweredQAVC.questions = self.questions
-		AnsweredQAVC.rightOrWrong = self.rightOrWrong
+		let answeredQAVC = AnsweredQAViewController()
+		answeredQAVC.questions = self.questions
+		answeredQAVC.rightOrWrong = self.rightOrWrong
 
-		let detailNV = DetailNavigationController(rootViewController: AnsweredQAVC)
+		let answeredQANavi = NavigationController(viewController: answeredQAVC)
 
 		delay(seconds: 0.5) { () -> () in
-			self.presentViewController(detailNV, animated: true, completion: nil)
+			self.presentViewController(answeredQANavi, animated: true, completion: nil)
 		}
 
 	}

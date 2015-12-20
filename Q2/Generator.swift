@@ -47,19 +47,28 @@ class Generator {
 
 	func genButtonsForTest() -> [UIButton] {
 		var buttons = [UIButton]()
+		let buttonSize = global.buttonSize()
 
-		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
+//		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
 		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
 		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
 		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
 
-		var button = genButton("开始答题", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
-		button?.titleLabel?.font = UIFont.systemFontOfSize(24)
-		button?.tag = 33893
+//		var button = genButton("开始答题", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
+//		button?.titleLabel?.font = UIFont.systemFontOfSize(24)
+//		button?.tag = 33893
+//		buttons.append(button!)
+
+		var button = genButton("初级", frame: CGRectMake((global.size.width / 4 - buttonSize.width / 2), (global.size.height - StartbuttonHeight) / 2 - 49, buttonSize.width, buttonSize.height))
+		button?.tag = 33890
+		buttons.append(button!)
+
+		button = genButton("中级", frame: CGRectMake((global.size.width * 3 / 4 - buttonSize.width / 2), (global.size.height - StartbuttonHeight) / 2 - 49, buttonSize.width, buttonSize.height))
+		button?.tag = 33891
 		buttons.append(button!)
 
 		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight, width: smallbuttonWidth, height: smallbuttonHeight))
-		button?.tag = 33894
+		button?.tag = 33892
 		buttons.append(button!)
 
 		return buttons
@@ -100,7 +109,7 @@ class Generator {
 
 	func genLabelForTest() -> UILabel {
 		let label = UILabel()
-		label.text = "精选电工考试题目"
+		label.text = "选择级别开始问答"
 		label.textAlignment = .Center
 		label.font = UIFont.boldSystemFontOfSize(22)
 		label.textColor = UIColor.grayColor()

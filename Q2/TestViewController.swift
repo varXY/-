@@ -28,9 +28,8 @@ class TestViewController: UIViewController {
 		self.view.backgroundColor = Global.backgroundColor()
 
 		buttons = generator.genButtonsForTest()
-		buttons[0].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
-		buttons[1].addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
 		for button in buttons {
+			button.addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
 			self.view.addSubview(button)
 		}
 
@@ -52,10 +51,13 @@ class TestViewController: UIViewController {
 			records.saveRecords()
 		}
 
-
-		for i in 0..<2 {
+		for i in 0..<3 {
 			buttons[i].hidden = false
-			buttons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + 40 * CGFloat(i))
+			if i != 2 {
+				buttons[i].genAnimation(.Appear, delay: 0.0, distance: 30)
+			} else {
+				buttons[i].genAnimation(.Appear, delay: 0.2, distance: 38)
+			}
 		}
 
 	}
@@ -90,14 +92,14 @@ class TestViewController: UIViewController {
 
 
 	func open(sender: UIButton) {
-		let index = sender.tag - 33893
+		let index = sender.tag - 33890
 
-		if index == 0 {
-			buttons[0].genAnimation(.Touched, delay: 0.0, distance: 0.0)
-			buttons[1].genAnimation(.Disappear, delay: 0.0, distance: 0.0)
-		} else {
-			buttons[1].genAnimation(.Touched, delay: 0.0, distance: 0.0)
-			buttons[0].genAnimation(.Disappear, delay: 0.0, distance: 0.0)
+		for button in buttons {
+			if index == buttons.indexOf(button) {
+				button.genAnimation(.Touched, delay: 0.0, distance: 0.0)
+			} else {
+				button.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
+			}
 		}
 
 		pushOrPresent(index)
@@ -105,8 +107,9 @@ class TestViewController: UIViewController {
 
 	func pushOrPresent(index: Int) {
 		switch index {
-		case 0:
+		case 0, 1:
 			let QuestionVC = QuestionViewController()
+			QuestionVC.type = index
 			QuestionVC.record = {(rightCount: Int, date: NSDate) in
 				let record = Record(record: rightCount, date: date)
 				self.records.records.insert(record, atIndex: 0)
@@ -118,10 +121,10 @@ class TestViewController: UIViewController {
 				self.navigationController?.pushViewController(QuestionVC, animated: true)
 			})
 
-		case 1:
+		case 2:
 			let recordVC = RecordViewController()
 			recordVC.records = self.records.records
-			let detailNavi = DetailNavigationController(rootViewController: recordVC)
+			let detailNavi = NavigationController(viewController: recordVC)
 
 			delay(seconds: 0.5, completion: { () -> () in
 				self.presentViewController(detailNavi, animated: true, completion: nil)

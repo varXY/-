@@ -10,9 +10,7 @@
 		31033A7F1BA3BB5F00DC9141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */; };
 		31033A971BA3BB5F00DC9141 /* Q2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033A961BA3BB5F00DC9141 /* Q2Tests.swift */; };
 		31033AA11BA3BC6800DC9141 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AA01BA3BC6800DC9141 /* TabBarController.swift */; };
-		31033AA31BA3BCAD00DC9141 /* InfoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AA21BA3BCAD00DC9141 /* InfoNavigationController.swift */; };
 		31033AA61BA3BD0300DC9141 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AA51BA3BD0300DC9141 /* InfoViewController.swift */; };
-		31033AA91BA3E9A800DC9141 /* TestNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AA81BA3E9A800DC9141 /* TestNavigationController.swift */; };
 		31033AAB1BA3E9BC00DC9141 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AAA1BA3E9BC00DC9141 /* TestViewController.swift */; };
 		31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AAC1BA3EBE200DC9141 /* QuestionViewController.swift */; };
 		31033AB11BA4096A00DC9141 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AB01BA4096A00DC9141 /* Question.swift */; };
@@ -34,17 +32,16 @@
 		314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCEB1BA42F3D00E79557 /* Generator.swift */; };
 		31523AA51BAFE9A100526881 /* right.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA31BAFE9A100526881 /* right.caf */; };
 		31523AA61BAFE9A100526881 /* wrong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA41BAFE9A100526881 /* wrong.caf */; };
-		315F62F41BAD51D5008E9157 /* DetailNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */; };
 		318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */; };
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
 		31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A492511BACE65C009077FD /* UIButton+genAnimation.swift */; };
 		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
-		31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */; };
 		31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */; };
 		31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */; };
 		31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D669001BA80BE200A21AF1 /* EquationCell.swift */; };
 		31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */; };
+		31F9AC321C261CAB0072A116 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F9AC311C261CAB0072A116 /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +62,7 @@
 		31033A951BA3BB5F00DC9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31033A961BA3BB5F00DC9141 /* Q2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q2Tests.swift; sourceTree = "<group>"; };
 		31033AA01BA3BC6800DC9141 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		31033AA21BA3BCAD00DC9141 /* InfoNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InfoNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AA51BA3BD0300DC9141 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InfoViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		31033AA81BA3E9A800DC9141 /* TestNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TestNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AAA1BA3E9BC00DC9141 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TestViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AAC1BA3EBE200DC9141 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AB01BA4096A00DC9141 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -89,17 +84,16 @@
 		314DFCEB1BA42F3D00E79557 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Generator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31523AA31BAFE9A100526881 /* right.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = right.caf; sourceTree = "<group>"; };
 		31523AA41BAFE9A100526881 /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
-		315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DetailNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQAViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQACell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Global.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31A492511BACE65C009077FD /* UIButton+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+genAnimation.swift"; sourceTree = "<group>"; };
 		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
-		31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScaleNavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScaleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		31F9AC311C261CAB0072A116 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +137,7 @@
 			children = (
 				31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */,
 				31033AA01BA3BC6800DC9141 /* TabBarController.swift */,
+				31F9AC311C261CAB0072A116 /* NavigationController.swift */,
 				31033AA41BA3BCEC00DC9141 /* Info */,
 				31033AA71BA3E97E00DC9141 /* Test */,
 				31D668F71BA7FCB800A21AF1 /* Scale */,
@@ -207,10 +202,8 @@
 		31033AAE1BA4093C00DC9141 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				31033AA81BA3E9A800DC9141 /* TestNavigationController.swift */,
 				31033AAA1BA3E9BC00DC9141 /* TestViewController.swift */,
 				31033AAC1BA3EBE200DC9141 /* QuestionViewController.swift */,
-				315F62F31BAD51D5008E9157 /* DetailNavigationController.swift */,
 				31033AB41BA4143400DC9141 /* RecordViewController.swift */,
 				318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */,
 			);
@@ -261,7 +254,6 @@
 		318C118D1BA4EAB000CA1EC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				31033AA21BA3BCAD00DC9141 /* InfoNavigationController.swift */,
 				31033AA51BA3BD0300DC9141 /* InfoViewController.swift */,
 				314DFCD41BA42DE100E79557 /* ContentViewController.swift */,
 				314DFCD61BA42E1B00E79557 /* DetailViewController.swift */,
@@ -289,7 +281,6 @@
 		31D668FC1BA7FEBC00A21AF1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				31D668F81BA7FCD600A21AF1 /* ScaleNavigationController.swift */,
 				31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */,
 				31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */,
 			);
@@ -417,9 +408,7 @@
 				31033A7F1BA3BB5F00DC9141 /* AppDelegate.swift in Sources */,
 				31033AB11BA4096A00DC9141 /* Question.swift in Sources */,
 				31033AB71BA416C100DC9141 /* Record.swift in Sources */,
-				315F62F41BAD51D5008E9157 /* DetailNavigationController.swift in Sources */,
-				31033AA91BA3E9A800DC9141 /* TestNavigationController.swift in Sources */,
-				31D668F91BA7FCD600A21AF1 /* ScaleNavigationController.swift in Sources */,
+				31F9AC321C261CAB0072A116 /* NavigationController.swift in Sources */,
 				314DFCD51BA42DE100E79557 /* ContentViewController.swift in Sources */,
 				31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */,
 				314DFCE31BA42EC900E79557 /* ImageCell.swift in Sources */,
@@ -431,7 +420,6 @@
 				31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */,
 				314DFCDB1BA42E7800E79557 /* Knowledge.swift in Sources */,
 				31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */,
-				31033AA31BA3BCAD00DC9141 /* InfoNavigationController.swift in Sources */,
 				314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */,
 				31033AA61BA3BD0300DC9141 /* InfoViewController.swift in Sources */,
 				31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */,
