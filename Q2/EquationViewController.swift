@@ -132,7 +132,7 @@ class EquationViewController: UIViewController {
 
 // MARK: - TableView
 
-extension EquationViewController: UITableViewDataSource, UITableViewDelegate {
+extension EquationViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return firstWords.count
@@ -161,6 +161,12 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return sectionTitle
+	}
+
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		for textField in textFields {
+			textField.resignFirstResponder()
+		}
 	}
 
 }

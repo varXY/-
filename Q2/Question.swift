@@ -23,7 +23,7 @@ class Question {
 			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
 			for i in questionMarks { questions.append(getBeginnerQuestion(i)!) }
 		case 1:
-			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 51)
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 112)
 			for i in questionMarks { questions.append(getIntermediateQuestions(i)!) }
 		default:
 			break
@@ -1830,6 +1830,306 @@ class Question {
 			question.question = "操作票中的“下令时间”，对于自行掌握的操作，是指调度批准的时间。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
+			return question
+		case 52:
+			question.question = "操作票哪一栏应填写调度下达的操作计划顺序号？"
+			question.rightAnswer = "指令项"
+			question.wrongAnswer = "操作"
+			return question
+		case 53:
+			question.question = "需要得到调度命令才能执行的操作项目，要在哪一栏内盖“联系调度章”？"
+			question.rightAnswer = "指令项"
+			question.wrongAnswer = "顺序项"
+			return question
+		case 54:
+			question.question = "操作票填写完后，在空余部分哪一栏第一格左侧盖“以下空白”章以示终结？"
+			question.rightAnswer = "操作项目"
+			question.wrongAnswer = "指令项"
+			return question
+		case 55:
+			question.question = "关键字严禁修改，如下列："
+			question.rightAnswer = "拉、合、投、退、装、拆"
+			question.wrongAnswer = "拉、合、投、退、取、装"
+			return question
+		case 56:
+			question.question = "“四对照”即对照设备的名称、编号、位置和拉合方向。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 57:
+			question.question = "进行倒闸操作时，监护人宣读操作项目，操作人复诵，监护人确认无误，发出什么执行命令后，操作人方可操作？"
+			question.rightAnswer = "对！可以操作"
+			question.wrongAnswer = "对！看着点"
+			return question
+		case 58:
+			question.question = "拉熔丝时，正确操作为："
+			question.rightAnswer = "先拉正极，后拉负极"
+			question.wrongAnswer = "先拉负极，后拉正极"
+			return question
+		case 59:
+			question.question = "合熔丝时，正确操作为："
+			question.rightAnswer = "先拉负极，后拉正极"
+			question.wrongAnswer = "先拉正极，后拉负极"
+			return question
+		case 60:
+			question.question = "操作票要由什么单位统一编号，按顺序使用？"
+			question.rightAnswer = "供电局（工区）"
+			question.wrongAnswer = "变电站"
+			return question
+		case 61:
+			question.question = "操作票要妥善保管留存，保存期不少于："
+			question.rightAnswer = "一年"
+			question.wrongAnswer = "半年"
+			return question
+		case 62:
+			question.question = "防误装置万能解锁钥匙使用时必须经变电站专责工程师、所长或者谁批准？"
+			question.rightAnswer = "当值值班长"
+			question.wrongAnswer = "监护人"
+			return question
+		case 63:
+			question.question = "值班运行人员与调度员进行倒闸操作联系时，要首先互报："
+			question.rightAnswer = "单位、姓名、时间"
+			question.wrongAnswer = "单位、值别、姓名"
+			return question
+		case 64:
+			question.question = "线路停电时，必须按照断路器 -> 负荷侧隔离开关 -> 母线侧隔离开关的顺序操作。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 65:
+			question.question = "线路停电和送电时的操作顺序相反。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 66:
+			question.question = "拉合负荷电流和接地故障电流时不许用："
+			question.rightAnswer = "隔离开关"
+			question.wrongAnswer = "断路器"
+			return question
+		case 67:
+			question.question = "倒母线应检查重合闸继电器的动作或返回情况。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 68:
+			question.question = "变压器顶盖应沿气体继电器方向的升高坡度为："
+			question.rightAnswer = "1%~1.5%"
+			question.wrongAnswer = "2%~4%"
+			return question
+		case 69:
+			question.question = "变压器中性线电流不应超过电压绕组额定电流的："
+			question.rightAnswer = "25%"
+			question.wrongAnswer = "35%"
+			return question
+		case 70:
+			question.question = "铅酸蓄电池正常时，正极板为："
+			question.rightAnswer = "深褐色"
+			question.wrongAnswer = "浅褐色"
+			return question
+		case 71:
+			question.question = "蓄电池负极板，正常时为："
+			question.rightAnswer = "灰色"
+			question.wrongAnswer = "深褐色"
+			return question
+		case 72:
+			question.question = "电磁操动机构，合闸线圈动作电压不低于额定电压的："
+			question.rightAnswer = "80%"
+			question.wrongAnswer = "75%"
+			return question
+		case 73:
+			question.question = "断路器液压机构应使用："
+			question.rightAnswer = "10号航空油"
+			question.wrongAnswer = "15号航空油"
+			return question
+		case 74:
+			question.question = "电动机的轴承润滑脂，应添满其内部空间的："
+			question.rightAnswer = "2/3"
+			question.wrongAnswer = "3/4"
+			return question
+		case 75:
+			question.question = "由雷电引起的过电压称为："
+			question.rightAnswer = "大气过电压"
+			question.wrongAnswer = "感应过电压"
+			return question
+		case 76:
+			question.question = "变压器中性点接地属于："
+			question.rightAnswer = "工作接地"
+			question.wrongAnswer = "保护接地"
+			return question
+		case 77:
+			question.question = "电压互感器与电力变压器的区别在于：电压互感器主要用于测量和保护，变压器用于连接两电压等级的电网。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 78:
+			question.question = "电压互感器二次负载变大时，二次电压："
+			question.rightAnswer = "基本不变"
+			question.wrongAnswer = "变小"
+			return question
+		case 79:
+			question.question = "电压互感器二次回路有工作而互感器不停用时应防止二次："
+			question.rightAnswer = "短路"
+			question.wrongAnswer = "断路"
+			return question
+		case 80:
+			question.question = "运行中电压互感器高压侧熔断器熔断应立即："
+			question.rightAnswer = "停止运行"
+			question.wrongAnswer = "取下二次熔丝"
+			return question
+		case 81:
+			question.question = "运行中电压互感器引线端子过热应："
+			question.rightAnswer = "停止运行"
+			question.wrongAnswer = "加装跨引"
+			return question
+		case 82:
+			question.question = "恢复熔断器时应："
+			question.rightAnswer = "戴护目眼镜"
+			question.wrongAnswer = "戴不戴都可以"
+			return question
+		case 83:
+			question.question = "隔离开关可以进行："
+			question.rightAnswer = "恢复所用变压器"
+			question.wrongAnswer = "切断接地电流"
+			return question
+		case 84:
+			question.question = "母线隔离开关操作可以通过回接触点进行："
+			question.rightAnswer = "电压回路切换"
+			question.wrongAnswer = "电流回路切换"
+			return question
+		case 85:
+			question.question = "隔离开关拉不开时应："
+			question.rightAnswer = "不强拉，进行检查"
+			question.wrongAnswer = "用加力杆拉"
+			return question
+		case 86:
+			question.question = "因隔离开关传动机构本身故障而不能操作应："
+			question.rightAnswer = "停电"
+			question.wrongAnswer = "带电处理"
+			return question
+		case 87:
+			question.question = "隔离开关误合时不许再拉开，误拉时在弧光未断开前再合上。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 88:
+			question.question = "事故处理可不用操作票，但应记入操作记录簿和："
+			question.rightAnswer = "运行记录簿"
+			question.wrongAnswer = "检修记录簿"
+			return question
+		case 89:
+			question.question = "倒闸操作中不得使停电的什么器件由二次返回高压？"
+			question.rightAnswer = "电压互感器"
+			question.wrongAnswer = "电抗器"
+			return question
+		case 90:
+			question.question = "检查并、解列负荷分配，应在该操作相的末位记上："
+			question.rightAnswer = "电流数值"
+			question.wrongAnswer = "有功数值"
+			return question
+		case 91:
+			question.question = "停用保护连接片使用术语为："
+			question.rightAnswer = "退出"
+			question.wrongAnswer = "切开"
+			return question
+		case 92:
+			question.question = "事故发生后，如需紧急抢修超过多少小时以上者，应转为事故检修工作？"
+			question.rightAnswer = "4h"
+			question.wrongAnswer = "3h"
+			return question
+		case 93:
+			question.question = "变压器带什么负荷时电压最高？"
+			question.rightAnswer = "容性"
+			question.wrongAnswer = "感性"
+			return question
+		case 94:
+			question.question = "变压器短路电压的百分数与短路阻抗的百分数："
+			question.rightAnswer = "相等"
+			question.wrongAnswer = "前者大于后者"
+			return question
+		case 95:
+			question.question = "油浸风冷变压器当风扇故障时变压器允许带负荷为额定容量的："
+			question.rightAnswer = "70%"
+			question.wrongAnswer = "80%"
+			return question
+		case 96:
+			question.question = "油浸式变压器装有气体继电器时顶盖应沿气体继电器的方向升高坡度为："
+			question.rightAnswer = "1%~1.5%"
+			question.wrongAnswer = "2%~4%"
+			return question
+		case 97:
+			question.question = "电压互感器的一、二、三次侧中："
+			question.rightAnswer = "二、三次侧需要接地"
+			question.wrongAnswer = "一次侧需要接地"
+			return question
+		case 98:
+			question.question = "发生什么情况，电压互感器必须立即停止运行？"
+			question.rightAnswer = "喷油"
+			question.wrongAnswer = "油压低"
+			return question
+		case 99:
+			question.question = "电流互感器损坏需要更换时，电压等级高于电网额定电压是必要的。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 100:
+			question.question = "在运行中的电流互感器二次回路上工作时，正确的是："
+			question.rightAnswer = "用短路片将二次短接"
+			question.wrongAnswer = "用导线缠绕短接二次"
+			return question
+		case 101:
+			question.question = "运行中的电流互感器二次侧，清扫时的注意事项，错误的是："
+			question.rightAnswer = "单人进行"
+			question.wrongAnswer = "使用干燥的清扫工具"
+			return question
+		case 102:
+			question.question = "运行中的电流互感器一次侧最大负荷电流不得超过额定电流的："
+			question.rightAnswer = "2倍"
+			question.wrongAnswer = "3倍"
+			return question
+		case 103:
+			question.question = "“F”级绝缘体允许的最高工作温度为："
+			question.rightAnswer = "155℃"
+			question.wrongAnswer = "130℃"
+			return question
+		case 104:
+			question.question = "线路的设备停电检修时，临时性接地线应使用截面不小于25平方毫米多股裸软铜线。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 105:
+			question.question = "在低压电气维修中，搭接导线的顺序为："
+			question.rightAnswer = "先接地线，后接火线"
+			question.wrongAnswer = "先接火线，后接地线"
+			return question
+		case 106:
+			question.question = "高低压杆装设时应先检查与高压线的距离是否符号规定，若不符号，要采取什么措施？"
+			question.rightAnswer = "防止误碰高压线"
+			question.wrongAnswer = "保护接零"
+			return question
+		case 107:
+			question.question = "PE线的颜色标记为："
+			question.rightAnswer = "绿/黄双色"
+			question.wrongAnswer = "淡蓝"
+			return question
+		case 108:
+			question.question = "低压架空线路的相序排列自上而下次序为："
+			question.rightAnswer = "W.V.U.N"
+			question.wrongAnswer = "N.U.V.W"
+			return question
+		case 109:
+			question.question = "照明线路应避开暖气管道，其间距不应小于："
+			question.rightAnswer = "30cm"
+			question.wrongAnswer = "20cm"
+			return question
+		case 110:
+			question.question = "国家规定，五芯电缆必须包含淡蓝、绿/黄二种颜色绝缘芯线，其中淡蓝色芯线必须用做："
+			question.rightAnswer = "N线"
+			question.wrongAnswer = "火线"
+			return question
+		case 111:
+			question.question = "TNCS系统中的工作零线、包含零线是："
+			question.rightAnswer = "部分合用部分分开"
+			question.wrongAnswer = "合用的"
 			return question
 		default:
 			break

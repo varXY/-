@@ -12,7 +12,9 @@ import UIKit
 
 class TestViewController: UIViewController {
 
-	var records = Records()
+	var beginnerRecords = Records(type: 0)
+	var intermediateRecords = Records(type: 1)
+
 	var generator = Generator()
 	var global = Global()
 
@@ -33,22 +35,22 @@ class TestViewController: UIViewController {
 			self.view.addSubview(button)
 		}
 
-		let label = generator.genLabelForTest()
-		view.addSubview(label)
+//		let label = generator.genLabelForTest()
+//		view.addSubview(label)
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 
-		let time1 = (records.records.count == 8 && records.showTimes == 1)
-		let time2 = (records.records.count == 16 && records.showTimes == 2)
-		let time3 = (records.records.count == 24 && records.showTimes == 3)
-		let time4 = (records.records.count == 32 && records.showTimes == 4)
+		let time1 = (intermediateRecords.records.count == 8 && intermediateRecords.showTimes == 1)
+		let time2 = (intermediateRecords.records.count == 16 && intermediateRecords.showTimes == 2)
+		let time3 = (intermediateRecords.records.count == 24 && intermediateRecords.showTimes == 3)
+		let time4 = (intermediateRecords.records.count == 32 && intermediateRecords.showTimes == 4)
 
 		if time1 || time2 || time3 || time4 {
 			askForComment()
-			records.showTimes += 1
-			records.saveRecords()
+			intermediateRecords.showTimes += 1
+			intermediateRecords.saveRecords()
 		}
 
 		for i in 0..<3 {
@@ -112,7 +114,11 @@ class TestViewController: UIViewController {
 			QuestionVC.type = index
 			QuestionVC.record = {(rightCount: Int, date: NSDate) in
 				let record = Record(record: rightCount, date: date)
-				self.records.records.insert(record, atIndex: 0)
+				if index == 0 {
+					self.beginnerRecords.records.insert(record, atIndex: 0)
+				} else {
+					self.intermediateRecords.records.insert(record, atIndex: 0)
+				}
 			}
 
 			QuestionVC.hidesBottomBarWhenPushed = true
@@ -123,7 +129,8 @@ class TestViewController: UIViewController {
 
 		case 2:
 			let recordVC = RecordViewController()
-			recordVC.records = self.records.records
+			recordVC.beginnerRecords = self.beginnerRecords.records
+			recordVC.intermediateRecords = self.intermediateRecords.records
 			let detailNavi = NavigationController(viewController: recordVC)
 
 			delay(seconds: 0.5, completion: { () -> () in

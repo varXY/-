@@ -14,10 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-	let records = Records()
+	var beginnerRecords = Records(type: 0)
+	var intermediateRecords = Records(type: 1)
 
 	func saveRecord() {
-		records.saveRecords()
+		beginnerRecords.saveRecords()
+		intermediateRecords.saveRecords()
 	}
 
 	func customizeAppearance() {
@@ -70,11 +72,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			handled = true
 			break
 		case ShortcutIdentifier.Second.type:
-			controller.selectedIndex = 2
+			controller.selectedIndex = 1
+			guard let naviTestVC = controller.selectedViewController as! NavigationController? else { return false }
+			let topVC = naviTestVC.topViewController
+
+			if topVC!.isKindOfClass(TestViewController) {
+				let testVC = topVC as! TestViewController
+				testVC.pushOrPresent(1)
+			}
 			handled = true
 			break
 		case ShortcutIdentifier.Third.type:
-			controller.selectedIndex = 0
+			controller.selectedIndex = 2
 			handled = true
 			break
 		default:
@@ -106,15 +115,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		if let shortcutItems = application.shortcutItems where shortcutItems.isEmpty {
 
-			let shortcut1 = UIApplicationShortcutItem(type: ShortcutIdentifier.First.type, localizedTitle: "开始答题", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Play), userInfo: [
+			let shortcut1 = UIApplicationShortcutItem(type: ShortcutIdentifier.First.type, localizedTitle: "初级试题", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Play), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 
-			let shortcut2 = UIApplicationShortcutItem(type: ShortcutIdentifier.Second.type, localizedTitle: "公式换算", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
+			let shortcut2 = UIApplicationShortcutItem(type: ShortcutIdentifier.Second.type, localizedTitle: "中级试题", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Play), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 
-			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "常用知识", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "常用知识"), userInfo: [
+			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "公式换算", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 
@@ -130,7 +139,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let testNavi = NavigationController(viewController: testVC)
 		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: UIImage(named: "电工试题"), tag: 1)
 		let controller = testNavi.viewControllers[0] as! TestViewController
-		controller.records = records
+		controller.beginnerRecords = beginnerRecords
+		controller.intermediateRecords = intermediateRecords
 
 		let scaleVC = ScaleViewController()
 		let scaleNavi = NavigationController(viewController: scaleVC)

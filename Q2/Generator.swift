@@ -50,7 +50,7 @@ class Generator {
 		let buttonSize = global.buttonSize()
 
 //		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
-		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
+//		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
 		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
 		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
 
@@ -59,11 +59,11 @@ class Generator {
 //		button?.tag = 33893
 //		buttons.append(button!)
 
-		var button = genButton("初级", frame: CGRectMake((global.size.width / 4 - buttonSize.width / 2), (global.size.height - StartbuttonHeight) / 2 - 49, buttonSize.width, buttonSize.height))
+		var button = genButton("初级", frame: CGRectMake((global.size.width / 4 - buttonSize.width / 2), buttonSize.height / 1.5 + 64, buttonSize.width, buttonSize.height))
 		button?.tag = 33890
 		buttons.append(button!)
 
-		button = genButton("中级", frame: CGRectMake((global.size.width * 3 / 4 - buttonSize.width / 2), (global.size.height - StartbuttonHeight) / 2 - 49, buttonSize.width, buttonSize.height))
+		button = genButton("中级", frame: CGRectMake((global.size.width * 3 / 4 - buttonSize.width / 2), buttonSize.height / 1.5 + 64, buttonSize.width, buttonSize.height))
 		button?.tag = 33891
 		buttons.append(button!)
 
@@ -114,7 +114,8 @@ class Generator {
 		label.font = UIFont.boldSystemFontOfSize(22)
 		label.textColor = UIColor.grayColor()
 		label.sizeToFit()
-		label.frame.origin = CGPoint(x: (global.size.width - label.frame.width) / 2, y: (global.size.height - global.testBigButtonSize().height) / 2 - global.testBigButtonSize().height / 2 - 49)
+
+		label.frame.origin = CGPointMake((global.size.width - label.frame.width) / 2, global.buttonSize().height / 4 + 64)
 
 		return label
 	}

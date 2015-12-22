@@ -12,7 +12,10 @@ class Records {
 	var records = [Record]()
 	var showTimes: Int32 = 1
 
-	init() {
+	var type = 0
+
+	init(type: Int) {
+		self.type = type
 		loadRecords()
 	}
 
@@ -22,7 +25,12 @@ class Records {
 	}
 
 	func dataFilePath() -> String {
-		return "\(documentDiretory())/Records.plist"
+		switch type {
+		case 0: return "\(documentDiretory())/Records.plist"
+		case 1: return "\(documentDiretory())/Records1.plist"
+		default: return "\(documentDiretory())/Records.plist"
+
+		}
 	}
 
 	func saveRecords() {
