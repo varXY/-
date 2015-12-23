@@ -23,7 +23,7 @@ class Question {
 			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
 			for i in questionMarks { questions.append(getBeginnerQuestion(i)!) }
 		case 1:
-			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 112)
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 141)
 			for i in questionMarks { questions.append(getIntermediateQuestions(i)!) }
 		default:
 			break
@@ -2130,6 +2130,151 @@ class Question {
 			question.question = "TNCS系统中的工作零线、包含零线是："
 			question.rightAnswer = "部分合用部分分开"
 			question.wrongAnswer = "合用的"
+			return question
+		case 112:
+			question.question = "当指示电压表指示为零时，表明电源已断开，可以不验电。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 113:
+			question.question = "属于低压控制电器的是："
+			question.rightAnswer = "接触器"
+			question.wrongAnswer = "低压断路器"
+			return question
+		case 114:
+			question.question = "干线保险容易应等于或稍大于各分支线保险丝容量之和。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 115:
+			question.question = "各分支保险丝容量应等于或稍大于各灯工作电流之和。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 116:
+			question.question = "为什么将变压器绕组的温升规定为？"
+			question.rightAnswer = "65 ℃"
+			question.wrongAnswer = "85 ℃"
+			return question
+		case 117:
+			question.question = "气体（瓦斯）继电器能反应变压器的一切故障而作出相应的动作。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 118:
+			question.question = "一般来说，继电器的质量越好，接线越简单，所包含的接点数目越少，则保护装置的作越可靠。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 119:
+			question.question = "防爆电器出厂时涂的黄油是防止生锈的，使用时不应抹去。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 120:
+			question.question = "在易燃、易爆场所带电作业时，只要注意安全、防止触电，一般不会发生危险。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 121:
+			question.question = "电磁式交流接触器和直流接触器都装有短路环，以消除铁心的振动和噪音。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 122:
+			question.question = "装设电抗器的目的是：增大短路阻抗，限制短路电流，减小电压波动。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 123:
+			question.question = "低压空气断路器同时装有分励脱扣器和失压脱扣器时，称为复式脱扣装置。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 124:
+			question.question = "大容量高压隔离开关的每极上都装有两片刀片，其目的是增大导电截面积，从而增大容量。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 125:
+			question.question = "高压断路器的“跳跃”是指断路器合上又跳开，跳开又合上的现象。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 126:
+			question.question = "配电装置包括测量电器，故便携式电压表和电流表属于配电装置。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 127:
+			question.question = "单相异步电动机的体积虽然较同容量的三相异步电动机大，但功率因数、效率和过载能力都比同容量的三相异步电动机低。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 128:
+			question.question = "油浸式变压器防爆管上的薄膜若因被外力损坏而被裂，则必须使变压器停电修理。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 129:
+			question.question = "带有额定负载转矩的三相异步电动机，若使电源电压低于额定电压，则其电流就会低于额定电流。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 130:
+			question.question = "变压器在空载时，其电流的有功分量较小，而无功分量较大，因此空载运行的变压器，其功率因数很低。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 131:
+			question.question = "从空载到满载，随着负载电流的增加，变压器的铜耗和温度都随之增加，一、二次绕组在铁心中的合成磁通也随之增加。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 132:
+			question.question = "纯电阻电路的功率因数一定等于1，如果某电路的功率因数为1，则该电路一定是只含电阻的电路。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 133:
+			question.question = "电子示波器只能显被测信号的波形，而不能用来测量被测信号的大小。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 134:
+			question.question = "电子管电压表对直流、交流，正弦和非正弦信号均能进行正确测量。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 135:
+			question.question = "对感性电路，若保持电源电压不变而增大电源频率，则此时电路中的总电流减小。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 136:
+			question.question = "自感电动势的大小正比于线圈中电流的变化率，与线圈中电流的大小无关。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 137:
+			question.question = "当电路中的参数点改变时，某两点间的电压也将随之改变。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 138:
+			question.question = "交流接触器铁心上的短路环断裂后会使动静铁心不能释放。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 139:
+			question.question = "并联磁吹灭弧方式，磁吹力方向与电流方向无关。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 140:
+			question.question = "串联磁吹灭弧方式，磁吹力的方向与电流方向无关。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
 			return question
 		default:
 			break

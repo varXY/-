@@ -65,6 +65,7 @@ class TestViewController: UIViewController {
 	}
 
 
+
 	func askForComment() {
 		let alertVC = UIAlertController(title: "希望得到你的反馈", message: "去评分提建议或者分享一下吧！", preferredStyle: .Alert)
 

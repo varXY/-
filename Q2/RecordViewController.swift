@@ -36,7 +36,10 @@ class RecordViewController: UIViewController {
 		self.view.backgroundColor = Global.backgroundColor()
 		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
-		self.navigationItem.rightBarButtonItem = quitButton
+		self.navigationItem.leftBarButtonItem = quitButton
+
+		let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "share")
+		self.navigationItem.rightBarButtonItem = shareButton
 
 		scrollView.frame = view.bounds
 		scrollView.contentSize = CGSize(width: view.frame.width * 2, height: 0)
@@ -49,24 +52,24 @@ class RecordViewController: UIViewController {
 		scrollView.addSubview(tableView0)
 		scrollView.addSubview(tableView1)
 
-		let shareButton = generator.genShareButton(CGPointMake(20, global.size.height - 60), tag: 160)
-		shareButton.addTarget(self, action: "share", forControlEvents: .TouchUpInside)
-		view.addSubview(shareButton)
+//		let shareButton = generator.genShareButton(CGPointMake(20, global.size.height - 60), tag: 160)
+//		shareButton.addTarget(self, action: "share", forControlEvents: .TouchUpInside)
+//		view.addSubview(shareButton)
 	}
 
 
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		let button = view.viewWithTag(160) as! UIButton
-
-		if beginnerRecords.count == 0 && intermediateRecords.count == 0 {
-			button.hidden = true
-			return
-		}
-
-		button.hidden = false
-		button.genAnimation(.Appear, delay: 0.5, distance: 60)
+//		let button = view.viewWithTag(160) as! UIButton
+//
+//		if beginnerRecords.count == 0 && intermediateRecords.count == 0 {
+//			button.hidden = true
+//			return
+//		}
+//
+//		button.hidden = false
+//		button.genAnimation(.Appear, delay: 0.5, distance: 60)
 	}
 
 	func getTableView(rect: CGRect) -> UITableView {
@@ -103,40 +106,37 @@ class RecordViewController: UIViewController {
 		tableView0.layoutIfNeeded()
 		tableView1.layoutIfNeeded()
 
-		let button = view.viewWithTag(160) as! UIButton
-		UIView.animateWithDuration(0.3) { () -> Void in
-			button.transform = CGAffineTransformMakeTranslation(0.0, 60)
+//		let indicator = UIActivityIndicatorView()
+//		let indicatorItem = UIBarButtonItem(customView: indicator)
+//		self.navigationItem.rightBarButtonItem = indicatorItem
+//		indicator.startAnimating()
+
+
+		var record = Record(record: 0, date: NSDate())
+
+		if self.segmentControl.selectedSegmentIndex == 0 {
+			record = self.beginnerRecords[0]
+		} else {
+			record = self.intermediateRecords[0]
 		}
 
-		delay(seconds: 0.3) { () -> () in
-			var record = Record(record: 0, date: NSDate())
+		let text: String = "我最近一次电工试题问答，10道题答对了\(record.record)道。"
+		let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
 
-			if self.segmentControl.selectedSegmentIndex == 0 {
-				record = self.beginnerRecords[0]
-			} else {
-				record = self.intermediateRecords[0]
-			}
+		guard let navi = self.navigationController as? NavigationController else { return }
+		let image = navi.captureScreen()
 
-			let text: String = "我最近一次电工试题问答，10道题答对了\(record.record)道。"
-			let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
+		let arr: [AnyObject] = [text, link, image]
 
-			guard let navi = self.navigationController as? NavigationController else { return }
-			let image = navi.captureScreen()
+		let share1 = UIActivityViewController(activityItems: arr, applicationActivities: [])
+//			share1.completionWithItemsHandler = { (type:String?, complete:Bool, arr:[AnyObject]?, error:NSError?) -> Void in
+//				indicator.stopAnimating()
+//				let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "share")
+//				self.navigationItem.rightBarButtonItem = shareButton
+//
+//		}
+		self.presentViewController(share1, animated: true, completion: nil)
 
-			let arr: [AnyObject] = [text, link, image]
-
-			let share1 = UIActivityViewController(activityItems: arr, applicationActivities: [])
-			share1.completionWithItemsHandler = { (type:String?, complete:Bool, arr:[AnyObject]?, error:NSError?) -> Void in
-				let button = self.view.viewWithTag(160) as! UIButton
-				delay(seconds: 0.0, completion: { () -> () in
-					UIView.animateWithDuration(0.5) { () -> Void in
-						button.transform = CGAffineTransformMakeTranslation(0.0, 0.0)
-					}
-				})
-
-			}
-			self.presentViewController(share1, animated: true, completion: nil)
-		}
 
 	}
 

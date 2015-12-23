@@ -43,7 +43,7 @@ class QuestionViewController: UIViewController {
 
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "confirmToQuit")
 		quitButton.tintColor = UIColor.whiteColor()
-		self.navigationItem.rightBarButtonItem = quitButton
+		self.navigationItem.leftBarButtonItem = quitButton
 		self.navigationItem.setHidesBackButton(true, animated: true)
 
 		scrollView.frame = view.bounds
