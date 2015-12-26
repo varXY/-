@@ -23,13 +23,13 @@ class DetailViewController: UIViewController {
 		view.backgroundColor = UIColor.whiteColor()
 		self.title = knowledege.title
 
-		label.frame = CGRect(x: 0, y: 0, width: global.size.width - 10, height: global.size.height)
+		label.frame = CGRect(x: 0, y: 0, width: global.size.width - 10, height: global.size.height - 64)
 		label.font = UIFont.systemFontOfSize(18)
 		label.numberOfLines = 0
 		label.text = knowledege.textBody
 		label.sizeToFit()
 
-		textView.frame = CGRect(x: 0, y: 5, width: global.size.width, height: global.size.height)
+		textView.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height - 64)
 		textView.contentSize = CGSize(width: label.frame.width, height: label.frame.height)
 		textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 10, right: 5)
 		textView.text = knowledege.textBody

@@ -27,9 +27,9 @@ class AnsweredQAViewController: UIViewController {
 		self.view.backgroundColor = Global.backgroundColor()
 		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
-		self.navigationItem.leftBarButtonItem = quitButton
+		self.navigationItem.rightBarButtonItem = quitButton
 
-		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: global.size.height)
+		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 64)
 		tableView.allowsSelection = false
 		tableView.delegate = self
 		tableView.dataSource = self

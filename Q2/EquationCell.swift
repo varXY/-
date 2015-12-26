@@ -47,7 +47,7 @@ class EquationCell: UITableViewCell {
 
 	func configureForEquationCell(first: String, last: String) {
 		self.titleLabel.text = first
-		self.equalLabel.text = "="
+		self.equalLabel.text = ""
 		self.unitLabel.text = last
 	}
 

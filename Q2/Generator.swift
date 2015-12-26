@@ -25,9 +25,9 @@ class Generator {
 
 		let buttonX = (global.size.width - buttonSize.width) / 2
 
-		let marginY_1 = marginY + 64
-		let marginY_2 = marginY * 2 + buttonSize.height + 64
-		let marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
+		let marginY_1 = marginY
+		let marginY_2 = marginY * 2 + buttonSize.height
+		let marginY_3 = marginY * 3 + buttonSize.height * 2
 
 		var button = genButton("单位公式", frame: CGRect(x: buttonX, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
 		button?.tag = 93456
@@ -59,15 +59,15 @@ class Generator {
 //		button?.tag = 33893
 //		buttons.append(button!)
 
-		var button = genButton("初级", frame: CGRectMake((global.size.width / 4 - buttonSize.width / 2), buttonSize.height / 1.5 + 64, buttonSize.width, buttonSize.height))
+		var button = genButton("初级", frame: CGRectMake((global.size.width / 4 - buttonSize.width / 2), buttonSize.height / 1.5, buttonSize.width, buttonSize.height))
 		button?.tag = 33890
 		buttons.append(button!)
 
-		button = genButton("中级", frame: CGRectMake((global.size.width * 3 / 4 - buttonSize.width / 2), buttonSize.height / 1.5 + 64, buttonSize.width, buttonSize.height))
+		button = genButton("中级", frame: CGRectMake((global.size.width * 3 / 4 - buttonSize.width / 2), buttonSize.height / 1.5, buttonSize.width, buttonSize.height))
 		button?.tag = 33891
 		buttons.append(button!)
 
-		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight, width: smallbuttonWidth, height: smallbuttonHeight))
+		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight - 64, width: smallbuttonWidth, height: smallbuttonHeight))
 		button?.tag = 33892
 		buttons.append(button!)
 
@@ -84,9 +84,9 @@ class Generator {
 		let buttonX1 = global.size.width / 4 - buttonSize.width / 2
 		let buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
 
-		let marginY_1 = marginY + 64
-		let marginY_2 = marginY * 2 + buttonSize.height + 64
-		let marginY_3 = marginY * 3 + buttonSize.height * 2 + 64
+		let marginY_1 = marginY
+		let marginY_2 = marginY * 2 + buttonSize.height
+		let marginY_3 = marginY * 3 + buttonSize.height * 2
 
 		var button = genButton("欧姆定律", frame: CGRect(x: buttonX0, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
 		buttons.append(button!)
@@ -127,9 +127,9 @@ class Generator {
 		switch global.size.height {
 
 		case 480:
-			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 15, width: 135, height: 15)
+			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 15 - 64, width: 135, height: 15)
 		default:
-			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 30, width: 135, height: 20)
+			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 30 - 64, width: 135, height: 20)
 		}
 
 		let view = UIView(frame: frame)
@@ -238,7 +238,7 @@ class Generator {
 		view.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)
 
 		let label = UILabel()
-		label.frame = CGRect(x: 10, y: 74, width: global.size.width - 20, height: global.size.width - 20)
+		label.frame = CGRect(x: 10, y: 10, width: global.size.width - 20, height: global.size.width - 20)
 
 		label.numberOfLines = 0
 		label.textAlignment = .Center
@@ -270,11 +270,11 @@ class Generator {
 		let buttonWidth = global.testSmallButtonSize().width
 		let buttonHeight = global.testSmallButtonSize().height
 
-		var button = genButton("查看题目", frame: CGRect(x: global.size.width / 4 - (buttonWidth + 50) / 2, y: global.size.width + 54 - buttonHeight / 2, width: buttonWidth + 50, height: buttonHeight + 50))
+		var button = genButton("查看题目", frame: CGRect(x: global.size.width / 4 - (buttonWidth + 50) / 2, y: global.size.width - buttonHeight / 2 - 10, width: buttonWidth + 50, height: buttonHeight + 50))
 		button!.tag = 12345
 		view.addSubview(button!)
 
-		button = genButton("退出", frame: CGRect(x: global.size.width * 3 / 4 - buttonWidth / 2, y: global.size.width + 54, width: buttonWidth, height: buttonHeight))
+		button = genButton("退出", frame: CGRect(x: global.size.width * 3 / 4 - buttonWidth / 2, y: global.size.width - 10, width: buttonWidth, height: buttonHeight))
 		button!.tag = 123456
 		view.addSubview(button!)
 		

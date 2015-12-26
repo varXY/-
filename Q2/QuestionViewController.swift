@@ -43,7 +43,7 @@ class QuestionViewController: UIViewController {
 
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "confirmToQuit")
 		quitButton.tintColor = UIColor.whiteColor()
-		self.navigationItem.leftBarButtonItem = quitButton
+		self.navigationItem.rightBarButtonItem = quitButton
 		self.navigationItem.setHidesBackButton(true, animated: true)
 
 		scrollView.frame = view.bounds
@@ -280,7 +280,7 @@ class QuestionViewController: UIViewController {
 		let duration = Double(global.size.width / 640)
 
 		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
-			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: -64.0)
+			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
 			}, completion: nil)
 
 		

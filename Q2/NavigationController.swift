@@ -23,7 +23,7 @@ class NavigationController: UINavigationController {
 		self.navigationBar.barTintColor = Global.redColor()
 		self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 		self.navigationBar.tintColor = UIColor.whiteColor()
-		self.navigationBar.translucent = true
+		self.navigationBar.translucent = false
 	}
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
