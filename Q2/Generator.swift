@@ -244,7 +244,7 @@ class Generator {
 		label.textAlignment = .Center
 		label.textColor = UIColor.whiteColor()
 		label.font = UIFont.boldSystemFontOfSize(22)
-		label.backgroundColor = Global.redColor()
+		label.backgroundColor = Global.lightRedColor()
 		label.alpha = 0.8
 		label.layer.cornerRadius = (global.size.width - 20) / 2
 		label.clipsToBounds = true

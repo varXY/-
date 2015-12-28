@@ -23,7 +23,7 @@ class Question {
 			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
 			for i in questionMarks { questions.append(getBeginnerQuestion(i)!) }
 		case 1:
-			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 141)
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 201)
 			for i in questionMarks { questions.append(getIntermediateQuestions(i)!) }
 		default:
 			break
@@ -2275,6 +2275,306 @@ class Question {
 			question.question = "串联磁吹灭弧方式，磁吹力的方向与电流方向无关。"
 			question.rightAnswer = "正确"
 			question.wrongAnswer = "错误"
+			return question
+		case 141:
+			question.question = "金属导体的电阻值随着温度的升高而："
+			question.rightAnswer = "增大"
+			question.wrongAnswer = "减少"
+			return question
+		case 142:
+			question.question = "纯电感电路的感抗为："
+			question.rightAnswer = "ωL"
+			question.wrongAnswer = "1/ωL"
+			return question
+		case 143:
+			question.question = "在正弦交流电阻电路中，正确反映电流电压的关系式为："
+			question.rightAnswer = "I=U/R"
+			question.wrongAnswer = "I=Um/R"
+			return question
+		case 144:
+			question.question = "在有些情况下为了缩短晶闸管的导通时间，加大触发电流（两倍以上）这个电流称为："
+			question.rightAnswer = "强触发电流"
+			question.wrongAnswer = "掣位电流"
+			return question
+		case 145:
+			question.question = "单相正弦交流电路中有功功率的表达式是："
+			question.rightAnswer = "UIcosφ"
+			question.wrongAnswer = "UIsinφ"
+			return question
+		case 146:
+			question.question = "纯电容交流电路中电流与电压的相位关系为电流："
+			question.rightAnswer = "超前90°"
+			question.wrongAnswer = "滞后90°"
+			return question
+		case 147:
+			question.question = "两个正弦量为u1=36sin(314t+120°)V, u2=36sin(628t+30°)V，则有："
+			question.rightAnswer = "不能判断相位差"
+			question.wrongAnswer = "u2比u1超前90°"
+			return question
+		case 148:
+			question.question = "射极输出器的输出阻抗："
+			question.rightAnswer = "低"
+			question.wrongAnswer = "较高"
+			return question
+		case 149:
+			question.question = "二极管半波整流时负载两端的直流电压等于："
+			question.rightAnswer = "0.45U2"
+			question.wrongAnswer = "0.9U2"
+			return question
+		case 150:
+			question.question = "三相变压器的连接组别是表示："
+			question.rightAnswer = "原付边线电压的相位关系"
+			question.wrongAnswer = "原付边的同名端关系"
+			return question
+		case 151:
+			question.question = "射极输出器的电压放大倍数约等于："
+			question.rightAnswer = "1"
+			question.wrongAnswer = "80--100"
+			return question
+		case 152:
+			question.question = "晶闸管的控制角越大，则输出电压："
+			question.rightAnswer = "越低"
+			question.wrongAnswer = "越高"
+			return question
+		case 153:
+			question.question = "某正弦交流电压的初相角中，φU=π/6，在t=0时，其瞬时值将："
+			question.rightAnswer = "大于零"
+			question.wrongAnswer = "小于零"
+			return question
+		case 154:
+			question.question = "已知msinwt第一次达到最大值的时刻是0.005s，则第二次达到最大值时刻在："
+			question.rightAnswer = "0.025s"
+			question.wrongAnswer = "0.075s"
+			return question
+		case 155:
+			question.question = "U=311sin（314t-15°）伏，则U为："
+			question.rightAnswer = "220∠-15°"
+			question.wrongAnswer = "311∠-15°"
+			return question
+		case 156:
+			question.question = "实际电压源与实际电流源的等效互换，对内电路而言是："
+			question.rightAnswer = "不等效"
+			question.wrongAnswer = "可以等效"
+			return question
+		case 157:
+			question.question = "任一条件具备都可以得到肯定的结论，这是什么逻辑？"
+			question.rightAnswer = "或"
+			question.wrongAnswer = "或非"
+			return question
+		case 158:
+			question.question = "在放大电路中，为了稳定输出电流，应引入："
+			question.rightAnswer = "电流负反馈"
+			question.wrongAnswer = "电流正反馈"
+			return question
+		case 159:
+			question.question = "Z=A+B是什么逻辑？"
+			question.rightAnswer = "或非"
+			question.wrongAnswer = "与或非"
+			return question
+		case 160:
+			question.question = "在三极管放大电路中，为了增强带负载的能力应怎样放大电路？"
+			question.rightAnswer = "共集电极"
+			question.wrongAnswer = "共发射极"
+			return question
+		case 161:
+			question.question = "结论和给定条件相反的逻辑是："
+			question.rightAnswer = "非"
+			question.wrongAnswer = "与非"
+			return question
+		case 162:
+			question.question = "已知放大电路中三个管脚对地的电位是（1）0V；（2）0.7V；（3）6V，则该三极管是："
+			question.rightAnswer = "NPN型"
+			question.wrongAnswer = "PNP型"
+			return question
+		case 163:
+			question.question = "放大器采用射极偏置改善工作点偏离的是："
+			question.rightAnswer = "电流负反馈"
+			question.wrongAnswer = "电压正反馈"
+			return question
+		case 164:
+			question.question = "一三相对称负载，三角形连接，已知：相电流IBC=10∠-10°安，则线电流为："
+			question.rightAnswer = "17.3∠80°"
+			question.wrongAnswer = "17.3∠-40°"
+			return question
+		case 165:
+			question.question = "所有条件都具备，才有肯定的结论，这是什么逻辑？"
+			question.rightAnswer = "与"
+			question.wrongAnswer = "非"
+			return question
+		case 166:
+			question.question = "单相桥式半控整流电路，通过改变控制角，负载电压可在多少之间连续可调？"
+			question.rightAnswer = "0~0.9U2"
+			question.wrongAnswer = "0~2.34U2"
+			return question
+		case 167:
+			question.question = "已知：I=-14.1sin100πtA，其电流相量I为？"
+			question.rightAnswer = "10∠-180°"
+			question.wrongAnswer = "14.1∠0°"
+			return question
+		case 168:
+			question.question = "可控硅导通条件是：阳极与阴极加正向电压，控制极与阴极加正向电压。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 169:
+			question.question = "晶体三极管发射结反偏置、集电结处于偏置，晶体三极管处于什么工作状态？"
+			question.rightAnswer = "截止"
+			question.wrongAnswer = "饱和"
+			return question
+		case 170:
+			question.question = "晶体三极管发射结处于正偏，集电结处反偏，则三极管的工作状态为："
+			question.rightAnswer = "放大"
+			question.wrongAnswer = "截止"
+			return question
+		case 171:
+			question.question = "已知e=311sin (314t+5°)V，其相量E为？"
+			question.rightAnswer = "220∠+175°"
+			question.wrongAnswer = "220∠+185°"
+			return question
+		case 172:
+			question.question = "戴维南定理只适用于："
+			question.rightAnswer = "内部为线性含源电路"
+			question.wrongAnswer = "外部为线性电路"
+			return question
+		case 173:
+			question.question = "可控硅由多少PN结组成？"
+			question.rightAnswer = "3个"
+			question.wrongAnswer = "2个"
+			return question
+		case 174:
+			question.question = "电容器的电流I=CΔUC/Δt，当UC增大时，电容器为充电过程并："
+			question.rightAnswer = "吸取电能转换为电场能"
+			question.wrongAnswer = "吸取电场能转换为电能"
+			return question
+		case 175:
+			question.question = "晶体三极管处于放大工作状态，测得集电极电位为6V，基极电位0.7V，发射极接地，则该三极管为："
+			question.rightAnswer = "NPN型"
+			question.wrongAnswer = "PNP型"
+			return question
+		case 176:
+			question.question = "已知：电流I=6+j8，电源频率为50Hz，其瞬时值表达式为I="
+			question.rightAnswer = "10 sin (314t+53.1°)"
+			question.wrongAnswer = "10 sin (314t+36.9°)"
+			return question
+		case 177:
+			question.question = "共发射极放大器，集电极电阻RC的作用是：晶体管电流放大转变速器成电压放大。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 178:
+			question.question = "三相电源Y连接，已知UB=220∠-10°伏，其UAB为？"
+			question.rightAnswer = "380∠140°"
+			question.wrongAnswer = "380∠20°"
+			return question
+		case 179:
+			question.question = "某正弦交流电压的初相角φ=-π/6，在t=0时，其瞬时值将："
+			question.rightAnswer = "小于零"
+			question.wrongAnswer = "等于零"
+			return question
+		case 180:
+			question.question = "若电路中某元件两端电压u=100 sin (100πt+50°)V，电流I=10 sin (100πt+140°)A，则该元件是："
+			question.rightAnswer = "电容"
+			question.wrongAnswer = "电阻"
+			return question
+		case 181:
+			question.question = "阻容交流电路中电流与电压的相位关系是："
+			question.rightAnswer = "电流超前0~90°电压"
+			question.wrongAnswer = "电流滞后90°电压"
+			return question
+		case 182:
+			question.question = "在正弦交流电路中，公式正确的是："
+			question.rightAnswer = "Ic=jwcU"
+			question.wrongAnswer = "UC=-jwct"
+			return question
+		case 183:
+			question.question = "基本逻辑运算电路有三种，即为："
+			question.rightAnswer = "与门、非门、或门"
+			question.wrongAnswer = "与门、非门、与非门"
+			return question
+		case 184:
+			question.question = "对于三相对称交流电路，不论星形或三角形接法，下列结论正确的是："
+			question.rightAnswer = "P=3UmImcosφ"
+			question.wrongAnswer = "S=3UI"
+			return question
+		case 185:
+			question.question = "多级放大器极间耦合形式是："
+			question.rightAnswer = "阻容、变压器、直接"
+			question.wrongAnswer = "二极管、电阻、阻容"
+			return question
+		case 186:
+			question.question = "基尔霍夫定律有："
+			question.rightAnswer = "节点电流定律"
+			question.wrongAnswer = "节点电压定律"
+			return question
+		case 187:
+			question.question = "正弦交流电的三要素是："
+			question.rightAnswer = "最大值、初相角、角频率"
+			question.wrongAnswer = "最大值、串联、并联"
+			return question
+		case 188:
+			question.question = "我国规定三相电力变压器的联结组别是："
+			question.rightAnswer = "Y/Δ-11"
+			question.wrongAnswer = "Y/Δ-7"
+			return question
+		case 189:
+			question.question = "人为提高功率因数的方法："
+			question.rightAnswer = "并联适当电容器"
+			question.wrongAnswer = "并联大电抗器"
+			return question
+		case 190:
+			question.question = "三相负载对称是："
+			question.rightAnswer = "各相阻抗值相等"
+			question.wrongAnswer = "各相阻抗值差"
+			return question
+		case 191:
+			question.question = "人为提高功率因数的方法是："
+			question.rightAnswer = "电路串联适当电容器"
+			question.wrongAnswer = "串联大电容器"
+			return question
+		case 192:
+			question.question = "三相负载对称是："
+			question.rightAnswer = "各相阻抗值复角相等"
+			question.wrongAnswer = "各相阻抗复角相差120°"
+			return question
+		case 193:
+			question.question = "晶闸管导通条件是："
+			question.rightAnswer = "阳极与阴极间加正向电压"
+			question.wrongAnswer = "阳极与控制极间加正向电压"
+			return question
+		case 194:
+			question.question = "正弦交流电路，下列方程哪个是正确的？"
+			question.rightAnswer = "IL=U/XL"
+			question.wrongAnswer = "赫C=Xcic"
+			return question
+		case 195:
+			question.question = "交流电用相量表示称符号法有：代数式、三角式、几何式、指数式、极坐标式。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 196:
+			question.question = "提高功率因数的好处有："
+			question.rightAnswer = "可以减少线路功率损耗"
+			question.wrongAnswer = "可以提高电动机的出力"
+			return question
+		case 197:
+			question.question = "电桥外接电源时过高过低会产生什么现象？"
+			question.rightAnswer = "损坏电阻"
+			question.wrongAnswer = "读数不准"
+			return question
+		case 198:
+			question.question = "关断晶闸管的方法是："
+			question.rightAnswer = "断开阳极电源"
+			question.wrongAnswer = "切断控制极电压"
+			return question
+		case 199:
+			question.question = "一三相对称感性负载，分别采用三角形和Y形接到同一电源上，则："
+			question.rightAnswer = "线电流：IΔ相=3IY"
+			question.wrongAnswer = "负载相电压：UΔ相=3UY相"
+			return question
+		case 200:
+			question.question = "在电力系统中，采用并联补偿电容器进行无功补偿主要作用有："
+			question.rightAnswer = "提高功率因数"
+			question.wrongAnswer = "改善架空线路的防雷性能"
 			return question
 		default:
 			break
