@@ -23,7 +23,7 @@ class Question {
 			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
 			for i in questionMarks { questions.append(getBeginnerQuestion(i)!) }
 		case 1:
-			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 201)
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 233)
 			for i in questionMarks { questions.append(getIntermediateQuestions(i)!) }
 		default:
 			break
@@ -2575,6 +2575,166 @@ class Question {
 			question.question = "在电力系统中，采用并联补偿电容器进行无功补偿主要作用有："
 			question.rightAnswer = "提高功率因数"
 			question.wrongAnswer = "改善架空线路的防雷性能"
+			return question
+		case 201:
+			question.question = "RLC串联的正弦交流电路中，当XL=XC时，电路发生谐振，谐振特性是："
+			question.rightAnswer = "电路中电流最大"
+			question.wrongAnswer = "电路中无功功率不为0"
+			return question
+		case 202:
+			question.question = "单相变压器连接组的测定方法有："
+			question.rightAnswer = "直流法和交流法"
+			question.wrongAnswer = "电阻法和功率测量法"
+			return question
+		case 203:
+			question.question = "戴维南定理适用外部电路为："
+			question.rightAnswer = "线性、非线性电路"
+			question.wrongAnswer = "整流、饱和电路"
+			return question
+		case 204:
+			question.question = "已知放大电路中三极管三个管脚对地电位是（1）0V，（2）0.7V，（3）6V。该三极各管脚对应的电场正确的是？"
+			question.rightAnswer = "（2）是基极"
+			question.wrongAnswer = "（1）是基极"
+			return question
+		case 205:
+			question.question = "下列是三极管的极限参数的是："
+			question.rightAnswer = "集电极最大允许电流ICM"
+			question.wrongAnswer = "穿透电流ICEO"
+			return question
+		case 206:
+			question.question = "不属于放大电路的三种组态是："
+			question.rightAnswer = "饱和"
+			question.wrongAnswer = "共集电极放大"
+			return question
+		case 207:
+			question.question = "设三相正弦交流电的ia=Imsinωt，则ib为："
+			question.rightAnswer = "ib=Imsin (ωt -120°)"
+			question.wrongAnswer = "ib=Imsin (ωt -240°)"
+			return question
+		case 208:
+			question.question = "设三相正弦交流电的ia=Imsinωt，则ib为："
+			question.rightAnswer = "ib=Imsin (ωt +240°)"
+			question.wrongAnswer = "ib=Imsin (ωt +120°)"
+			return question
+		case 209:
+			question.question = "三极管的三种工作状态是："
+			question.rightAnswer = "放大、截止、饱和"
+			question.wrongAnswer = "开路、短路、截止"
+			return question
+		case 210:
+			question.question = "晶闸管的阻断作用有："
+			question.rightAnswer = "正向阻断、反向阻断"
+			question.wrongAnswer = "正向偏置、反向偏置"
+			return question
+		case 211:
+			question.question = "提高功率因数的意义有："
+			question.rightAnswer = "充分利用设备容量"
+			question.wrongAnswer = "节省线路投资"
+			return question
+		case 212:
+			question.question = "提高功率因数的意义有："
+			question.rightAnswer = "线路功率和电压损耗减小"
+			question.wrongAnswer = "节约经济开支"
+			return question
+		case 213:
+			question.question = "放大电路的三种组态是：共集极放大器、共基极放大器、共发射极放大器。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 214:
+			question.question = "TTL集成电路的全称是晶体管—晶体管逻辑集成电路。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 215:
+			question.question = "当三极管的发射结和集电结都处于正偏状态时，三极管一定工作在饱和区。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 216:
+			question.question = "晶体三极管放大器，为了消除湿度变化的影响，一般采用固定偏置电路。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 217:
+			question.question = "可控硅整流电路中，对触发脉冲有一定的能量要求，如果脉搏冲电流太小，可控硅也无法导通。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 218:
+			question.question = "两个不同频率的正弦量在相位上的差叫相位差。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 219:
+			question.question = "并联电容器可以提高感性负载本身的功率因数。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 220:
+			question.question = "叠加原理只能用严寒计算电压电流，不能用来计算电路的功率。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 221:
+			question.question = "晶闸管控制角越大电压则越高。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 222:
+			question.question = "某电气元件两端交流电压的相位超前于流过它上面的电流，则该元件为容性负载。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 223:
+			question.question = "晶闸管的导通条件是晶闸管加正向电压门极加反向电压。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 224:
+			question.question = "晶闸管具有正反向阻断能力。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 225:
+			question.question = "电感元件在电路中不消耗能量，它是无功负荷。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 226:
+			question.question = "所谓部分电路欧姆定律，其部分电路是指不含电源的电路。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 227:
+			question.question = "线圈中磁通产生的感应电势与磁通成正比。"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
+			return question
+		case 228:
+			question.question = "射极输出器不仅能作电压放大器，主要是为了增加输入阻抗，减低输出阻抗。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 229:
+			question.question = "晶闸管触发电路的脉冲前沿要陡，前沿上升时间不超过100μs。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 230:
+			question.question = "单结晶体管具有一个发射极、一个基极、一个集电极。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 231:
+			question.question = "单结晶体管的发射极电压高于谷点电压时，晶体管就导通。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
+			return question
+		case 232:
+			question.question = "纯电感负载功率因数为零，纯电容负载功率因数为1。"
+			question.rightAnswer = "错误"
+			question.wrongAnswer = "正确"
 			return question
 		default:
 			break
