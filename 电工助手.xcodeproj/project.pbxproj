@@ -42,6 +42,7 @@
 		31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D669001BA80BE200A21AF1 /* EquationCell.swift */; };
 		31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */; };
 		31F9AC321C261CAB0072A116 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F9AC311C261CAB0072A116 /* NavigationController.swift */; };
+		C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,9 @@
 		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31F9AC311C261CAB0072A116 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		C329FDAA1C3BA96300BA1189 /* 电工助手-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "电工助手-Bridging-Header.h"; sourceTree = "<group>"; };
+		C329FDAB1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,9 +150,12 @@
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
 				31A492511BACE65C009077FD /* UIButton+genAnimation.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
+				C329FDAB1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.h */,
+				C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */,
 				312DA30C1BB512DF00130A33 /* Images.xcassets */,
 				31523AA21BAFE9A100526881 /* Sound5.0 */,
 				31033A7C1BA3BB5F00DC9141 /* Supporting Files */,
+				C329FDAA1C3BA96300BA1189 /* 电工助手-Bridging-Header.h */,
 			);
 			name = ElectricicanHelper;
 			path = Q2;
@@ -341,13 +348,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = xiaoyao;
 				TargetAttributes = {
 					31033A781BA3BB5F00DC9141 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 9VT3ZYNA9Y;
+						DevelopmentTeam = R6FSU72E27;
 					};
 					31033A8F1BA3BB5F00DC9141 = {
 						CreatedOnToolsVersion = 6.4;
@@ -423,6 +430,7 @@
 				314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */,
 				31033AA61BA3BD0300DC9141 /* InfoViewController.swift in Sources */,
 				31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */,
+				C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				314DFCD91BA42E3F00E79557 /* Catalog.swift in Sources */,
 				318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */,
 				318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */,
@@ -539,13 +547,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.ElectricicanHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.q2;
 				PRODUCT_NAME = "电工助手";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Q2/电工助手-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -555,13 +566,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.ElectricicanHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.q2;
 				PRODUCT_NAME = "电工助手";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Q2/电工助手-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

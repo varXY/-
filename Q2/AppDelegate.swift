@@ -137,6 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		let testVC = TestViewController()
 		let testNavi = NavigationController(viewController: testVC)
+        testNavi.fd_fullscreenPopGestureRecognizer.enabled = false
 		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: UIImage(named: "电工试题"), tag: 1)
 		let controller = testNavi.viewControllers[0] as! TestViewController
 		controller.beginnerRecords = beginnerRecords

@@ -47,6 +47,10 @@ class ContentViewController: UITableViewController {
 			searchBar.tintColor = Global.redColor()
 			searchBar.delegate = self
 			tableView.tableHeaderView = searchBar
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: "tapToCancel")
+            view.addGestureRecognizer(tapGesture)
+            
 		case 2:
 			self.title = "工具设备"
 			knowledges = knowledge.getAll(2)
@@ -67,6 +71,11 @@ class ContentViewController: UITableViewController {
 	func back() {
 		self.navigationController?.popViewControllerAnimated(true)
 	}
+    
+    func tapToCancel() {
+        self.searchBarCancelButtonClicked(self.searchBar)
+        self.searchBar.text = nil
+    }
 
 
 
