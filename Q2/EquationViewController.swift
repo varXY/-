@@ -45,6 +45,15 @@ class EquationViewController: UIViewController {
 		tableView.dataSource = self
 		tableView.delegate = self
 		view.addSubview(tableView)
+        
+//        let contentView = UIView(frame: CGRectMake(0, 0, view.frame.width, 300))
+//        contentView.tintColor = UIColor.lightGrayColor()
+//        
+//        let imageView = UIImageView(image: UIImage(named: "公式换算"))
+//        imageView.frame = CGRectMake(view.frame.width / 2 - 15, 150, 30, 30)
+//        imageView.tintColor = UIColor.lightGrayColor()
+//        contentView.addSubview(imageView)
+//        tableView.tableFooterView = contentView
 
 		genTextField()
 		for textfield in textFields {

@@ -28,10 +28,10 @@ class HudView: UIView {
 		let boxRect = CGRect(x: round((bounds.size.width - boxWidth) / 2), y: round((bounds.size.height - boxHeight) / 2), width: boxWidth, height: boxHeight)
 
 		let roundedRect = UIBezierPath(roundedRect: boxRect, cornerRadius: 20)
-		UIColor(white: 0.3, alpha: 0.8).setFill()
+		UIColor(white: 1.0, alpha: 1.0).setFill()
 		roundedRect.fill()
 
-		let attribs = [NSFontAttributeName: UIFont.systemFontOfSize(22.0), NSForegroundColorAttributeName: UIColor.whiteColor()]
+		let attribs = [NSFontAttributeName: UIFont.systemFontOfSize(22.0), NSForegroundColorAttributeName: UIColor.blackColor()]
 		let textSize = text.sizeWithAttributes(attribs)
 		let textPoint = CGPoint(x: center.x - round(textSize.width / 2), y: bounds.size.height / 2 - round(textSize.height / 2))
 		text.drawAtPoint(textPoint, withAttributes: attribs)
