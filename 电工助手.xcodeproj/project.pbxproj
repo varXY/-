@@ -191,7 +191,7 @@
 			children = (
 				314DFCE81BA42EE100E79557 /* View */,
 				318C118D1BA4EAB000CA1EC9 /* Controller */,
-				318C118E1BA4EAD000CA1EC9 /* Modal */,
+				318C118E1BA4EAD000CA1EC9 /* Model */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -201,7 +201,7 @@
 			children = (
 				314DFCD11BA429F400E79557 /* View */,
 				31033AAE1BA4093C00DC9141 /* Controller */,
-				31033AAF1BA4095500DC9141 /* Modal */,
+				31033AAF1BA4095500DC9141 /* Model */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -217,14 +217,14 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		31033AAF1BA4095500DC9141 /* Modal */ = {
+		31033AAF1BA4095500DC9141 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				31033AB01BA4096A00DC9141 /* Question.swift */,
 				31033AB61BA416C100DC9141 /* Record.swift */,
 				31D61E531BA6B08D006A7034 /* Records.swift */,
 			);
-			name = Modal;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		314DFCD11BA429F400E79557 /* View */ = {
@@ -268,12 +268,12 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		318C118E1BA4EAD000CA1EC9 /* Modal */ = {
+		318C118E1BA4EAD000CA1EC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				314DFCDA1BA42E7800E79557 /* Knowledge.swift */,
 			);
-			name = Modal;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		31D668F71BA7FCB800A21AF1 /* Scale */ = {
