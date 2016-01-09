@@ -326,7 +326,7 @@ class Generator {
 		button.frame = CGRect(x: round(frame.origin.x), y: round(frame.origin.y), width: round(frame.size.width), height: round(frame.size.height))
 		button.tintColor = UIColor.redColor()
 		button.setTitle(title, forState: .Normal)
-		button.titleLabel?.font = UIFont.systemFontOfSize(18)
+		button.titleLabel?.font = UIFont.boldSystemFontOfSize(18)
 		button.backgroundColor = UIColor.whiteColor()
 		button.layer.cornerRadius = frame.height / 2
 		button.clipsToBounds = true
