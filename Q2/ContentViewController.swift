@@ -47,6 +47,7 @@ class ContentViewController: UITableViewController {
 			searchBar.tintColor = Global.redColor()
 			searchBar.delegate = self
 			tableView.tableHeaderView = searchBar
+            tableView.contentOffset.y = searchBar.frame.height
             
             let tapGesture = UITapGestureRecognizer(target: self, action: "tapToCancel")
             view.addGestureRecognizer(tapGesture)

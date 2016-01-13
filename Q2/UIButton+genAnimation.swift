@@ -25,7 +25,7 @@ extension UIButton {
 
 		case .Disappear:
 			UIView.animateWithDuration(0.4, animations: { () -> Void in
-				self.transform = CGAffineTransformMakeScale(0.5, 0.5)
+				self.transform = CGAffineTransformMakeScale(0.7, 0.7)
 				self.alpha = 0.0
 				}, completion: { (_) -> Void in
 					self.hidden = true

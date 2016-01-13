@@ -33,8 +33,11 @@ class EquationViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        self.view.backgroundColor = Global.backgroundColor()
 		self.title = Equation(rawValue: index)?.navigationTitle
-		self.view.backgroundColor = Global.backgroundColor()
+		
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "share")
+        self.navigationItem.rightBarButtonItem = shareButton
 
 		getWords(index)
 
@@ -68,12 +71,10 @@ class EquationViewController: UIViewController {
 		super.viewDidAppear(animated)
 		textFields[0].becomeFirstResponder()
 	}
-
-	func back() {
-		self.navigationController?.popViewControllerAnimated(true)
-	}
-
-
+    
+    func share() {
+        
+    }
 
 	func getWords(index: Int) {
 		sectionTitle = Equation(rawValue: index)!.sectionTitle

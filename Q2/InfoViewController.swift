@@ -20,7 +20,7 @@ class InfoViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.view.backgroundColor = Global.backgroundColor()
-		self.title = "常用知识"
+		self.navigationItem.title = "知识"
 
 		BigButtons = generator.genButtonsForInfo()
 		for i in 0..<BigButtons.count {

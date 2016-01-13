@@ -25,9 +25,8 @@ class TestViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		self.title = "电工试题"
-		self.view.backgroundColor = Global.backgroundColor()
+        self.view.backgroundColor = Global.backgroundColor()
+		self.navigationItem.title = "试题"
 
 		buttons = generator.genButtonsForTest()
 		for button in buttons {
