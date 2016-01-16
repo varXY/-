@@ -178,7 +178,7 @@ extension ContentViewController: UISearchBarDelegate {
 			let hudView = HudView.hudInView(self.view, animated: true)
 			hudView.text = "无结果"
 
-			delay(seconds: 0.5, completion: { () -> () in
+			delay(seconds: 0.7, completion: { () -> () in
 				hudView.removeFromSuperview()
 				self.view.userInteractionEnabled = true
 			})

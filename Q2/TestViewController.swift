@@ -26,21 +26,24 @@ class TestViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         self.view.backgroundColor = Global.backgroundColor()
-		self.navigationItem.title = "试题"
+		
 
 		buttons = generator.genButtonsForTest()
 		for button in buttons {
 			button.addTarget(self, action: "open:", forControlEvents: .TouchUpInside)
 			self.view.addSubview(button)
 		}
+        
+        let infoButton = UIButton(type: .InfoLight)
+        infoButton.addTarget(self, action: "seeInfo", forControlEvents: .TouchUpInside)
+        let infoBarButton = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.rightBarButtonItem = infoBarButton
 
-//		let label = generator.genLabelForTest()
-//		view.addSubview(label)
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-
+        self.navigationItem.title = "试题"
 		let time1 = (intermediateRecords.records.count == 8 && intermediateRecords.showTimes == 1)
 		let time2 = (intermediateRecords.records.count == 16 && intermediateRecords.showTimes == 2)
 		let time3 = (intermediateRecords.records.count == 24 && intermediateRecords.showTimes == 3)
@@ -62,8 +65,19 @@ class TestViewController: UIViewController {
 		}
 
 	}
-
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationItem.title = " "
+    }
+    
+    func seeInfo() {
+        let detailVC = TestViewController()
+        detailVC.title = "设置"
+        detailVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
 
 	func askForComment() {
 		let alertVC = UIAlertController(title: "希望得到你的反馈", message: "去评分提建议或者分享一下吧！", preferredStyle: .Alert)
