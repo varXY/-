@@ -18,10 +18,15 @@ class RecordViewController: UIViewController {
 	var generator = Generator()
 
 	var segmentControl = UISegmentedControl()
+
 	var scrollView = UIScrollView()
+
 	var tableView0 = UITableView()
 	var tableView1 = UITableView()
+	var tableView2: SettingTableView!
 	var shareButton = UIButton()
+
+	var tapGesture: UITapGestureRecognizer!
 
 	var segmentWay = false
 
@@ -30,8 +35,8 @@ class RecordViewController: UIViewController {
 
 		automaticallyAdjustsScrollViewInsets = true
 
-		segmentControl = UISegmentedControl(items: ["初级", "中级"])
-		segmentControl.frame = CGRectMake(0, 0, view.frame.width * 0.438, 29)
+		segmentControl = UISegmentedControl(items: ["初级", "中级", "更多"])
+		for i in 0..<3 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
 		segmentControl.selectedSegmentIndex = 0
 		segmentControl.addTarget(self, action: "segmentSelected:", forControlEvents: UIControlEvents.AllEvents)
 		navigationItem.titleView = segmentControl
@@ -41,22 +46,31 @@ class RecordViewController: UIViewController {
 		self.navigationItem.rightBarButtonItem = quitButton
 
 		scrollView.frame = view.bounds
-		scrollView.contentSize = CGSize(width: view.frame.width * 2, height: 0)
+		scrollView.contentSize = CGSize(width: view.frame.width * 3, height: 0)
 		scrollView.pagingEnabled = true
 		scrollView.delegate = self
 		view.addSubview(scrollView)
 
 		tableView0 = getTableView(CGRectMake(0, 0, view.frame.width, view.frame.height - 64))
-		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
 		scrollView.addSubview(tableView0)
+
+		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
 		scrollView.addSubview(tableView1)
+
+		tableView2 = SettingTableView(frame: CGRectMake(view.frame.width * 2, 0, view.frame.width, view.frame.height - 64), style: .Grouped)
+		tableView2.sendMail = { (controller) -> Void in
+			self.presentViewController(controller, animated: true, completion: nil)
+		}
+		tableView2.doneWithMail = { (controller) -> Void in
+			controller.dismissViewControllerAnimated(true, completion: nil)
+		}
+		scrollView.addSubview(tableView2)
 
 		shareButton = generator.genShareButton(CGPointMake(20, global.size.height - 64), tag: 160)
 		shareButton.addTarget(self, action: "share", forControlEvents: .TouchUpInside)
 		view.addSubview(shareButton)
 
-		let tapGesture = UITapGestureRecognizer(target: self, action: "tapped")
-		view.addGestureRecognizer(tapGesture)
+		tapGesture = UITapGestureRecognizer(target: self, action: "tapped")
 
 	}
 
@@ -64,9 +78,14 @@ class RecordViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		delay(seconds: 0.5) { () -> () in
+		if self.segmentControl.selectedSegmentIndex == 2 {
 			self.checkRecordsCountForShareButton(self.segmentControl.selectedSegmentIndex)
+		} else {
+			delay(seconds: 0.5) { () -> () in
+				self.checkRecordsCountForShareButton(self.segmentControl.selectedSegmentIndex)
+			}
 		}
+
 	}
 
 	func getTableView(rect: CGRect) -> UITableView {
@@ -88,8 +107,16 @@ class RecordViewController: UIViewController {
 	}
 
 	func checkRecordsCountForShareButton(index: Int) {
+
+		self.view.addGestureRecognizer(tapGesture)
 		let records = index == 0 ? beginnerRecords : intermediateRecords
 		shareButton.enabled = records.count != 0
+
+		if index == 2 {
+			self.view.removeGestureRecognizer(tapGesture)
+			shareButton.enabled = false
+		}
+
 		hideOrShowShareButton()
 	}
 
@@ -240,6 +267,7 @@ extension RecordViewController: UIScrollViewDelegate {
 
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView == self.scrollView && segmentWay == false {
+			
 			if scrollView.contentOffset.x == 0 {
 				segmentControl.selectedSegmentIndex = 0
 				checkRecordsCountForShareButton(segmentControl.selectedSegmentIndex)
@@ -247,6 +275,12 @@ extension RecordViewController: UIScrollViewDelegate {
 
 			if scrollView.contentOffset.x == scrollView.bounds.size.width {
 				segmentControl.selectedSegmentIndex = 1
+				checkRecordsCountForShareButton(segmentControl.selectedSegmentIndex)
+
+			}
+
+			if scrollView.contentOffset.x == scrollView.bounds.size.width * 2 {
+				segmentControl.selectedSegmentIndex = 2
 				checkRecordsCountForShareButton(segmentControl.selectedSegmentIndex)
 
 			}

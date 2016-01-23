@@ -133,19 +133,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// MARK: Base
 		let infoVC = InfoViewController()
 		let infoNavi = NavigationController(viewController: infoVC)
-		infoNavi.tabBarItem = UITabBarItem(title: "知识", image: UIImage(named: "常用知识"), tag: 0)
+		infoNavi.tabBarItem = UITabBarItem(title: "常用知识", image: UIImage(named: "常用知识"), tag: 0)
 
 		let testVC = TestViewController()
 		let testNavi = NavigationController(viewController: testVC)
         testNavi.fd_fullscreenPopGestureRecognizer.enabled = false
-		testNavi.tabBarItem = UITabBarItem(title: "试题", image: UIImage(named: "电工试题"), tag: 1)
+		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: UIImage(named: "电工试题"), tag: 1)
 		let controller = testNavi.viewControllers[0] as! TestViewController
 		controller.beginnerRecords = beginnerRecords
 		controller.intermediateRecords = intermediateRecords
 
 		let scaleVC = ScaleViewController()
 		let scaleNavi = NavigationController(viewController: scaleVC)
-		scaleNavi.tabBarItem = UITabBarItem(title: "换算", image: UIImage(named: "公式换算"), tag: 2)
+		scaleNavi.tabBarItem = UITabBarItem(title: "公式换算", image: UIImage(named: "公式换算"), tag: 2)
 
 		let tabbarController = TabBarController()
 		tabbarController.viewControllers = [infoNavi, testNavi, scaleNavi]

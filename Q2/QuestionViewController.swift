@@ -26,6 +26,7 @@ class QuestionViewController: UIViewController {
 	var dotView = UIView()
 	var fakeButton = UIView()
 
+	var soundOn = true
 	var player0 = AVAudioPlayer()
 	var player1 = AVAudioPlayer()
 
@@ -87,6 +88,11 @@ class QuestionViewController: UIViewController {
 			quitButton.genAnimation(.Appear, delay: 0.1, distance: 70)
 		}
 
+		let userDefaults = NSUserDefaults.standardUserDefaults()
+		if let sound = userDefaults.valueForKey("Sound") as? Bool {
+			self.soundOn = sound
+		}
+
 	}
 
 
@@ -105,7 +111,7 @@ class QuestionViewController: UIViewController {
 	func getResult(sender: UIButton) {
 
 		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			player0.play()
+			if soundOn { player0.play() }
 			showRightOrWrongView("right")
 			rightCount += 1
 			rightOrWrong.append(1)
@@ -115,7 +121,7 @@ class QuestionViewController: UIViewController {
 			}
 
 		} else {
-			player1.play()
+			if soundOn { player1.play() }
 			AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
 			showRightOrWrongView("wrong")
 			rightOrWrong.append(0)

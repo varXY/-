@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310202DC1C53AFA9003D9C44 /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310202DB1C53AFA9003D9C44 /* SettingTableView.swift */; };
 		31033A7F1BA3BB5F00DC9141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */; };
 		31033A971BA3BB5F00DC9141 /* Q2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033A961BA3BB5F00DC9141 /* Q2Tests.swift */; };
 		31033AA11BA3BC6800DC9141 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AA01BA3BC6800DC9141 /* TabBarController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		310202DB1C53AFA9003D9C44 /* SettingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		31033A791BA3BB5F00DC9141 /* 电工助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "电工助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31033A7D1BA3BB5F00DC9141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31033A7E1BA3BB5F00DC9141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -232,6 +234,7 @@
 			children = (
 				314DFCD21BA42A0900E79557 /* RecordCell.swift */,
 				318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */,
+				310202DB1C53AFA9003D9C44 /* SettingTableView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -354,7 +357,7 @@
 				TargetAttributes = {
 					31033A781BA3BB5F00DC9141 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = R6FSU72E27;
+						DevelopmentTeam = 9VT3ZYNA9Y;
 					};
 					31033A8F1BA3BB5F00DC9141 = {
 						CreatedOnToolsVersion = 6.4;
@@ -429,6 +432,7 @@
 				31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */,
 				314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */,
 				31033AA61BA3BD0300DC9141 /* InfoViewController.swift in Sources */,
+				310202DC1C53AFA9003D9C44 /* SettingTableView.swift in Sources */,
 				31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */,
 				C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				314DFCD91BA42E3F00E79557 /* Catalog.swift in Sources */,

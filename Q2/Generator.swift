@@ -25,8 +25,8 @@ class Generator {
 
 		let buttonX = (global.size.width - buttonSize.width) / 2
 
-		let marginY_1 = marginY
-		let marginY_2 = marginY * 2 + buttonSize.height
+		let marginY_1 = marginY - 2
+		let marginY_2 = marginY * 2 + buttonSize.height - 2
 		let marginY_3 = marginY * 3 + buttonSize.height * 2
 
 		var button = genButton("单位公式", frame: CGRect(x: buttonX, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
@@ -49,27 +49,32 @@ class Generator {
 		var buttons = [UIButton]()
 		let buttonSize = global.buttonSize()
 
+		let x = (global.size.width - buttonSize.width) / 2
+
+		let centerY = (global.size.height - 64 - 49) / 2
+		let Y_1 = centerY - buttonSize.height - 70
+		let Y_2 = centerY + 70
 //		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
 //		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
-		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
-		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
+//		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
+//		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
 
 //		var button = genButton("开始答题", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
 //		button?.titleLabel?.font = UIFont.systemFontOfSize(24)
 //		button?.tag = 33893
 //		buttons.append(button!)
 
-		var button = genButton("初级", frame: CGRectMake((global.size.width / 4 - buttonSize.width / 2), buttonSize.height / 1.5, buttonSize.width, buttonSize.height))
+		var button = genButton("初级", frame: CGRectMake(x, Y_1, buttonSize.width, buttonSize.height))
 		button?.tag = 33890
 		buttons.append(button!)
 
-		button = genButton("中级", frame: CGRectMake((global.size.width * 3 / 4 - buttonSize.width / 2), buttonSize.height / 1.5, buttonSize.width, buttonSize.height))
+		button = genButton("中级", frame: CGRectMake(x, Y_2, buttonSize.width, buttonSize.height))
 		button?.tag = 33891
 		buttons.append(button!)
 
-		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight - 64, width: smallbuttonWidth, height: smallbuttonHeight))
-		button?.tag = 33892
-		buttons.append(button!)
+//		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight - 64, width: smallbuttonWidth, height: smallbuttonHeight))
+//		button?.tag = 33892
+//		buttons.append(button!)
 
 		return buttons
 	}
@@ -84,8 +89,8 @@ class Generator {
 		let buttonX1 = global.size.width / 4 - buttonSize.width / 2
 		let buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
 
-		let marginY_1 = marginY
-		let marginY_2 = marginY * 2 + buttonSize.height
+		let marginY_1 = marginY - 3
+		let marginY_2 = marginY * 2 + buttonSize.height - 3
 		let marginY_3 = marginY * 3 + buttonSize.height * 2
 
 		var button = genButton("欧姆定律", frame: CGRect(x: buttonX0, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
@@ -326,7 +331,7 @@ class Generator {
 		button.frame = CGRect(x: round(frame.origin.x), y: round(frame.origin.y), width: round(frame.size.width), height: round(frame.size.height))
 		button.tintColor = UIColor.redColor()
 		button.setTitle(title, forState: .Normal)
-		button.titleLabel?.font = UIFont.boldSystemFontOfSize(18)
+		button.titleLabel?.font = UIFont.systemFontOfSize(18)
 		button.backgroundColor = UIColor.whiteColor()
 		button.layer.cornerRadius = frame.height / 2
 		button.clipsToBounds = true
