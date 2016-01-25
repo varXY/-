@@ -38,8 +38,7 @@ class ScaleViewController: UIViewController {
 
 		for i in 0..<4 {
 			let button = self.view.viewWithTag(i + 345) as! UIButton
-			let j = ( i != 0 && i != 1 ? i - 1 : i)
-			button.genAnimation(.Appear, delay: 0.1 * Double(j), distance: 30 + CGFloat(j) * 40)
+			button.genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40)
 		}
 
 	}

@@ -20,24 +20,31 @@ class Generator {
 
 	func genButtonsForInfo() -> [UIButton] {
 		let buttonSize = global.buttonSize()
-		let marginY = global.margin()
+//		let marginY = global.margin()
 		var buttons = [UIButton]()
 
-		let buttonX = (global.size.width - buttonSize.width) / 2
+//		let buttonX = (global.size.width - buttonSize.width) / 2
 
-		let marginY_1 = marginY - 2
-		let marginY_2 = marginY * 2 + buttonSize.height - 2
-		let marginY_3 = marginY * 3 + buttonSize.height * 2
+//		let marginY_1 = marginY - 2
+//		let marginY_2 = marginY * 2 + buttonSize.height - 2
+//		let marginY_3 = marginY * 3 + buttonSize.height * 2
 
-		var button = genButton("单位公式", frame: CGRect(x: buttonX, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
+		let distance = global.size.width / 2
+		print(distance)
+
+		let center_0 = CGPoint(x: distance, y: global.size.height / 2  - distance / 2 - 64)
+		let center_1 = CGPoint(x: distance / 2, y: global.size.height / 2 + distance / 2 - 64)
+		let center_2 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2 + distance / 2 - 64)
+
+		var button = genButtonWithCenter("单位公式", center: center_0, size: buttonSize)
 		button?.tag = 93456
 		buttons.append(button!)
 
-		button = genButton("图标符号", frame: CGRect(x: buttonX, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		button = genButtonWithCenter("图标符号", center: center_1, size: buttonSize)
 		button?.tag = 93457
 		buttons.append(button!)
 
-		button = genButton("工具设备", frame: CGRect(x: buttonX, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
+		button = genButtonWithCenter("工具设备", center: center_2, size: buttonSize)
 		button?.tag = 93458
 		buttons.append(button!)
 
@@ -82,27 +89,35 @@ class Generator {
 
 	func genButtonsForScale() -> [UIButton] {
 		let buttonSize = global.buttonSize()
-		let marginY = global.margin()
+//		let marginY = global.margin()
 		var buttons = [UIButton]()
 
-		let buttonX0 = (global.size.width - buttonSize.width) / 2
-		let buttonX1 = global.size.width / 4 - buttonSize.width / 2
-		let buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
+//		let buttonX0 = (global.size.width - buttonSize.width) / 2
+//		let buttonX1 = global.size.width / 4 - buttonSize.width / 2
+//		let buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
+//
+//		let marginY_1 = marginY - 3
+//		let marginY_2 = marginY * 2 + buttonSize.height - 3
+//		let marginY_3 = marginY * 3 + buttonSize.height * 2
 
-		let marginY_1 = marginY - 3
-		let marginY_2 = marginY * 2 + buttonSize.height - 3
-		let marginY_3 = marginY * 3 + buttonSize.height * 2
+		let distance = global.size.width / 2
 
-		var button = genButton("欧姆定律", frame: CGRect(x: buttonX0, y: marginY_1, width: buttonSize.width, height: buttonSize.height))
+		let center_0 = CGPoint(x: distance / 2, y: global.size.height / 2  - distance / 2 - 64)
+		let center_1 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2  - distance / 2 - 64)
+		let center_2 = CGPoint(x: distance / 2, y: global.size.height / 2 + distance / 2 - 64)
+		let center_3 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2 + distance / 2 - 64)
+
+
+		var button = genButtonWithCenter("欧姆定律", center: center_0, size: buttonSize)
 		buttons.append(button!)
 
-		button = genButton("功率", frame: CGRect(x: buttonX1, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		button = genButtonWithCenter("功率", center: center_1, size: buttonSize)
 		buttons.append(button!)
 
-		button = genButton("电量", frame: CGRect(x: buttonX2, y: marginY_2, width: buttonSize.width, height: buttonSize.height))
+		button = genButtonWithCenter("电量", center: center_3, size: buttonSize)
 		buttons.append(button!)
 
-		button = genButton("马力", frame: CGRect(x: buttonX0, y: marginY_3, width: buttonSize.width, height: buttonSize.height))
+		button = genButtonWithCenter("马力", center: center_2, size: buttonSize)
 		buttons.append(button!)
 
 		return buttons
@@ -334,6 +349,23 @@ class Generator {
 		button.titleLabel?.font = UIFont.systemFontOfSize(18)
 		button.backgroundColor = UIColor.whiteColor()
 		button.layer.cornerRadius = frame.height / 2
+		button.clipsToBounds = true
+
+		genShadowForButton(button)
+
+		return button
+	}
+
+	func genButtonWithCenter(title: String, center: CGPoint, size: CGSize) -> UIButton? {
+		let button = UIButton(type: .System)
+		button.frame.size = size
+		button.center = center
+		print(center)
+		button.tintColor = UIColor.redColor()
+		button.setTitle(title, forState: .Normal)
+		button.titleLabel?.font = UIFont.systemFontOfSize(18)
+		button.backgroundColor = UIColor.whiteColor()
+		button.layer.cornerRadius = size.height / 2
 		button.clipsToBounds = true
 
 		genShadowForButton(button)

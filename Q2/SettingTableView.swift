@@ -30,6 +30,7 @@ class SettingTableView: UITableView {
 		self.delegate = self
 
 		switchControl.frame.origin = CGPoint(x: self.frame.width - 60, y: 7)
+		switchControl.tintColor = Global.lightRedColor()
 		switchControl.onTintColor = Global.lightRedColor()
 
 		let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -90,7 +91,7 @@ extension SettingTableView: UITableViewDataSource, UITableViewDelegate {
 
 		if indexPath.section == 1 {
 			cell.textLabel?.text = titles[indexPath.row + 1]
-			cell.accessoryType = .DisclosureIndicator
+			cell.textLabel?.textColor = Global.lightRedColor()
 		}
 
 		return cell

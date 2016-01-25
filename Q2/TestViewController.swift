@@ -55,7 +55,7 @@ class TestViewController: UIViewController {
 
 		for i in 0..<2 {
 			buttons[i].hidden = false
-			buttons[i].genAnimation(.Appear, delay: 0.2 * Double(i), distance: 30 + 40 * CGFloat(i))
+			buttons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + 40 * CGFloat(i))
 		}
 
 	}
