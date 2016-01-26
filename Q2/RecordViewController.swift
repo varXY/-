@@ -38,7 +38,8 @@ class RecordViewController: UIViewController {
 		segmentControl = UISegmentedControl(items: ["初级", "中级", "更多"])
 		for i in 0..<3 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
 		segmentControl.selectedSegmentIndex = 0
-		segmentControl.addTarget(self, action: "segmentSelected:", forControlEvents: UIControlEvents.AllEvents)
+//		segmentControl.addTarget(self, action: "segmentSelected:", forControlEvents: UIControlEvents.AllEvents)
+        segmentControl.addTarget(self, action: "test:", forControlEvents: UIControlEvents.ValueChanged)
 		navigationItem.titleView = segmentControl
 		self.view.backgroundColor = Global.backgroundColor()
 		
@@ -71,6 +72,7 @@ class RecordViewController: UIViewController {
 		view.addSubview(shareButton)
 
 		tapGesture = UITapGestureRecognizer(target: self, action: "tapped")
+        tapGesture.delegate = self
 
 	}
 
@@ -100,11 +102,16 @@ class RecordViewController: UIViewController {
 
 		return tableView
 	}
+    
+    func test(sender: UISegmentedControl) {
+        segmentWay = true
+        jumpToPage(sender.selectedSegmentIndex)
+    }
 
-	func segmentSelected(sender: UISegmentedControl) {
-		segmentWay = true
-		jumpToPage(sender.selectedSegmentIndex)
-	}
+//	func segmentSelected(sender: UISegmentedControl) {
+//		segmentWay = true
+//		jumpToPage(sender.selectedSegmentIndex)
+//	}
 
 	func checkRecordsCountForShareButton(index: Int) {
 
@@ -290,5 +297,14 @@ extension RecordViewController: UIScrollViewDelegate {
 }
 
 
-
+extension RecordViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if ((touch.view?.isKindOfClass(UISegmentedControl)) != nil) {
+            return false
+        } else {
+            return true
+        }
+    }
+}
 

@@ -14,7 +14,7 @@ typealias DoneWithMail = (MFMailComposeViewController) -> Void
 
 class SettingTableView: UITableView {
 
-	let titles = ["声音", "反馈", "评分"]
+	let titles = ["声音", "意见建议", "评分"]
 	let switchControl = UISwitch()
 
 	var sendMail: SendMail?
@@ -28,10 +28,12 @@ class SettingTableView: UITableView {
 		self.userInteractionEnabled = true
 		self.dataSource = self
 		self.delegate = self
+        
+        self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
 
 		switchControl.frame.origin = CGPoint(x: self.frame.width - 60, y: 7)
-		switchControl.tintColor = Global.lightRedColor()
-		switchControl.onTintColor = Global.lightRedColor()
+//		switchControl.tintColor = Global.lightRedColor()
+		switchControl.onTintColor = Global.redColor()
 
 		let userDefaults = NSUserDefaults.standardUserDefaults()
 		if let soundOn = userDefaults.valueForKey("Sound") as? Bool {
@@ -57,8 +59,10 @@ class SettingTableView: UITableView {
 
 		if MFMailComposeViewController.canSendMail() {
 			let controller = MFMailComposeViewController()
+            controller.navigationBar.tintColor = Global.redColor()
+            
 			controller.mailComposeDelegate = self
-			controller.setSubject("意见反馈：电工助手")
+			controller.setSubject("反馈：电工助手")
 			controller.setToRecipients(["xiaoyao901010@icloud.com"])
 			self.sendMail!(controller)
 		}
@@ -87,11 +91,13 @@ extension SettingTableView: UITableViewDataSource, UITableViewDelegate {
 		if indexPath.section == 0 {
 			cell.textLabel?.text = titles[0]
 			cell.addSubview(switchControl)
+            cell.selectionStyle = .None
 		}
 
 		if indexPath.section == 1 {
 			cell.textLabel?.text = titles[indexPath.row + 1]
-			cell.textLabel?.textColor = Global.lightRedColor()
+            cell.textLabel?.textAlignment = .Center
+//			cell.textLabel?.textColor = Global.lightRedColor()
 		}
 
 		return cell

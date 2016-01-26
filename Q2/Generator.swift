@@ -30,21 +30,20 @@ class Generator {
 //		let marginY_3 = marginY * 3 + buttonSize.height * 2
 
 		let distance = global.size.width / 2
-		print(distance)
+        
+        let center_0 = CGPoint(x: distance / 2, y: global.size.height / 2  - distance / 2 - 64)
+        let center_1 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2  - distance / 2 - 64)
+		let center_2 = CGPoint(x: distance, y: global.size.height / 2 + distance / 2 - 64)
 
-		let center_0 = CGPoint(x: distance, y: global.size.height / 2  - distance / 2 - 64)
-		let center_1 = CGPoint(x: distance / 2, y: global.size.height / 2 + distance / 2 - 64)
-		let center_2 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2 + distance / 2 - 64)
-
-		var button = genButtonWithCenter("单位公式", center: center_0, size: buttonSize)
+		var button = prismaticButton("单位公式", center: center_0, size: buttonSize)
 		button?.tag = 93456
 		buttons.append(button!)
 
-		button = genButtonWithCenter("图标符号", center: center_1, size: buttonSize)
+		button = prismaticButton("图标符号", center: center_1, size: buttonSize)
 		button?.tag = 93457
 		buttons.append(button!)
 
-		button = genButtonWithCenter("工具设备", center: center_2, size: buttonSize)
+		button = prismaticButton("工具设备", center: center_2, size: buttonSize)
 		button?.tag = 93458
 		buttons.append(button!)
 
@@ -209,7 +208,7 @@ class Generator {
 		button.layer.cornerRadius = 10
 		button.clipsToBounds = true
 
-		genShadowForButton(button)
+		addShadowForButton(button)
 
 		button.titleLabel?.font = UIFont.systemFontOfSize(20)
 		button.backgroundColor = UIColor.whiteColor()
@@ -329,7 +328,7 @@ class Generator {
 		label.textAlignment = .Center
 		button.addSubview(label)
 
-		genShadowForButton(button)
+		addShadowForButton(button)
 
 		button.backgroundColor = UIColor.whiteColor()
 		button.tag = tag
@@ -351,7 +350,7 @@ class Generator {
 		button.layer.cornerRadius = frame.height / 2
 		button.clipsToBounds = true
 
-		genShadowForButton(button)
+		addShadowForButton(button)
 
 		return button
 	}
@@ -360,7 +359,6 @@ class Generator {
 		let button = UIButton(type: .System)
 		button.frame.size = size
 		button.center = center
-		print(center)
 		button.tintColor = UIColor.redColor()
 		button.setTitle(title, forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(18)
@@ -368,13 +366,41 @@ class Generator {
 		button.layer.cornerRadius = size.height / 2
 		button.clipsToBounds = true
 
-		genShadowForButton(button)
+		addShadowForButton(button)
+        
+//        button.transform = CGAffineTransformMakeRotation(x * M_PI/180.0)
+//        x改成你要的角度 順時針90就用90 逆時針90就用-90
 
 		return button
 	}
+    
+    func prismaticButton(title: String, center: CGPoint, size: CGSize) -> UIButton? {
+        let button = UIButton(type: .System)
+        button.frame.size = size
+        button.center = center
+        button.backgroundColor = UIColor.whiteColor()
+        button.clipsToBounds = true
+        
+        let titleLabel = UILabel()
+        titleLabel.frame.size = CGSize(width: size.width, height: 40)
+        titleLabel.center = button.center
+        titleLabel.font = UIFont.systemFontOfSize(18)
+        titleLabel.text = title
+        titleLabel.textColor = UIColor.redColor()
+        titleLabel.textAlignment = .Center
+        titleLabel.sizeToFit()
+        
+        button.addSubview(titleLabel)
+
+        addShadowForButton(button)
+        
+        //        x改成你要的角度 順時針90就用90 逆時針90就用-90
+        
+        return button
+    }
 
 	
-	func genShadowForButton(button: UIButton) {
+	func addShadowForButton(button: UIButton) {
 		button.layer.masksToBounds = false
 		button.layer.shadowRadius = 10
 		button.layer.shadowOpacity = 0.5
