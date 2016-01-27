@@ -14,37 +14,7 @@ class Question {
 	var rightAnswer: String = ""
 	var wrongAnswer: String = ""
 
-	func getQestions(numberOfQuestions: Int, type: Int) -> [Question] {
-		var questionMarks = [Int]()
-		var questions = [Question]()
-
-		switch type {
-		case 0:
-			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301)
-			for i in questionMarks { questions.append(getBeginnerQuestion(i)!) }
-		case 1:
-			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 233)
-			for i in questionMarks { questions.append(getIntermediateQuestions(i)!) }
-		default:
-			break
-		}
-
-		return questions
-	}
-
-	func getRandomNumbers(amount: Int, uiform: UInt32) -> [Int] {
-		var result = [Int]()
-
-		repeat {
-			let number = Int(arc4random_uniform(uiform))
-			if let sameAtIndex = result.indexOf(number) {
-				result.removeAtIndex(sameAtIndex)
-			}
-			result.append(number)
-		} while result.count < amount
-
-		return result
-	}
+	
 
 	func getBeginnerQuestion(number: Int) -> Question? {
 		let question = Question()

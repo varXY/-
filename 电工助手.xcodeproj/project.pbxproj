@@ -43,6 +43,7 @@
 		31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D669001BA80BE200A21AF1 /* EquationCell.swift */; };
 		31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */; };
 		31F9AC321C261CAB0072A116 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F9AC311C261CAB0072A116 /* NavigationController.swift */; };
+		C316E0A21C5852D600E0F0DF /* Question+NumberInStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */; };
 		C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31F9AC311C261CAB0072A116 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Question+NumberInStack.swift"; sourceTree = "<group>"; };
 		C329FDAA1C3BA96300BA1189 /* 电工助手-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "电工助手-Bridging-Header.h"; sourceTree = "<group>"; };
 		C329FDAB1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				31033AB01BA4096A00DC9141 /* Question.swift */,
+				C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */,
 				31033AB61BA416C100DC9141 /* Record.swift */,
 				31D61E531BA6B08D006A7034 /* Records.swift */,
 			);
@@ -424,6 +427,7 @@
 				314DFCE31BA42EC900E79557 /* ImageCell.swift in Sources */,
 				31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */,
 				31D61E541BA6B08D006A7034 /* Records.swift in Sources */,
+				C316E0A21C5852D600E0F0DF /* Question+NumberInStack.swift in Sources */,
 				31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */,
 				314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */,
 				314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */,

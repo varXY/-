@@ -300,11 +300,15 @@ extension RecordViewController: UIScrollViewDelegate {
 extension RecordViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if ((touch.view?.isKindOfClass(UISegmentedControl)) != nil) {
-            return false
-        } else {
-            return true
+        
+        if let touchInSegmentControl = touch.view?.isKindOfClass(UISegmentedControl) {
+            if touchInSegmentControl {
+                return false
+            }
         }
+        
+        
+        return true
     }
 }
 
