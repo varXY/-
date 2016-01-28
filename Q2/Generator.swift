@@ -383,16 +383,16 @@ class Generator {
         
         let titleLabel = UILabel()
         titleLabel.frame.size = CGSize(width: size.width, height: 40)
-        titleLabel.center = button.center
+        titleLabel.center = CGPoint(x: button.frame.width / 2, y: button.frame.height / 2)
         titleLabel.font = UIFont.systemFontOfSize(18)
         titleLabel.text = title
         titleLabel.textColor = UIColor.redColor()
         titleLabel.textAlignment = .Center
-        titleLabel.sizeToFit()
+//        titleLabel.sizeToFit()
         
         button.addSubview(titleLabel)
 
-        addShadowForButton(button)
+//        addShadowForButton(button)
         
         //        x改成你要的角度 順時針90就用90 逆時針90就用-90
         

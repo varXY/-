@@ -19,76 +19,106 @@ class InfoViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.view.backgroundColor = Global.backgroundColor()
+		self.view.backgroundColor = Global.redColor()
 		self.navigationItem.title = "常用知识"
 
-		
+        BigButtons = generator.genButtonsForInfo()
+        for i in 0..<BigButtons.count {
+            BigButtons[i].alpha = 0.0
+            BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchDown)
+            BigButtons[i].addTarget(self, action: "jump:", forControlEvents: .TouchUpInside)
+            BigButtons[i].addTarget(self, action: "touchOut:", forControlEvents: .TouchUpOutside)
+            self.view.addSubview(BigButtons[i])
+        }
+        
+        BigButtons[2].frame.origin.y -= 78.5
 
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
         
-        BigButtons = generator.genButtonsForInfo()
-        for i in 0..<BigButtons.count {
-            BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchDown)
-            self.view.addSubview(BigButtons[i])
-            //            BigButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-        }
-        
-        BigButtons[2].frame.origin.y -= 77
-//        BigButtons[2].setTitle("hello", forState: .Normal)
-//        BigButtons[2].titleLabel?.backgroundColor = UIColor.lightGrayColor()
-//        BigButtons[2].titleLabel?.sizeToFit()
-//        BigButtons[2].clipsToBounds = false
-//        BigButtons[2].titleLabel?.transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
-
-		
 		for i in 0..<3 {
-			self.BigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
+            BigButtons[i].hidden = false
+            
+            BigButtons[i].backgroundColor = UIColor.whiteColor()
+            if let label = BigButtons[i].subviews[0] as? UILabel {
+                label.textColor = Global.redColor()
+            }
+            
+            BigButtons[i].alpha = 1.0
+			BigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
             BigButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+            BigButtons[i].subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
             print(NSStringFromCGAffineTransform(BigButtons[i].transform))
 		}
         
-        for button in BigButtons {
-            button.hidden = false
-            
-            let titleLabel = UILabel()
-            titleLabel.frame.size = CGSize(width: button.frame.size.width, height: 40)
-            titleLabel.center = CGPoint(x: button.frame.width / 2, y: button.frame.height / 2 - 10)
-            titleLabel.font = UIFont.systemFontOfSize(18)
-            titleLabel.text = "this is a test"
-            titleLabel.textColor = UIColor.redColor()
-            titleLabel.textAlignment = .Center
-            titleLabel.sizeToFit()
-            titleLabel.transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
-            button.addSubview(titleLabel)
-        }
+
 
 	}
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        for i in 0..<3 {
+            BigButtons[i].alpha = 0.0
+            BigButtons[i].transform = CGAffineTransformIdentity
+        }
+    }
 
 
 	func open(sender: UIButton) {
-		showCatalog(sender.tag - 93456)
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: [], animations: { () -> Void in
+            sender.transform = CGAffineTransformScale(sender.transform, 0.8, 0.8)
+            sender.backgroundColor = Global.redColor()
+            if let label = sender.subviews[0] as? UILabel {
+                label.textColor = UIColor.yellowColor()
+            }
+            }, completion: nil)
+        
+//        UIView.animateWithDuration(0.3) { () -> Void in
+//            sender.transform = CGAffineTransformScale(sender.transform, 0.8, 0.8)
+//            sender.backgroundColor = Global.redColor()
+//            if let label = sender.subviews[0] as? UILabel {
+//                label.textColor = UIColor.yellowColor()
+//            }
+//        }
+        
+        print(NSStringFromCGAffineTransform(sender.transform))
 	}
+    
+    func jump(sender: UIButton) {
+        showCatalog(sender.tag - 93456)
+    }
+    
+    func touchOut(sender: UIButton) {
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: [], animations: { () -> Void in
+            sender.transform = CGAffineTransformScale(sender.transform, 1.25, 1.25)
+            sender.backgroundColor = UIColor.whiteColor()
+            if let label = sender.subviews[0] as? UILabel {
+                label.textColor = Global.redColor()
+            }
+            }, completion: nil)
+        
+//        UIView.animateWithDuration(0.3) { () -> Void in
+//            sender.transform = CGAffineTransformScale(sender.transform, 1.25, 1.25)
+//            sender.backgroundColor = UIColor.whiteColor()
+//            if let label = sender.subviews[0] as? UILabel {
+//                label.textColor = Global.redColor()
+//            }
+//        }
+        
+    }
 
 	func showCatalog(index: Int) {
 
-		for button in BigButtons {
-			if index == BigButtons.indexOf(button) {
-                button.transform = CGAffineTransformScale(button.transform, 0.8, 0.8)
-                print(NSStringFromCGAffineTransform(button.transform))
-//				button.genAnimation(.Touched, delay: 0.0, distance: 0.0)
-			} else {
-//				button.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
-			}
+		delay(seconds: 0.3) { () -> () in
+			let contentVC = ContentViewController()
+			contentVC.index = index
+			contentVC.hidesBottomBarWhenPushed = true
+			self.navigationController?.pushViewController(contentVC, animated: true)
 		}
-
-//		delay(seconds: 0.5) { () -> () in
-//			let contentVC = ContentViewController()
-//			contentVC.index = index
-//			contentVC.hidesBottomBarWhenPushed = true
-//			self.navigationController?.pushViewController(contentVC, animated: true)
-//		}
 	}
 }

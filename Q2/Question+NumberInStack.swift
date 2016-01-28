@@ -61,7 +61,6 @@ extension Question {
             for tested in without {
                 if let index = result.indexOf(tested) {
                     result.removeAtIndex(index)
-                    print(tested)
                 }
             }
             

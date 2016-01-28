@@ -91,7 +91,7 @@ extension SettingTableView: UITableViewDataSource, UITableViewDelegate {
 		if indexPath.section == 0 {
 			cell.textLabel?.text = titles[0]
 			cell.addSubview(switchControl)
-            cell.selectionStyle = .None
+//            cell.selectionStyle = .None
 		}
 
 		if indexPath.section == 1 {
@@ -103,11 +103,19 @@ extension SettingTableView: UITableViewDataSource, UITableViewDelegate {
 		return cell
 	}
 
-	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-		return indexPath.section == 1 ? indexPath : nil
-	}
+//	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+//		return indexPath.section == 1 ? indexPath : nil
+//	}
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 0 && indexPath.row == 0 {
+            switchControl.on ? switchControl.setOn(false, animated: true) : switchControl.setOn(true, animated: true)
+            
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setBool(switchControl.on, forKey: "Sound")
+            
+        }
 
 		if indexPath.section == 1 {
 

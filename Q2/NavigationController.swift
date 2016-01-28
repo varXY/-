@@ -24,6 +24,10 @@ class NavigationController: UINavigationController {
 		self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 		self.navigationBar.tintColor = UIColor.whiteColor()
 		self.navigationBar.translucent = false
+        
+        let rect = CGRectMake(0, 0, self.view.frame.width, 64)
+        self.navigationBar.setBackgroundImage(UIImage.imageWithColor(Global.redColor(), rect: rect), forBarMetrics: UIBarMetrics.Default)
+        self.navigationBar.shadowImage = UIImage.imageWithColor(UIColor.clearColor(), rect: CGRectMake(0, 0, 10, 10))
 	}
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {

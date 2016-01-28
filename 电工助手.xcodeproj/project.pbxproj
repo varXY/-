@@ -43,6 +43,7 @@
 		31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D669001BA80BE200A21AF1 /* EquationCell.swift */; };
 		31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */; };
 		31F9AC321C261CAB0072A116 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F9AC311C261CAB0072A116 /* NavigationController.swift */; };
+		C302F35E1C5A132A0043E35D /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302F35D1C5A132A0043E35D /* UIImage+ColorImage.swift */; };
 		C316E0A21C5852D600E0F0DF /* Question+NumberInStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */; };
 		C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31F9AC311C261CAB0072A116 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		C302F35D1C5A132A0043E35D /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
 		C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Question+NumberInStack.swift"; sourceTree = "<group>"; };
 		C329FDAA1C3BA96300BA1189 /* 电工助手-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "电工助手-Bridging-Header.h"; sourceTree = "<group>"; };
 		C329FDAB1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				314DFCD81BA42E3F00E79557 /* Catalog.swift */,
 				314DFCEB1BA42F3D00E79557 /* Generator.swift */,
 				318C11931BA54C7D00CA1EC9 /* Global.swift */,
+				C302F35D1C5A132A0043E35D /* UIImage+ColorImage.swift */,
 				31A492511BACE65C009077FD /* UIButton+genAnimation.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
 				C329FDAB1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.h */,
@@ -416,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				314DFCD71BA42E1B00E79557 /* DetailViewController.swift in Sources */,
+				C302F35E1C5A132A0043E35D /* UIImage+ColorImage.swift in Sources */,
 				318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */,
 				31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */,
 				31033A7F1BA3BB5F00DC9141 /* AppDelegate.swift in Sources */,
