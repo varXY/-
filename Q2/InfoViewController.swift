@@ -12,45 +12,51 @@ import UIKit
 class InfoViewController: UIViewController {
 
 	var generator = Generator()
-	var BigButtons = [UIButton]()
+	var bigButtons = [UIButton]()
 	var knowledge = Knowledge()
 	var global = Global()
+
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
 
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.view.backgroundColor = Global.redColor()
-		self.navigationItem.title = "常用知识"
+//		self.navigationItem.title = "常用知识"
 
-        BigButtons = generator.genButtonsForInfo()
-        for i in 0..<BigButtons.count {
-            BigButtons[i].alpha = 0.0
-            BigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchDown)
-            BigButtons[i].addTarget(self, action: "jump:", forControlEvents: .TouchUpInside)
-            BigButtons[i].addTarget(self, action: "touchOut:", forControlEvents: .TouchUpOutside)
-            self.view.addSubview(BigButtons[i])
+        bigButtons = generator.allMainButtons()
+		self.view.addSubview(bigButtons[0])
+
+        for i in 1..<bigButtons.count {
+            bigButtons[i].alpha = 0.0
+            bigButtons[i].addTarget(self, action: "open:", forControlEvents: .TouchDown)
+            bigButtons[i].addTarget(self, action: "jump:", forControlEvents: .TouchUpInside)
+            bigButtons[i].addTarget(self, action: "touchOut:", forControlEvents: .TouchUpOutside)
+            self.view.addSubview(bigButtons[i])
         }
-        
-        BigButtons[2].frame.origin.y -= 78.5
 
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+
+		bigButtons[0].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
         
-		for i in 0..<3 {
-            BigButtons[i].hidden = false
+		for i in 1..<bigButtons.count {
+            bigButtons[i].hidden = false
             
-            BigButtons[i].backgroundColor = UIColor.whiteColor()
-            if let label = BigButtons[i].subviews[0] as? UILabel {
+            bigButtons[i].backgroundColor = UIColor.whiteColor()
+            if let label = bigButtons[i].subviews[0] as? UILabel {
                 label.textColor = Global.redColor()
             }
             
-            BigButtons[i].alpha = 1.0
-			BigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
-            BigButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-            BigButtons[i].subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
-            print(NSStringFromCGAffineTransform(BigButtons[i].transform))
+            bigButtons[i].alpha = 1.0
+			bigButtons[i].genAnimation(.Appear, delay: 0.1 * Double(i), distance: 30 + CGFloat(i) * 40.0)
+            bigButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+            bigButtons[i].subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
+            print(NSStringFromCGAffineTransform(bigButtons[i].transform))
 		}
         
 
@@ -60,9 +66,9 @@ class InfoViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        for i in 0..<3 {
-            BigButtons[i].alpha = 0.0
-            BigButtons[i].transform = CGAffineTransformIdentity
+        for i in 1..<3 {
+            bigButtons[i].alpha = 0.0
+            bigButtons[i].transform = CGAffineTransformIdentity
         }
     }
 

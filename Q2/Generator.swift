@@ -18,6 +18,59 @@ class Generator {
 
 	// MARK: - Big Buttons
 
+	func allMainButtons() -> [UIButton] {
+		var buttons = [UIButton]()
+
+		let gap_0: CGFloat = sqrt(50)
+		let gap_1: CGFloat = sqrt(325)
+
+		let allGapLength = gap_0 * 2 + gap_1 * 2 + sqrt(200)
+		let diagonalLength = (global.size.height - 20 - allGapLength) / 4
+		let sideLength = diagonalLength / sqrt(2)
+		let centerDistance = diagonalLength / 2
+
+
+		let x_0 = global.center.x - gap_0 - centerDistance
+		let x_1 = global.center.x
+		let x_2 = global.center.x + gap_0 + centerDistance
+
+		let point_0 = CGPoint(x: x_1, y: 20 + gap_0 + centerDistance)
+		let point_1 = CGPoint(x: x_0, y: point_0.y + gap_0 + centerDistance)
+		let point_2 = CGPoint(x: x_2, y: point_0.y + gap_0 + centerDistance)
+
+		let point_3 = CGPoint(x: x_1, y: point_0.y + gap_1 + centerDistance * 2)
+		let point_4 = CGPoint(x: x_0, y: point_3.y + gap_0 + centerDistance)
+		let point_5 = CGPoint(x: x_2, y: point_3.y + gap_0 + centerDistance)
+		let point_6 = CGPoint(x: x_1, y: point_5.y + gap_0 + centerDistance)
+
+		let point_7 = CGPoint(x: x_1, y: point_6.y + gap_1 + centerDistance * 2)
+		let point_8 = CGPoint(x: x_0, y: point_7.y - gap_0 - centerDistance)
+		let point_9 = CGPoint(x: x_2, y: point_7.y - gap_0 - centerDistance)
+
+		let buttonsCenter = CGPoint(x: x_1, y: point_3.y + centerDistance + sqrt(200) / 2)
+		let boxLength = sideLength * 2 + 10 + 15
+		let boxSize = CGSize(width: boxLength - 1.2, height: boxLength - 1.2)
+		let backgroundBox = UIButton()
+		backgroundBox.frame.size = boxSize
+		backgroundBox.center = buttonsCenter
+		backgroundBox.backgroundColor = UIColor.clearColor()
+		backgroundBox.layer.borderWidth = 0.6
+		backgroundBox.layer.borderColor = UIColor.blackColor().CGColor
+		buttons.append(backgroundBox)
+
+		let points = [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, point_9]
+		let squareSize = CGSize(width: sideLength, height: sideLength)
+
+		let titles = ["分享", "初级", "中级", "欧姆定律", "功率", "电量", "马力", "单位公式", "图标符号", "工具设备"]
+
+		for i in 0..<points.count {
+			let button = prismaticButton(titles[i], center: points[i], size: squareSize)
+			button.tag = 100 + i
+			buttons.append(button)
+		}
+		return buttons
+	}
+
 	func genButtonsForInfo() -> [UIButton] {
 		let buttonSize = global.buttonSize()
 //		let marginY = global.margin()
@@ -36,16 +89,16 @@ class Generator {
 		let center_2 = CGPoint(x: distance, y: global.size.height / 2 + distance / 2 - 64)
 
 		var button = prismaticButton("单位公式", center: center_0, size: buttonSize)
-		button?.tag = 93456
-		buttons.append(button!)
+		button.tag = 93456
+		buttons.append(button)
 
 		button = prismaticButton("图标符号", center: center_1, size: buttonSize)
-		button?.tag = 93457
-		buttons.append(button!)
+		button.tag = 93457
+		buttons.append(button)
 
 		button = prismaticButton("工具设备", center: center_2, size: buttonSize)
-		button?.tag = 93458
-		buttons.append(button!)
+		button.tag = 93458
+		buttons.append(button)
 
 		return buttons
 	}
@@ -374,7 +427,7 @@ class Generator {
 		return button
 	}
     
-    func prismaticButton(title: String, center: CGPoint, size: CGSize) -> UIButton? {
+    func prismaticButton(title: String, center: CGPoint, size: CGSize) -> UIButton {
         let button = UIButton(type: .System)
         button.frame.size = size
         button.center = center

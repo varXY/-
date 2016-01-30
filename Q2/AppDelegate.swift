@@ -151,7 +151,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		tabbarController.viewControllers = [infoNavi, testNavi, scaleNavi]
 		tabbarController.selectedIndex = 1
 
-		self.window?.rootViewController = tabbarController
+		let testInfo = InfoViewController()
+		self.window?.rootViewController = testInfo
 
 		customizeAppearance()
 
