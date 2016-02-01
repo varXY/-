@@ -23,6 +23,9 @@ class ContentViewController: UITableViewController {
 
 	var searchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 44))
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

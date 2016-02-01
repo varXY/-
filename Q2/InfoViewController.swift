@@ -52,7 +52,9 @@ class InfoViewController: UIViewController {
 //        imageView.frame = CGRectMake(self.view.frame.width - 50, 30, 30, 30)
 //        self.view.addSubview(imageView)
         
-        let infoButton = UIButton(type: .InfoLight)
+//        let infoButton = UIButton(type: .InfoLight)
+        let infoButton = UIButton(type: .Custom)
+        infoButton.setImage(UIImage(named: "电工试题"), forState: .Normal)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.frame = CGRectMake(self.view.frame.width - 50, self.view.frame.height - 50, 30, 30)
         infoButton.addTarget(self, action: "infoButtonTapped", forControlEvents: .TouchUpInside)
@@ -118,7 +120,7 @@ class InfoViewController: UIViewController {
 	func touchUpInside(sender: UIButton) {
         let index = sender.tag - 100
 
-		delay(seconds: 0.3) { () -> () in
+		delay(seconds: 0.2) { () -> () in
 			let contentVC = ContentViewController()
             contentVC.index = index < 3 ? index : 2
 			contentVC.hidesBottomBarWhenPushed = true
@@ -127,8 +129,10 @@ class InfoViewController: UIViewController {
 	}
     
     func infoButtonTapped() {
-        let settingVC = SettingTableViewController()
-        let settingNavi = NavigationController(rootViewController: settingVC)
-        self.presentViewController(settingNavi, animated: true, completion: nil)
+        delay(seconds: 0.2) { () -> () in
+            let settingVC = SettingTableViewController()
+            let settingNavi = NavigationController(rootViewController: settingVC)
+            self.presentViewController(settingNavi, animated: true, completion: nil)
+        }
     }
 }
