@@ -152,7 +152,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		tabbarController.selectedIndex = 1
 
 		let testInfo = InfoViewController()
-		self.window?.rootViewController = testInfo
+        let testInfoNavi = NavigationController(rootViewController: testInfo)
+        testInfoNavi.setNavigationBarHidden(true, animated: true)
+		self.window?.rootViewController = testInfoNavi
 
 		customizeAppearance()
 

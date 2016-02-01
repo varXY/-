@@ -22,9 +22,6 @@ class DetailViewController: UIViewController {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.whiteColor()
 		self.title = knowledege.title
-        
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "share")
-        self.navigationItem.rightBarButtonItem = shareButton
 
 		label.frame = CGRect(x: 0, y: 0, width: global.size.width - 10, height: global.size.height - 64)
 		label.font = UIFont.systemFontOfSize(18)
@@ -43,9 +40,6 @@ class DetailViewController: UIViewController {
 
 	}
     
-    func share() {
-        
-    }
 
 	func back() {
 		self.navigationController?.popViewControllerAnimated(true)

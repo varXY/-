@@ -42,20 +42,21 @@ class Generator {
 		let point_4 = CGPoint(x: x_0, y: point_3.y + gap_0 + centerDistance)
 		let point_5 = CGPoint(x: x_2, y: point_3.y + gap_0 + centerDistance)
 		let point_6 = CGPoint(x: x_1, y: point_5.y + gap_0 + centerDistance)
-
-		let point_7 = CGPoint(x: x_1, y: point_6.y + gap_1 + centerDistance * 2)
-		let point_8 = CGPoint(x: x_0, y: point_7.y - gap_0 - centerDistance)
-		let point_9 = CGPoint(x: x_2, y: point_7.y - gap_0 - centerDistance)
+        
+		let point_9 = CGPoint(x: x_1, y: point_6.y + gap_1 + centerDistance * 2)
+		let point_7 = CGPoint(x: x_0, y: point_9.y - gap_0 - centerDistance)
+		let point_8 = CGPoint(x: x_2, y: point_9.y - gap_0 - centerDistance)
 
 		let buttonsCenter = CGPoint(x: x_1, y: point_3.y + centerDistance + sqrt(200) / 2)
 		let boxLength = sideLength * 2 + 10 + 15
-		let boxSize = CGSize(width: boxLength - 1.2, height: boxLength - 1.2)
+		let boxSize = CGSize(width: boxLength - 2.0, height: boxLength - 2.0)
 		let backgroundBox = UIButton()
 		backgroundBox.frame.size = boxSize
 		backgroundBox.center = buttonsCenter
 		backgroundBox.backgroundColor = UIColor.clearColor()
-		backgroundBox.layer.borderWidth = 0.6
-		backgroundBox.layer.borderColor = UIColor.blackColor().CGColor
+		backgroundBox.layer.borderWidth = 1.0
+		backgroundBox.layer.borderColor = UIColor.whiteColor().CGColor
+        backgroundBox.userInteractionEnabled = false
 		buttons.append(backgroundBox)
 
 		let points = [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, point_9]
@@ -68,6 +69,7 @@ class Generator {
 			button.tag = 100 + i
 			buttons.append(button)
 		}
+        
 		return buttons
 	}
 
@@ -266,6 +268,8 @@ class Generator {
 		button.titleLabel?.font = UIFont.systemFontOfSize(20)
 		button.backgroundColor = UIColor.whiteColor()
 		button.tag = tag
+        
+        button.exclusiveTouch = true
 
 		return button
 	}
@@ -301,6 +305,7 @@ class Generator {
 		jumpButton.layer.cornerRadius = 50
 		jumpButton.clipsToBounds = true
 		jumpButton.tag = page + 2333
+        jumpButton.exclusiveTouch = true
 		superView.addSubview(jumpButton)
 	}
 
@@ -386,6 +391,8 @@ class Generator {
 		button.backgroundColor = UIColor.whiteColor()
 		button.tag = tag
 
+        button.exclusiveTouch = true
+        
 		return button
 	}
 
@@ -402,8 +409,10 @@ class Generator {
 		button.backgroundColor = UIColor.whiteColor()
 		button.layer.cornerRadius = frame.height / 2
 		button.clipsToBounds = true
-
+        
 		addShadowForButton(button)
+        
+        button.exclusiveTouch = true
 
 		return button
 	}
@@ -421,8 +430,7 @@ class Generator {
 
 		addShadowForButton(button)
         
-//        button.transform = CGAffineTransformMakeRotation(x * M_PI/180.0)
-//        x改成你要的角度 順時針90就用90 逆時針90就用-90
+        button.exclusiveTouch = true
 
 		return button
 	}
@@ -441,13 +449,10 @@ class Generator {
         titleLabel.text = title
         titleLabel.textColor = UIColor.redColor()
         titleLabel.textAlignment = .Center
-//        titleLabel.sizeToFit()
         
         button.addSubview(titleLabel)
-
-//        addShadowForButton(button)
         
-        //        x改成你要的角度 順時針90就用90 逆時針90就用-90
+        button.exclusiveTouch = true
         
         return button
     }
