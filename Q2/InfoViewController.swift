@@ -35,11 +35,37 @@ class InfoViewController: UIViewController {
             bigButtons[i].addTarget(self, action: "touchUpInside:", forControlEvents: .TouchUpInside)
             self.view.addSubview(bigButtons[i])
         }
+        
+        let descriptions = ["考试题目", "换算工具", "常用知识"]
+        for i in 0..<3 {
+            let point = CGPoint(x: 30, y: 30 + 20 * CGFloat(i))
+            let label = UILabel(frame: CGRect(origin: point, size: CGSizeMake(100, 20)))
+            label.text = descriptions[i]
+            label.font = UIFont.systemFontOfSize(12)
+            label.textColor = UIColor.whiteColor()
+            label.sizeToFit()
+            self.view.addSubview(label)
+        }
+        
+//        let imageView = UIImageView(image: UIImage(named: "电工试题"))
+//        imageView.tintColor = UIColor.whiteColor()
+//        imageView.frame = CGRectMake(self.view.frame.width - 50, 30, 30, 30)
+//        self.view.addSubview(imageView)
+        
+        let infoButton = UIButton(type: .InfoLight)
+        infoButton.tintColor = UIColor.whiteColor()
+        infoButton.frame = CGRectMake(self.view.frame.width - 50, self.view.frame.height - 50, 30, 30)
+        infoButton.addTarget(self, action: "infoButtonTapped", forControlEvents: .TouchUpInside)
+        infoButton.exclusiveTouch = true
+        self.view.addSubview(infoButton)
 
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+        print(__FUNCTION__)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
 
 		bigButtons[0].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
         
@@ -58,16 +84,15 @@ class InfoViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        print(__FUNCTION__)
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             for i in 1..<self.bigButtons.count {
                 self.bigButtons[i].alpha = 0.0
             }
-            }) { (complete) -> Void in
-                if complete {
-                    for i in 1..<self.bigButtons.count {
-                        self.bigButtons[i].transform = CGAffineTransformIdentity
-                    }
+            }) { (_) -> Void in
+                for i in 1..<self.bigButtons.count {
+                    self.bigButtons[i].transform = CGAffineTransformIdentity
                 }
         }
 
@@ -100,4 +125,10 @@ class InfoViewController: UIViewController {
 			self.navigationController?.pushViewController(contentVC, animated: true)
 		}
 	}
+    
+    func infoButtonTapped() {
+        let settingVC = SettingTableViewController()
+        let settingNavi = NavigationController(rootViewController: settingVC)
+        self.presentViewController(settingNavi, animated: true, completion: nil)
+    }
 }

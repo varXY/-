@@ -46,6 +46,7 @@
 		C302F35E1C5A132A0043E35D /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302F35D1C5A132A0043E35D /* UIImage+ColorImage.swift */; };
 		C316E0A21C5852D600E0F0DF /* Question+NumberInStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */; };
 		C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		C3C0D6881C5EFF0A0081E6C2 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0D6871C5EFF0A0081E6C2 /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		C329FDAA1C3BA96300BA1189 /* 电工助手-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "电工助手-Bridging-Header.h"; sourceTree = "<group>"; };
 		C329FDAB1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		C3C0D6871C5EFF0A0081E6C2 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 				314DFCD21BA42A0900E79557 /* RecordCell.swift */,
 				318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */,
 				310202DB1C53AFA9003D9C44 /* SettingTableView.swift */,
+				C3C0D6871C5EFF0A0081E6C2 /* SettingTableViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */,
 				314DFCEC1BA42F3D00E79557 /* Generator.swift in Sources */,
 				31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */,
+				C3C0D6881C5EFF0A0081E6C2 /* SettingTableViewController.swift in Sources */,
 				314DFCDB1BA42E7800E79557 /* Knowledge.swift in Sources */,
 				31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */,
 				314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */,
