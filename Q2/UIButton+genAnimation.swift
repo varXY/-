@@ -18,7 +18,7 @@ extension UIButton {
 			self.alpha = 0.0
 			self.frame.origin.y += distance
 
-			UIView.animateWithDuration(0.5, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
+			UIView.animateWithDuration(0.5, delay: delay, usingSpringWithDamping: 1.0, initialSpringVelocity: 5.0, options: [], animations: { () -> Void in
 				self.alpha = 1.0
 				self.frame.origin.y -= distance
 				}, completion: nil)
@@ -46,6 +46,15 @@ extension UIButton {
 		case .IsRightAnswer:
 			UIView.animateWithDuration(0.4, delay: delay, usingSpringWithDamping: 1.0, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
 				self.transform = CGAffineTransformMakeScale(1.06, 1.06)
+				}, completion: nil)
+
+		case .Bigger:
+			self.alpha = 0.0
+			self.transform = CGAffineTransformMakeScale(0.0, 0.0)
+
+			UIView.animateWithDuration(0.5, delay: delay, usingSpringWithDamping: 1.0, initialSpringVelocity: 5.0, options: [], animations: { () -> Void in
+				self.alpha = 1.0
+				self.transform = CGAffineTransformMakeScale(1.0, 1.0)
 				}, completion: nil)
 
 		default:

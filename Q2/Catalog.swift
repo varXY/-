@@ -15,6 +15,7 @@ enum AnimationType {
 	case Disappear
 	case Touched
 	case IsRightAnswer
+	case Bigger
 	case Other
 }
 

@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
 		var handled = false
 
-		guard let controller = window!.rootViewController as! TabBarController? else { return false }
+		guard let controller = window!.rootViewController as! NavigationController? else { return false }
 
 		guard ShortcutIdentifier(fullType: shortcutItem.type) != nil else { return false }
 
@@ -60,30 +60,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		switch (shortCutType) {
 		case ShortcutIdentifier.First.type:
-			controller.selectedIndex = 1
-			guard let naviTestVC = controller.selectedViewController as! NavigationController? else { return false }
-			let topVC = naviTestVC.topViewController
-
-			if topVC!.isKindOfClass(TestViewController) {
-				let testVC = topVC as! TestViewController
-				testVC.pushOrPresent(0)
+			if let topVC = controller.topViewController as? InfoViewController {
+				topVC.gotoVCBaseOnIndex(1)
 			}
 
 			handled = true
 			break
 		case ShortcutIdentifier.Second.type:
-			controller.selectedIndex = 1
-			guard let naviTestVC = controller.selectedViewController as! NavigationController? else { return false }
-			let topVC = naviTestVC.topViewController
-
-			if topVC!.isKindOfClass(TestViewController) {
-				let testVC = topVC as! TestViewController
-				testVC.pushOrPresent(1)
+			if let topVC = controller.topViewController as? InfoViewController {
+				topVC.gotoVCBaseOnIndex(2)
 			}
+
 			handled = true
 			break
 		case ShortcutIdentifier.Third.type:
-			controller.selectedIndex = 2
+			if let topVC = controller.topViewController as? InfoViewController {
+				topVC.gotoVCBaseOnIndex(5)
+			}
+
 			handled = true
 			break
 		default:
@@ -123,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 
-			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "公式换算", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
+			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "算电量", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 
@@ -154,6 +148,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let testInfo = InfoViewController()
         let testInfoNavi = NavigationController(rootViewController: testInfo)
         testInfoNavi.setNavigationBarHidden(true, animated: true)
+		let testInfoVC = testInfoNavi.viewControllers[0] as! InfoViewController
+		testInfoVC.beginnerRecords = beginnerRecords
+		testInfoVC.intermediateRecords = intermediateRecords
 		self.window?.rootViewController = testInfoNavi
 
 		customizeAppearance()

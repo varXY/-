@@ -23,7 +23,7 @@ class RecordViewController: UIViewController {
 
 	var tableView0 = UITableView()
 	var tableView1 = UITableView()
-	var tableView2: SettingTableView!
+//	var tableView2: SettingTableView!
 	var shareButton = UIButton()
 
 	var tapGesture: UITapGestureRecognizer!
@@ -35,8 +35,8 @@ class RecordViewController: UIViewController {
 
 		automaticallyAdjustsScrollViewInsets = true
 
-		segmentControl = UISegmentedControl(items: ["初级", "中级", "更多"])
-		for i in 0..<3 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
+		segmentControl = UISegmentedControl(items: ["初级", "中级"])
+		for i in 0..<2 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
 		segmentControl.selectedSegmentIndex = 0
 //		segmentControl.addTarget(self, action: "segmentSelected:", forControlEvents: UIControlEvents.AllEvents)
         segmentControl.addTarget(self, action: "test:", forControlEvents: UIControlEvents.ValueChanged)
@@ -47,7 +47,7 @@ class RecordViewController: UIViewController {
 		self.navigationItem.rightBarButtonItem = quitButton
 
 		scrollView.frame = view.bounds
-		scrollView.contentSize = CGSize(width: view.frame.width * 3, height: 0)
+		scrollView.contentSize = CGSize(width: view.frame.width * 2, height: 0)
 		scrollView.pagingEnabled = true
 		scrollView.delegate = self
 		view.addSubview(scrollView)
@@ -58,14 +58,14 @@ class RecordViewController: UIViewController {
 		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
 		scrollView.addSubview(tableView1)
 
-		tableView2 = SettingTableView(frame: CGRectMake(view.frame.width * 2, 0, view.frame.width, view.frame.height - 64), style: .Grouped)
-		tableView2.sendMail = { (controller) -> Void in
-			self.presentViewController(controller, animated: true, completion: nil)
-		}
-		tableView2.doneWithMail = { (controller) -> Void in
-			controller.dismissViewControllerAnimated(true, completion: nil)
-		}
-		scrollView.addSubview(tableView2)
+//		tableView2 = SettingTableView(frame: CGRectMake(view.frame.width * 2, 0, view.frame.width, view.frame.height - 64), style: .Grouped)
+//		tableView2.sendMail = { (controller) -> Void in
+//			self.presentViewController(controller, animated: true, completion: nil)
+//		}
+//		tableView2.doneWithMail = { (controller) -> Void in
+//			controller.dismissViewControllerAnimated(true, completion: nil)
+//		}
+//		scrollView.addSubview(tableView2)
 
 		shareButton = generator.genShareButton(CGPointMake(20, global.size.height - 64), tag: 160)
 		shareButton.addTarget(self, action: "share", forControlEvents: .TouchUpInside)
@@ -306,7 +306,6 @@ extension RecordViewController: UIGestureRecognizerDelegate {
                 return false
             }
         }
-        
         
         return true
     }

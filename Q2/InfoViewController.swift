@@ -13,8 +13,13 @@ class InfoViewController: UIViewController {
 
 	var generator = Generator()
 	var bigButtons = [UIButton]()
+	var infoButton = UIButton()
+
 	var knowledge = Knowledge()
 	var global = Global()
+
+	var beginnerRecords = Records(type: 0)
+	var intermediateRecords = Records(type: 1)
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
@@ -24,6 +29,7 @@ class InfoViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.view.backgroundColor = Global.redColor()
+		self.title = " "
 
         bigButtons = generator.allMainButtons()
 		self.view.addSubview(bigButtons[0])
@@ -38,25 +44,39 @@ class InfoViewController: UIViewController {
         
         let descriptions = ["考试题目", "换算工具", "常用知识"]
         for i in 0..<3 {
-            let point = CGPoint(x: 30, y: 30 + 20 * CGFloat(i))
+            let point = CGPoint(x: 35, y: 30 + 20 * CGFloat(i))
             let label = UILabel(frame: CGRect(origin: point, size: CGSizeMake(100, 20)))
             label.text = descriptions[i]
-            label.font = UIFont.systemFontOfSize(12)
+            label.font = UIFont.boldSystemFontOfSize(12)
             label.textColor = UIColor.whiteColor()
             label.sizeToFit()
             self.view.addSubview(label)
         }
-        
+
+		let topPoint = CGPoint(x: 20, y: 30)
+		let describeButtons = generator.describeButtons(topPoint)
+		for i in 0..<describeButtons.count {
+			self.view.addSubview(describeButtons[i])
+			describeButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+		}
+
+//		let brandLabel = UILabel(frame: CGRectMake(self.view.frame.width - 60, 40, 50, 35))
+//		brandLabel.text = "电工助手"
+//		brandLabel.textColor = UIColor.whiteColor()
+//		brandLabel.font = UIFont.systemFontOfSize(14)
+//		brandLabel.textAlignment = .Center
+//		self.view.addSubview(brandLabel)
+
 //        let imageView = UIImageView(image: UIImage(named: "电工试题"))
 //        imageView.tintColor = UIColor.whiteColor()
 //        imageView.frame = CGRectMake(self.view.frame.width - 50, 30, 30, 30)
 //        self.view.addSubview(imageView)
         
 //        let infoButton = UIButton(type: .InfoLight)
-        let infoButton = UIButton(type: .Custom)
+        infoButton = UIButton(type: .Custom)
         infoButton.setImage(UIImage(named: "电工试题"), forState: .Normal)
         infoButton.tintColor = UIColor.whiteColor()
-        infoButton.frame = CGRectMake(self.view.frame.width - 50, self.view.frame.height - 50, 30, 30)
+        infoButton.frame = CGRectMake(self.view.frame.width - 60, self.view.frame.height - 60, 30, 30)
         infoButton.addTarget(self, action: "infoButtonTapped", forControlEvents: .TouchUpInside)
         infoButton.exclusiveTouch = true
         self.view.addSubview(infoButton)
@@ -65,47 +85,78 @@ class InfoViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-        print(__FUNCTION__)
-        
+
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 
 		bigButtons[0].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-        
+        infoButton.genAnimation(.Bigger, delay: 0.5, distance: 0.0)
+		
 		for i in 1..<bigButtons.count {
             bigButtons[i].hidden = false
             
             bigButtons[i].alpha = 1.0
-			bigButtons[i].genAnimation(.Appear, delay: 0.03 * Double(i), distance: 30 + CGFloat(i) * 20.0)
+			bigButtons[i].genAnimation(.Appear, delay: 0.03 * Double(delayTime(i)), distance: 30 + CGFloat(delayTime(i)) * 20.0)
             bigButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
             bigButtons[i].subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
 		}
         
-
-
 	}
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        print(__FUNCTION__)
-        
+
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             for i in 1..<self.bigButtons.count {
                 self.bigButtons[i].alpha = 0.0
+
             }
             }) { (_) -> Void in
                 for i in 1..<self.bigButtons.count {
                     self.bigButtons[i].transform = CGAffineTransformIdentity
+
+					self.bigButtons[i].backgroundColor = Global.backgroundColor()
+					if let titleLabel = self.bigButtons[i].subviews[0] as? UILabel {
+						titleLabel.textColor = UIColor.blackColor()
+					}
                 }
         }
 
     }
+
+	func delayTime(index: Int) -> Int {
+		switch index {
+		case 1:
+			return 1
+		case 2, 3:
+			return 2
+		case 4:
+			return 3
+		case 5, 6:
+			return 4
+		case 7:
+			return 5
+		case 8, 9:
+			return 6
+		case 10:
+			return 7
+		default:
+			return 8
+		}
+	}
 
 
 	func touchDown(sender: UIButton) {
         
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: [], animations: { () -> Void in
             sender.transform = CGAffineTransformScale(sender.transform, 0.8, 0.8)
+
+			sender.backgroundColor = Global.lightRedColor()
+			if let titleLabel = sender.subviews[0] as? UILabel {
+				titleLabel.textColor = UIColor.whiteColor()
+			}
+
             }, completion: nil)
+
 	}
     
     
@@ -113,21 +164,79 @@ class InfoViewController: UIViewController {
         
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: [], animations: { () -> Void in
             sender.transform = CGAffineTransformScale(sender.transform, 1.25, 1.25)
+
+			sender.backgroundColor = Global.backgroundColor()
+			if let titleLabel = sender.subviews[0] as? UILabel {
+				titleLabel.textColor = UIColor.blackColor()
+			}
+
             }, completion: nil)
         
     }
 
 	func touchUpInside(sender: UIButton) {
         let index = sender.tag - 100
+		gotoVCBaseOnIndex(index)
 
-		delay(seconds: 0.2) { () -> () in
-			let contentVC = ContentViewController()
-            contentVC.index = index < 3 ? index : 2
-			contentVC.hidesBottomBarWhenPushed = true
-			self.navigationController?.pushViewController(contentVC, animated: true)
-		}
 	}
-    
+
+	func gotoVCBaseOnIndex(index: Int) {
+
+		switch index {
+		case 0:
+			let recordVC = RecordViewController()
+			recordVC.beginnerRecords = self.beginnerRecords.records
+			recordVC.intermediateRecords = self.intermediateRecords.records
+			let detailNavi = NavigationController(viewController: recordVC)
+
+			delay(seconds: 0.2, completion: { () -> () in
+				self.presentViewController(detailNavi, animated: true, completion: nil)
+			})
+
+		case 1, 2:
+			let QuestionVC = QuestionViewController()
+			QuestionVC.type = index - 1
+			QuestionVC.record = {(rightCount: Int, date: NSDate) in
+				let record = Record(record: rightCount, date: date)
+				if index == 0 {
+					self.beginnerRecords.records.insert(record, atIndex: 0)
+				} else {
+					self.intermediateRecords.records.insert(record, atIndex: 0)
+				}
+			}
+
+			QuestionVC.hidesBottomBarWhenPushed = true
+			delay(seconds: 0.2) { () -> () in
+				self.navigationController?.pushViewController(QuestionVC, animated: true)
+			}
+
+		case 3, 4, 5, 6:
+			let equationVC = EquationViewController()
+			equationVC.index = index - 3
+			equationVC.hidesBottomBarWhenPushed = true
+
+			delay(seconds: 0.2) { () -> () in
+				self.navigationController?.pushViewController(equationVC, animated: true)
+			}
+
+		case 7, 8, 9:
+			let contentVC = ContentViewController()
+			contentVC.index = index - 7
+			contentVC.hidesBottomBarWhenPushed = true
+
+			delay(seconds: 0.2) { () -> () in
+				self.navigationController?.pushViewController(contentVC, animated: true)
+			}
+		default:
+			break
+		}
+
+	}
+
+	func pushOrPresentNavigationController(rootViewController: AnyObject) {
+
+	}
+
     func infoButtonTapped() {
         delay(seconds: 0.2) { () -> () in
             let settingVC = SettingTableViewController()
