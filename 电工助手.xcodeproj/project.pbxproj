@@ -37,6 +37,9 @@
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
 		31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A492511BACE65C009077FD /* UIButton+genAnimation.swift */; };
+		31D26E161C60A03900F74E02 /* Q_homePage_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31D26E151C60A03900F74E02 /* Q_homePage_0.caf */; };
+		31D26E181C617E8300F74E02 /* P_homePage_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31D26E171C617E8300F74E02 /* P_homePage_1.caf */; };
+		31D26E1A1C618AB900F74E02 /* Q_homePage_2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31D26E191C618AB900F74E02 /* Q_homePage_2.caf */; };
 		31D61E541BA6B08D006A7034 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D61E531BA6B08D006A7034 /* Records.swift */; };
 		31D668FB1BA7FD8100A21AF1 /* ScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */; };
 		31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */; };
@@ -94,6 +97,9 @@
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQACell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Global.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31A492511BACE65C009077FD /* UIButton+genAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+genAnimation.swift"; sourceTree = "<group>"; };
+		31D26E151C60A03900F74E02 /* Q_homePage_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Q_homePage_0.caf; sourceTree = "<group>"; };
+		31D26E171C617E8300F74E02 /* P_homePage_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = P_homePage_1.caf; sourceTree = "<group>"; };
+		31D26E191C618AB900F74E02 /* Q_homePage_2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Q_homePage_2.caf; sourceTree = "<group>"; };
 		31D61E531BA6B08D006A7034 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		31D668FA1BA7FD8100A21AF1 /* ScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScaleViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -266,6 +272,9 @@
 			children = (
 				31523AA31BAFE9A100526881 /* right.caf */,
 				31523AA41BAFE9A100526881 /* wrong.caf */,
+				31D26E151C60A03900F74E02 /* Q_homePage_0.caf */,
+				31D26E171C617E8300F74E02 /* P_homePage_1.caf */,
+				31D26E191C618AB900F74E02 /* Q_homePage_2.caf */,
 			);
 			path = Sound5.0;
 			sourceTree = "<group>";
@@ -399,9 +408,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				314DFCE11BA42EC300E79557 /* ImageCell.xib in Resources */,
+				31D26E161C60A03900F74E02 /* Q_homePage_0.caf in Resources */,
 				314DFCDD1BA42EB400E79557 /* DescribeCell.xib in Resources */,
 				314DFCE51BA42ECF00E79557 /* IntroCell.xib in Resources */,
+				31D26E1A1C618AB900F74E02 /* Q_homePage_2.caf in Resources */,
 				312DA30D1BB512DF00130A33 /* Images.xcassets in Resources */,
+				31D26E181C617E8300F74E02 /* P_homePage_1.caf in Resources */,
 				31523AA51BAFE9A100526881 /* right.caf in Resources */,
 				31523AA61BAFE9A100526881 /* wrong.caf in Resources */,
 			);
@@ -568,7 +580,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.q2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.ElectricicanHelper;
 				PRODUCT_NAME = "电工助手";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Q2/电工助手-Bridging-Header.h";
@@ -587,7 +599,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Q2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.q2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyao.ElectricicanHelper;
 				PRODUCT_NAME = "电工助手";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Q2/电工助手-Bridging-Header.h";

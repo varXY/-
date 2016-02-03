@@ -38,8 +38,12 @@ class Global {
 	let CGWhiteColor = UIColor.whiteColor().CGColor
 	let CGBlackColor = UIColor.blackColor().CGColor
 
+//	class func redColor() -> UIColor {
+//		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 1.0)
+//	}
+
 	class func redColor() -> UIColor {
-		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 1.0)
+		return UIColor(red: 254/255, green: 51/255, blue: 42/255, alpha: 1.0)
 	}
 
 	class func lightRedColor() -> UIColor {

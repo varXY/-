@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class InfoViewController: UIViewController {
 
@@ -15,16 +16,15 @@ class InfoViewController: UIViewController {
 	var bigButtons = [UIButton]()
 	var infoButton = UIButton()
 
-	var knowledge = Knowledge()
 	var global = Global()
 
 	var beginnerRecords = Records(type: 0)
 	var intermediateRecords = Records(type: 1)
 
+
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
 	}
-
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -32,9 +32,8 @@ class InfoViewController: UIViewController {
 		self.title = " "
 
         bigButtons = generator.allMainButtons()
-		self.view.addSubview(bigButtons[0])
 
-        for i in 1..<bigButtons.count {
+        for i in 0..<bigButtons.count {
             bigButtons[i].alpha = 0.0
             bigButtons[i].addTarget(self, action: "touchDown:", forControlEvents: .TouchDown)
             bigButtons[i].addTarget(self, action: "touchUpOutside:", forControlEvents: .TouchUpOutside)
@@ -60,20 +59,7 @@ class InfoViewController: UIViewController {
 			describeButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
 		}
 
-//		let brandLabel = UILabel(frame: CGRectMake(self.view.frame.width - 60, 40, 50, 35))
-//		brandLabel.text = "电工助手"
-//		brandLabel.textColor = UIColor.whiteColor()
-//		brandLabel.font = UIFont.systemFontOfSize(14)
-//		brandLabel.textAlignment = .Center
-//		self.view.addSubview(brandLabel)
-
-//        let imageView = UIImageView(image: UIImage(named: "电工试题"))
-//        imageView.tintColor = UIColor.whiteColor()
-//        imageView.frame = CGRectMake(self.view.frame.width - 50, 30, 30, 30)
-//        self.view.addSubview(imageView)
-        
-//        let infoButton = UIButton(type: .InfoLight)
-        infoButton = UIButton(type: .Custom)
+        infoButton = UIButton(type: .System)
         infoButton.setImage(UIImage(named: "电工试题"), forState: .Normal)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.frame = CGRectMake(self.view.frame.width - 60, self.view.frame.height - 60, 30, 30)
@@ -88,16 +74,20 @@ class InfoViewController: UIViewController {
 
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 
-		bigButtons[0].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
         infoButton.genAnimation(.Bigger, delay: 0.5, distance: 0.0)
+		infoButton.userInteractionEnabled = true
 		
-		for i in 1..<bigButtons.count {
-            bigButtons[i].hidden = false
-            
+		for i in 0..<bigButtons.count {
             bigButtons[i].alpha = 1.0
 			bigButtons[i].genAnimation(.Appear, delay: 0.03 * Double(delayTime(i)), distance: 30 + CGFloat(delayTime(i)) * 20.0)
             bigButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
             bigButtons[i].subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
+
+			bigButtons[i].userInteractionEnabled = true
+
+//			if let label = bigButtons[i].subviews[0] as? UILabel {
+//				label.font = UIFont.boldSystemFontOfSize(18)
+//			}
 		}
         
 	}
@@ -106,15 +96,14 @@ class InfoViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         UIView.animateWithDuration(0.3, animations: { () -> Void in
-            for i in 1..<self.bigButtons.count {
+            for i in 0..<self.bigButtons.count {
                 self.bigButtons[i].alpha = 0.0
 
             }
             }) { (_) -> Void in
-                for i in 1..<self.bigButtons.count {
+                for i in 0..<self.bigButtons.count {
                     self.bigButtons[i].transform = CGAffineTransformIdentity
-
-					self.bigButtons[i].backgroundColor = Global.backgroundColor()
+					self.bigButtons[i].backgroundColor = UIColor.whiteColor()
 					if let titleLabel = self.bigButtons[i].subviews[0] as? UILabel {
 						titleLabel.textColor = UIColor.blackColor()
 					}
@@ -124,48 +113,50 @@ class InfoViewController: UIViewController {
     }
 
 	func delayTime(index: Int) -> Int {
+
 		switch index {
-		case 1:
+		case 0:
 			return 1
-		case 2, 3:
+		case 1, 2:
 			return 2
-		case 4:
+		case 3:
 			return 3
-		case 5, 6:
+		case 4, 5:
 			return 4
-		case 7:
+		case 6:
 			return 5
-		case 8, 9:
+		case 7, 8:
 			return 6
-		case 10:
+		case 9:
 			return 7
 		default:
 			return 8
 		}
+
 	}
 
 
 	func touchDown(sender: UIButton) {
-        
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: [], animations: { () -> Void in
-            sender.transform = CGAffineTransformScale(sender.transform, 0.8, 0.8)
 
-			sender.backgroundColor = Global.lightRedColor()
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.225, options: [], animations: { () -> Void in
+            sender.transform = CGAffineTransformScale(sender.transform, 0.9, 0.9)
+
+			sender.backgroundColor = UIColor.whiteColor()
 			if let titleLabel = sender.subviews[0] as? UILabel {
-				titleLabel.textColor = UIColor.whiteColor()
+				titleLabel.textColor = Global.redColor()
 			}
 
-            }, completion: nil)
+			}, completion: nil)
 
 	}
-    
+
     
     func touchUpOutside(sender: UIButton) {
         
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: [], animations: { () -> Void in
-            sender.transform = CGAffineTransformScale(sender.transform, 1.25, 1.25)
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.225, options: [], animations: { () -> Void in
+            sender.transform = CGAffineTransformScale(sender.transform, (1.0 / 0.9), (1.0 / 0.9))
 
-			sender.backgroundColor = Global.backgroundColor()
+			sender.backgroundColor = UIColor.whiteColor()
 			if let titleLabel = sender.subviews[0] as? UILabel {
 				titleLabel.textColor = UIColor.blackColor()
 			}
@@ -175,6 +166,13 @@ class InfoViewController: UIViewController {
     }
 
 	func touchUpInside(sender: UIButton) {
+
+		for button in bigButtons {
+			button.userInteractionEnabled = false
+		}
+
+		infoButton.userInteractionEnabled = false
+
         let index = sender.tag - 100
 		gotoVCBaseOnIndex(index)
 
@@ -227,21 +225,27 @@ class InfoViewController: UIViewController {
 			delay(seconds: 0.2) { () -> () in
 				self.navigationController?.pushViewController(contentVC, animated: true)
 			}
+
 		default:
 			break
+
 		}
 
 	}
 
-	func pushOrPresentNavigationController(rootViewController: AnyObject) {
-
-	}
 
     func infoButtonTapped() {
+
+		for button in bigButtons {
+			button.userInteractionEnabled = false
+		}
+
         delay(seconds: 0.2) { () -> () in
             let settingVC = SettingTableViewController()
             let settingNavi = NavigationController(rootViewController: settingVC)
             self.presentViewController(settingNavi, animated: true, completion: nil)
         }
+
     }
+
 }

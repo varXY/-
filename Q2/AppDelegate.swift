@@ -125,25 +125,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 
 		// MARK: Base
-		let infoVC = InfoViewController()
-		let infoNavi = NavigationController(viewController: infoVC)
-		infoNavi.tabBarItem = UITabBarItem(title: "常用知识", image: UIImage(named: "常用知识"), tag: 0)
-
-		let testVC = TestViewController()
-		let testNavi = NavigationController(viewController: testVC)
-        testNavi.fd_fullscreenPopGestureRecognizer.enabled = false
-		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: UIImage(named: "电工试题"), tag: 1)
-		let controller = testNavi.viewControllers[0] as! TestViewController
-		controller.beginnerRecords = beginnerRecords
-		controller.intermediateRecords = intermediateRecords
-
-		let scaleVC = ScaleViewController()
-		let scaleNavi = NavigationController(viewController: scaleVC)
-		scaleNavi.tabBarItem = UITabBarItem(title: "公式换算", image: UIImage(named: "公式换算"), tag: 2)
-
-		let tabbarController = TabBarController()
-		tabbarController.viewControllers = [infoNavi, testNavi, scaleNavi]
-		tabbarController.selectedIndex = 1
+//		let infoVC = InfoViewController()
+//		let infoNavi = NavigationController(viewController: infoVC)
+//		infoNavi.tabBarItem = UITabBarItem(title: "常用知识", image: UIImage(named: "常用知识"), tag: 0)
+//
+//		let testVC = TestViewController()
+//		let testNavi = NavigationController(viewController: testVC)
+//        testNavi.fd_fullscreenPopGestureRecognizer.enabled = false
+//		testNavi.tabBarItem = UITabBarItem(title: "电工试题", image: UIImage(named: "电工试题"), tag: 1)
+//		let controller = testNavi.viewControllers[0] as! TestViewController
+//		controller.beginnerRecords = beginnerRecords
+//		controller.intermediateRecords = intermediateRecords
+//
+//		let scaleVC = ScaleViewController()
+//		let scaleNavi = NavigationController(viewController: scaleVC)
+//		scaleNavi.tabBarItem = UITabBarItem(title: "公式换算", image: UIImage(named: "公式换算"), tag: 2)
+//
+//		let tabbarController = TabBarController()
+//		tabbarController.viewControllers = [infoNavi, testNavi, scaleNavi]
+//		tabbarController.selectedIndex = 1
 
 		let testInfo = InfoViewController()
         let testInfoNavi = NavigationController(rootViewController: testInfo)
@@ -152,6 +152,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		testInfoVC.beginnerRecords = beginnerRecords
 		testInfoVC.intermediateRecords = intermediateRecords
 		self.window?.rootViewController = testInfoNavi
+
+//		let redBar = UIView(frame: CGRectMake(0, 0, (self.window?.rootViewController!.view.frame.width)!, 20))
+//		redBar.backgroundColor = Global.redColor()
+//		self.window?.rootViewController?.view.addSubview(redBar)
 
 		customizeAppearance()
 

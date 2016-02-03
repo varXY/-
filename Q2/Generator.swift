@@ -88,17 +88,17 @@ class Generator {
 		let point_7 = CGPoint(x: x_0, y: point_9.y - gap_0 - centerDistance)
 		let point_8 = CGPoint(x: x_2, y: point_9.y - gap_0 - centerDistance)
 
-		let buttonsCenter = CGPoint(x: x_1, y: point_3.y + centerDistance + sqrt(200) / 2)
-		let boxLength = sideLength * 2 + 10 + 15
-		let boxSize = CGSize(width: boxLength - 2.0, height: boxLength - 2.0)
-		let backgroundBox = UIButton()
-		backgroundBox.frame.size = boxSize
-		backgroundBox.center = buttonsCenter
-		backgroundBox.backgroundColor = UIColor.clearColor()
-		backgroundBox.layer.borderWidth = 1.0
-		backgroundBox.layer.borderColor = Global.lightRedColor().CGColor
-        backgroundBox.userInteractionEnabled = false
-		buttons.append(backgroundBox)
+//		let buttonsCenter = CGPoint(x: x_1, y: point_3.y + centerDistance + sqrt(200) / 2)
+//		let boxLength = sideLength * 2 + 10 + 15
+//		let boxSize = CGSize(width: boxLength - 2.0, height: boxLength - 2.0)
+//		let backgroundBox = UIButton()
+//		backgroundBox.frame.size = boxSize
+//		backgroundBox.center = buttonsCenter
+//		backgroundBox.backgroundColor = UIColor.clearColor()
+//		backgroundBox.layer.borderWidth = 1.0
+//		backgroundBox.layer.borderColor = Global.lightRedColor().CGColor
+//        backgroundBox.userInteractionEnabled = false
+//		buttons.append(backgroundBox)
 
 		let points = [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, point_9]
 		let squareSize = CGSize(width: sideLength, height: sideLength)
@@ -508,13 +508,16 @@ class Generator {
         let button = UIButton(type: .System)
         button.frame.size = size
         button.center = center
-        button.backgroundColor = Global.backgroundColor()
+        button.backgroundColor = UIColor.whiteColor()
         button.clipsToBounds = true
         
         let titleLabel = UILabel()
         titleLabel.frame.size = CGSize(width: size.width, height: 40)
         titleLabel.center = CGPoint(x: button.frame.width / 2, y: button.frame.height / 2)
         titleLabel.font = UIFont.systemFontOfSize(18)
+		if global.size.height == 480 {
+			titleLabel.font = UIFont.systemFontOfSize(13)
+		}
         titleLabel.text = title
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.textAlignment = .Center

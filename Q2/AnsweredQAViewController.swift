@@ -23,7 +23,7 @@ class AnsweredQAViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.title = "题目及答案"
+		self.title = "题目&答案"
 		self.view.backgroundColor = Global.backgroundColor()
 		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
