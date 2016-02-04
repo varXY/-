@@ -61,12 +61,16 @@ extension NavigationController: UINavigationControllerDelegate {
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         
-        if viewController.isKindOfClass(InfoViewController) {
-            self.setNavigationBarHidden(true, animated: true)
-            let rect = CGRectMake(0, 0, self.view.frame.width, 64)
-            self.navigationBar.setBackgroundImage(UIImage.imageWithColor(Global.redColor(), rect: rect), forBarMetrics: UIBarMetrics.Default)
-            self.navigationBar.shadowImage = UIImage.imageWithColor(UIColor.clearColor(), rect: CGRectMake(0, 0, 10, 10))
-        }
+//        if viewController.isKindOfClass(InfoViewController) {
+//            self.setNavigationBarHidden(true, animated: true)
+//            let rect = CGRectMake(0, 0, self.view.frame.width, 64)
+//            self.navigationBar.setBackgroundImage(UIImage.imageWithColor(Global.redColor(), rect: rect), forBarMetrics: UIBarMetrics.Default)
+//            self.navigationBar.shadowImage = UIImage.imageWithColor(UIColor.clearColor(), rect: CGRectMake(0, 0, 10, 10))
+//		} else {
+//			self.navigationBar.barTintColor = UIColor(red: 60/255, green: 65/255, blue: 80/255, alpha: 1.0)
+//		}
+
+
     }
 }
 

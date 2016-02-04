@@ -15,7 +15,6 @@ class Question {
 	var wrongAnswer: String = ""
 
 	
-
 	func getBeginnerQuestion(number: Int) -> Question? {
 		let question = Question()
 

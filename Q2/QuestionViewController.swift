@@ -110,31 +110,6 @@ class QuestionViewController: UIViewController {
 
 	}
 
-//	override func viewWillDisappear(animated: Bool) {
-//		super.viewWillDisappear(animated)
-//
-//		if let page = self.view.viewWithTag(9999999) {
-//
-//			let seeButton = page.viewWithTag(12345) as! UIButton
-//			seeButton.hidden = false
-//			seeButton.transform = CGAffineTransformIdentity
-//			seeButton.backgroundColor = UIColor.whiteColor()
-//			if let label = seeButton.subviews[0] as? UILabel {
-//				label.textColor = UIColor.blackColor()
-//			}
-//			seeButton.genAnimation(.Appear, delay: 0.0, distance: 30)
-//
-//			let quitButton = page.viewWithTag(123456) as! UIButton
-//			quitButton.hidden = false
-//			quitButton.transform = CGAffineTransformScale(seeButton.transform, 1.25, 1.25)
-//			quitButton.backgroundColor = UIColor.whiteColor()
-//			if let label = quitButton.subviews[0] as? UILabel {
-//				label.textColor = UIColor.blackColor()
-//			}
-//			quitButton.genAnimation(.Appear, delay: 0.0, distance: 30)
-//		}
-//	}
-
 
 	func chosen(sender: UIButton) {
 		getResult(sender)
@@ -232,15 +207,11 @@ class QuestionViewController: UIViewController {
 
 				if let button = finalView.viewWithTag(12345) as? UIButton {
 					button.addTarget(self, action: "seeAnsweredQA:", forControlEvents: .TouchUpInside)
-//					button.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-//					button.subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
 					button.genAnimation(.Appear, delay: 0.0, distance: 40)
 				}
 
 				if let button = finalView.viewWithTag(123456) as? UIButton {
 					button.addTarget(self, action: "animatedAndQuit:", forControlEvents: .TouchUpInside)
-//					button.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-//					button.subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
 					button.genAnimation(.Appear, delay: 0.1, distance: 70)
 				}
 
@@ -365,13 +336,6 @@ class QuestionViewController: UIViewController {
 
 
 	func seeAnsweredQA(sender: UIButton) {
-//		let page = self.view.viewWithTag(9999999)
-//
-//		let seeButton = page?.viewWithTag(12345) as! UIButton
-//		seeButton.genAnimation(.Touched, delay: 0.0, distance: 0.0)
-//
-//		let quitButton = page?.viewWithTag(123456) as! UIButton
-//		quitButton.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
 
 		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.225, options: [], animations: { () -> Void in
 			sender.backgroundColor = Global.backgroundColor()
@@ -381,14 +345,6 @@ class QuestionViewController: UIViewController {
 			}
 
 			}, completion: nil)
-
-//		UIView.animateWithDuration(0.3) { () -> Void in
-//			sender.backgroundColor = Global.backgroundColor()
-//			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
-//			if let label = sender.subviews[0] as? UILabel {
-//				label.textColor = UIColor.grayColor()
-//			}
-//		}
 
 		let answeredQAVC = AnsweredQAViewController()
 		answeredQAVC.questions = self.questions
@@ -403,13 +359,6 @@ class QuestionViewController: UIViewController {
 	}
 
 	func animatedAndQuit(sender: UIButton) {
-//		let page = self.view.viewWithTag(9999999)
-//
-//		let seeButton = page?.viewWithTag(12345) as! UIButton
-//		seeButton.genAnimation(.Disappear, delay: 0.0, distance: 0.0)
-//
-//		let quitButton = page?.viewWithTag(123456) as! UIButton
-//		quitButton.genAnimation(.Touched, delay: 0.0, distance: 0.0)
 
 		UIView.animateWithDuration(0.3) { () -> Void in
 			sender.backgroundColor = Global.backgroundColor()

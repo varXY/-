@@ -23,7 +23,6 @@ class RecordViewController: UIViewController {
 
 	var tableView0 = UITableView()
 	var tableView1 = UITableView()
-//	var tableView2: SettingTableView!
 	var shareButton = UIButton()
 
 	var tapGesture: UITapGestureRecognizer!
@@ -38,8 +37,7 @@ class RecordViewController: UIViewController {
 		segmentControl = UISegmentedControl(items: ["初级", "中级"])
 		for i in 0..<2 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
 		segmentControl.selectedSegmentIndex = 0
-//		segmentControl.addTarget(self, action: "segmentSelected:", forControlEvents: UIControlEvents.AllEvents)
-        segmentControl.addTarget(self, action: "test:", forControlEvents: UIControlEvents.ValueChanged)
+        segmentControl.addTarget(self, action: "segmentSelected:", forControlEvents: UIControlEvents.ValueChanged)
 		navigationItem.titleView = segmentControl
 		self.view.backgroundColor = Global.backgroundColor()
 		
@@ -58,15 +56,6 @@ class RecordViewController: UIViewController {
 		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
 		scrollView.addSubview(tableView1)
 
-//		tableView2 = SettingTableView(frame: CGRectMake(view.frame.width * 2, 0, view.frame.width, view.frame.height - 64), style: .Grouped)
-//		tableView2.sendMail = { (controller) -> Void in
-//			self.presentViewController(controller, animated: true, completion: nil)
-//		}
-//		tableView2.doneWithMail = { (controller) -> Void in
-//			controller.dismissViewControllerAnimated(true, completion: nil)
-//		}
-//		scrollView.addSubview(tableView2)
-
 		shareButton = generator.genShareButton(CGPointMake(20, global.size.height - 64), tag: 160)
 		shareButton.addTarget(self, action: "share", forControlEvents: .TouchUpInside)
 		view.addSubview(shareButton)
@@ -80,6 +69,7 @@ class RecordViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		
 		if self.segmentControl.selectedSegmentIndex == 2 {
 			self.checkRecordsCountForShareButton(self.segmentControl.selectedSegmentIndex)
 		} else {
@@ -103,15 +93,10 @@ class RecordViewController: UIViewController {
 		return tableView
 	}
     
-    func test(sender: UISegmentedControl) {
+    func segmentSelected(sender: UISegmentedControl) {
         segmentWay = true
         jumpToPage(sender.selectedSegmentIndex)
     }
-
-//	func segmentSelected(sender: UISegmentedControl) {
-//		segmentWay = true
-//		jumpToPage(sender.selectedSegmentIndex)
-//	}
 
 	func checkRecordsCountForShareButton(index: Int) {
 

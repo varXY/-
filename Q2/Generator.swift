@@ -363,7 +363,6 @@ class Generator {
 		label.textColor = UIColor.whiteColor()
 		label.font = UIFont.boldSystemFontOfSize(22)
 		label.backgroundColor = Global.lightRedColor()
-//		label.alpha = 0.8
 		label.layer.cornerRadius = (global.size.width - 20) / 2
 		label.clipsToBounds = true
 
@@ -386,18 +385,6 @@ class Generator {
 		view.addSubview(label)
 
 		let buttonSize = CGSize(width: label.frame.width - 40, height: 60)
-
-//		let buttonWidth = global.testSmallButtonSize().width
-//		let buttonHeight = global.testSmallButtonSize().height
-
-//		var button = genButton("查看题目", frame: CGRect(x: global.size.width / 4 - (buttonWidth + 50) / 2, y: global.size.width - buttonHeight / 2 - 10, width: buttonWidth + 50, height: buttonHeight + 50))
-//
-//		button!.tag = 12345
-//		view.addSubview(button!)
-//
-//		button = genButton("退出", frame: CGRect(x: global.size.width * 3 / 4 - buttonWidth / 2, y: global.size.width - 10, width: buttonWidth, height: buttonHeight))
-//		button!.tag = 123456
-//		view.addSubview(button!)
 
 		let center_0 = CGPoint(x: view.frame.width / 2, y: view.frame.size.height * 0.65 - 64)
 		let button_0 = prismaticButton("查看题目", center: center_0, size: buttonSize)
@@ -509,6 +496,7 @@ class Generator {
         button.frame.size = size
         button.center = center
         button.backgroundColor = UIColor.whiteColor()
+//		button.layer.cornerRadius = size.width / 15
         button.clipsToBounds = true
         
         let titleLabel = UILabel()
