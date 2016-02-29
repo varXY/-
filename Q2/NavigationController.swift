@@ -20,7 +20,7 @@ class NavigationController: UINavigationController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.navigationBar.barTintColor = Global.redColor()
+		self.navigationBar.barTintColor = UIColor.themeRed()
 		self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 		self.navigationBar.tintColor = UIColor.whiteColor()
 		self.navigationBar.translucent = false
@@ -61,7 +61,7 @@ extension NavigationController: UINavigationControllerDelegate {
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         
-//        if viewController.isKindOfClass(InfoViewController) {
+//        if viewController.isKindOfClass(HomepageViewController) {
 //            self.setNavigationBarHidden(true, animated: true)
 //            let rect = CGRectMake(0, 0, self.view.frame.width, 64)
 //            self.navigationBar.setBackgroundImage(UIImage.imageWithColor(Global.redColor(), rect: rect), forBarMetrics: UIBarMetrics.Default)

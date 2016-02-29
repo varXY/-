@@ -31,35 +31,11 @@ class Global {
 	let center = CGPoint(x: UIScreen.mainScreen().bounds.width / 2, y: UIScreen.mainScreen().bounds.height / 2)
 	let rowHeight = UIScreen.mainScreen().bounds.height / 12
 
-	let CGRedColor = Global.redColor().CGColor
-	let CGGreenColor = Global.greenColor().CGColor
+	let CGRedColor = UIColor.redColor().CGColor
+	let CGGreenColor = UIColor.greenColor().CGColor
 	let CGlightGrayColor = UIColor.lightGrayColor().CGColor
 	let CGWhiteColor = UIColor.whiteColor().CGColor
 	let CGBlackColor = UIColor.blackColor().CGColor
-
-//	class func redColor() -> UIColor {
-//		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 1.0)
-//	}
-
-	class func redColor() -> UIColor {
-		return UIColor(red: 254/255, green: 51/255, blue: 42/255, alpha: 1.0)
-	}
-
-	class func lightRedColor() -> UIColor {
-		return UIColor(red: 250/255, green: 30/255, blue: 30/255, alpha: 0.7)
-	}
-
-	class func backgroundColor() -> UIColor {
-		return UIColor(red: 236/255, green: 235/255, blue: 243/255, alpha: 1.0)
-	}
-
-	class func lightGrayColor() -> UIColor {
-		return UIColor(red: 150/255, green: 154/255, blue: 152/255, alpha: 1.0)
-	}
-
-	class func greenColor() -> UIColor {
-		return UIColor(red: 30/255, green: 240/255, blue: 30/255, alpha: 1.0)
-	}
 
 	func buttonSize() -> CGSize {
 		var size = CGSize()

@@ -20,10 +20,10 @@ class RecordCell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		self.contentView.backgroundColor = Global.backgroundColor()
+		self.contentView.backgroundColor = UIColor.backgroundColor()
 
 		colorView.frame = CGRect.zero
-		colorView.backgroundColor = Global.lightRedColor()
+		colorView.backgroundColor = UIColor.lightRedColor()
 		colorView.alpha = 0.3
 		self.contentView.addSubview(colorView)
 

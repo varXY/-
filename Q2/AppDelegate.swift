@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func customizeAppearance() {
-		let tintColor = Global.redColor()
+		let tintColor = UIColor.themeRed()
 		UITabBar.appearance().tintColor = tintColor
 	}
 
@@ -61,21 +61,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		switch (shortCutType) {
 		case ShortcutIdentifier.First.type:
-			if let topVC = controller.topViewController as? InfoViewController {
+			if let topVC = controller.topViewController as? HomepageViewController {
 				topVC.gotoVCBaseOnIndex(1)
 			}
 
 			handled = true
 			break
 		case ShortcutIdentifier.Second.type:
-			if let topVC = controller.topViewController as? InfoViewController {
+			if let topVC = controller.topViewController as? HomepageViewController {
 				topVC.gotoVCBaseOnIndex(2)
 			}
 
 			handled = true
 			break
 		case ShortcutIdentifier.Third.type:
-			if let topVC = controller.topViewController as? InfoViewController {
+			if let topVC = controller.topViewController as? HomepageViewController {
 				topVC.gotoVCBaseOnIndex(5)
 			}
 
@@ -128,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// MARK: Base
 
-		let infoVC = InfoViewController()
+		let infoVC = HomepageViewController()
 		infoVC.beginnerRecords = beginnerRecords
 		infoVC.intermediateRecords = intermediateRecords
 
@@ -146,31 +146,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationDidBecomeActive(application: UIApplication) {
-
 		guard let shortcut = launchedShortcutItem else { return }
-
 		handleShortCutItem(shortcut)
-
 		launchedShortcutItem = nil
 	}
 
 	func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-
 		let handledShortCutItem = handleShortCutItem(shortcutItem)
-
 		completionHandler(handledShortCutItem)
 	}
 
 	func applicationDidEnterBackground(application: UIApplication) {
-
 		saveRecord()
-
 	}
 
 	func applicationWillTerminate(application: UIApplication) {
-
 		saveRecord()
-
 	}
 
 

@@ -39,7 +39,7 @@ class RecordViewController: UIViewController {
 		segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: "segmentSelected:", forControlEvents: UIControlEvents.ValueChanged)
 		navigationItem.titleView = segmentControl
-		self.view.backgroundColor = Global.backgroundColor()
+		self.view.backgroundColor = UIColor.backgroundColor()
 		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
 		self.navigationItem.rightBarButtonItem = quitButton
@@ -84,8 +84,8 @@ class RecordViewController: UIViewController {
 		let tableView = UITableView()
 
 		tableView.frame = rect
-		tableView.backgroundColor = Global.backgroundColor()
-		tableView.separatorColor = Global.backgroundColor()
+		tableView.backgroundColor = UIColor.backgroundColor()
+		tableView.separatorStyle = .None
 		tableView.allowsSelection = false
 		tableView.delegate = self
 		tableView.dataSource = self
@@ -155,11 +155,9 @@ class RecordViewController: UIViewController {
 	
 
 	func share() {
-
 		UIView.animateWithDuration(0.5) { () -> Void in
 			self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, 60)
 		}
-
 
 		delay(seconds: 0.5) { () -> () in
 			self.shareContent()

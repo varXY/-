@@ -114,111 +114,6 @@ class Generator {
 		return buttons
 	}
 
-	func genButtonsForInfo() -> [UIButton] {
-		let buttonSize = global.buttonSize()
-//		let marginY = global.margin()
-		var buttons = [UIButton]()
-
-//		let buttonX = (global.size.width - buttonSize.width) / 2
-
-//		let marginY_1 = marginY - 2
-//		let marginY_2 = marginY * 2 + buttonSize.height - 2
-//		let marginY_3 = marginY * 3 + buttonSize.height * 2
-
-		let distance = global.size.width / 2
-        
-        let center_0 = CGPoint(x: distance / 2, y: global.size.height / 2  - distance / 2 - 64)
-        let center_1 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2  - distance / 2 - 64)
-		let center_2 = CGPoint(x: distance, y: global.size.height / 2 + distance / 2 - 64)
-
-		var button = prismaticButton("单位公式", center: center_0, size: buttonSize)
-		button.tag = 93456
-		buttons.append(button)
-
-		button = prismaticButton("图标符号", center: center_1, size: buttonSize)
-		button.tag = 93457
-		buttons.append(button)
-
-		button = prismaticButton("工具设备", center: center_2, size: buttonSize)
-		button.tag = 93458
-		buttons.append(button)
-
-		return buttons
-	}
-
-
-	func genButtonsForTest() -> [UIButton] {
-		var buttons = [UIButton]()
-		let buttonSize = global.buttonSize()
-
-		let x = (global.size.width - buttonSize.width) / 2
-
-		let centerY = (global.size.height - 64 - 49) / 2
-		let Y_1 = centerY - buttonSize.height - 70
-		let Y_2 = centerY + 70
-//		let StartbuttonWidth: CGFloat = global.testBigButtonSize().width
-//		let StartbuttonHeight:CGFloat = global.testBigButtonSize().height
-//		let smallbuttonWidth: CGFloat = global.testSmallButtonSize().width
-//		let smallbuttonHeight:CGFloat = global.testSmallButtonSize().height
-
-//		var button = genButton("开始答题", frame: CGRect(x: (global.size.width - StartbuttonWidth) / 2, y: (global.size.height - StartbuttonHeight) / 2 - 49 , width: StartbuttonWidth, height: StartbuttonHeight))
-//		button?.titleLabel?.font = UIFont.systemFontOfSize(24)
-//		button?.tag = 33893
-//		buttons.append(button!)
-
-		var button = genButton("初级", frame: CGRectMake(x, Y_1, buttonSize.width, buttonSize.height))
-		button?.tag = 33890
-		buttons.append(button!)
-
-		button = genButton("中级", frame: CGRectMake(x, Y_2, buttonSize.width, buttonSize.height))
-		button?.tag = 33891
-		buttons.append(button!)
-
-//		button = genButton("纪录", frame: CGRect(x: (global.size.width - smallbuttonWidth) / 2, y: global.size.height - 70 - smallbuttonHeight - 64, width: smallbuttonWidth, height: smallbuttonHeight))
-//		button?.tag = 33892
-//		buttons.append(button!)
-
-		return buttons
-	}
-
-
-	func genButtonsForScale() -> [UIButton] {
-		let buttonSize = global.buttonSize()
-//		let marginY = global.margin()
-		var buttons = [UIButton]()
-
-//		let buttonX0 = (global.size.width - buttonSize.width) / 2
-//		let buttonX1 = global.size.width / 4 - buttonSize.width / 2
-//		let buttonX2 = global.size.width * 3 / 4 - buttonSize.width / 2
-//
-//		let marginY_1 = marginY - 3
-//		let marginY_2 = marginY * 2 + buttonSize.height - 3
-//		let marginY_3 = marginY * 3 + buttonSize.height * 2
-
-		let distance = global.size.width / 2
-
-		let center_0 = CGPoint(x: distance / 2, y: global.size.height / 2  - distance / 2 - 64)
-		let center_1 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2  - distance / 2 - 64)
-		let center_2 = CGPoint(x: distance / 2, y: global.size.height / 2 + distance / 2 - 64)
-		let center_3 = CGPoint(x: (distance / 2) * 3, y: global.size.height / 2 + distance / 2 - 64)
-
-
-		var button = genButtonWithCenter("欧姆定律", center: center_0, size: buttonSize)
-		buttons.append(button!)
-
-		button = genButtonWithCenter("功率", center: center_1, size: buttonSize)
-		buttons.append(button!)
-
-		button = genButtonWithCenter("电量", center: center_3, size: buttonSize)
-		buttons.append(button!)
-
-		button = genButtonWithCenter("马力", center: center_2, size: buttonSize)
-		buttons.append(button!)
-
-		return buttons
-	}
-
-
 
 	// MARK: - For Test
 
@@ -270,7 +165,7 @@ class Generator {
 		let label = UILabel()
 		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 5.5 - 64, width: global.size.width - 30, height: 200)
 		label.numberOfLines = 0
-		label.backgroundColor = Global.backgroundColor()
+		label.backgroundColor = UIColor.backgroundColor()
 		label.font = UIFont.systemFontOfSize(23)
 		label.text = questions[page].question
 		label.sizeToFit()
@@ -362,7 +257,7 @@ class Generator {
 		label.textAlignment = .Center
 		label.textColor = UIColor.whiteColor()
 		label.font = UIFont.boldSystemFontOfSize(22)
-		label.backgroundColor = Global.lightRedColor()
+		label.backgroundColor = UIColor.lightRedColor()
 		label.layer.cornerRadius = (global.size.width - 20) / 2
 		label.clipsToBounds = true
 
@@ -390,7 +285,7 @@ class Generator {
 		let button_0 = prismaticButton("查看题目", center: center_0, size: buttonSize)
 		button_0.backgroundColor = UIColor.whiteColor()
 		if let label = button_0.subviews[0] as? UILabel {
-			label.textColor = Global.redColor()
+			label.textColor = UIColor.themeRed()
 		}
 		button_0.layer.cornerRadius = 10
 		button_0.alpha = 0.7
@@ -403,7 +298,7 @@ class Generator {
 		let button_1 = prismaticButton("退出", center: center_1, size: buttonSize)
 		button_1.backgroundColor = UIColor.whiteColor()
 		if let label = button_1.subviews[0] as? UILabel {
-			label.textColor = Global.redColor()
+			label.textColor = UIColor.themeRed()
 		}
 		button_1.layer.cornerRadius = 10
 		button_1.alpha = 0.7
@@ -438,7 +333,7 @@ class Generator {
 		let label = UILabel(frame: CGRect(x: 0, y: 0, width: button.frame.size.width, height: button.frame.size.height / 2))
 		label.text = "分享"
 		label.font = UIFont.systemFontOfSize(20)
-		label.textColor = Global.redColor()
+		label.textColor = UIColor.themeRed()
 		label.textAlignment = .Center
 		button.addSubview(label)
 

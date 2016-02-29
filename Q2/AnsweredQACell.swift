@@ -47,9 +47,9 @@ class AnsweredQACell: UITableViewCell {
 		rowLabel.text = "\(row)"
 
 		if rightOrWrong == 1 {
-			self.rowLabel.textColor = Global.greenColor()
+			self.rowLabel.textColor = UIColor.rightGreen()
 		} else {
-			self.rowLabel.textColor = Global.redColor()
+			self.rowLabel.textColor = UIColor.themeRed()
 		}
 		
 	}

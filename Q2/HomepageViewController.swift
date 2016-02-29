@@ -1,5 +1,5 @@
 //
-//  InfoViewController.swift
+//  HomepageViewController.swift
 //  Q2
 //
 //  Created by 文川术 on 15/9/12.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class InfoViewController: UIViewController {
+class HomepageViewController: UIViewController {
 
 	var generator = Generator()
 
@@ -30,7 +30,7 @@ class InfoViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.view.backgroundColor = Global.redColor()
+		self.view.backgroundColor = UIColor.themeRed()
 		self.title = " "
 
 //		黑青 UIColor(red: 50/255, green: 55/255, blue: 70/255, alpha: 1.0)
@@ -219,7 +219,7 @@ class InfoViewController: UIViewController {
 
 			sender.backgroundColor = UIColor.whiteColor()
 			if let titleLabel = sender.subviews[0] as? UILabel {
-				titleLabel.textColor = Global.redColor()
+				titleLabel.textColor = UIColor.themeRed()
 			}
 
 //			self.blurView.alpha = 0.0

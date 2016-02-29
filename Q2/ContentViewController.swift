@@ -34,7 +34,7 @@ class ContentViewController: UITableViewController {
 			registerForPreviewingWithDelegate(self, sourceView: view)
 		}
 
-		tableView.backgroundColor = Global.backgroundColor()
+		tableView.backgroundColor = UIColor.backgroundColor()
 
 		switch index {
 		case 0:
@@ -47,7 +47,7 @@ class ContentViewController: UITableViewController {
 			tableView.allowsSelection = false
 
 			searchBar.placeholder = "搜索"
-			searchBar.tintColor = Global.redColor()
+			searchBar.tintColor = UIColor.themeRed()
 			searchBar.delegate = self
 			tableView.tableHeaderView = searchBar
             tableView.contentOffset.y = searchBar.frame.height

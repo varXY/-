@@ -37,13 +37,13 @@ class EquationViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        self.view.backgroundColor = Global.backgroundColor()
+        self.view.backgroundColor = UIColor.backgroundColor()
 		self.title = Equation(rawValue: index)?.navigationTitle
 
 		getWords(index)
 
 		tableView = UITableView(frame: view.bounds, style: .Grouped)
-		tableView.backgroundColor = Global.backgroundColor()
+		tableView.backgroundColor = UIColor.backgroundColor()
 		tableView.scrollEnabled = true
 		tableView.allowsSelection = false
 		tableView.dataSource = self

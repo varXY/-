@@ -54,7 +54,7 @@ class QuestionViewController: UIViewController {
 
 		scrollView.frame = view.bounds
 		scrollView.delegate = self
-		scrollView.backgroundColor = Global.backgroundColor()
+		scrollView.backgroundColor = UIColor.backgroundColor()
 		scrollView.pagingEnabled = true
 		scrollView.scrollEnabled = false
 		scrollView.contentSize = CGSize(width: self.view.bounds.width * 10, height: self.view.bounds.height)
@@ -89,7 +89,7 @@ class QuestionViewController: UIViewController {
 			seeButton.transform = CGAffineTransformIdentity
 			seeButton.backgroundColor = UIColor.whiteColor()
 			if let label = seeButton.subviews[0] as? UILabel {
-				label.textColor = Global.redColor()
+				label.textColor = UIColor.themeRed()
 			}
 			seeButton.genAnimation(.Appear, delay: 0.0, distance: 40)
 
@@ -98,7 +98,7 @@ class QuestionViewController: UIViewController {
 			quitButton.transform = CGAffineTransformIdentity
 			quitButton.backgroundColor = UIColor.whiteColor()
 			if let label = quitButton.subviews[0] as? UILabel {
-				label.textColor = Global.redColor()
+				label.textColor = UIColor.themeRed()
 			}
 			quitButton.genAnimation(.Appear, delay: 0.1, distance: 70)
 		}
@@ -132,7 +132,7 @@ class QuestionViewController: UIViewController {
 			rightOrWrong.append(1)
 
 			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = Global.greenColor()
+				dot.backgroundColor = UIColor.themeRed()
 			}
 
 		} else {
@@ -142,7 +142,7 @@ class QuestionViewController: UIViewController {
 			rightOrWrong.append(0)
 
 			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = Global.redColor()
+				dot.backgroundColor = UIColor.themeRed()
 			}
 
 
@@ -161,7 +161,7 @@ class QuestionViewController: UIViewController {
 					button.userInteractionEnabled = false
 					button.genAnimation(.IsRightAnswer, delay: 0.0, distance: 0.0)
 					button.tintColor = UIColor.whiteColor()
-					button.backgroundColor = Global.greenColor()
+					button.backgroundColor = UIColor.rightGreen()
 				} else {
 					button.enabled = false
 				}
@@ -195,7 +195,7 @@ class QuestionViewController: UIViewController {
 				UIView.animateWithDuration(0.8, animations: { () -> Void in
 					self.scrollView.alpha = 0.0
 					self.scrollView.removeFromSuperview()
-					self.view.backgroundColor = Global.backgroundColor()
+					self.view.backgroundColor = UIColor.backgroundColor()
 					self.title = "完成"
 				})
 			})
@@ -305,7 +305,6 @@ class QuestionViewController: UIViewController {
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
 			}, completion: nil)
 
-		
 	}
 
 
@@ -338,7 +337,7 @@ class QuestionViewController: UIViewController {
 	func seeAnsweredQA(sender: UIButton) {
 
 		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.225, options: [], animations: { () -> Void in
-			sender.backgroundColor = Global.backgroundColor()
+			sender.backgroundColor = UIColor.backgroundColor()
 			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
 			if let label = sender.subviews[0] as? UILabel {
 				label.textColor = UIColor.grayColor()
@@ -361,7 +360,7 @@ class QuestionViewController: UIViewController {
 	func animatedAndQuit(sender: UIButton) {
 
 		UIView.animateWithDuration(0.3) { () -> Void in
-			sender.backgroundColor = Global.backgroundColor()
+			sender.backgroundColor = UIColor.backgroundColor()
 			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
 			if let label = sender.subviews[0] as? UILabel {
 				label.textColor = UIColor.grayColor()
@@ -382,7 +381,6 @@ class QuestionViewController: UIViewController {
 
 		try! player0 = AVAudioPlayer(contentsOfURL: rightSound)
 		try! player1 = AVAudioPlayer(contentsOfURL: wrongSound)
-
 	}
 
 

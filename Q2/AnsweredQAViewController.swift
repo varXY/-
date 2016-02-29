@@ -24,7 +24,7 @@ class AnsweredQAViewController: UIViewController {
 		super.viewDidLoad()
 
 		self.title = "题目&答案"
-		self.view.backgroundColor = Global.backgroundColor()
+		self.view.backgroundColor = UIColor.backgroundColor()
 		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
 		self.navigationItem.rightBarButtonItem = quitButton
