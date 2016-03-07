@@ -32,6 +32,9 @@
 		314DFCEC1BA42F3D00E79557 /* View Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DFCEB1BA42F3D00E79557 /* View Generator.swift */; };
 		31523AA51BAFE9A100526881 /* right.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA31BAFE9A100526881 /* right.caf */; };
 		31523AA61BAFE9A100526881 /* wrong.caf in Resources */ = {isa = PBXBuildFile; fileRef = 31523AA41BAFE9A100526881 /* wrong.caf */; };
+		31710AE31C8D13C700E1E4E7 /* SupportProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31710AE21C8D13C700E1E4E7 /* SupportProducts.swift */; };
+		31710AE51C8D13CD00E1E4E7 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31710AE41C8D13CD00E1E4E7 /* IAPHelper.swift */; };
+		31710AE71C8D154900E1E4E7 /* HudView_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31710AE61C8D154900E1E4E7 /* HudView_1.swift */; };
 		318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */; };
 		318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */; };
 		318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C11931BA54C7D00CA1EC9 /* Global.swift */; };
@@ -90,6 +93,9 @@
 		314DFCEB1BA42F3D00E79557 /* View Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "View Generator.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31523AA31BAFE9A100526881 /* right.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = right.caf; sourceTree = "<group>"; };
 		31523AA41BAFE9A100526881 /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
+		31710AE21C8D13C700E1E4E7 /* SupportProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportProducts.swift; sourceTree = "<group>"; };
+		31710AE41C8D13CD00E1E4E7 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		31710AE61C8D154900E1E4E7 /* HudView_1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView_1.swift; sourceTree = "<group>"; };
 		318C118F1BA5017400CA1EC9 /* AnsweredQAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQAViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11911BA5023200CA1EC9 /* AnsweredQACell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AnsweredQACell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		318C11931BA54C7D00CA1EC9 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Global.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -153,6 +159,7 @@
 				313371191C8415DB00234E72 /* View */,
 				313371181C8414EC00234E72 /* Controller */,
 				3133711A1C8415EC00234E72 /* Model */,
+				31710AE11C8D139D00E1E4E7 /* Purchase */,
 				3133711B1C84165C00234E72 /* Extension */,
 				3133711D1C8416B000234E72 /* Resources */,
 			);
@@ -205,6 +212,7 @@
 			children = (
 				314DFCEB1BA42F3D00E79557 /* View Generator.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
+				31710AE61C8D154900E1E4E7 /* HudView_1.swift */,
 				311A89F11C62E80E00257A26 /* GrandientView.swift */,
 				314DFCE81BA42EE100E79557 /* Info View */,
 				314DFCD11BA429F400E79557 /* Test View */,
@@ -290,6 +298,15 @@
 				31D26E191C618AB900F74E02 /* Q_homePage_2.caf */,
 			);
 			path = Sound5.0;
+			sourceTree = "<group>";
+		};
+		31710AE11C8D139D00E1E4E7 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				31710AE21C8D13C700E1E4E7 /* SupportProducts.swift */,
+				31710AE41C8D13CD00E1E4E7 /* IAPHelper.swift */,
+			);
+			name = Purchase;
 			sourceTree = "<group>";
 		};
 		318C118D1BA4EAB000CA1EC9 /* Info Controller */ = {
@@ -428,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				314DFCD71BA42E1B00E79557 /* DetailViewController.swift in Sources */,
+				31710AE31C8D13C700E1E4E7 /* SupportProducts.swift in Sources */,
 				C302F35E1C5A132A0043E35D /* UIImage+ColorImage.swift in Sources */,
 				318C11921BA5023200CA1EC9 /* AnsweredQACell.swift in Sources */,
 				31A492521BACE65C009077FD /* UIButton+genAnimation.swift in Sources */,
@@ -444,10 +462,12 @@
 				311A89F21C62E80E00257A26 /* GrandientView.swift in Sources */,
 				314DFCD31BA42A0900E79557 /* RecordCell.swift in Sources */,
 				314DFCEC1BA42F3D00E79557 /* View Generator.swift in Sources */,
+				31710AE71C8D154900E1E4E7 /* HudView_1.swift in Sources */,
 				31033AAD1BA3EBE200DC9141 /* QuestionViewController.swift in Sources */,
 				C3C0D6881C5EFF0A0081E6C2 /* SettingTableViewController.swift in Sources */,
 				314DFCDB1BA42E7800E79557 /* Knowledge.swift in Sources */,
 				31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */,
+				31710AE51C8D13CD00E1E4E7 /* IAPHelper.swift in Sources */,
 				314DFCE71BA42ED400E79557 /* IntroCell.swift in Sources */,
 				31033AA61BA3BD0300DC9141 /* HomepageViewController.swift in Sources */,
 				31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */,

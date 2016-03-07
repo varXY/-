@@ -22,13 +22,15 @@ class QuestionViewController: UIViewController {
 	var rightOrWrong = [Int]()
 
 	var scrollView = UIScrollView()
-	var pageControl = UIPageControl()
+	var currentPage = 0
 	var dotView = UIView()
 	var fakeButton = UIView()
 
-	var soundOn = true
-	var player0 = AVAudioPlayer()
-	var player1 = AVAudioPlayer()
+	var sound = true
+	var vibration = true
+
+	var rightSound: AVAudioPlayer!
+	var wrongSound: AVAudioPlayer!
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
@@ -41,7 +43,6 @@ class QuestionViewController: UIViewController {
 
 		self.title = "1/10"
 		self.view.backgroundColor = UIColor.whiteColor()
-
 		self.fd_interactivePopDisabled = true
 
 		let question = Question()
@@ -53,19 +54,11 @@ class QuestionViewController: UIViewController {
 		self.navigationItem.setHidesBackButton(true, animated: true)
 
 		scrollView.frame = view.bounds
-		scrollView.delegate = self
 		scrollView.backgroundColor = UIColor.backgroundColor()
 		scrollView.pagingEnabled = true
 		scrollView.scrollEnabled = false
 		scrollView.contentSize = CGSize(width: self.view.bounds.width * 10, height: self.view.bounds.height)
 		view.addSubview(scrollView)
-
-		pageControl.frame = CGRect(x: 0, y: 520, width: 320, height: 30)
-		pageControl.numberOfPages = 10
-		pageControl.currentPage = 0
-		pageControl.userInteractionEnabled = false
-		pageControl.hidden = true
-		view.addSubview(pageControl)
 
 		dotView = generator.genDots()
 		let firstDot = dotView.subviews[0]
@@ -105,7 +98,7 @@ class QuestionViewController: UIViewController {
 
 		let userDefaults = NSUserDefaults.standardUserDefaults()
 		if let sound = userDefaults.valueForKey("Sound") as? Bool {
-			self.soundOn = sound
+			self.sound = sound
 		}
 
 	}
@@ -114,43 +107,38 @@ class QuestionViewController: UIViewController {
 	func chosen(sender: UIButton) {
 		getResult(sender)
 		disableAndColorButtons(sender)
-
-		delay(seconds: 0.2) { () -> () in
-			self.genJumpButton(sender)
-		}
-
-		testIsOver(sender)
+		currentPage += 1
+		currentPage == 10 ? testIsOver() : genJumpButton()
 	}
 
 
 	func getResult(sender: UIButton) {
 
-		if sender.titleLabel?.text == questions[pageControl.currentPage].rightAnswer {
-			if soundOn { player0.play() }
+		if sender.titleLabel?.text == questions[currentPage].rightAnswer {
+			if sound { rightSound.play() }
 			showRightOrWrongView("right")
 			rightCount += 1
 			rightOrWrong.append(1)
 
-			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
-				dot.backgroundColor = UIColor.themeRed()
+			if let dot = dotView.viewWithTag(currentPage + 500) {
+				dot.backgroundColor = UIColor.rightGreen()
 			}
 
 		} else {
-			if soundOn { player1.play() }
-			AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+			if sound { wrongSound.play() }
+			if vibration { AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate)) }
 			showRightOrWrongView("wrong")
 			rightOrWrong.append(0)
 
-			if let dot = dotView.viewWithTag(pageControl.currentPage + 500) {
+			if let dot = dotView.viewWithTag(currentPage + 500) {
 				dot.backgroundColor = UIColor.themeRed()
 			}
-
 
 		}
 	}
 
 	func disableAndColorButtons(sender: UIButton) {
-		let rightAnswer = questions[pageControl.currentPage].rightAnswer
+		let rightAnswer = questions[currentPage].rightAnswer
 		let tags = [sender.tag - 1, sender.tag, sender.tag + 1]
 
 		for tag in tags {
@@ -172,58 +160,49 @@ class QuestionViewController: UIViewController {
 		
 	}
 
-	func genJumpButton(sender: UIButton) {
-		if sender.tag != 1018 && sender.tag != 1019 {
-
-			delay(seconds: 0.5, completion: { () -> () in
-				let page = self.pageControl.currentPage
-				self.generator.genJumpButtonForQA(self.scrollView, page: page)
-				self.addActionToButtons(1, page: page)
-			})
-		}
+	func genJumpButton() {
+		delay(seconds: 0.5, completion: { () -> () in
+			self.generator.genJumpButtonForQA(self.scrollView, page: self.currentPage - 1)
+			self.addActionToButtons(1, page: self.currentPage - 1)
+		})
 	}
 
 
+	func testIsOver() {
+		let date = NSDate()
+		record?(rightCount: rightCount, date: date)
 
-	func testIsOver(sender: UIButton) {
-		if sender.tag == 1018 || sender.tag == 1019 {
-
-			let date = NSDate()
-			record?(rightCount: rightCount, date: date)
-
-			delay(seconds: 2.0, completion: { () -> () in
-				UIView.animateWithDuration(0.8, animations: { () -> Void in
-					self.scrollView.alpha = 0.0
-					self.scrollView.removeFromSuperview()
-					self.view.backgroundColor = UIColor.backgroundColor()
-					self.title = "完成"
-				})
+		delay(seconds: 2.0, completion: { () -> () in
+			UIView.animateWithDuration(0.8, animations: { () -> Void in
+				self.scrollView.alpha = 0.0
+				self.scrollView.removeFromSuperview()
+				self.view.backgroundColor = UIColor.backgroundColor()
+				self.title = "完成"
 			})
+		})
 
-			delay(seconds: 3.0, completion: { () -> () in
-				let finalView = self.generator.showTestFinalPage(self.rightCount)
-				finalView.tag = 9999999
-				self.view.addSubview(finalView)
+		delay(seconds: 3.0, completion: { () -> () in
+			let finalView = self.generator.showTestFinalPage(self.rightCount)
+			finalView.tag = 9999999
+			self.view.addSubview(finalView)
 
-				if let button = finalView.viewWithTag(12345) as? UIButton {
-					button.addTarget(self, action: "seeAnsweredQA:", forControlEvents: .TouchUpInside)
-					button.genAnimation(.Appear, delay: 0.0, distance: 40)
-				}
+			if let button = finalView.viewWithTag(12345) as? UIButton {
+				button.addTarget(self, action: "seeAnsweredQA:", forControlEvents: .TouchUpInside)
+				button.genAnimation(.Appear, delay: 0.0, distance: 40)
+			}
 
-				if let button = finalView.viewWithTag(123456) as? UIButton {
-					button.addTarget(self, action: "animatedAndQuit:", forControlEvents: .TouchUpInside)
-					button.genAnimation(.Appear, delay: 0.1, distance: 70)
-				}
+			if let button = finalView.viewWithTag(123456) as? UIButton {
+				button.addTarget(self, action: "animatedAndQuit:", forControlEvents: .TouchUpInside)
+				button.genAnimation(.Appear, delay: 0.1, distance: 70)
+			}
 
 
-			})
-
-		}
+		})
 
 	}
 
 	func showRightOrWrongView(rightOrWrong: String) {
-		let view = generator.genRightOrWrongViewForQA(rightOrWrong, page: pageControl.currentPage)
+		let view = generator.genRightOrWrongViewForQA(rightOrWrong, page: currentPage)
 		scrollView.addSubview(view)
 
 		delay(seconds: 1.0) { () -> () in
@@ -233,7 +212,7 @@ class QuestionViewController: UIViewController {
 			self.fakeButton = view
 		}
 
-		if pageControl.currentPage != 9 {
+		if currentPage != 9 {
 
 			delay(seconds: 2.0) { () -> () in
 
@@ -280,20 +259,16 @@ class QuestionViewController: UIViewController {
 
 
 	func jump() {
-		let page = pageControl.currentPage + 1
+		fakeButton.alpha = 0.5
+		generator.genQA(scrollView, page: currentPage, questions: questions)
+		addActionToButtons(0, page: currentPage)
+		jumpToPage(currentPage)
 
-		self.fakeButton.alpha = 0.5
-
-		generator.genQA(scrollView, page: page, questions: questions)
-		addActionToButtons(0, page: page)
-
-		self.jumpToPage(page)
-
-		if let dot = dotView.viewWithTag(page + 500) {
+		if let dot = dotView.viewWithTag(currentPage + 500) {
 			dot.backgroundColor = UIColor.lightGrayColor()
 		}
 
-		self.title = "\(page + 1)/10"
+		self.title = "\(currentPage + 1)/10"
 
 	}
 
@@ -309,15 +284,12 @@ class QuestionViewController: UIViewController {
 
 
 	func quit() {
-		self.scrollView.removeFromSuperview()
-		self.rightCount = 0
-		self.rightOrWrong.removeAll(keepCapacity: false)
-		self.navigationController?.popViewControllerAnimated(true)
+		navigationController?.popViewControllerAnimated(true)
 	}
 
 	func confirmToQuit() {
 
-		if self.view.viewWithTag(9999999) == nil {
+		if currentPage != 0 && currentPage != 10 {
 			let alert = UIAlertController(title: "提示", message: "答题还没完成，确定退出吗？", preferredStyle: .Alert)
 
 			let action = UIAlertAction(title: "确定", style: .Default, handler: ({ _ in self.quit() }))
@@ -376,22 +348,13 @@ class QuestionViewController: UIViewController {
 	// MARK: - Sound Effect
 
 	func prepareAudios() {
-		let rightSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("right", ofType: "caf")!)
-		let wrongSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrong", ofType: "caf")!)
-
-		try! player0 = AVAudioPlayer(contentsOfURL: rightSound)
-		try! player1 = AVAudioPlayer(contentsOfURL: wrongSound)
+		let sound_0 = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("right", ofType: "caf")!)
+		try! rightSound = AVAudioPlayer(contentsOfURL: sound_0)
+		let sound_1 = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrong", ofType: "caf")!)
+		try! wrongSound = AVAudioPlayer(contentsOfURL: sound_1)
 	}
 
 
 }
 
-extension QuestionViewController: UIScrollViewDelegate {
-
-	func scrollViewDidScroll(scrollView: UIScrollView) {
-		let width = scrollView.bounds.size.width
-		pageControl.currentPage = Int((scrollView.contentOffset.x + width / 2) / width)
-	}
-
-}
 

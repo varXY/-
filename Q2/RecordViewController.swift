@@ -142,11 +142,23 @@ class RecordViewController: UIViewController {
 
 	}
 
+	func showShareButton(show: Bool) {
+		if show {
+			UIView.animateWithDuration(0.3, animations: { () -> Void in
+				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, -60)
+			})
+		} else {
+			UIView.animateWithDuration(0.3, animations: { () -> Void in
+				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, 0.0)
+			})
+		}
+	}
+
 	func tapped() {
 		if shareButton.enabled == true {
 			let hidden = shareButton.frame.origin == CGPointMake(20, global.size.height - 64)
 			let distance: CGFloat = hidden ? -60 : 0.0
-			UIView.animateWithDuration(0.5, animations: { () -> Void in
+			UIView.animateWithDuration(0.3, animations: { () -> Void in
 				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, distance)
 			})
 		}
@@ -178,16 +190,14 @@ class RecordViewController: UIViewController {
 
 		let share1 = UIActivityViewController(activityItems: arr, applicationActivities: [])
 		share1.completionWithItemsHandler = { (type:String?, complete:Bool, arr:[AnyObject]?, error:NSError?) -> Void in
-
 			delay(seconds: 0.0, completion: { () -> () in
 				UIView.animateWithDuration(0.5) { () -> Void in
 					self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, -60)
 				}
 			})
-
-
 		}
-		self.presentViewController(share1, animated: true, completion: nil)
+
+		presentViewController(share1, animated: true, completion: nil)
 	}
 
 	func close() {
@@ -254,6 +264,18 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
 
 extension RecordViewController: UIScrollViewDelegate {
+
+	func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+		if scrollView.isKindOfClass(UITableView) {
+			let translation = scrollView.panGestureRecognizer.translationInView(scrollView.superview)
+			if translation.y < 0 {
+				showShareButton(false)
+			} else {
+				showShareButton(true)
+			}
+		}
+
+	}
 
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView == self.scrollView && segmentWay == false {

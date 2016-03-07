@@ -295,7 +295,7 @@ class Generator {
 
 
 		let center_1 = CGPoint(x: view.frame.width / 2, y: view.frame.size.height * 0.65 + 90 - 64)
-		let button_1 = prismaticButton("退出", center: center_1, size: buttonSize)
+		let button_1 = prismaticButton("返回主页", center: center_1, size: buttonSize)
 		button_1.backgroundColor = UIColor.whiteColor()
 		if let label = button_1.subviews[0] as? UILabel {
 			label.textColor = UIColor.themeRed()

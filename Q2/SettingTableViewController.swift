@@ -9,15 +9,22 @@
 import Foundation
 import UIKit
 import MessageUI
+import StoreKit
 
+
+struct SettingDefault {
+	static let sound = "Sound"
+	static let vibration = "Vibration"
+}
 
 class SettingTableViewController: UITableViewController {
 
-	let titles = ["声音", "意见建议", "评分"]
-	let switchControl = UISwitch()
-
+	let titles = ["声音", "振动", "意见建议", "评分", "支持开发者"]
+	var switchControl_S: UISwitch!
+	var switchControl_V: UISwitch!
 	let userDefaults = NSUserDefaults.standardUserDefaults()
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.backgroundColor()
@@ -28,21 +35,13 @@ class SettingTableViewController: UITableViewController {
 
 		tableView = UITableView(frame: view.bounds, style: .Grouped)
 		tableView.backgroundColor = UIColor.backgroundColor()
-		tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
 		tableView.dataSource = self
 		tableView.delegate = self
 
-		switchControl.frame.origin = CGPoint(x: tableView.frame.width - 60, y: 7)
-		switchControl.onTintColor = UIColor.themeRed()
+		switchControl_S = initialSwitchControl()
+		switchControl_V = initialSwitchControl()
 
-		if let soundOn = userDefaults.valueForKey("Sound") as? Bool {
-			switchControl.setOn(soundOn, animated: true)
-		} else {
-			switchControl.setOn(true, animated: true)
-			userDefaults.setBool(true, forKey: "Sound")
-		}
-
-		switchControl.addTarget(self, action: "switched:", forControlEvents: UIControlEvents.ValueChanged)
+		getSettings()
 
     }
 
@@ -51,22 +50,55 @@ class SettingTableViewController: UITableViewController {
 		userDefaults.synchronize()
 	}
 
+	func initialSwitchControl() -> UISwitch {
+		let switchControl = UISwitch(frame: CGRect(origin: CGPoint(x: view.frame.width - 60, y: 7), size: CGSize.zero))
+		switchControl.onTintColor = UIColor.themeRed()
+		switchControl.addTarget(self, action: "switched:", forControlEvents: UIControlEvents.ValueChanged)
+		return switchControl
+	}
+
+	func getSettings() {
+		let sound = userDefaults.boolForKey(SettingDefault.sound)
+		switchControl_S.setOn(sound, animated: false)
+
+		let vibration = userDefaults.boolForKey(SettingDefault.vibration)
+		switchControl_V.setOn(vibration, animated: false)
+
+	}
 
 	func menuViewControllerSendSupportEmail() {
+		let appInfoDict = NSBundle.mainBundle().infoDictionary
+		let appName = appInfoDict!["CFBundleName"] as! String
+		let appVersion = appInfoDict!["CFBundleShortVersionString"] as! String
+
+		let deviceName = UIDevice.currentDevice().model
+		let iOSVersion = UIDevice.currentDevice().systemVersion
+
+		let messageBody = "\n\n\n" + appName + "_" + appVersion + "\n" + deviceName + "_" + iOSVersion
 
 		if MFMailComposeViewController.canSendMail() {
 			let controller = MFMailComposeViewController()
 			controller.navigationBar.tintColor = UIColor.themeRed()
 			controller.mailComposeDelegate = self
 			controller.setSubject("反馈：电工助手")
+			controller.setMessageBody(messageBody, isHTML: false)
 			controller.setToRecipients(["pmlcfwcs@foxmail.com"])
-			self.presentViewController(controller, animated: true, completion: nil)
+			presentViewController(controller, animated: true, completion: nil)
+		} else {
+			let alertController = UIAlertController(title: "无法发送邮件", message: "你的设备无法发送邮件，请检测你的设置。", preferredStyle: .Alert)
+			let action = UIAlertAction(title: "确定", style: .Default, handler: nil)
+			alertController.addAction(action)
+			presentViewController(alertController, animated: true, completion: nil)
 		}
 
 	}
 
 	func switched(sender: UISwitch) {
-		userDefaults.setBool(sender.on, forKey: "Sound")
+		switch sender {
+		case switchControl_S: userDefaults.setBool(sender.on, forKey: SettingDefault.sound)
+		case switchControl_V: userDefaults.setBool(sender.on, forKey: SettingDefault.vibration)
+		default: break
+		}
 	}
 
     func close() {
@@ -74,14 +106,75 @@ class SettingTableViewController: UITableViewController {
     }
 
 
+	// MARK: - Purchase
+
+	func connectToStore() {
+
+		let indicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+		indicator.startAnimating()
+		indicator.frame = self.view.bounds
+		indicator.frame.size.height += 64
+		indicator.frame.origin.y -= 64
+		UIView.animateWithDuration(0.3, animations: { indicator.backgroundColor = UIColor(red: 45/255, green: 47/255, blue: 56/255, alpha: 0.45) })
+		tableView.addSubview(indicator)
+		tableView.userInteractionEnabled = false
+
+		SupportProducts.store.requestProductsWithCompletionHandler({ (success, products) -> () in
+			indicator.removeFromSuperview()
+			self.tableView.userInteractionEnabled = true
+			if success {
+				priceFormatter.locale = products[0].priceLocale
+
+				let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+
+				let action_0 = UIAlertAction(title: priceFormatter.stringFromNumber(products[0].price), style: .Default, handler: { (_) -> () in self.purchaseProduct(products[0]) })
+				let action_1 = UIAlertAction(title: priceFormatter.stringFromNumber(products[1].price), style: .Default, handler: { (_) -> () in self.purchaseProduct(products[1]) })
+				let action_2 = UIAlertAction(title: priceFormatter.stringFromNumber(products[2].price), style: .Default, handler: { (_) -> () in self.purchaseProduct(products[2]) })
+
+				let action_cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "SettingVC"), style: .Cancel, handler: nil)
+
+				alertSheet.addAction(action_0)
+				alertSheet.addAction(action_2)
+				alertSheet.addAction(action_1)
+				alertSheet.addAction(action_cancel)
+				self.presentViewController(alertSheet, animated: true, completion: nil)
+
+			} else {
+				let title = NSLocalizedString("Failed To Connect", comment: "SettingVC")
+				let message = NSLocalizedString("Please check your settings and try again.", comment: "SettingVC")
+				let ok = NSLocalizedString("OK", comment: "SettingVC")
+				let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+				let action = UIAlertAction(title: ok, style: .Default, handler: nil)
+				alertController.addAction(action)
+				self.presentViewController(alertController, animated: true, completion: nil)
+			}
+		})
+	}
+
+	func purchaseProduct(product: SKProduct) {
+		SupportProducts.store.purchaseProduct(product)
+		let hudView = HudView_1.hudInView(self.view, animated: true)
+		hudView.text = "    谢  谢 ！"
+	}
+
+	func productPurchased(notification: NSNotification) {
+		_ = notification.object as! String
+	}
+
+
 	//MARK: -TableView DataSource, Delegate
 
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 2
+		return IAPHelper.canMakePayments() ? 3 : 2
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return section == 0 ? 1 : 2
+		switch section {
+		case 0: return 2
+		case 1: return 2
+		case 2: return 1
+		default: return 0
+		}
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -91,14 +184,16 @@ class SettingTableViewController: UITableViewController {
 		bgView.layer.masksToBounds = true
 		cell.selectedBackgroundView = bgView
 
-		if indexPath.section == 0 {
-			cell.textLabel?.text = titles[0]
+		switch indexPath.section {
+		case 0:
+			cell.textLabel?.text = titles[indexPath.row]
+			let switchControl = indexPath.row == 0 ? switchControl_S : switchControl_V
 			cell.addSubview(switchControl)
-		}
-
-		if indexPath.section == 1 {
-			cell.textLabel?.text = titles[indexPath.row + 1]
+		default:
+			let forepart = indexPath.section == 1 ? 2 : 4
+			cell.textLabel?.text = titles[indexPath.row + forepart]
 			cell.textLabel?.textAlignment = .Center
+			cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
 		}
 
 		return cell
@@ -107,20 +202,20 @@ class SettingTableViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-		if indexPath.section == 0 && indexPath.row == 0 {
+		switch indexPath.section {
+		case 0:
+			let switchControl = indexPath.row == 0 ? switchControl_S : switchControl_V
+			let key = indexPath.row == 0 ? SettingDefault.sound : SettingDefault.vibration
 			switchControl.on ? switchControl.setOn(false, animated: true) : switchControl.setOn(true, animated: true)
-			userDefaults.setBool(switchControl.on, forKey: "Sound")
-		}
-
-		if indexPath.section == 1 {
-
-			if indexPath.row == 0 {
-				menuViewControllerSendSupportEmail()
+			userDefaults.setBool(switchControl.on, forKey: key)
+		case 1:
+			switch indexPath.row {
+			case 0: menuViewControllerSendSupportEmail()
+			case 1: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
+			default: break
 			}
-
-			if indexPath.row == 1 {
-				UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
-			}
+		case 2: connectToStore()
+		default: break
 		}
 
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
