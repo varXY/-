@@ -13,4 +13,4 @@ App Store地址：https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id104453717
 
 简介：一款帮助电工学习、考试和工作的应用。内含丰富的电工考试题目、常用的基础知识、电学换算计算器。是电工的好助手，电学爱好者的有趣伙伴。
 
-![image](https://github.com/varXY/ElectricianHelper/blob/master/Q2/Images.xcassets/Screen%20Shot.imageset/Screen%20Shot%20.png)
+![image](https://github.com/varXY/ElectricianHelper/Q2/Images.xcassets/Screen Shot.imageset/Screen Shot.png)
