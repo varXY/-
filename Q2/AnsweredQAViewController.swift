@@ -26,7 +26,7 @@ class AnsweredQAViewController: UIViewController {
 		self.title = "题目&答案"
 		self.view.backgroundColor = UIColor.backgroundColor()
 		
-		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(close))
 		self.navigationItem.rightBarButtonItem = quitButton
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 64)

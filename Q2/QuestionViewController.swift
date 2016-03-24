@@ -48,7 +48,7 @@ class QuestionViewController: UIViewController {
 		let question = Question()
 		questions = question.getQestions(10, type: type)
 
-		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "confirmToQuit")
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(confirmToQuit))
 		quitButton.tintColor = UIColor.whiteColor()
 		self.navigationItem.rightBarButtonItem = quitButton
 		self.navigationItem.setHidesBackButton(true, animated: true)
@@ -187,12 +187,12 @@ class QuestionViewController: UIViewController {
 			self.view.addSubview(finalView)
 
 			if let button = finalView.viewWithTag(12345) as? UIButton {
-				button.addTarget(self, action: "seeAnsweredQA:", forControlEvents: .TouchUpInside)
+				button.addTarget(self, action: #selector(self.seeAnsweredQA(_:)), forControlEvents: .TouchUpInside)
 				button.genAnimation(.Appear, delay: 0.0, distance: 40)
 			}
 
 			if let button = finalView.viewWithTag(123456) as? UIButton {
-				button.addTarget(self, action: "animatedAndQuit:", forControlEvents: .TouchUpInside)
+				button.addTarget(self, action: #selector(self.animatedAndQuit(_:)), forControlEvents: .TouchUpInside)
 				button.genAnimation(.Appear, delay: 0.1, distance: 70)
 			}
 
@@ -239,16 +239,16 @@ class QuestionViewController: UIViewController {
 		switch kind {
 		case 0:
 			if let button = scrollView.viewWithTag(page * 2 + 1000) as? UIButton {
-				button.addTarget(self, action: "chosen:", forControlEvents: .TouchUpInside)
+				button.addTarget(self, action: #selector(chosen(_:)), forControlEvents: .TouchUpInside)
 			}
 
 			if let button = scrollView.viewWithTag(page * 2 + 1001) as? UIButton {
-				button.addTarget(self, action: "chosen:", forControlEvents: .TouchUpInside)
+				button.addTarget(self, action: #selector(chosen(_:)), forControlEvents: .TouchUpInside)
 			}
 
 		case 1:
 			if let button = scrollView.viewWithTag(page + 2333) as? UIButton {
-				button.addTarget(self, action: "jump", forControlEvents: .TouchUpInside)
+				button.addTarget(self, action: #selector(jump), forControlEvents: .TouchUpInside)
 			}
 
 		default:

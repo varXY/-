@@ -38,9 +38,9 @@ class HomepageViewController: UIViewController {
 
         for i in 0..<bigButtons.count {
             bigButtons[i].alpha = 0.0
-            bigButtons[i].addTarget(self, action: "touchDown:", forControlEvents: .TouchDown)
-            bigButtons[i].addTarget(self, action: "touchUpOutside:", forControlEvents: .TouchUpOutside)
-            bigButtons[i].addTarget(self, action: "touchUpInside:", forControlEvents: .TouchUpInside)
+            bigButtons[i].addTarget(self, action: #selector(touchDown(_:)), forControlEvents: .TouchDown)
+            bigButtons[i].addTarget(self, action: #selector(touchUpOutside(_:)), forControlEvents: .TouchUpOutside)
+            bigButtons[i].addTarget(self, action: #selector(touchUpInside(_:)), forControlEvents: .TouchUpInside)
             self.view.addSubview(bigButtons[i])
         }
         
@@ -66,7 +66,7 @@ class HomepageViewController: UIViewController {
         infoButton.setImage(UIImage(named: "电工试题"), forState: .Normal)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.frame = CGRectMake(self.view.frame.width - 60, self.view.frame.height - 60, 30, 30)
-        infoButton.addTarget(self, action: "infoButtonTapped", forControlEvents: .TouchUpInside)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), forControlEvents: .TouchUpInside)
         infoButton.exclusiveTouch = true
         self.view.addSubview(infoButton)
 
@@ -188,12 +188,12 @@ class HomepageViewController: UIViewController {
 			questionVC.type = type
 			questionVC.sound = sound
 			questionVC.vibration = vibration
-			questionVC.record = {(rightCount: Int, date: NSDate) in
+			questionVC.record = { [weak self] rightCount, date in
 				let record = Record(record: rightCount, date: date)
 				if type == 0 {
-					self.beginnerRecords.records.insert(record, atIndex: 0)
+					self!.beginnerRecords.records.insert(record, atIndex: 0)
 				} else {
-					self.intermediateRecords.records.insert(record, atIndex: 0)
+					self!.intermediateRecords.records.insert(record, atIndex: 0)
 				}
 			}
 

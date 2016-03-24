@@ -73,7 +73,7 @@ class Knowledge {
 
 		for icons in all {
 
-			++i
+			i += 1
 
 			let result = icons.filter({ (icon) -> Bool in
 				let text = icon.title

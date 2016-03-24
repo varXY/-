@@ -19,7 +19,7 @@ struct SettingDefault {
 
 class SettingTableViewController: UITableViewController {
 
-	let titles = ["声音", "振动", "意见建议", "评分", "支持开发者"]
+	let titles = ["声音", "振动", "意见建议", "分享电工助手", "评分", "支持开发者"]
 	var switchControl_S: UISwitch!
 	var switchControl_V: UISwitch!
 	let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -30,7 +30,7 @@ class SettingTableViewController: UITableViewController {
         self.view.backgroundColor = UIColor.backgroundColor()
         self.title = "设置&反馈"
         
-        let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "close")
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(close))
         self.navigationItem.rightBarButtonItem = quitButton
 
 		tableView = UITableView(frame: view.bounds, style: .Grouped)
@@ -53,7 +53,7 @@ class SettingTableViewController: UITableViewController {
 	func initialSwitchControl() -> UISwitch {
 		let switchControl = UISwitch(frame: CGRect(origin: CGPoint(x: view.frame.width - 60, y: 7), size: CGSize.zero))
 		switchControl.onTintColor = UIColor.themeRed()
-		switchControl.addTarget(self, action: "switched:", forControlEvents: UIControlEvents.ValueChanged)
+		switchControl.addTarget(self, action: #selector(switched(_:)), forControlEvents: UIControlEvents.ValueChanged)
 		return switchControl
 	}
 
@@ -64,6 +64,20 @@ class SettingTableViewController: UITableViewController {
 		let vibration = userDefaults.boolForKey(SettingDefault.vibration)
 		switchControl_V.setOn(vibration, animated: false)
 
+	}
+
+	func shareContent() {
+		let text: String = "电工助手：电工学习、工作的好助手。"
+		let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
+		let image = UIImage(named: "Screen Shot")!
+
+		let arr: [AnyObject] = [text, link, image]
+
+		let shareVC = UIActivityViewController(activityItems: arr, applicationActivities: [])
+		shareVC.completionWithItemsHandler = { (type:String?, complete:Bool, arr:[AnyObject]?, error:NSError?) -> Void in
+		}
+
+		presentViewController(shareVC, animated: true, completion: nil)
 	}
 
 	func menuViewControllerSendSupportEmail() {
@@ -140,9 +154,9 @@ class SettingTableViewController: UITableViewController {
 				self.presentViewController(alertSheet, animated: true, completion: nil)
 
 			} else {
-				let title = NSLocalizedString("Failed To Connect", comment: "SettingVC")
-				let message = NSLocalizedString("Please check your settings and try again.", comment: "SettingVC")
-				let ok = NSLocalizedString("OK", comment: "SettingVC")
+				let title = NSLocalizedString("连接失败", comment: "SettingVC")
+				let message = NSLocalizedString("请检查你的网络连接后重试", comment: "SettingVC")
+				let ok = NSLocalizedString("确定", comment: "SettingVC")
 				let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 				let action = UIAlertAction(title: ok, style: .Default, handler: nil)
 				alertController.addAction(action)
@@ -171,7 +185,7 @@ class SettingTableViewController: UITableViewController {
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch section {
 		case 0: return 2
-		case 1: return 2
+		case 1: return 3
 		case 2: return 1
 		default: return 0
 		}
@@ -190,7 +204,7 @@ class SettingTableViewController: UITableViewController {
 			let switchControl = indexPath.row == 0 ? switchControl_S : switchControl_V
 			cell.addSubview(switchControl)
 		default:
-			let forepart = indexPath.section == 1 ? 2 : 4
+			let forepart = indexPath.section == 1 ? 2 : 5
 			cell.textLabel?.text = titles[indexPath.row + forepart]
 			cell.textLabel?.textAlignment = .Center
 			cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
@@ -211,7 +225,8 @@ class SettingTableViewController: UITableViewController {
 		case 1:
 			switch indexPath.row {
 			case 0: menuViewControllerSendSupportEmail()
-			case 1: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
+			case 1: shareContent()
+			case 2: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
 			default: break
 			}
 		case 2: connectToStore()

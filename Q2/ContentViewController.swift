@@ -52,7 +52,7 @@ class ContentViewController: UITableViewController {
 			tableView.tableHeaderView = searchBar
             tableView.contentOffset.y = searchBar.frame.height
             
-            let tapGesture = UITapGestureRecognizer(target: self, action: "tapToCancel")
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToCancel))
             view.addGestureRecognizer(tapGesture)
             
 		case 2:
