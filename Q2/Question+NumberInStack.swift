@@ -86,6 +86,8 @@ extension Question {
         default:
             break
         }
+
+		userDefaults.synchronize()
     }
     
     func testedNumbersInStack(type: Int) -> [Int] {

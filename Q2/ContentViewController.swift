@@ -104,6 +104,11 @@ class ContentViewController: UITableViewController {
 		}
 	}
 
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		let icons = knowledges[section]
+		return icons[0].sectionTitle
+	}
+
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
 		let all = knowledges[indexPath.section]
@@ -148,10 +153,7 @@ class ContentViewController: UITableViewController {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		let icons = knowledges[section]
-		return icons[0].sectionTitle
-	}
+
 
 }
 

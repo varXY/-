@@ -24,7 +24,7 @@ class Knowledge {
 
 		switch number {
 		case 0:
-			for i in 0..<3 {
+			for i in 0..<SectionTitle.zero.titles.count {
 				var icons = [Knowledge]()
 				let rows = titlesInSection.index(0, i).titles.count
 				for j in 0..<rows {
@@ -36,7 +36,7 @@ class Knowledge {
 			return allIcons
 
 		case 1:
-			for i in 0..<10 {
+			for i in 0..<SectionTitle.one.titles.count {
 				var icons = [Knowledge]()
 				let rows = titlesInSection.index(1, i).titles.count
 				for j in 0..<rows {
@@ -48,7 +48,7 @@ class Knowledge {
 			return allIcons
 
 		case 2:
-			for i in 0..<5 {
+			for i in 0..<SectionTitle.two.titles.count {
 				var icons = [Knowledge]()
 				let rows = titlesInSection.index(2, i).titles.count
 				for j in 0..<rows {

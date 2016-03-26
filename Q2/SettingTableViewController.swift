@@ -19,7 +19,7 @@ struct SettingDefault {
 
 class SettingTableViewController: UITableViewController {
 
-	let titles = ["声音", "振动", "意见建议", "分享电工助手", "评分", "支持开发者"]
+	let titles = ["声音", "振动", "意见建议", "分享", "评分", "支持开发者"]
 	var switchControl_S: UISwitch!
 	var switchControl_V: UISwitch!
 	let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -67,7 +67,7 @@ class SettingTableViewController: UITableViewController {
 	}
 
 	func shareContent() {
-		let text: String = "电工助手：电工学习、工作的好助手。"
+		let text: String = "App Store: 电工助手"
 		let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
 		let image = UIImage(named: "Screen Shot")!
 
@@ -185,8 +185,8 @@ class SettingTableViewController: UITableViewController {
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch section {
 		case 0: return 2
-		case 1: return 3
-		case 2: return 1
+		case 1: return 2
+		case 2: return 2
 		default: return 0
 		}
 	}
@@ -204,7 +204,7 @@ class SettingTableViewController: UITableViewController {
 			let switchControl = indexPath.row == 0 ? switchControl_S : switchControl_V
 			cell.addSubview(switchControl)
 		default:
-			let forepart = indexPath.section == 1 ? 2 : 5
+			let forepart = indexPath.section == 1 ? 2 : 4
 			cell.textLabel?.text = titles[indexPath.row + forepart]
 			cell.textLabel?.textAlignment = .Center
 			cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
@@ -222,14 +222,21 @@ class SettingTableViewController: UITableViewController {
 			let key = indexPath.row == 0 ? SettingDefault.sound : SettingDefault.vibration
 			switchControl.on ? switchControl.setOn(false, animated: true) : switchControl.setOn(true, animated: true)
 			userDefaults.setBool(switchControl.on, forKey: key)
+
 		case 1:
 			switch indexPath.row {
 			case 0: menuViewControllerSendSupportEmail()
 			case 1: shareContent()
-			case 2: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
 			default: break
 			}
-		case 2: connectToStore()
+
+		case 2:
+			switch indexPath.row {
+			case 0: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
+			case 1: connectToStore()
+			default: break
+			}
+
 		default: break
 		}
 

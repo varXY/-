@@ -100,18 +100,18 @@ class EquationViewController: UIViewController {
 			textFields[5].userInteractionEnabled = false
 		}
 
-		if index == 3 {
-			let lightGrayColor = UIColor.lightGrayColor().CGColor
-
-			textFields[2].layer.borderColor = lightGrayColor
-			textFields[3].layer.borderColor = lightGrayColor
-
-			textFields[2].placeholder = ""
-			textFields[3].placeholder = ""
-
-			textFields[2].userInteractionEnabled = false
-			textFields[3].userInteractionEnabled = false
-		}
+//		if index == 3 {
+//			let lightGrayColor = UIColor.lightGrayColor().CGColor
+//
+//			textFields[2].layer.borderColor = lightGrayColor
+//			textFields[3].layer.borderColor = lightGrayColor
+//
+//			textFields[2].placeholder = ""
+//			textFields[3].placeholder = ""
+//
+//			textFields[2].userInteractionEnabled = false
+//			textFields[3].userInteractionEnabled = false
+//		}
 
 	}
 
@@ -339,7 +339,7 @@ extension EquationViewController {
 		case 800:
 			B = content
 
-			if calculatedA == true {
+			if calculatedA {
 				A = (B == 0 ? 0 : C * 1000 / B)
 			} else {
 				C = A * B / 1000
@@ -351,7 +351,7 @@ extension EquationViewController {
 		case 1200:
 			C = content
 
-			if calculatedA == true {
+			if calculatedA {
 				A = (B == 0 ? 0 : C * 1000 / B)
 			} else {
 				B = (A == 0 ? 0 : C * 1000 / A)
@@ -370,19 +370,68 @@ extension EquationViewController {
 		switch tag {
 		case 400:
 			A = content
-			textFields[1].text = (A == 0 ? "" : sv(A * 735.49875))
-			textFields[2].text = (A == 0 ? "" : sv(A * 735.49875 / 745.699872))
-			textFields[3].text = (A == 0 ? "" : sv(A * 735.49875))
+			calculatedA = (A == 0 ? true : false)
+
+			if C != 0 { D = A * B / C }
+
+			textFields[3].text = (D == 0 ? "" : sv(D))
 
 		case 800:
 			B = content
-			textFields[0].text = (B == 0 ? "" : sv(B / 735.49875))
-			textFields[2].text = (B == 0 ? "" : sv(B / 745.699872))
-			textFields[3].text = (B == 0 ? "" : sv(B))
+
+			if calculatedA {
+				if B != 0 { A = D * C / B }
+			} else {
+				if C != 0 { D = A * B / C }
+			}
+
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[3].text = (D == 0 ? "" : sv(D))
+
+		case 1200:
+			C = content
+
+			if calculatedA {
+				if B != 0 { A = D * C / B }
+			} else {
+				if C != 0 { D = A * B / C }
+			}
+
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[3].text = (D == 0 ? "" : sv(D))
+
+		case 1600:
+			D = content
+
+			if calculatedA {
+				if B != 0 { A = D * C / B }
+			} else {
+				if C != 0 { D = A * B / C }
+			}
+
+			textFields[0].text = (A == 0 ? "" : sv(A))
+			textFields[3].text = (D == 0 ? "" : sv(D))
 
 		default:
 			break
 		}
+
+//		switch tag {
+//		case 400:
+//			A = content
+//			textFields[1].text = (A == 0 ? "" : sv(A * 735.49875))
+//			textFields[2].text = (A == 0 ? "" : sv(A * 735.49875 / 745.699872))
+//			textFields[3].text = (A == 0 ? "" : sv(A * 735.49875))
+//
+//		case 800:
+//			B = content
+//			textFields[0].text = (B == 0 ? "" : sv(B / 735.49875))
+//			textFields[2].text = (B == 0 ? "" : sv(B / 745.699872))
+//			textFields[3].text = (B == 0 ? "" : sv(B))
+//
+//		default:
+//			break
+//		}
 	}
 
 	// Get string value

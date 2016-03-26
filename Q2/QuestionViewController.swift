@@ -97,7 +97,7 @@ class QuestionViewController: UIViewController {
 		}
 
 		let userDefaults = NSUserDefaults.standardUserDefaults()
-		if let sound = userDefaults.valueForKey("Sound") as? Bool {
+		if let sound = userDefaults.valueForKey(SettingDefault.sound) as? Bool {
 			self.sound = sound
 		}
 
