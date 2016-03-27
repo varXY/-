@@ -19,7 +19,7 @@ struct SettingDefault {
 
 class SettingTableViewController: UITableViewController {
 
-	let titles = ["声音", "振动", "意见建议", "分享", "评分", "支持开发者"]
+	let titles = ["声音", "振动", "评分留言", "分享", "支持开发者"]
 	var switchControl_S: UISwitch!
 	var switchControl_V: UISwitch!
 	let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -186,7 +186,7 @@ class SettingTableViewController: UITableViewController {
 		switch section {
 		case 0: return 2
 		case 1: return 2
-		case 2: return 2
+		case 2: return 1
 		default: return 0
 		}
 	}
@@ -225,17 +225,13 @@ class SettingTableViewController: UITableViewController {
 
 		case 1:
 			switch indexPath.row {
-			case 0: menuViewControllerSendSupportEmail()
+			case 0: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
 			case 1: shareContent()
 			default: break
 			}
 
 		case 2:
-			switch indexPath.row {
-			case 0: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
-			case 1: connectToStore()
-			default: break
-			}
+			connectToStore()
 
 		default: break
 		}

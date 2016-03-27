@@ -103,7 +103,7 @@ class Generator {
 		let points = [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, point_9]
 		let squareSize = CGSize(width: sideLength, height: sideLength)
 
-		let titles = ["答题记录", "初级", "中级", "欧姆定律", "功率", "电量", "电阻率", "单位公式", "图标符号", "工具设备"]
+		let titles = ["答题记录", "初级", "中级", "欧姆定律", "功率", "电量", "电阻", "单位公式", "图标符号", "工具设备"]
 
 		for i in 0..<points.count {
 			let button = prismaticButton(titles[i], center: points[i], size: squareSize)

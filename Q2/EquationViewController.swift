@@ -24,6 +24,8 @@ class EquationViewController: UIViewController {
 	var B: Double = 0
 	var C: Double = 0
 	var D: Double = 0
+	var lastCalculatedIndex: Int = 0
+	var lastInputIndex: Int = 0
 	var calculatedA = true
 	var allowInput = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",  "."]
 
@@ -100,18 +102,25 @@ class EquationViewController: UIViewController {
 			textFields[5].userInteractionEnabled = false
 		}
 
-//		if index == 3 {
-//			let lightGrayColor = UIColor.lightGrayColor().CGColor
-//
-//			textFields[2].layer.borderColor = lightGrayColor
-//			textFields[3].layer.borderColor = lightGrayColor
-//
-//			textFields[2].placeholder = ""
-//			textFields[3].placeholder = ""
-//
-//			textFields[2].userInteractionEnabled = false
-//			textFields[3].userInteractionEnabled = false
-//		}
+		if index == 3 {
+			textFields[0].frame.size.width -= 20
+			textFields[2].frame.size.width -= 20
+
+			let x = textFields[0].frame.origin.x + textFields[0].frame.size.width
+			let label_0 = UILabel(frame: CGRect(x: x, y: textFields[0].frame.origin.y, width: 35, height: global.rowHeight - 6))
+			label_0.text = "×10⁻⁸"
+			label_0.textColor = UIColor.themeRed()
+			label_0.textAlignment = .Left
+			label_0.adjustsFontSizeToFitWidth = true
+			tableView.addSubview(label_0)
+
+			let label_3 = UILabel(frame: CGRect(x: x, y: textFields[2].frame.origin.y, width: 35, height: global.rowHeight - 6))
+			label_3.text = "×10⁻⁶"
+			label_3.textColor = UIColor.themeRed()
+			label_3.textAlignment = .Left
+			label_3.adjustsFontSizeToFitWidth = true
+			tableView.addSubview(label_3)
+		}
 
 	}
 
@@ -368,70 +377,59 @@ extension EquationViewController {
 	func calculate_3(tag: Int, content: Double) {
 
 		switch tag {
-		case 400:
-			A = content
-			calculatedA = (A == 0 ? true : false)
+		case 400: A = content * 0.00000001
+		case 800: B = content
+		case 1200: C = content * 0.000001
+		case 1600: D = content
+		default: break
+		}
 
-			if C != 0 { D = A * B / C }
+		let numbers = [A, B, C, D]
+		let zeros = numbers.filter({ $0 == 0 })
 
-			textFields[3].text = (D == 0 ? "" : sv(D))
+		if zeros.count == 1 {
+			let index = numbers.indexOf(0)
 
-		case 800:
-			B = content
-
-			if calculatedA {
-				if B != 0 { A = D * C / B }
-			} else {
-				if C != 0 { D = A * B / C }
+			if (index! + 1) * 400 != tag {
+				lastCalculatedIndex = index!
+				lastInputIndex = (tag / 400) - 1
+				getOneFromThree(index!)
 			}
-
-			textFields[0].text = (A == 0 ? "" : sv(A))
-			textFields[3].text = (D == 0 ? "" : sv(D))
-
-		case 1200:
-			C = content
-
-			if calculatedA {
-				if B != 0 { A = D * C / B }
+		} else if zeros.count == 0 {
+			if (lastCalculatedIndex + 1) * 400 != tag {
+				getOneFromThree(lastCalculatedIndex)
 			} else {
-				if C != 0 { D = A * B / C }
+				if tag != lastInputIndex {
+					getOneFromThree(lastInputIndex)
+				}
 			}
+		}
 
-			textFields[0].text = (A == 0 ? "" : sv(A))
-			textFields[3].text = (D == 0 ? "" : sv(D))
+	}
 
-		case 1600:
-			D = content
+	func getOneFromThree(zeroIndex: Int) {
+		var result: Double = 0
 
-			if calculatedA {
-				if B != 0 { A = D * C / B }
-			} else {
-				if C != 0 { D = A * B / C }
-			}
-
-			textFields[0].text = (A == 0 ? "" : sv(A))
-			textFields[3].text = (D == 0 ? "" : sv(D))
-
+		switch zeroIndex {
+		case 0:
+			A = D * C / B
+			result = A * 100000000
+		case 1:
+			B = D * C / A
+			result = B
+		case 2:
+			C = A * B / D
+			result = C * 1000000
+		case 3:
+			D = A * B / C
+			result = D
 		default:
 			break
 		}
 
-//		switch tag {
-//		case 400:
-//			A = content
-//			textFields[1].text = (A == 0 ? "" : sv(A * 735.49875))
-//			textFields[2].text = (A == 0 ? "" : sv(A * 735.49875 / 745.699872))
-//			textFields[3].text = (A == 0 ? "" : sv(A * 735.49875))
-//
-//		case 800:
-//			B = content
-//			textFields[0].text = (B == 0 ? "" : sv(B / 735.49875))
-//			textFields[2].text = (B == 0 ? "" : sv(B / 745.699872))
-//			textFields[3].text = (B == 0 ? "" : sv(B))
-//
-//		default:
-//			break
-//		}
+//		let show = round(result * 100000000) / 100000000
+
+		textFields[zeroIndex].text = (result == 0 ? "" : sv(result))
 	}
 
 	// Get string value
