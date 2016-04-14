@@ -67,7 +67,6 @@ extension Question {
         } while result.count < amount
         
         
-        
         return result
     }
     

@@ -17,13 +17,13 @@ class HomepageViewController: UIViewController {
 	var bigButtons = [UIButton]()
 	var infoButton = UIButton()
 
-	var global = Global()
-
 	var beginnerRecords = Records(type: 0)
 	var intermediateRecords = Records(type: 1)
 
 	var sound: Bool!
 	var vibration: Bool!
+
+	var prismatic: Primatic!
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
@@ -31,18 +31,18 @@ class HomepageViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.view.backgroundColor = UIColor.themeRed()
+		self.view.backgroundColor = UIColor.lightRedColor()
 		self.title = " "
 
-        bigButtons = generator.allMainButtons()
+		prismatic = Primatic(VC: self)
+		bigButtons = prismatic.buttons
 
-        for i in 0..<bigButtons.count {
-            bigButtons[i].alpha = 0.0
-            bigButtons[i].addTarget(self, action: #selector(touchDown(_:)), forControlEvents: .TouchDown)
-            bigButtons[i].addTarget(self, action: #selector(touchUpOutside(_:)), forControlEvents: .TouchUpOutside)
-            bigButtons[i].addTarget(self, action: #selector(touchUpInside(_:)), forControlEvents: .TouchUpInside)
-            self.view.addSubview(bigButtons[i])
-        }
+		bigButtons.forEach({
+			$0.addTarget(self, action: #selector(touchDown(_:)), forControlEvents: .TouchDown)
+			$0.addTarget(self, action: #selector(touchUpOutside(_:)), forControlEvents: .TouchUpOutside)
+			$0.addTarget(self, action: #selector(touchUpInside(_:)), forControlEvents: .TouchUpInside)
+		})
+
         
         let descriptions = ["考试题目", "换算工具", "常用知识"]
         for i in 0..<3 {
@@ -74,111 +74,62 @@ class HomepageViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
 
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-
-        infoButton.genAnimation(.Bigger, delay: 0.5, distance: 0.0)
 		infoButton.userInteractionEnabled = true
-		
-		for i in 0..<bigButtons.count {
-            bigButtons[i].alpha = 1.0
-			bigButtons[i].genAnimation(.Appear, delay: 0.03 * Double(delayTime(i)), distance: 30 + CGFloat(delayTime(i)) * 20.0)
-            bigButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-            bigButtons[i].subviews[0].transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
+        infoButton.genAnimation(.Bigger, delayTime: 0.5, distance: 0.0)
 
-			bigButtons[i].userInteractionEnabled = true
-
+		bigButtons.forEach { (button) in
+			button.userInteractionEnabled = true
+			guard let titleLabel = button.subviews[0] as? UILabel else { return }
+			titleLabel.textColor = UIColor.blackColor()
+			button.genAnimation(.Bigger, delayTime: 0.0, distance: 0.0)
 		}
-        
-	}
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
 
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            for i in 0..<self.bigButtons.count {
-                self.bigButtons[i].alpha = 0.0
-            }
-            }) { (_) -> Void in
-                for i in 0..<self.bigButtons.count {
-                    self.bigButtons[i].transform = CGAffineTransformIdentity
-					self.bigButtons[i].backgroundColor = UIColor.whiteColor()
-					if let titleLabel = self.bigButtons[i].subviews[0] as? UILabel {
-						titleLabel.textColor = UIColor.blackColor()
-					}
-                }
-        }
-
-    }
-
-	func delayTime(index: Int) -> Int {
-		switch index {
-		case 0: return 1
-		case 1, 2: return 2
-		case 3: return 3
-		case 4, 5: return 4
-		case 6: return 5
-		case 7, 8: return 6
-		case 9: return 7
-		default: return 8
-		}
 	}
 
 
 	func touchDown(sender: UIButton) {
+		guard let titleLabel = sender.subviews[0] as? UILabel else { return }
 
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.225, options: [], animations: { () -> Void in
-            sender.transform = CGAffineTransformScale(sender.transform, 0.9, 0.9)
-			sender.backgroundColor = UIColor.whiteColor()
-
-			if let titleLabel = sender.subviews[0] as? UILabel {
-				titleLabel.textColor = UIColor.themeRed()
-			}
-
-			}, completion: nil)
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: { 
+			sender.transform = CGAffineTransformScale(sender.transform, 0.8, 0.8)
+			titleLabel.textColor = UIColor.themeRed()
+			}, completion:  nil)
 
 	}
 
-    
     func touchUpOutside(sender: UIButton) {
-        
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.225, options: [], animations: { () -> Void in
-            sender.transform = CGAffineTransformScale(sender.transform, (1.0 / 0.9), (1.0 / 0.9))
-			sender.backgroundColor = UIColor.whiteColor()
+		guard let titleLabel = sender.subviews[0] as? UILabel else { return }
 
-			if let titleLabel = sender.subviews[0] as? UILabel {
-				titleLabel.textColor = UIColor.blackColor()
-			}
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: {
+			sender.transform = CGAffineTransformScale(sender.transform, (1.0 / 0.8), (1.0 / 0.8))
+			titleLabel.textColor = UIColor.blackColor()
+			}, completion:  nil)
 
-            }, completion: nil)
-        
     }
 
 	func touchUpInside(sender: UIButton) {
-
-		for button in bigButtons {
-			button.userInteractionEnabled = false
-		}
-
+		bigButtons.forEach({ $0.userInteractionEnabled = false })
 		infoButton.userInteractionEnabled = false
 
-        let index = sender.tag - 100
-		gotoVCBaseOnIndex(index)
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: {
+			sender.transform = CGAffineTransformScale(sender.transform, (1.0 / 0.8), (1.0 / 0.8))
+			}, completion:  { (_) in
+				let index = sender.tag - 100
+				self.gotoVCBaseOnIndex(index)
+		})
 
 	}
 
 	func gotoVCBaseOnIndex(index: Int) {
-
 		switch index {
 		case 0:
 			let recordVC = RecordViewController()
 			recordVC.beginnerRecords = self.beginnerRecords.records
 			recordVC.intermediateRecords = self.intermediateRecords.records
 			let detailNavi = NavigationController(viewController: recordVC)
-
-			delay(seconds: 0.2, completion: { () -> () in
-				self.presentViewController(detailNavi, animated: true, completion: nil)
-			})
+			presentViewController(detailNavi, animated: true, completion: nil)
 
 		case 1, 2:
 			setSoundAndVibration()
@@ -198,27 +149,21 @@ class HomepageViewController: UIViewController {
 			}
 
 			questionVC.hidesBottomBarWhenPushed = true
-			delay(seconds: 0.2) { () -> () in
-				self.navigationController?.pushViewController(questionVC, animated: true)
-			}
+			navigationController?.pushViewController(questionVC, animated: true)
+
 
 		case 3, 4, 5, 6:
 			let equationVC = EquationViewController()
 			equationVC.index = index - 3
 			equationVC.hidesBottomBarWhenPushed = true
+			navigationController?.pushViewController(equationVC, animated: true)
 
-			delay(seconds: 0.2) { () -> () in
-				self.navigationController?.pushViewController(equationVC, animated: true)
-			}
 
 		case 7, 8, 9:
 			let contentVC = ContentViewController()
 			contentVC.index = index - 7
 			contentVC.hidesBottomBarWhenPushed = true
-
-			delay(seconds: 0.2) { () -> () in
-				self.navigationController?.pushViewController(contentVC, animated: true)
-			}
+			navigationController?.pushViewController(contentVC, animated: true)
 
 		default:
 			break
@@ -249,16 +194,11 @@ class HomepageViewController: UIViewController {
 
 
     func infoButtonTapped() {
+		bigButtons.forEach({ $0.userInteractionEnabled = false })
 
-		for button in bigButtons {
-			button.userInteractionEnabled = false
-		}
-
-        delay(seconds: 0.2) { () -> () in
-            let settingVC = SettingTableViewController()
-            let settingNavi = NavigationController(rootViewController: settingVC)
-            self.presentViewController(settingNavi, animated: true, completion: nil)
-        }
+		let settingVC = SettingTableViewController()
+		let settingNavi = NavigationController(rootViewController: settingVC)
+		presentViewController(settingNavi, animated: true, completion: nil)
 
     }
 

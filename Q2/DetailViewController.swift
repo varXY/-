@@ -12,7 +12,6 @@ import UIKit
 class DetailViewController: UIViewController {
 
 	var knowledege = Knowledge()
-	var global = Global()
 
 	var label = UILabel()
 	var textView = UITextView()
@@ -23,13 +22,13 @@ class DetailViewController: UIViewController {
 		view.backgroundColor = UIColor.whiteColor()
 		self.title = knowledege.title
 
-		label.frame = CGRect(x: 0, y: 0, width: global.size.width - 10, height: global.size.height - 64)
+		label.frame = CGRect(x: 0, y: 0, width: ScreenWidth - 10, height: ScreenHeight - 64)
 		label.font = UIFont.systemFontOfSize(18)
 		label.numberOfLines = 0
 		label.text = knowledege.textBody
 		label.sizeToFit()
 
-		textView.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height - 64)
+		textView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - 64)
 		textView.contentSize = CGSize(width: label.frame.width, height: label.frame.height)
 		textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 10, right: 5)
 		textView.text = knowledege.textBody

@@ -12,41 +12,26 @@ import Foundation
 
 class Generator {
 
-	var global = Global()
-
-
 
 	// MARK: - Big Buttons
 
 	func describeButtons(topPoint: CGPoint) -> [UIButton] {
 		var Buttons = [UIButton]()
 
-		let gap_0: CGFloat = 2
-		let gap_1: CGFloat = 12.5
+
+		let gaps: [CGFloat] = [2, 12.5]
 
 		let diagonalLength: CGFloat = 8
 		let sideLength = diagonalLength / sqrt(2)
 		let centerDistance = diagonalLength / 2
 
+		let xPositions = [
+			topPoint.x - gaps[0] - centerDistance,
+			topPoint.x,
+			topPoint.x + gaps[0] + centerDistance
+		]
 
-		let x_0 = topPoint.x - gap_0 - centerDistance
-		let x_1 = topPoint.x
-		let x_2 = topPoint.x + gap_0 + centerDistance
-
-		let point_0 = CGPoint(x: x_1, y: topPoint.y)
-		let point_1 = CGPoint(x: x_0, y: point_0.y + gap_0 + centerDistance)
-		let point_2 = CGPoint(x: x_2, y: point_0.y + gap_0 + centerDistance)
-
-		let point_3 = CGPoint(x: x_1, y: point_0.y + gap_1 + centerDistance * 2)
-		let point_4 = CGPoint(x: x_0, y: point_3.y + gap_0 + centerDistance)
-		let point_5 = CGPoint(x: x_2, y: point_3.y + gap_0 + centerDistance)
-		let point_6 = CGPoint(x: x_1, y: point_5.y + gap_0 + centerDistance)
-
-		let point_9 = CGPoint(x: x_1, y: point_6.y + gap_1 + centerDistance * 2)
-		let point_7 = CGPoint(x: x_0, y: point_9.y - gap_0 - centerDistance)
-		let point_8 = CGPoint(x: x_2, y: point_9.y - gap_0 - centerDistance)
-
-		let points = [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, point_9]
+		let points = getNinePoints(xPositions, gaps: gaps, centerDistance: centerDistance)
 		let squareSize = CGSize(width: sideLength, height: sideLength)
 
 		for i in 0..<points.count {
@@ -61,49 +46,28 @@ class Generator {
 	func allMainButtons() -> [UIButton] {
 		var buttons = [UIButton]()
 
-		let gap_0: CGFloat = sqrt(50)
-//		let gap_1: CGFloat = sqrt(325)
-		let gap_1: CGFloat = sqrt(200)
+		// 方块之间之前垂直距离为10，gap_0 = sqrt(50)  gap_1 = sqrt(200)
 
-		let allGapLength = gap_0 * 2 + gap_1 * 2 + sqrt(200)
-		let diagonalLength = (global.size.height - 20 - allGapLength - 20) / 4
+		let gaps = [
+			CGFloat(sqrt(0.5)),
+			sqrt(2)
+		]
+
+		let allGapLength = gaps[0] * 2 + gaps[1] * 3
+		let diagonalLength = (ScreenHeight - 20 - allGapLength - 20) / 4
 		let sideLength = diagonalLength / sqrt(2)
 		let centerDistance = diagonalLength / 2
 
+		let xPositions = [
+			ScreenCenter.x - gaps[0] - centerDistance,
+			ScreenCenter.x,
+			ScreenCenter.x + gaps[0] + centerDistance
+		]
 
-		let x_0 = global.center.x - gap_0 - centerDistance
-		let x_1 = global.center.x
-		let x_2 = global.center.x + gap_0 + centerDistance
-
-		let point_0 = CGPoint(x: x_1, y: 20 + gap_0 + centerDistance)
-		let point_1 = CGPoint(x: x_0, y: point_0.y + gap_0 + centerDistance)
-		let point_2 = CGPoint(x: x_2, y: point_0.y + gap_0 + centerDistance)
-
-		let point_3 = CGPoint(x: x_1, y: point_0.y + gap_1 + centerDistance * 2)
-		let point_4 = CGPoint(x: x_0, y: point_3.y + gap_0 + centerDistance)
-		let point_5 = CGPoint(x: x_2, y: point_3.y + gap_0 + centerDistance)
-		let point_6 = CGPoint(x: x_1, y: point_5.y + gap_0 + centerDistance)
-        
-		let point_9 = CGPoint(x: x_1, y: point_6.y + gap_1 + centerDistance * 2)
-		let point_7 = CGPoint(x: x_0, y: point_9.y - gap_0 - centerDistance)
-		let point_8 = CGPoint(x: x_2, y: point_9.y - gap_0 - centerDistance)
-
-//		let buttonsCenter = CGPoint(x: x_1, y: point_3.y + centerDistance + sqrt(200) / 2)
-//		let boxLength = sideLength * 2 + 10 + 15
-//		let boxSize = CGSize(width: boxLength - 2.0, height: boxLength - 2.0)
-//		let backgroundBox = UIButton()
-//		backgroundBox.frame.size = boxSize
-//		backgroundBox.center = buttonsCenter
-//		backgroundBox.backgroundColor = UIColor.clearColor()
-//		backgroundBox.layer.borderWidth = 1.0
-//		backgroundBox.layer.borderColor = Global.lightRedColor().CGColor
-//        backgroundBox.userInteractionEnabled = false
-//		buttons.append(backgroundBox)
-
-		let points = [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, point_9]
+		let points = getNinePoints(xPositions, gaps: gaps, centerDistance: centerDistance)
 		let squareSize = CGSize(width: sideLength, height: sideLength)
 
-		let titles = ["答题记录", "初级", "中级", "欧姆定律", "功率", "电量", "电阻", "单位公式", "图标符号", "工具设备"]
+		let titles = ["答题\n记录", "初级", "中级", "欧姆\n定律", "功率", "电量", "电阻", "单位\n公式", "图标\n符号", "工具\n设备"]
 
 		for i in 0..<points.count {
 			let button = prismaticButton(titles[i], center: points[i], size: squareSize)
@@ -114,32 +78,36 @@ class Generator {
 		return buttons
 	}
 
+	func getNinePoints(xPositions: [CGFloat], gaps: [CGFloat], centerDistance: CGFloat) -> [CGPoint] {
+		let point_0 = CGPoint(x: xPositions[1], y: 20 + gaps[0] + centerDistance)
+		let point_1 = CGPoint(x: xPositions[0], y: point_0.y + gaps[0] + centerDistance)
+		let point_2 = CGPoint(x: xPositions[2], y: point_0.y + gaps[0] + centerDistance)
 
-	// MARK: - For Test
+		let point_3 = CGPoint(x: xPositions[1], y: point_0.y + gaps[1] + centerDistance * 2)
+		let point_4 = CGPoint(x: xPositions[0], y: point_3.y + gaps[0] + centerDistance)
+		let point_5 = CGPoint(x: xPositions[2], y: point_3.y + gaps[0] + centerDistance)
+		let point_6 = CGPoint(x: xPositions[1], y: point_5.y + gaps[0] + centerDistance)
 
-	func genLabelForTest() -> UILabel {
-		let label = UILabel()
-		label.text = "选择级别开始问答"
-		label.textAlignment = .Center
-		label.font = UIFont.boldSystemFontOfSize(22)
-		label.textColor = UIColor.grayColor()
-		label.sizeToFit()
+		let point_9 = CGPoint(x: xPositions[1], y: point_6.y + gaps[1] + centerDistance * 2)
+		let point_7 = CGPoint(x: xPositions[0], y: point_9.y - gaps[0] - centerDistance)
+		let point_8 = CGPoint(x: xPositions[2], y: point_9.y - gaps[0] - centerDistance)
 
-		label.frame.origin = CGPointMake((global.size.width - label.frame.width) / 2, global.buttonSize().height / 4 + 64)
-
-		return label
+		let points = [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, point_9]
+		return points
 	}
 
+
+	// MARK: - For Test
 
 	func genDots() -> UIView {
 		var frame = CGRect()
 
-		switch global.size.height {
+		switch ScreenHeight {
 
 		case 480:
-			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 15 - 64, width: 135, height: 15)
+			frame = CGRect(x: (ScreenWidth - 135) / 2, y: ScreenHeight - 15 - 64, width: 135, height: 15)
 		default:
-			frame = CGRect(x: (global.size.width - 135) / 2, y: global.size.height - 30 - 64, width: 135, height: 20)
+			frame = CGRect(x: (ScreenWidth - 135) / 2, y: ScreenHeight - 30 - 64, width: 135, height: 20)
 		}
 
 		let view = UIView(frame: frame)
@@ -157,13 +125,10 @@ class Generator {
 		return view
 	}
 
-
-
-
 	func genQA(superView: UIView, page: Int, questions: [Question]) {
 
 		let label = UILabel()
-		label.frame = CGRect(x: 15 + global.size.width * CGFloat(page), y: global.size.height / 5.5 - 64, width: global.size.width - 30, height: 200)
+		label.frame = CGRect(x: 15 + ScreenWidth * CGFloat(page), y: ScreenHeight / 5.5 - 64, width: ScreenWidth - 30, height: 200)
 		label.numberOfLines = 0
 		label.backgroundColor = UIColor.backgroundColor()
 		label.font = UIFont.systemFontOfSize(23)
@@ -171,12 +136,12 @@ class Generator {
 		label.sizeToFit()
 		superView.addSubview(label)
 
-		var point = CGPoint(x: 20 + global.size.width * CGFloat(page), y: global.size.height * 0.65 - 64)
+		var point = CGPoint(x: 20 + ScreenWidth * CGFloat(page), y: ScreenHeight * 0.65 - 64)
 		var tag = page * 2 + 1000
 		let button1 = genChoiceButton(point, tag: tag)
 		superView.addSubview(button1)
 
-		point = CGPoint(x: 20 + global.size.width * CGFloat(page), y: global.size.height * 0.65 + 90 - 64)
+		point = CGPoint(x: 20 + ScreenWidth * CGFloat(page), y: ScreenHeight * 0.65 + 90 - 64)
 		tag = page * 2 + 1001
 		let button2 = genChoiceButton(point, tag: tag)
 		superView.addSubview(button2)
@@ -194,7 +159,7 @@ class Generator {
 	func genChoiceButton(point: CGPoint, tag: Int) -> UIButton {
 		let button = UIButton(type: .System)
 		button.frame.origin = point
-		button.frame.size = CGSize(width: global.size.width - 40, height: 60)
+		button.frame.size = CGSize(width: ScreenWidth - 40, height: 60)
 		button.tintColor = UIColor.grayColor()
 		button.layer.cornerRadius = 10
 		button.clipsToBounds = true
@@ -212,7 +177,7 @@ class Generator {
 
 
 	func genRightOrWrongViewForQA(rightOrWrong: String, page: Int) -> UIView {
-		let view = UIView(frame: CGRect(x: global.center.x - 50 + global.size.width * CGFloat(page), y: global.center.y - 50 - 64 - 30, width: 100, height: 100))
+		let view = UIView(frame: CGRect(x: ScreenCenter.x - 50 + ScreenWidth * CGFloat(page), y: ScreenCenter.y - 50 - 64 - 30, width: 100, height: 100))
 		view.layer.cornerRadius = 50
 
 		switch rightOrWrong {
@@ -232,8 +197,8 @@ class Generator {
 	func genJumpButtonForQA(superView: UIView, page: Int) {
 		let buttonWidth: CGFloat = 100
 		let buttonHeight:CGFloat = 100
-		let x = global.size.width * CGFloat(page) + global.center.x - buttonWidth / 2
-		let y = global.center.y - buttonWidth / 2 - 64 - 30
+		let x = ScreenWidth * CGFloat(page) + ScreenCenter.x - buttonWidth / 2
+		let y = ScreenCenter.y - buttonWidth / 2 - 64 - 30
 
 		let jumpButton = UIButton(type: .System)
 		jumpButton.backgroundColor = UIColor.clearColor()
@@ -248,17 +213,17 @@ class Generator {
 
 	func showTestFinalPage(rightCount: Int) -> UIView {
 		let view = UIView()
-		view.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.size.height)
+		view.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
 
 		let label = UILabel()
-		label.frame = CGRect(x: 10, y: 10, width: global.size.width - 20, height: global.size.width - 20)
+		label.frame = CGRect(x: 10, y: 10, width: ScreenWidth - 20, height: ScreenWidth - 20)
 
 		label.numberOfLines = 0
 		label.textAlignment = .Center
 		label.textColor = UIColor.whiteColor()
 		label.font = UIFont.boldSystemFontOfSize(22)
 		label.backgroundColor = UIColor.lightRedColor()
-		label.layer.cornerRadius = (global.size.width - 20) / 2
+		label.layer.cornerRadius = (ScreenWidth - 20) / 2
 		label.clipsToBounds = true
 
 		if rightCount < 5 {
@@ -312,7 +277,7 @@ class Generator {
 
 	func genQLabelForAnsweredCell(question: Question) -> UILabel {
 		let QLabel = UILabel()
-		QLabel.frame = CGRect(x: 35, y: 10, width: global.size.width - 45, height: 150)
+		QLabel.frame = CGRect(x: 35, y: 10, width: ScreenWidth - 45, height: 150)
 		QLabel.numberOfLines = 0
 		QLabel.lineBreakMode = .ByClipping
 		QLabel.text = question.question
@@ -325,7 +290,7 @@ class Generator {
 	func genShareButton(point: CGPoint, tag: Int) -> UIButton {
 		let button = UIButton(type: .System)
 		button.frame.origin = point
-		button.frame.size = CGSize(width: global.size.width - 40, height: 120)
+		button.frame.size = CGSize(width: ScreenWidth - 40, height: 120)
 		button.tintColor = UIColor.grayColor()
 		button.layer.cornerRadius = 10
 		button.clipsToBounds = true
@@ -396,18 +361,23 @@ class Generator {
         
         let titleLabel = UILabel()
         titleLabel.frame.size = CGSize(width: size.width, height: 40)
-        titleLabel.center = CGPoint(x: button.frame.width / 2, y: button.frame.height / 2)
         titleLabel.font = UIFont.systemFontOfSize(18)
-		if global.size.height == 480 {
+		if ScreenHeight == 480 {
 			titleLabel.font = UIFont.systemFontOfSize(13)
 		}
         titleLabel.text = title
+		titleLabel.numberOfLines = 0
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.textAlignment = .Center
-        
+		titleLabel.sizeToFit()
+		titleLabel.center = CGPoint(x: button.frame.width / 2, y: button.frame.height / 2)
+
         button.addSubview(titleLabel)
         
         button.exclusiveTouch = true
+
+		button.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+		titleLabel.transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
         
         return button
     }

@@ -13,7 +13,6 @@ import AVFoundation
 
 class QuestionViewController: UIViewController {
 
-	var global = Global()
 	var generator = Generator()
 
 	var type = 0
@@ -84,7 +83,7 @@ class QuestionViewController: UIViewController {
 			if let label = seeButton.subviews[0] as? UILabel {
 				label.textColor = UIColor.themeRed()
 			}
-			seeButton.genAnimation(.Appear, delay: 0.0, distance: 40)
+			seeButton.genAnimation(.Appear, delayTime: 0.0, distance: 40)
 
 			let quitButton = page.viewWithTag(123456) as! UIButton
 			quitButton.hidden = false
@@ -93,7 +92,7 @@ class QuestionViewController: UIViewController {
 			if let label = quitButton.subviews[0] as? UILabel {
 				label.textColor = UIColor.themeRed()
 			}
-			quitButton.genAnimation(.Appear, delay: 0.1, distance: 70)
+			quitButton.genAnimation(.Appear, delayTime: 0.1, distance: 70)
 		}
 
 		let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -147,7 +146,7 @@ class QuestionViewController: UIViewController {
 
 				if button.titleLabel?.text == rightAnswer {
 					button.userInteractionEnabled = false
-					button.genAnimation(.IsRightAnswer, delay: 0.0, distance: 0.0)
+					button.genAnimation(.IsRightAnswer, delayTime: 0.0, distance: 0.0)
 					button.tintColor = UIColor.whiteColor()
 					button.backgroundColor = UIColor.rightGreen()
 				} else {
@@ -188,12 +187,12 @@ class QuestionViewController: UIViewController {
 
 			if let button = finalView.viewWithTag(12345) as? UIButton {
 				button.addTarget(self, action: #selector(self.seeAnsweredQA(_:)), forControlEvents: .TouchUpInside)
-				button.genAnimation(.Appear, delay: 0.0, distance: 40)
+				button.genAnimation(.Appear, delayTime: 0.0, distance: 40)
 			}
 
 			if let button = finalView.viewWithTag(123456) as? UIButton {
 				button.addTarget(self, action: #selector(self.animatedAndQuit(_:)), forControlEvents: .TouchUpInside)
-				button.genAnimation(.Appear, delay: 0.1, distance: 70)
+				button.genAnimation(.Appear, delayTime: 0.1, distance: 70)
 			}
 
 
@@ -274,11 +273,16 @@ class QuestionViewController: UIViewController {
 
 
 	func jumpToPage(page: Int) {
-		let duration = Double(global.size.width / 640)
 
-		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: { 
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
 			}, completion: nil)
+
+//		let duration = Double(ScreenWidth / 640)
+//
+//		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+//			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
+//			}, completion: nil)
 
 	}
 

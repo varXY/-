@@ -10,6 +10,17 @@ import Foundation
 import UIKit
 
 
+// 尺寸信息
+let ScreenBounds = UIScreen.mainScreen().bounds
+let ScreenWidth = ScreenBounds.width
+let ScreenHeight = ScreenBounds.height
+let ScreenCenter = CGPoint(x: ScreenWidth / 2, y: ScreenHeight / 2)
+let StatusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+
+let CellHeight = ScreenHeight / 12
+
+
+// 日期和数字格式转换
 let dateFormatter: NSDateFormatter = {
 	let formatter = NSDateFormatter()
 	formatter.dateFormat = "MM/dd/yy, HH:mm"
@@ -23,6 +34,8 @@ var priceFormatter: NSNumberFormatter = {
 	return pf
 }()
 
+
+// 延迟执行
 func delay(seconds seconds: Double, completion:()->()) {
 	let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
 	dispatch_after(popTime, dispatch_get_main_queue()) {
@@ -31,93 +44,3 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 }
 
-
-class Global {
-	
-	let size = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
-	let center = CGPoint(x: UIScreen.mainScreen().bounds.width / 2, y: UIScreen.mainScreen().bounds.height / 2)
-	let rowHeight = UIScreen.mainScreen().bounds.height / 12
-
-	let CGRedColor = UIColor.redColor().CGColor
-	let CGGreenColor = UIColor.greenColor().CGColor
-	let CGlightGrayColor = UIColor.lightGrayColor().CGColor
-	let CGWhiteColor = UIColor.whiteColor().CGColor
-	let CGBlackColor = UIColor.blackColor().CGColor
-
-	func buttonSize() -> CGSize {
-		var size = CGSize()
-
-		switch self.size.height {
-		case 480:
-			size = CGSize(width: 100, height: 100)
-		case 568:
-			size = CGSize(width: 100, height: 100)
-		case 667:
-			size = CGSize(width: 117, height: 117)
-		case 736:
-			size = CGSize(width: 129, height: 129)
-		default:
-			size = CGSize(width: 100, height: 100)
-		}
-
-		return size
-	}
-
-	func margin() -> CGFloat {
-		var marginY: CGFloat = 16
-
-		switch self.size.height {
-		case 480:
-			marginY = 16
-		case 568:
-			marginY = 38
-		case 667:
-			marginY = 50
-		case 736:
-			marginY = 59
-		default:
-			marginY = 12
-		}
-
-		return marginY
-	}
-
-	func testBigButtonSize() -> CGSize {
-		var buttonSize = CGSize()
-
-		switch size.height {
-		case 480:
-			buttonSize = CGSize(width: 150, height: 150)
-		case 568:
-			buttonSize = CGSize(width: 150, height: 150)
-		case 667:
-			buttonSize = CGSize(width: 176, height: 176)
-		case 736:
-			buttonSize = CGSize(width: 194, height: 194)
-		default:
-			break
-		}
-
-		return buttonSize
-	}
-
-	func testSmallButtonSize() -> CGSize {
-		var buttonSize = CGSize()
-
-		switch size.height {
-		case 480:
-			buttonSize = CGSize(width: 85, height: 85)
-		case 568:
-			buttonSize = CGSize(width: 85, height: 85)
-		case 667:
-			buttonSize = CGSize(width: 99.5, height: 99.5)
-		case 736:
-			buttonSize = CGSize(width: 110, height: 110)
-		default:
-			break
-		}
-
-		return buttonSize
-	}
-
-}

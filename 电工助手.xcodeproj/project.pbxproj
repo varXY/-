@@ -14,6 +14,7 @@
 		31033AB11BA4096A00DC9141 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AB01BA4096A00DC9141 /* Question.swift */; };
 		31033AB51BA4143400DC9141 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AB41BA4143400DC9141 /* RecordViewController.swift */; };
 		31033AB71BA416C100DC9141 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31033AB61BA416C100DC9141 /* Record.swift */; };
+		310FF0491CBF814A002750D7 /* Prismatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310FF0481CBF814A002750D7 /* Prismatic.swift */; };
 		311A89F21C62E80E00257A26 /* GrandientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311A89F11C62E80E00257A26 /* GrandientView.swift */; };
 		312DA30D1BB512DF00130A33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 312DA30C1BB512DF00130A33 /* Images.xcassets */; };
 		3133711F1C84173100234E72 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3133711E1C84173100234E72 /* UIColor+CustomColor.swift */; };
@@ -73,14 +74,15 @@
 		31033AA51BA3BD0300DC9141 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomepageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AAC1BA3EBE200DC9141 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = QuestionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AB01BA4096A00DC9141 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
-		31033AB41BA4143400DC9141 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		31033AB41BA4143400DC9141 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31033AB61BA416C100DC9141 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		310FF0481CBF814A002750D7 /* Prismatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prismatic.swift; sourceTree = "<group>"; };
 		311A89F11C62E80E00257A26 /* GrandientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrandientView.swift; sourceTree = "<group>"; };
 		312DA30C1BB512DF00130A33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3133711E1C84173100234E72 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
 		314DFCD21BA42A0900E79557 /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RecordCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCD41BA42DE100E79557 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		314DFCD61BA42E1B00E79557 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		314DFCD61BA42E1B00E79557 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCD81BA42E3F00E79557 /* Catalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Catalog.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		314DFCDA1BA42E7800E79557 /* Knowledge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knowledge.swift; sourceTree = "<group>"; };
 		314DFCDC1BA42EB400E79557 /* DescribeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescribeCell.xib; sourceTree = "<group>"; };
@@ -107,7 +109,7 @@
 		31D668FD1BA8055A00A21AF1 /* EquationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		31F9AC311C261CAB0072A116 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		31F9AC311C261CAB0072A116 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C302F35D1C5A132A0043E35D /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
 		C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Question+NumberInStack.swift"; sourceTree = "<group>"; };
 		C329FDAA1C3BA96300BA1189 /* 电工助手-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "电工助手-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -156,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				3133711C1C84168E00234E72 /* Global */,
-				313371191C8415DB00234E72 /* View */,
 				313371181C8414EC00234E72 /* Controller */,
+				313371191C8415DB00234E72 /* View */,
 				3133711A1C8415EC00234E72 /* Model */,
 				31710AE11C8D139D00E1E4E7 /* Purchase */,
 				3133711B1C84165C00234E72 /* Extension */,
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				314DFCEB1BA42F3D00E79557 /* View Generator.swift */,
+				310FF0481CBF814A002750D7 /* Prismatic.swift */,
 				314DFCE91BA42F0E00E79557 /* HudView.swift */,
 				31710AE61C8D154900E1E4E7 /* HudView_1.swift */,
 				311A89F11C62E80E00257A26 /* GrandientView.swift */,
@@ -473,6 +476,7 @@
 				31D668FE1BA8055A00A21AF1 /* EquationViewController.swift in Sources */,
 				C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				314DFCD91BA42E3F00E79557 /* Catalog.swift in Sources */,
+				310FF0491CBF814A002750D7 /* Prismatic.swift in Sources */,
 				318C11901BA5017400CA1EC9 /* AnsweredQAViewController.swift in Sources */,
 				318C11941BA54C7D00CA1EC9 /* Global.swift in Sources */,
 				3133711F1C84173100234E72 /* UIColor+CustomColor.swift in Sources */,

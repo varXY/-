@@ -11,8 +11,6 @@ import UIKit
 
 class AnsweredQACell: UITableViewCell {
 
-	var global = Global()
-
 	var rowLabel = UILabel()
 	var QLabel = UILabel()
 	var ALabel = UILabel()
@@ -42,7 +40,7 @@ class AnsweredQACell: UITableViewCell {
 	func configureForAnsweredQACell(QLabel: UILabel, rightOrWrong: Int, row: Int, rightAnswer: String) {
 		copyLabel(QLabel)
 		QLabelHeight = QLabel.frame.height
-		ALabel.frame = CGRect(x: 35, y: QLabelHeight + 15, width: global.size.width - 45, height: 30)
+		ALabel.frame = CGRect(x: 35, y: QLabelHeight + 15, width: ScreenWidth - 45, height: 30)
 		ALabel.text = rightAnswer
 		rowLabel.text = "\(row)"
 

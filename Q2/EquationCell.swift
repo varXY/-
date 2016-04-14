@@ -11,8 +11,6 @@ import UIKit
 
 class EquationCell: UITableViewCell {
 
-	var global = Global()
-
 	var titleLabel = UILabel()
 	var unitLabel = UILabel()
 	var equalLabel =  UILabel()
@@ -21,7 +19,7 @@ class EquationCell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		self.frame = CGRect(x: 0, y: 0, width: global.size.width, height: global.rowHeight)
+		self.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: CellHeight)
 
 		titleLabel.frame = CGRect(x: 15, y: 0, width: 40, height: self.frame.height)
 		titleLabel.font = UIFont.boldSystemFontOfSize(20)
@@ -34,7 +32,7 @@ class EquationCell: UITableViewCell {
 		equalLabel.textColor = UIColor.lightGrayColor()
 		self.contentView.addSubview(equalLabel)
 
-		unitLabel.frame = CGRect(x: global.size.width - 55, y: 0, width: 40, height: self.frame.height)
+		unitLabel.frame = CGRect(x: ScreenWidth - 55, y: 0, width: 40, height: self.frame.height)
 		unitLabel.textColor = UIColor.lightGrayColor()
 		unitLabel.textAlignment = .Left
 		self.contentView.addSubview(unitLabel)

@@ -11,8 +11,6 @@ import UIKit
 
 class NavigationController: UINavigationController {
 
-	var global = Global()
-
 	convenience init(viewController: UIViewController) {
 		self.init(rootViewController: viewController)
 	}
@@ -44,10 +42,10 @@ class NavigationController: UINavigationController {
 
 		var rect = CGRect()
 
-		if global.size.height == 736 {
-			rect = CGRect(x: 0, y: 20, width: global.size.width * 3, height: global.size.height * 3 - 20)
+		if ScreenHeight == 736 {
+			rect = CGRect(x: 0, y: 20, width: ScreenWidth * 3, height: ScreenHeight * 3 - 20)
 		} else {
-			rect = CGRect(x: 0, y: 20, width: global.size.width * 2, height: global.size.height * 2 - 20)
+			rect = CGRect(x: 0, y: 20, width: ScreenWidth * 2, height: ScreenHeight * 2 - 20)
 		}
 
 		let cuttedmage = CGImageCreateWithImageInRect(image.CGImage, rect)

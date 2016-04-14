@@ -12,7 +12,6 @@ import UIKit
 class EquationViewController: UIViewController {
 
 	var index = 0
-	var global = Global()
 
 	var sectionTitle = ""
 	var firstWords = [String]()
@@ -78,7 +77,7 @@ class EquationViewController: UIViewController {
 
 		for i in 0..<counts {
 			let numberTextField = NumberTextfield()
-			let rect = CGRect(x: 75, y: 30 + (global.rowHeight) * CGFloat(i) + 3, width: global.size.width - 150, height: global.rowHeight - 6)
+			let rect = CGRect(x: 75, y: 30 + (CellHeight) * CGFloat(i) + 3, width: ScreenWidth - 150, height: CellHeight - 6)
 			let textField = numberTextField.getTextFields(rect)
 			textField.delegate = self
 			textField.tag = (i + 1) * 400
@@ -107,14 +106,14 @@ class EquationViewController: UIViewController {
 			textFields[2].frame.size.width -= 20
 
 			let x = textFields[0].frame.origin.x + textFields[0].frame.size.width
-			let label_0 = UILabel(frame: CGRect(x: x, y: textFields[0].frame.origin.y, width: 35, height: global.rowHeight - 6))
+			let label_0 = UILabel(frame: CGRect(x: x, y: textFields[0].frame.origin.y, width: 35, height: CellHeight - 6))
 			label_0.text = "×10⁻⁸"
 			label_0.textColor = UIColor.themeRed()
 			label_0.textAlignment = .Left
 			label_0.adjustsFontSizeToFitWidth = true
 			tableView.addSubview(label_0)
 
-			let label_3 = UILabel(frame: CGRect(x: x, y: textFields[2].frame.origin.y, width: 35, height: global.rowHeight - 6))
+			let label_3 = UILabel(frame: CGRect(x: x, y: textFields[2].frame.origin.y, width: 35, height: CellHeight - 6))
 			label_3.text = "×10⁻⁶"
 			label_3.textColor = UIColor.themeRed()
 			label_3.textAlignment = .Left
@@ -146,7 +145,7 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate, UI
 	}
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return global.rowHeight
+		return CellHeight
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -211,18 +210,12 @@ extension EquationViewController {
 
 	func calculateWith(index: Int, tag: Int, content: Double) {
 		switch index {
-		case 0:
-			self.calculate_0(tag, content: content)
-		case 1:
-			self.calculate_1(tag, content: content)
-		case 2:
-			self.calculate_2(tag, content: content)
-		case 3:
-			self.calculate_3(tag, content: content)
-		default:
-			break
+		case 0: calculate_0(tag, content: content)
+		case 1: calculate_1(tag, content: content)
+		case 2: calculate_2(tag, content: content)
+		case 3: calculate_3(tag, content: content)
+		default: break
 		}
-
 	}
 
 
@@ -375,12 +368,13 @@ extension EquationViewController {
 	}
 
 	func calculate_3(tag: Int, content: Double) {
+		let textFieldIndex = (tag / 400) - 1
 
-		switch tag {
-		case 400: A = content * 0.00000001
-		case 800: B = content
-		case 1200: C = content * 0.000001
-		case 1600: D = content
+		switch textFieldIndex {
+		case 0: A = content * 0.00000001
+		case 1: B = content
+		case 2: C = content * 0.000001
+		case 3: D = content
 		default: break
 		}
 
@@ -388,18 +382,18 @@ extension EquationViewController {
 		let zeros = numbers.filter({ $0 == 0 })
 
 		if zeros.count == 1 {
-			let index = numbers.indexOf(0)
+			let zeroIndex = numbers.indexOf(0)
 
-			if (index! + 1) * 400 != tag {
-				lastCalculatedIndex = index!
-				lastInputIndex = (tag / 400) - 1
-				getOneFromThree(index!)
+			if zeroIndex != textFieldIndex {
+				lastCalculatedIndex = zeroIndex!
+				lastInputIndex = textFieldIndex
+				getOneFromThree(zeroIndex!)
 			}
 		} else if zeros.count == 0 {
-			if (lastCalculatedIndex + 1) * 400 != tag {
+			if lastCalculatedIndex != textFieldIndex {
 				getOneFromThree(lastCalculatedIndex)
 			} else {
-				if tag != lastInputIndex {
+				if lastInputIndex != textFieldIndex {
 					getOneFromThree(lastInputIndex)
 				}
 			}
@@ -427,8 +421,6 @@ extension EquationViewController {
 			break
 		}
 
-//		let show = round(result * 100000000) / 100000000
-
 		textFields[zeroIndex].text = (result == 0 ? "" : sv(result))
 	}
 
@@ -438,10 +430,11 @@ extension EquationViewController {
 		let afterCut: Double = floor(x)
 
 		if afterCut == x {
-			var string = "\(afterCut)"
-			string = String(string.characters.dropLast())
-			string = String(string.characters.dropLast())
-			return string
+			let value = Int(round(afterCut))
+//			var string = "\(afterCut)"
+//			string = String(string.characters.dropLast())
+//			string = String(string.characters.dropLast())
+			return "\(value)"
 		} else {
 			return "\(x)"
 		}

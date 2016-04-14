@@ -13,7 +13,6 @@ import UIKit
 class AnsweredQAViewController: UIViewController {
 
 	var questions = [Question]()
-	var global = Global()
 	var generator = Generator()
 	var rightOrWrong = [Int]()
 

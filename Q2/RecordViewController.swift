@@ -14,7 +14,6 @@ class RecordViewController: UIViewController {
 
 	var beginnerRecords = [Record]()
 	var intermediateRecords = [Record]()
-	var global = Global()
 	var generator = Generator()
 
 	var segmentControl = UISegmentedControl()
@@ -56,7 +55,7 @@ class RecordViewController: UIViewController {
 		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
 		scrollView.addSubview(tableView1)
 
-//		shareButton = generator.genShareButton(CGPointMake(20, global.size.height - 64), tag: 160)
+//		shareButton = generator.genShareButton(CGPointMake(20, ScreenHeight - 64), tag: 160)
 //		shareButton.addTarget(self, action: #selector(share), forControlEvents: .TouchUpInside)
 //		view.addSubview(shareButton)
 //
@@ -90,6 +89,10 @@ class RecordViewController: UIViewController {
 		tableView.delegate = self
 		tableView.dataSource = self
 
+		let footer = UIView(frame: CGRectMake(0, 0, view.frame.width, 5))
+		footer.backgroundColor = UIColor.clearColor()
+		tableView.tableFooterView = footer
+
 		return tableView
 	}
     
@@ -113,7 +116,7 @@ class RecordViewController: UIViewController {
 //	}
 
 	func jumpToPage(page: Int) {
-		let duration = Double(global.size.width / 640)
+		let duration = Double(ScreenWidth / 640)
 
 		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
@@ -127,7 +130,7 @@ class RecordViewController: UIViewController {
 	}
 //
 //	func hideOrShowShareButton() {
-//		let hidden = shareButton.frame.origin == CGPointMake(20, global.size.height - 64)
+//		let hidden = shareButton.frame.origin == CGPointMake(20, ScreenHeight - 64)
 //		if hidden && shareButton.enabled == true {
 //			UIView.animateWithDuration(0.5, animations: { () -> Void in
 //				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, -60)
@@ -156,7 +159,7 @@ class RecordViewController: UIViewController {
 
 //	func tapped() {
 //		if shareButton.enabled == true {
-//			let hidden = shareButton.frame.origin == CGPointMake(20, global.size.height - 64)
+//			let hidden = shareButton.frame.origin == CGPointMake(20, ScreenHeight - 64)
 //			let distance: CGFloat = hidden ? -60 : 0.0
 //			UIView.animateWithDuration(0.3, animations: { () -> Void in
 //				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, distance)

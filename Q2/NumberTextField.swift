@@ -30,7 +30,7 @@ class NumberTextfield: UITextField {
 		textField.layer.borderWidth = 1.0
 		textField.tintColor = UIColor.themeRed()
 		textField.layer.borderColor = UIColor.themeRed().CGColor
-		textField.placeholder = "请输入"
+//		textField.placeholder = "请输入"
 		textField.keyboardType = .DecimalPad
 		textField.textAlignment = .Right
 		return textField
