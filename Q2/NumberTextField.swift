@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NumberTextfield: UITextField {
+class NumberTextField: UITextField {
 
 	override func editingRectForBounds(bounds: CGRect) -> CGRect {
 		return CGRect(x: 5, y: 0, width: bounds.width - 10, height: bounds.height)
@@ -23,14 +23,13 @@ class NumberTextfield: UITextField {
 		return CGRect(x: 5, y: 0, width: bounds.width - 10, height: bounds.height)
 	}
 
-	func getTextFields(frame: CGRect) -> NumberTextfield {
-		let textField = NumberTextfield()
+	class func getTextFields(frame: CGRect) -> NumberTextField {
+		let textField = NumberTextField()
 		textField.frame = frame
-		textField.layer.cornerRadius = 8
+		textField.layer.cornerRadius = globalRadius
 		textField.layer.borderWidth = 1.0
 		textField.tintColor = UIColor.themeRed()
 		textField.layer.borderColor = UIColor.themeRed().CGColor
-//		textField.placeholder = "请输入"
 		textField.keyboardType = .DecimalPad
 		textField.textAlignment = .Right
 		return textField

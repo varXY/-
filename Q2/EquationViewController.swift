@@ -29,7 +29,6 @@ class EquationViewController: UIViewController {
 	var allowInput = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",  "."]
 
 	var tableView = UITableView()
-
 	var textFields = [UITextField]()
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -38,8 +37,8 @@ class EquationViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        self.view.backgroundColor = UIColor.backgroundColor()
-		self.title = Equation(rawValue: index)?.navigationTitle
+        view.backgroundColor = UIColor.backgroundColor()
+		title = Equation(rawValue: index)?.navigationTitle
 
 		getWords(index)
 
@@ -52,9 +51,7 @@ class EquationViewController: UIViewController {
 		view.addSubview(tableView)
 
 		genTextField()
-		for textfield in textFields {
-			tableView.addSubview(textfield)
-		}
+		textFields.forEach({ tableView.addSubview($0) })
 
 		customTextField(index)
 
@@ -71,14 +68,10 @@ class EquationViewController: UIViewController {
 		lastWords = Equation(rawValue: index)!.lastWords
 	}
 
-
 	func genTextField() {
-		let counts = firstWords.count
-
-		for i in 0..<counts {
-			let numberTextField = NumberTextfield()
+		for i in 0..<firstWords.count {
 			let rect = CGRect(x: 75, y: 30 + (CellHeight) * CGFloat(i) + 3, width: ScreenWidth - 150, height: CellHeight - 6)
-			let textField = numberTextField.getTextFields(rect)
+			let textField = NumberTextField.getTextFields(rect)
 			textField.delegate = self
 			textField.tag = (i + 1) * 400
 			textFields.append(textField)
@@ -125,10 +118,10 @@ class EquationViewController: UIViewController {
 
 
 	func showAlert() {
-		let alert = UIAlertController(title: "输入有误", message: "功率因素在0到1之间", preferredStyle: .Alert)
+		let alertController = UIAlertController(title: "输入有误", message: "功率因素在0到1之间", preferredStyle: .Alert)
 		let action = UIAlertAction(title: "确定", style: .Default, handler: nil)
-		alert.addAction(action)
-		presentViewController(alert, animated: true, completion: nil)
+		alertController.addAction(action)
+		presentViewController(alertController, animated: true, completion: nil)
 	}
 
 
@@ -170,9 +163,7 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate, UI
 	}
 
 	func scrollViewDidScroll(scrollView: UIScrollView) {
-		for textField in textFields {
-			textField.resignFirstResponder()
-		}
+		textFields.forEach({ $0.resignFirstResponder() })
 	}
 
 }
@@ -430,11 +421,11 @@ extension EquationViewController {
 		let afterCut: Double = floor(x)
 
 		if afterCut == x {
-			let value = Int(round(afterCut))
-//			var string = "\(afterCut)"
-//			string = String(string.characters.dropLast())
-//			string = String(string.characters.dropLast())
-			return "\(value)"
+//			let value = Int(round(afterCut))
+			var string = "\(afterCut)"
+			string = String(string.characters.dropLast())
+			string = String(string.characters.dropLast())
+			return string
 		} else {
 			return "\(x)"
 		}

@@ -18,10 +18,11 @@ class ContentViewController: UITableViewController {
 
 	var index = 0
 
-	var knowledge = Knowledge()
+	let knowledge = Knowledge()
 	var knowledges = [[Knowledge]]()
 
 	var searchBar = UISearchBar(frame: CGRectMake(0, 0, 0, 44))
+	
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -29,19 +30,22 @@ class ContentViewController: UITableViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		tableView.backgroundColor = UIColor.backgroundColor()
 
 		if traitCollection.forceTouchCapability == .Available && index != 1 {
 			registerForPreviewingWithDelegate(self, sourceView: view)
 		}
 
-		tableView.backgroundColor = UIColor.backgroundColor()
+		var cellNib = UINib(nibName: "DescribeCell", bundle: nil)
 
 		switch index {
 		case 0:
-			self.title = "单位公式"
+			title = "单位公式"
 			knowledges = knowledge.getAll(0)
+			tableView.registerNib(cellNib, forCellReuseIdentifier: "DescribeCell")
+
 		case 1:
-			self.title = "符号图标"
+			title = "符号图标"
 			knowledges = knowledge.getAll(1)
 
 			tableView.allowsSelection = false
@@ -51,36 +55,34 @@ class ContentViewController: UITableViewController {
 			searchBar.delegate = self
 			tableView.tableHeaderView = searchBar
             tableView.contentOffset.y = searchBar.frame.height
-            
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToCancel))
-            view.addGestureRecognizer(tapGesture)
-            
+
+			cellNib = UINib(nibName: "ImageCell", bundle: nil)
+			tableView.registerNib(cellNib, forCellReuseIdentifier: "ImageCell")
+
+			let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToCancel))
+			view.addGestureRecognizer(tapGesture)
+
 		case 2:
 			self.title = "工具设备"
 			knowledges = knowledge.getAll(2)
+
+			cellNib = UINib(nibName: "IntroCell", bundle: nil)
+			tableView.registerNib(cellNib, forCellReuseIdentifier: "IntroCell")
+
 		default:
 			break
 		}
 
-		var cellNib = UINib(nibName: "DescribeCell", bundle: nil)
-		tableView.registerNib(cellNib, forCellReuseIdentifier: "DescribeCell")
-
-		cellNib = UINib(nibName: "ImageCell", bundle: nil)
-		tableView.registerNib(cellNib, forCellReuseIdentifier: "ImageCell")
-
-		cellNib = UINib(nibName: "IntroCell", bundle: nil)
-		tableView.registerNib(cellNib, forCellReuseIdentifier: "IntroCell")
 	}
 
 	func back() {
-		self.navigationController?.popViewControllerAnimated(true)
+		navigationController?.popViewControllerAnimated(true)
 	}
     
     func tapToCancel() {
-        self.searchBarCancelButtonClicked(self.searchBar)
-        self.searchBar.text = nil
+        searchBarCancelButtonClicked(self.searchBar)
+        searchBar.text = nil
     }
-
 
 
 	// MARK: - TableView
@@ -105,14 +107,11 @@ class ContentViewController: UITableViewController {
 	}
 
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		let icons = knowledges[section]
-		return icons[0].sectionTitle
+		return knowledges[section][0].sectionTitle
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-		let all = knowledges[indexPath.section]
-		knowledge = all[indexPath.row]
+		let knowledge = knowledges[indexPath.section][indexPath.row]
 
 		switch index {
 		case 0:
@@ -143,19 +142,16 @@ class ContentViewController: UITableViewController {
 	}
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-		let knowledges = self.knowledges[indexPath.section]
-		let knowledge = knowledges[indexPath.row]
+		let knowledge = knowledges[indexPath.section][indexPath.row]
 		let detailVC = DetailViewController()
 		detailVC.knowledege = knowledge
 		detailVC.hidesBottomBarWhenPushed = true
-		self.navigationController?.pushViewController(detailVC, animated: true)
+		navigationController?.pushViewController(detailVC, animated: true)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
-
-
 }
+
 
 extension ContentViewController: UISearchBarDelegate {
 
@@ -199,9 +195,7 @@ extension ContentViewController: UIViewControllerPreviewingDelegate {
 
 	func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
 		guard let indexPath = tableView.indexPathForRowAtPoint(location), cell = tableView.cellForRowAtIndexPath(indexPath) else { return nil }
-
-		let knowledges = self.knowledges[indexPath.section]
-		let knowledge = knowledges[indexPath.row]
+		let knowledge = knowledges[indexPath.section][indexPath.row]
 		let detailVC = DetailViewController()
 		detailVC.knowledege = knowledge
 

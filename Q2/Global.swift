@@ -18,7 +18,7 @@ let ScreenCenter = CGPoint(x: ScreenWidth / 2, y: ScreenHeight / 2)
 let StatusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
 
 let CellHeight = ScreenHeight / 12
-
+let globalRadius: CGFloat = 8
 
 // 日期和数字格式转换
 let dateFormatter: NSDateFormatter = {

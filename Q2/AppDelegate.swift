@@ -22,10 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		intermediateRecords.saveRecords()
 	}
 
-	func customizeAppearance() {
-		let tintColor = UIColor.themeRed()
-		UITabBar.appearance().tintColor = tintColor
-	}
+//	func customizeAppearance() {
+//		let tintColor = UIColor.themeRed()
+//		UITabBar.appearance().tintColor = tintColor
+//	}
 
 	// MARK: Shortcut
 
@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		init?(fullType: String) {
 			guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
-
 			self.init(rawValue: last)
 		}
 
@@ -50,42 +49,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var launchedShortcutItem: UIApplicationShortcutItem?
 
 	func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
-
 		var handled = false
 
-		guard let controller = window!.rootViewController as! NavigationController? else { return false }
-
 		guard ShortcutIdentifier(fullType: shortcutItem.type) != nil else { return false }
-
 		guard let shortCutType = shortcutItem.type as String? else { return false }
+		guard let controller = window!.rootViewController as! NavigationController? else { return false }
+		guard let topVC = controller.topViewController as? HomepageViewController else { return false }
 
 		switch (shortCutType) {
 		case ShortcutIdentifier.First.type:
-			if let topVC = controller.topViewController as? HomepageViewController {
-				topVC.gotoVCBaseOnIndex(1)
-			}
-
+			topVC.gotoVCBaseOnIndex(1)
 			handled = true
 			break
 		case ShortcutIdentifier.Second.type:
-			if let topVC = controller.topViewController as? HomepageViewController {
-				topVC.gotoVCBaseOnIndex(2)
-			}
-
+			topVC.gotoVCBaseOnIndex(2)
 			handled = true
 			break
 		case ShortcutIdentifier.Third.type:
-			if let topVC = controller.topViewController as? HomepageViewController {
-				topVC.gotoVCBaseOnIndex(5)
-			}
-
+			topVC.gotoVCBaseOnIndex(5)
 			handled = true
 			break
 		default:
 			break
 		}
-
-
 
 		return handled
 	}
@@ -94,18 +80,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-		self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-		self.window!.backgroundColor = UIColor.whiteColor()
+		window = UIWindow(frame: UIScreen.mainScreen().bounds)
+		window!.backgroundColor = UIColor.whiteColor()
 
 		// MARK: Shortcut
 
 		var shouldPerformAdditionalDelegateHandling = true
 
 		if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-
 			launchedShortcutItem = shortcutItem
-
 			shouldPerformAdditionalDelegateHandling = false
 		}
 
@@ -114,11 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			let shortcut1 = UIApplicationShortcutItem(type: ShortcutIdentifier.First.type, localizedTitle: "初级试题", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Play), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
-
 			let shortcut2 = UIApplicationShortcutItem(type: ShortcutIdentifier.Second.type, localizedTitle: "中级试题", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Play), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
-
 			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "算电量", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
@@ -134,13 +115,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let testInfoNavi = NavigationController(rootViewController: infoVC)
         testInfoNavi.setNavigationBarHidden(true, animated: true)
-		self.window?.rootViewController = testInfoNavi
+		window?.rootViewController = testInfoNavi
+		window?.makeKeyAndVisible()
 
-		customizeAppearance()
+//		customizeAppearance()
 
 		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
 
-		self.window?.makeKeyAndVisible()
 
 		return shouldPerformAdditionalDelegateHandling
 	}

@@ -14,13 +14,11 @@ class IntroCell: UITableViewCell {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
-
 		selectedBackgroundView = UIView()
 		selectedBackgroundView!.backgroundColor = UIColor.lightRedColor()
 	}
 
 	func configureForIntroCell(knowledge: Knowledge) {
 		titlelabel.text = knowledge.title
-
 	}
 }

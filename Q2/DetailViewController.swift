@@ -39,8 +39,4 @@ class DetailViewController: UIViewController {
 
 	}
     
-
-	func back() {
-		self.navigationController?.popViewControllerAnimated(true)
-	}
 }

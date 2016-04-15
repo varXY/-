@@ -27,9 +27,9 @@ class AnsweredQACell: UITableViewCell {
 
 		ALabel.textColor = UIColor.grayColor()
 
-		self.addSubview(QLabel)
-		self.contentView.addSubview(rowLabel)
-		self.contentView.addSubview(ALabel)
+		contentView.addSubview(QLabel)
+		contentView.addSubview(rowLabel)
+		contentView.addSubview(ALabel)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -38,25 +38,21 @@ class AnsweredQACell: UITableViewCell {
 
 
 	func configureForAnsweredQACell(QLabel: UILabel, rightOrWrong: Int, row: Int, rightAnswer: String) {
+		func copyLabel(label: UILabel) {
+			self.QLabel.frame = label.frame
+			self.QLabel.numberOfLines = 0
+			self.QLabel.text = label.text
+		}
+
 		copyLabel(QLabel)
 		QLabelHeight = QLabel.frame.height
 		ALabel.frame = CGRect(x: 35, y: QLabelHeight + 15, width: ScreenWidth - 45, height: 30)
 		ALabel.text = rightAnswer
-		rowLabel.text = "\(row)"
-
-		if rightOrWrong == 1 {
-			self.rowLabel.textColor = UIColor.rightGreen()
-		} else {
-			self.rowLabel.textColor = UIColor.themeRed()
-		}
-		
+		rowLabel.text = String(row)       
+		rowLabel.textColor = rightOrWrong == 1 ? UIColor.rightGreen() : UIColor.themeRed()
 	}
 
-	func copyLabel(label: UILabel) {
-		QLabel.frame = label.frame
-		QLabel.numberOfLines = 0
-		QLabel.text = label.text
-	}
+
 
 }
 

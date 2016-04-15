@@ -13,20 +13,21 @@ import UIKit
 class AnsweredQAViewController: UIViewController {
 
 	var questions = [Question]()
-	var generator = Generator()
 	var rightOrWrong = [Int]()
 
 	var tableView = UITableView()
 
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		view.backgroundColor = UIColor.backgroundColor()
+		title = "题目&答案"
 
-		self.title = "题目&答案"
-		self.view.backgroundColor = UIColor.backgroundColor()
-		
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(close))
-		self.navigationItem.rightBarButtonItem = quitButton
+		navigationItem.rightBarButtonItem = quitButton
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 64)
 		tableView.allowsSelection = false
@@ -35,12 +36,21 @@ class AnsweredQAViewController: UIViewController {
 		view.addSubview(tableView)
 	}
 
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
+
+
+	func qLabel(question: Question) -> UILabel {
+		let qLabel = UILabel()
+		qLabel.frame = CGRect(x: 35, y: 10, width: ScreenWidth - 45, height: 150)
+		qLabel.numberOfLines = 0
+		qLabel.lineBreakMode = .ByClipping
+		qLabel.text = question.question
+		qLabel.sizeToFit()
+
+		return qLabel
 	}
 
 	func close() {
-		self.dismissViewControllerAnimated(true, completion: nil)
+		dismissViewControllerAnimated(true, completion: nil)
 	}
 
 }
@@ -52,7 +62,7 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		let label = generator.genQLabelForAnsweredCell(questions[indexPath.row])
+		let label = qLabel(questions[indexPath.row])
 		return label.frame.height + 45
 	}
 
@@ -64,7 +74,7 @@ extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 			cell = AnsweredQACell(style: .Default, reuseIdentifier: cellID)
 		}
 
-		let label = generator.genQLabelForAnsweredCell(questions[indexPath.row])
+		let label = qLabel(questions[indexPath.row])
 		let rightOrWrong = self.rightOrWrong[indexPath.row]
 		let rowForShow = indexPath.row + 1
 		let rightAnswer = questions[indexPath.row].rightAnswer

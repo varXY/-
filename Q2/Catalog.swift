@@ -21,10 +21,7 @@ enum AnimationType {
 }
 
 enum Equation: Int {
-	case zero = 0
-	case one
-	case two
-	case three
+	case zero, one, two, three
 
 	var navigationTitle: String {
 		switch self {
@@ -80,9 +77,7 @@ enum Equation: Int {
 }
 
 enum SectionTitle: Int {
-	case zero = 0
-	case one = 1
-	case two = 2
+	case zero, one, two
 
 	var titles: [String] {
 		switch self {

@@ -14,23 +14,17 @@ class RecordViewController: UIViewController {
 
 	var beginnerRecords = [Record]()
 	var intermediateRecords = [Record]()
-	var generator = Generator()
-
-	var segmentControl = UISegmentedControl()
 
 	var scrollView = UIScrollView()
-
 	var tableView0 = UITableView()
 	var tableView1 = UITableView()
-//	var shareButton = UIButton()
 
-//	var tapGesture: UITapGestureRecognizer!
-
+	var segmentControl = UISegmentedControl()
 	var segmentWay = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		view.backgroundColor = UIColor.backgroundColor()
 		automaticallyAdjustsScrollViewInsets = true
 
 		segmentControl = UISegmentedControl(items: ["初级", "中级"])
@@ -38,10 +32,9 @@ class RecordViewController: UIViewController {
 		segmentControl.selectedSegmentIndex = 0
         segmentControl.addTarget(self, action: #selector(segmentSelected(_:)), forControlEvents: UIControlEvents.ValueChanged)
 		navigationItem.titleView = segmentControl
-		self.view.backgroundColor = UIColor.backgroundColor()
-		
+
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(close))
-		self.navigationItem.rightBarButtonItem = quitButton
+		navigationItem.rightBarButtonItem = quitButton
 
 		scrollView.frame = view.bounds
 		scrollView.contentSize = CGSize(width: view.frame.width * 2, height: 0)
@@ -55,33 +48,10 @@ class RecordViewController: UIViewController {
 		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
 		scrollView.addSubview(tableView1)
 
-//		shareButton = generator.genShareButton(CGPointMake(20, ScreenHeight - 64), tag: 160)
-//		shareButton.addTarget(self, action: #selector(share), forControlEvents: .TouchUpInside)
-//		view.addSubview(shareButton)
-//
-//		tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-//        tapGesture.delegate = self
-
-	}
-
-
-
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		
-//		if self.segmentControl.selectedSegmentIndex == 2 {
-//			self.checkRecordsCountForShareButton(self.segmentControl.selectedSegmentIndex)
-//		} else {
-//			delay(seconds: 0.5) { () -> () in
-//				self.checkRecordsCountForShareButton(self.segmentControl.selectedSegmentIndex)
-//			}
-//		}
-
 	}
 
 	func getTableView(rect: CGRect) -> UITableView {
 		let tableView = UITableView()
-
 		tableView.frame = rect
 		tableView.backgroundColor = UIColor.backgroundColor()
 		tableView.separatorStyle = .None
@@ -101,107 +71,22 @@ class RecordViewController: UIViewController {
         jumpToPage(sender.selectedSegmentIndex)
     }
 
-//	func checkRecordsCountForShareButton(index: Int) {
-//
-//		self.view.addGestureRecognizer(tapGesture)
-//		let records = index == 0 ? beginnerRecords : intermediateRecords
-//		shareButton.enabled = records.count != 0
-//
-//		if index == 2 {
-//			self.view.removeGestureRecognizer(tapGesture)
-//			shareButton.enabled = false
-//		}
-//
-//		hideOrShowShareButton()
-//	}
-
 	func jumpToPage(page: Int) {
-		let duration = Double(ScreenWidth / 640)
+//		let duration = Double(ScreenWidth / 640)
 
-		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: { 
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
-			}, completion: nil)
-
-		delay(seconds: duration) { () -> () in
-//			self.checkRecordsCountForShareButton(page)
-			self.segmentWay = false
+			}) { (_) in
+				self.segmentWay = false
 		}
 
+//		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+//			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
+//			}, completion: { (_) in
+//				self.segmentWay = false
+//			})
+
 	}
-//
-//	func hideOrShowShareButton() {
-//		let hidden = shareButton.frame.origin == CGPointMake(20, ScreenHeight - 64)
-//		if hidden && shareButton.enabled == true {
-//			UIView.animateWithDuration(0.5, animations: { () -> Void in
-//				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, -60)
-//			})
-//		}
-//
-//		if !hidden && shareButton.enabled == false {
-//			UIView.animateWithDuration(0.5, animations: { () -> Void in
-//				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, 0.0)
-//			})
-//		}
-//
-//	}
-//
-//	func showShareButton(show: Bool) {
-//		if show {
-//			UIView.animateWithDuration(0.3, animations: { () -> Void in
-//				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, -60)
-//			})
-//		} else {
-//			UIView.animateWithDuration(0.3, animations: { () -> Void in
-//				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, 0.0)
-//			})
-//		}
-//	}
-
-//	func tapped() {
-//		if shareButton.enabled == true {
-//			let hidden = shareButton.frame.origin == CGPointMake(20, ScreenHeight - 64)
-//			let distance: CGFloat = hidden ? -60 : 0.0
-//			UIView.animateWithDuration(0.3, animations: { () -> Void in
-//				self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, distance)
-//			})
-//		}
-//	}
-//
-//	
-//
-//	func share() {
-//		UIView.animateWithDuration(0.5) { () -> Void in
-//			self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, 60)
-//		}
-//
-//		delay(seconds: 0.5) { () -> () in
-//			self.shareContent()
-//		}
-//
-//	}
-
-//	func shareContent() {
-//		let record = segmentControl.selectedSegmentIndex == 0 ? beginnerRecords[0] : intermediateRecords[0]
-//
-//		let text: String = "我最近一次电工试题问答，10道题答对了\(record.record)道。"
-//		let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
-//
-//		guard let navi = self.navigationController as? NavigationController else { return }
-//		let image = navi.captureScreen()
-//
-//		let arr: [AnyObject] = [text, link, image]
-//
-//		let share1 = UIActivityViewController(activityItems: arr, applicationActivities: [])
-//		share1.completionWithItemsHandler = { (type:String?, complete:Bool, arr:[AnyObject]?, error:NSError?) -> Void in
-//			delay(seconds: 0.0, completion: { () -> () in
-//				UIView.animateWithDuration(0.5) { () -> Void in
-//					self.shareButton.transform = CGAffineTransformMakeTranslation(0.0, -60)
-//				}
-//			})
-//		}
-//
-//		presentViewController(share1, animated: true, completion: nil)
-//	}
 
 	func close() {
 		dismissViewControllerAnimated(true, completion: nil)
@@ -214,17 +99,9 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch tableView {
 		case tableView0:
-			if beginnerRecords.count != 0 {
-				return beginnerRecords.count
-			} else {
-				return 1
-			}
+			return beginnerRecords.count != 0 ? beginnerRecords.count : 1
 		case tableView1:
-			if intermediateRecords.count != 0 {
-				return intermediateRecords.count
-			} else {
-				return 1
-			}
+			return intermediateRecords.count != 0 ? intermediateRecords.count : 1
 		default:
 			return 1
 		}
@@ -245,17 +122,9 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
 		switch tableView {
 		case tableView0:
-			if beginnerRecords.count != 0 {
-				cell?.configureForRecordCell(beginnerRecords[indexPath.row])
-			} else {
-				cell?.showNoRecord()
-			}
+			beginnerRecords.count != 0 ? cell?.configureForRecordCell(beginnerRecords[indexPath.row]) : cell?.showNoRecord()
 		case tableView1:
-			if intermediateRecords.count != 0 {
-				cell?.configureForRecordCell(intermediateRecords[indexPath.row])
-			} else {
-				cell?.showNoRecord()
-			}
+			intermediateRecords.count != 0 ? cell?.configureForRecordCell(intermediateRecords[indexPath.row]) : cell?.showNoRecord()
 		default:
 			break
 		}
@@ -268,54 +137,21 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension RecordViewController: UIScrollViewDelegate {
 
-	func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//		if scrollView.isKindOfClass(UITableView) {
-//			let translation = scrollView.panGestureRecognizer.translationInView(scrollView.superview)
-//			if translation.y < 0 {
-//				showShareButton(false)
-//			} else {
-//				showShareButton(true)
-//			}
-//		}
-
-	}
-
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView == self.scrollView && segmentWay == false {
 			
 			if scrollView.contentOffset.x == 0 {
 				segmentControl.selectedSegmentIndex = 0
-//				checkRecordsCountForShareButton(segmentControl.selectedSegmentIndex)
 			}
 
 			if scrollView.contentOffset.x == scrollView.bounds.size.width {
 				segmentControl.selectedSegmentIndex = 1
-//				checkRecordsCountForShareButton(segmentControl.selectedSegmentIndex)
 
 			}
 
-			if scrollView.contentOffset.x == scrollView.bounds.size.width * 2 {
-				segmentControl.selectedSegmentIndex = 2
-//				checkRecordsCountForShareButton(segmentControl.selectedSegmentIndex)
-
-			}
 		}
 	}
 
 }
 
-
-extension RecordViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        
-        if let touchInSegmentControl = touch.view?.isKindOfClass(UISegmentedControl) {
-            if touchInSegmentControl {
-                return false
-            }
-        }
-        
-        return true
-    }
-}
 

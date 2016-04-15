@@ -18,6 +18,7 @@ class HudView: UIView {
 		view.addSubview(hudView)
 		view.userInteractionEnabled = false
 		hudView.showAnimated(animated)
+		
 		return hudView
 	}
 

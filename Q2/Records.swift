@@ -29,7 +29,6 @@ class Records {
 		case 0: return "\(documentDiretory())/Records.plist"
 		case 1: return "\(documentDiretory())/Records1.plist"
 		default: return "\(documentDiretory())/Records.plist"
-
 		}
 	}
 
@@ -46,15 +45,12 @@ class Records {
 		let path = dataFilePath()
 
 		if NSFileManager.defaultManager().fileExistsAtPath(path) {
-
 			if let data = NSData(contentsOfFile: path) {
 				let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
 				records = unarchiver.decodeObjectForKey("Records") as! [Record]
 				showTimes = unarchiver.decodeInt32ForKey("ShowTimes")
 				unarchiver.finishDecoding()
 			}
-
 		}
-		
 	}
 }

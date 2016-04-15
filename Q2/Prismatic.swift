@@ -11,47 +11,46 @@ import UIKit
 
 struct Primatic {
 
-	var backgroundViews = [UIView]()
-
-	var buttonPoints = [CGPoint]()
-
 	var buttons = [UIButton]()
+	var backgroundViews = [UIView]()
+	var discribeViews = [UIView]()
+
+	struct Size {
+		static let gaps = [CGFloat(sqrt(0.5)), sqrt(2)]
+		static let allGapLength = gaps[0] * 2 + gaps[1] * 3
+		static let topGap = ScreenHeight == 480 ? 20 : round(ScreenHeight * 0.071)
+		static let diagonalLength = (ScreenHeight - topGap - allGapLength - topGap) / 4
+		static let sideLength = diagonalLength / sqrt(2)
+		static let centerDistance = diagonalLength / 2
+	}
 
 	init(VC: HomepageViewController) {
 
-		getPrismaticButtons()
-		getbackgroundViews()
+		let buttonPoints = getPrismaticButtons()
+		getbackgroundViews(buttonPoints)
+		getDescribeViews(CGPoint(x: 20, y: ScreenHeight - 65))
 
 		backgroundViews.forEach({ VC.view.addSubview($0) })
 		buttons.forEach({ VC.view.addSubview($0) })
+		discribeViews.forEach({ VC.view.addSubview($0) })
 
 	}
 
 
 	// MARK: - Button
 
-	mutating func getPrismaticButtons() {
+	mutating func getPrismaticButtons() -> [CGPoint] {
 
 		// 方块之间之前垂直距离为10，gap_0 = sqrt(50)  gap_1 = sqrt(200)
 
-		let gaps = [
-			CGFloat(sqrt(0.5)),
-			sqrt(2)
-		]
-
-		let allGapLength = gaps[0] * 2 + gaps[1] * 3
-		let diagonalLength = (ScreenHeight - 20 - allGapLength - 20) / 4
-		let sideLength = diagonalLength / sqrt(2)
-		let centerDistance = diagonalLength / 2
-
 		let xPositions = [
-			ScreenCenter.x - gaps[0] - centerDistance,
+			ScreenCenter.x - Size.gaps[0] - Size.centerDistance,
 			ScreenCenter.x,
-			ScreenCenter.x + gaps[0] + centerDistance
+			ScreenCenter.x + Size.gaps[0] + Size.centerDistance
 		]
 
-		buttonPoints = getNinePoints(xPositions, gaps: gaps, centerDistance: centerDistance)
-		let squareSize = CGSize(width: sideLength, height: sideLength)
+		let buttonPoints = getNinePoints(xPositions, topY: Size.topGap, gaps: Size.gaps, centerDistance: Size.centerDistance)
+		let squareSize = CGSize(width: Size.sideLength, height: Size.sideLength)
 
 		let titles = ["答题\n记录", "初级", "中级", "欧姆\n定律", "功率", "电量", "电阻", "单位\n公式", "图标\n符号", "工具\n设备"]
 
@@ -60,11 +59,13 @@ struct Primatic {
 			button.tag = 100 + i
 			buttons.append(button)
 		}
+
+		return buttonPoints
 		
 	}
 
-	func getNinePoints(xPositions: [CGFloat], gaps: [CGFloat], centerDistance: CGFloat) -> [CGPoint] {
-		let point_0 = CGPoint(x: xPositions[1], y: 20 + gaps[0] + centerDistance)
+	func getNinePoints(xPositions: [CGFloat], topY: CGFloat, gaps: [CGFloat], centerDistance: CGFloat) -> [CGPoint] {
+		let point_0 = CGPoint(x: xPositions[1], y: topY + gaps[0] + centerDistance)
 		let point_1 = CGPoint(x: xPositions[0], y: point_0.y + gaps[0] + centerDistance)
 		let point_2 = CGPoint(x: xPositions[2], y: point_0.y + gaps[0] + centerDistance)
 
@@ -92,7 +93,6 @@ struct Primatic {
 		let titleLabel = UILabel(frame: CGRectMake(0, 0, size.width, size.height))
 		titleLabel.transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
 		button.addSubview(titleLabel)
-		print(size.width)
 
 		titleLabel.font = UIFont.systemFontOfSize(18)
 		if ScreenHeight == 480 {
@@ -103,37 +103,66 @@ struct Primatic {
 		titleLabel.textColor = UIColor.blackColor()
 		titleLabel.textAlignment = .Center
 
-
-		//		titleLabel.transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
-		//		print(titleLabel.center)
-		//		titleLabel.sizeToFit()
-		//		let xy = sqrt((size.width * size.width) / 2)
-		//		titleLabel.center = CGPoint(x: xy, y: xy)
-		
 		return button
 	}
 
-	// MARK: - Backgound View
+	// MARK: - Describe View
 
-	mutating func getbackgroundViews() {
-		let gaps = [
-			CGFloat(sqrt(0.5)),
-			sqrt(2)
-		]
+	mutating func getDescribeViews(topPoint: CGPoint)  {
 
-		let allGapLength = gaps[0] * 2 + gaps[1] * 3
-		let diagonalLength = (ScreenHeight - 20 - allGapLength - 20) / 4
+		let gaps: [CGFloat] = [0, 11]
+
+		let diagonalLength: CGFloat = 8
 		let sideLength = diagonalLength / sqrt(2)
 		let centerDistance = diagonalLength / 2
 
 		let xPositions = [
-			ScreenCenter.x - (gaps[0] + centerDistance) * 3,
-			ScreenCenter.x - (gaps[0] + centerDistance) * 2,
-			ScreenCenter.x - gaps[0] - centerDistance,
+			topPoint.x - gaps[0] - centerDistance,
+			topPoint.x,
+			topPoint.x + gaps[0] + centerDistance
+		]
+
+		let points = getNinePoints(xPositions, topY: topPoint.y, gaps: gaps, centerDistance: centerDistance)
+		let squareSize = CGSize(width: sideLength, height: sideLength)
+
+		for i in 0..<points.count {
+			let view = UIView()
+			view.frame.size = squareSize
+			view.backgroundColor = UIColor.whiteColor()
+			view.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+			view.center = points[i]
+			discribeViews.append(view)
+		}
+
+		let descriptions = ["考试题目", "计算工具", "常用知识"]
+		let topLabelPoint = CGPoint(x: topPoint.x + 35, y: topPoint.y + 8)
+		var i = 0
+		repeat {
+			let label = UILabel()
+			label.text = descriptions[i]
+			label.font = UIFont.systemFontOfSize(11)
+			label.textColor = UIColor.whiteColor()
+			label.sizeToFit()
+			label.center = CGPoint(x: topLabelPoint.x, y: topLabelPoint.y + 19.5 * CGFloat(i))
+			discribeViews.append(label)
+
+			i += 1
+		} while i < descriptions.count
+
+	}
+
+	// MARK: - Backgound View
+
+	mutating func getbackgroundViews(buttonPoints: [CGPoint]) {
+
+		let xPositions = [
+			ScreenCenter.x - (Size.gaps[0] + Size.centerDistance) * 3,
+			ScreenCenter.x - (Size.gaps[0] + Size.centerDistance) * 2,
+			ScreenCenter.x - Size.gaps[0] - Size.centerDistance,
 			ScreenCenter.x,
-			ScreenCenter.x + gaps[0] + centerDistance,
-			ScreenCenter.x + (gaps[0] + centerDistance) * 2,
-			ScreenCenter.x + (gaps[0] + centerDistance) * 3
+			ScreenCenter.x + Size.gaps[0] + Size.centerDistance,
+			ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 2,
+			ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 3
 		]
 
 		var i = 0
@@ -141,7 +170,7 @@ struct Primatic {
 			var points = verticalSixPoints(xPositions[i])
 			if i % 2 == 0 {
 				for k in 0..<points.count {
-					points[k].y += gaps[0] + centerDistance
+					points[k].y += Size.gaps[0] + Size.centerDistance
 				}
 
 			}
@@ -149,7 +178,7 @@ struct Primatic {
 			repeat {
 				if !buttonPoints.contains(points[j]) {
 					let view = UIView()
-					view.frame.size = CGSize(width: sideLength, height: sideLength)
+					view.frame.size = CGSize(width: Size.sideLength, height: Size.sideLength)
 					view.center = points[j]
 					view.backgroundColor = UIColor.themeRed()
 					view.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
@@ -164,20 +193,13 @@ struct Primatic {
 
 	func verticalSixPoints(xPositon: CGFloat) -> [CGPoint] {
 		var sixPoints = [CGPoint]()
-		let gaps = [
-			CGFloat(sqrt(0.5)),
-			sqrt(2)
-		]
 
-		let allGapLength = gaps[0] * 2 + gaps[1] * 3
-		let diagonalLength = (ScreenHeight - 20 - allGapLength - 20) / 4
-
-		let topPoint = CGPoint(x: xPositon, y: ScreenCenter.y - (diagonalLength + gaps[1]) * 2.5)
+		let topPoint = CGPoint(x: xPositon, y: ScreenCenter.y - (Size.diagonalLength + Size.gaps[1]) * 2.5)
 		sixPoints.append(topPoint)
 
 		var i: CGFloat = 1
 		repeat {
-			let point = CGPoint(x: xPositon, y: topPoint.y + (diagonalLength + gaps[1]) * i)
+			let point = CGPoint(x: xPositon, y: topPoint.y + (Size.diagonalLength + Size.gaps[1]) * i)
 			sixPoints.append(point)
 
 			i += 1
@@ -192,6 +214,7 @@ struct Primatic {
 		let color = UIColor(red: 254/255, green: 51/255, blue: 42/255, alpha: alpha)
 		return color
 	}
+
 
 
 

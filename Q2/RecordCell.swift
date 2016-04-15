@@ -17,7 +17,6 @@ class RecordCell: UITableViewCell {
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
-
 		contentView.backgroundColor = UIColor.backgroundColor()
 
 		colorView.frame = CGRect.zero
@@ -50,6 +49,5 @@ class RecordCell: UITableViewCell {
 		dateLabel.textColor = UIColor.grayColor()
 		dateLabel.text = "你还没有答题记录。"
 	}
-
 
 }

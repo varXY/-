@@ -12,8 +12,7 @@ import AVFoundation
 
 class HomepageViewController: UIViewController {
 
-	var generator = Generator()
-
+	var prismatic: Primatic!
 	var bigButtons = [UIButton]()
 	var infoButton = UIButton()
 
@@ -23,16 +22,14 @@ class HomepageViewController: UIViewController {
 	var sound: Bool!
 	var vibration: Bool!
 
-	var prismatic: Primatic!
-
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.view.backgroundColor = UIColor.lightRedColor()
-		self.title = " "
+		view.backgroundColor = UIColor.lightRedColor()
+		title = " "
 
 		prismatic = Primatic(VC: self)
 		bigButtons = prismatic.buttons
@@ -43,32 +40,13 @@ class HomepageViewController: UIViewController {
 			$0.addTarget(self, action: #selector(touchUpInside(_:)), forControlEvents: .TouchUpInside)
 		})
 
-        
-        let descriptions = ["考试题目", "换算工具", "常用知识"]
-        for i in 0..<3 {
-            let point = CGPoint(x: 35, y: 30 + 20 * CGFloat(i))
-            let label = UILabel(frame: CGRect(origin: point, size: CGSizeMake(100, 20)))
-            label.text = descriptions[i]
-            label.font = UIFont.boldSystemFontOfSize(12)
-            label.textColor = UIColor.whiteColor()
-            label.sizeToFit()
-            self.view.addSubview(label)
-        }
-
-		let topPoint = CGPoint(x: 20, y: 30)
-		let describeButtons = generator.describeButtons(topPoint)
-		for i in 0..<describeButtons.count {
-			self.view.addSubview(describeButtons[i])
-			describeButtons[i].transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-		}
-
         infoButton = UIButton(type: .System)
         infoButton.setImage(UIImage(named: "电工试题"), forState: .Normal)
         infoButton.tintColor = UIColor.whiteColor()
-        infoButton.frame = CGRectMake(self.view.frame.width - 60, self.view.frame.height - 60, 30, 30)
+        infoButton.frame = CGRectMake(self.view.frame.width - 50, self.view.frame.height - 50, 30, 30)
         infoButton.addTarget(self, action: #selector(infoButtonTapped), forControlEvents: .TouchUpInside)
         infoButton.exclusiveTouch = true
-        self.view.addSubview(infoButton)
+        view.addSubview(infoButton)
 
 	}
 
@@ -76,15 +54,15 @@ class HomepageViewController: UIViewController {
 		super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
 
-		infoButton.userInteractionEnabled = true
-        infoButton.genAnimation(.Bigger, delayTime: 0.5, distance: 0.0)
-
 		bigButtons.forEach { (button) in
 			button.userInteractionEnabled = true
 			guard let titleLabel = button.subviews[0] as? UILabel else { return }
 			titleLabel.textColor = UIColor.blackColor()
 			button.genAnimation(.Bigger, delayTime: 0.0, distance: 0.0)
 		}
+
+		infoButton.userInteractionEnabled = true
+		infoButton.genAnimation(.Bigger, delayTime: 0.5, distance: 0.0)
 
 	}
 
@@ -151,13 +129,11 @@ class HomepageViewController: UIViewController {
 			questionVC.hidesBottomBarWhenPushed = true
 			navigationController?.pushViewController(questionVC, animated: true)
 
-
 		case 3, 4, 5, 6:
 			let equationVC = EquationViewController()
 			equationVC.index = index - 3
 			equationVC.hidesBottomBarWhenPushed = true
 			navigationController?.pushViewController(equationVC, animated: true)
-
 
 		case 7, 8, 9:
 			let contentVC = ContentViewController()

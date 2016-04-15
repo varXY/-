@@ -13,7 +13,7 @@ import AVFoundation
 
 class QuestionViewController: UIViewController {
 
-	var generator = Generator()
+	var viewGenerator = ViewGenerator()
 
 	var type = 0
 	var questions = [Question]()
@@ -40,17 +40,16 @@ class QuestionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.title = "1/10"
-		self.view.backgroundColor = UIColor.whiteColor()
-		self.fd_interactivePopDisabled = true
+		title = "1/10"
+		view.backgroundColor = UIColor.whiteColor()
+		fd_interactivePopDisabled = true
 
-		let question = Question()
-		questions = question.getQestions(10, type: type)
+		questions = Question().getQestions(10, type: type)
 
 		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(confirmToQuit))
 		quitButton.tintColor = UIColor.whiteColor()
-		self.navigationItem.rightBarButtonItem = quitButton
-		self.navigationItem.setHidesBackButton(true, animated: true)
+		navigationItem.rightBarButtonItem = quitButton
+		navigationItem.setHidesBackButton(true, animated: true)
 
 		scrollView.frame = view.bounds
 		scrollView.backgroundColor = UIColor.backgroundColor()
@@ -59,12 +58,12 @@ class QuestionViewController: UIViewController {
 		scrollView.contentSize = CGSize(width: self.view.bounds.width * 10, height: self.view.bounds.height)
 		view.addSubview(scrollView)
 
-		dotView = generator.genDots()
+		dotView = viewGenerator.genDots()
 		let firstDot = dotView.subviews[0]
 		firstDot.backgroundColor = UIColor.lightGrayColor()
 		view.addSubview(dotView)
 
-		generator.genQA(scrollView, page: 0, questions: questions)
+		viewGenerator.genQA(scrollView, page: 0, questions: questions)
 		addActionToButtons(0, page: 0)
 
 		prepareAudios()
@@ -160,16 +159,15 @@ class QuestionViewController: UIViewController {
 	}
 
 	func genJumpButton() {
-		delay(seconds: 0.5, completion: { () -> () in
-			self.generator.genJumpButtonForQA(self.scrollView, page: self.currentPage - 1)
+		delay(seconds: 0.5, completion: {
+			self.viewGenerator.genJumpButtonForQA(self.scrollView, page: self.currentPage - 1)
 			self.addActionToButtons(1, page: self.currentPage - 1)
 		})
 	}
 
 
 	func testIsOver() {
-		let date = NSDate()
-		record?(rightCount: rightCount, date: date)
+		record?(rightCount: rightCount, date: NSDate())
 
 		delay(seconds: 2.0, completion: { () -> () in
 			UIView.animateWithDuration(0.8, animations: { () -> Void in
@@ -181,7 +179,7 @@ class QuestionViewController: UIViewController {
 		})
 
 		delay(seconds: 3.0, completion: { () -> () in
-			let finalView = self.generator.showTestFinalPage(self.rightCount)
+			let finalView = self.viewGenerator.showTestFinalPage(self.rightCount)
 			finalView.tag = 9999999
 			self.view.addSubview(finalView)
 
@@ -201,10 +199,10 @@ class QuestionViewController: UIViewController {
 	}
 
 	func showRightOrWrongView(rightOrWrong: String) {
-		let view = generator.genRightOrWrongViewForQA(rightOrWrong, page: currentPage)
+		let view = viewGenerator.genRightOrWrongViewForQA(rightOrWrong, page: currentPage)
 		scrollView.addSubview(view)
 
-		delay(seconds: 1.0) { () -> () in
+		delay(seconds: 1.0) {
 			view.alpha = 0.0
 			view.transform = CGAffineTransformMakeScale(0.7, 0.7)
 			view.frame.origin.y += 30
@@ -213,20 +211,13 @@ class QuestionViewController: UIViewController {
 
 		if currentPage != 9 {
 
-			delay(seconds: 2.0) { () -> () in
-
+			delay(seconds: 2.0) {
 				UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 10.0, options: [], animations: { () -> Void in
 					view.backgroundColor = UIColor(patternImage: UIImage(named: "下一题")!)
 					view.alpha = 1.0
 					view.frame.origin.y -= 30
-
-					view.layer.masksToBounds = false
-					view.layer.shadowColor = UIColor.lightGrayColor().CGColor
-					view.layer.shadowOpacity = 0.5
-					view.layer.shadowRadius = 10
-					view.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+					self.viewGenerator.addShadowForView(view)
 					}, completion: nil)
-				
 			}
 
 		}
@@ -259,7 +250,7 @@ class QuestionViewController: UIViewController {
 
 	func jump() {
 		fakeButton.alpha = 0.5
-		generator.genQA(scrollView, page: currentPage, questions: questions)
+		viewGenerator.genQA(scrollView, page: currentPage, questions: questions)
 		addActionToButtons(0, page: currentPage)
 		jumpToPage(currentPage)
 
@@ -267,7 +258,7 @@ class QuestionViewController: UIViewController {
 			dot.backgroundColor = UIColor.lightGrayColor()
 		}
 
-		self.title = "\(currentPage + 1)/10"
+		title = "\(currentPage + 1)/10"
 
 	}
 
@@ -297,9 +288,9 @@ class QuestionViewController: UIViewController {
 			let alert = UIAlertController(title: "提示", message: "答题还没完成，确定退出吗？", preferredStyle: .Alert)
 
 			let action = UIAlertAction(title: "确定", style: .Default, handler: ({ _ in self.quit() }))
-			alert.addAction(action)
-
 			let action1 = UIAlertAction(title: "取消", style: .Default, handler: nil)
+
+			alert.addAction(action)
 			alert.addAction(action1)
 
 			presentViewController(alert, animated: true, completion: nil)
@@ -312,7 +303,7 @@ class QuestionViewController: UIViewController {
 
 	func seeAnsweredQA(sender: UIButton) {
 
-		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.225, options: [], animations: { () -> Void in
+		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: {
 			sender.backgroundColor = UIColor.backgroundColor()
 			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
 			if let label = sender.subviews[0] as? UILabel {
@@ -322,8 +313,8 @@ class QuestionViewController: UIViewController {
 			}, completion: nil)
 
 		let answeredQAVC = AnsweredQAViewController()
-		answeredQAVC.questions = self.questions
-		answeredQAVC.rightOrWrong = self.rightOrWrong
+		answeredQAVC.questions = questions
+		answeredQAVC.rightOrWrong = rightOrWrong
 
 		let answeredQANavi = NavigationController(viewController: answeredQAVC)
 
@@ -335,13 +326,13 @@ class QuestionViewController: UIViewController {
 
 	func animatedAndQuit(sender: UIButton) {
 
-		UIView.animateWithDuration(0.3) { () -> Void in
+		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: {
 			sender.backgroundColor = UIColor.backgroundColor()
 			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
 			if let label = sender.subviews[0] as? UILabel {
 				label.textColor = UIColor.grayColor()
 			}
-		}
+		}, completion: nil)
 
 		delay(seconds: 0.2) { () -> () in
 			self.quit()

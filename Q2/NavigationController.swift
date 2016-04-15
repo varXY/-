@@ -18,12 +18,12 @@ class NavigationController: UINavigationController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.navigationBar.barTintColor = UIColor.themeRed()
-		self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-		self.navigationBar.tintColor = UIColor.whiteColor()
-		self.navigationBar.translucent = false
+		navigationBar.barTintColor = UIColor.themeRed()
+		navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+		navigationBar.tintColor = UIColor.whiteColor()
+		navigationBar.translucent = false
         
-        self.delegate = self
+		delegate = self
         
 	}
 
@@ -36,7 +36,7 @@ class NavigationController: UINavigationController {
 		let screen = UIApplication.sharedApplication().windows[0]
 
 		UIGraphicsBeginImageContextWithOptions(screen.frame.size, false, 0)
-		self.view.drawViewHierarchyInRect(screen.bounds, afterScreenUpdates: true)
+		view.drawViewHierarchyInRect(screen.bounds, afterScreenUpdates: true)
 		let image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 

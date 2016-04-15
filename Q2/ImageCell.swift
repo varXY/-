@@ -15,7 +15,6 @@ class ImageCell: UITableViewCell {
 
 	func configureForImageCell(knowledge: Knowledge) {
 		iconView.image = knowledge.Image
-
 		meanLabel.textColor = UIColor.grayColor()
 		meanLabel.text = knowledge.title
 	}

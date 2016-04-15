@@ -23,11 +23,6 @@ class DescribeCell: UITableViewCell {
 		selectedBackgroundView!.backgroundColor = UIColor.lightRedColor()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-
 	func configureForDescribeCell(knowledge: Knowledge) {
 		titleLabel.text = knowledge.title
 		detailLabel.text = knowledge.subtitle
