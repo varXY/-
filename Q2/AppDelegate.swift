@@ -22,10 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		intermediateRecords.saveRecords()
 	}
 
-//	func customizeAppearance() {
-//		let tintColor = UIColor.themeRed()
-//		UITabBar.appearance().tintColor = tintColor
-//	}
 
 	// MARK: Shortcut
 
