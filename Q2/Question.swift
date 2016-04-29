@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Question {
+struct Question {
 
 	var question: String = ""
 	var rightAnswer: String = ""
@@ -16,7 +16,7 @@ class Question {
 
 	
 	func getBeginnerQuestion(number: Int) -> Question? {
-		let question = Question()
+		var question = Question()
 
 		switch number {
 		case 0:
@@ -1537,7 +1537,7 @@ class Question {
 	}
 
 	func getIntermediateQuestions(number: Int) -> Question? {
-		let question = Question()
+		var question = Question()
 
 		switch number {
 		case 0:

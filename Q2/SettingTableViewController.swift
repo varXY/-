@@ -19,7 +19,7 @@ struct SettingDefault {
 
 class SettingTableViewController: UITableViewController {
 
-	let titles = ["声音", "振动", "评分留言", "分享", "支持开发者"]
+	let titles = [["声音", "振动"], ["评分留言", "分享"], ["支持开发者"]]
 	var switchControl_S: UISwitch!
 	var switchControl_V: UISwitch!
 	let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -68,7 +68,7 @@ class SettingTableViewController: UITableViewController {
 
 	func shareContent() {
 		let text: String = "App Store: 电工助手"
-		let link = NSURL(string: "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8")!
+		let link = NSURL(string: appStoreURLString)!
 		let image = UIImage(named: "Screen Shot")!
 
 		let arr: [AnyObject] = [text, link, image]
@@ -183,12 +183,7 @@ class SettingTableViewController: UITableViewController {
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		switch section {
-		case 0: return 2
-		case 1: return 2
-		case 2: return 1
-		default: return 0
-		}
+		return titles[section].count
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -197,15 +192,13 @@ class SettingTableViewController: UITableViewController {
 		bgView.backgroundColor = UIColor.lightRedColor()
 		bgView.layer.masksToBounds = true
 		cell.selectedBackgroundView = bgView
+		cell.textLabel!.text = titles[indexPath.section][indexPath.row]
 
 		switch indexPath.section {
 		case 0:
-			cell.textLabel?.text = titles[indexPath.row]
 			let switchControl = indexPath.row == 0 ? switchControl_S : switchControl_V
 			cell.addSubview(switchControl)
 		default:
-			let forepart = indexPath.section == 1 ? 2 : 4
-			cell.textLabel?.text = titles[indexPath.row + forepart]
 			cell.textLabel?.textAlignment = .Center
 			cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
 		}
@@ -225,7 +218,7 @@ class SettingTableViewController: UITableViewController {
 
 		case 1:
 			switch indexPath.row {
-			case 0: UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8")!)
+			case 0: UIApplication.sharedApplication().openURL(NSURL(string: commentURLString)!)
 			case 1: shareContent()
 			default: break
 			}

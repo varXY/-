@@ -16,10 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var beginnerRecords = Records(type: 0)
 	var intermediateRecords = Records(type: 1)
+	var advancedRecords = Records(type: 2)
 
 	func saveRecord() {
 		beginnerRecords.saveRecords()
 		intermediateRecords.saveRecords()
+		advancedRecords.saveRecords()
 	}
 
 
@@ -114,10 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window?.rootViewController = testInfoNavi
 		window?.makeKeyAndVisible()
 
-//		customizeAppearance()
-
 		try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-
 
 		return shouldPerformAdditionalDelegateHandling
 	}

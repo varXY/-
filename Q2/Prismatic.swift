@@ -52,7 +52,7 @@ struct Primatic {
 		let buttonPoints = getNinePoints(xPositions, topY: Size.topGap, gaps: Size.gaps, centerDistance: Size.centerDistance)
 		let squareSize = CGSize(width: Size.sideLength, height: Size.sideLength)
 
-		let titles = ["答题\n记录", "初级", "中级", "欧姆\n定律", "功率", "电量", "电阻", "单位\n公式", "图标\n符号", "工具\n设备"]
+		let titles = ["高级\n试题", "初级", "中级", "欧姆\n定律", "功率", "电量", "电阻", "单位\n公式", "图标\n符号", "工具\n设备"]
 
 		for i in 0..<buttonPoints.count {
 			let button = prismaticButton(titles[i], center: buttonPoints[i], size: squareSize)

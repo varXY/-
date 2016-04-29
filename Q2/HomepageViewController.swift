@@ -18,6 +18,7 @@ class HomepageViewController: UIViewController {
 
 	var beginnerRecords = Records(type: 0)
 	var intermediateRecords = Records(type: 1)
+	var advancedRecords = Records(type: 2)
 
 	var sound: Bool!
 	var vibration: Bool!
@@ -102,28 +103,52 @@ class HomepageViewController: UIViewController {
 
 	func gotoVCBaseOnIndex(index: Int) {
 		switch index {
-		case 0:
-			let recordVC = RecordViewController()
-			recordVC.beginnerRecords = self.beginnerRecords.records
-			recordVC.intermediateRecords = self.intermediateRecords.records
-			let detailNavi = NavigationController(viewController: recordVC)
-			presentViewController(detailNavi, animated: true, completion: nil)
+//		case 0:
+//			setSoundAndVibration()
+//
+//			let type = 2
+//			let questionVC = QuestionViewController()
+//			questionVC.type = type
+//			questionVC.sound = sound
+//			questionVC.vibration = vibration
+//			questionVC.record = { [weak self] rightCount, date in
+//				let record = Record(record: rightCount, date: date)
+//				switch type {
+//				case 0: self!.beginnerRecords.records.insert(record, atIndex: 0)
+//				case 1: self!.intermediateRecords.records.insert(record, atIndex: 0)
+//				default: break
+//				}
+//			}
+//
+//			questionVC.hidesBottomBarWhenPushed = true
+//			navigationController?.pushViewController(questionVC, animated: true)
 
-		case 1, 2:
+//			let recordVC = RecordViewController()
+//			recordVC.beginnerRecords = self.beginnerRecords.records
+//			recordVC.intermediateRecords = self.intermediateRecords.records
+//			let detailNavi = NavigationController(viewController: recordVC)
+//			presentViewController(detailNavi, animated: true, completion: nil)
+
+		case 0, 1, 2:
 			setSoundAndVibration()
 
-			let type = index - 1
+			let type = index == 0 ? 2 : index - 1
 			let questionVC = QuestionViewController()
 			questionVC.type = type
 			questionVC.sound = sound
 			questionVC.vibration = vibration
 			questionVC.record = { [weak self] rightCount, date in
 				let record = Record(record: rightCount, date: date)
-				if type == 0 {
-					self!.beginnerRecords.records.insert(record, atIndex: 0)
-				} else {
-					self!.intermediateRecords.records.insert(record, atIndex: 0)
+				switch type {
+				case 0: self!.beginnerRecords.records.insert(record, atIndex: 0)
+				case 1: self!.intermediateRecords.records.insert(record, atIndex: 0)
+				case 2: self!.advancedRecords.records.insert(record, atIndex: 0)
+				default: break
 				}
+
+				questionVC.beginnerRecords = self!.beginnerRecords
+				questionVC.intermediateRecords = self!.intermediateRecords
+				questionVC.advancedRecords = self!.advancedRecords
 			}
 
 			questionVC.hidesBottomBarWhenPushed = true

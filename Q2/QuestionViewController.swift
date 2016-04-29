@@ -33,6 +33,10 @@ class QuestionViewController: UIViewController {
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
+	var beginnerRecords = Records(type: 0)
+	var intermediateRecords = Records(type: 1)
+	var advancedRecords = Records(type: 2)
+
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
 	}
@@ -326,17 +330,24 @@ class QuestionViewController: UIViewController {
 
 	func animatedAndQuit(sender: UIButton) {
 
-		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: {
-			sender.backgroundColor = UIColor.backgroundColor()
-			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
-			if let label = sender.subviews[0] as? UILabel {
-				label.textColor = UIColor.grayColor()
-			}
-		}, completion: nil)
+		let recordVC = RecordViewController()
+		recordVC.beginnerRecords = self.advancedRecords.records
+		recordVC.intermediateRecords = self.intermediateRecords.records
+		let detailNavi = NavigationController(viewController: recordVC)
+		presentViewController(detailNavi, animated: true, completion: nil)
 
-		delay(seconds: 0.2) { () -> () in
-			self.quit()
-		}
+
+//		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: {
+//			sender.backgroundColor = UIColor.backgroundColor()
+//			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
+//			if let label = sender.subviews[0] as? UILabel {
+//				label.textColor = UIColor.grayColor()
+//			}
+//		}, completion: nil)
+//
+//		delay(seconds: 0.2) { () -> () in
+//			self.quit()
+//		}
 	}
 
 

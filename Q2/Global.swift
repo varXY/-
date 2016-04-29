@@ -20,6 +20,9 @@ let StatusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
 let CellHeight = ScreenHeight / 12
 let globalRadius: CGFloat = 8
 
+let appStoreURLString = "https://itunes.apple.com/cn/app/dian-gong-zhu-shou/id1044537172?l=en&mt=8"
+let commentURLString = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1044537172&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
+
 // 日期和数字格式转换
 let dateFormatter: NSDateFormatter = {
 	let formatter = NSDateFormatter()

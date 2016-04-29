@@ -28,7 +28,8 @@ class Records {
 		switch type {
 		case 0: return "\(documentDiretory())/Records.plist"
 		case 1: return "\(documentDiretory())/Records1.plist"
-		default: return "\(documentDiretory())/Records.plist"
+		case 2: return "\(documentDiretory())/Records2.plist"
+		default: return "\(documentDiretory())/Error.plist"
 		}
 	}
 

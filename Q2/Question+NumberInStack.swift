@@ -12,37 +12,38 @@ import Foundation
 extension Question {
     
     func getQestions(numberOfQuestions: Int, type: Int) -> [Question] {
+		var lastTimeNumbers = [Int]()
         var questionMarks = [Int]()
         var questions = [Question]()
-        
+
+		lastTimeNumbers = testedNumbersInStack(type)
+		
         switch type {
         case 0:
-            let lastTimeNumbers = testedNumbersInStack(0)
             questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301, without: lastTimeNumbers)
-            saveNumbersIntoStack(0, numbers: questionMarks)
-            for i in questionMarks {
-                if let _ = lastTimeNumbers.indexOf(i) {
-                    fatalError("get same question within 3 times")
-                }
-            }
-            for i in questionMarks { questions.append(getBeginnerQuestion(i)!) }
-            
+            saveNumbersIntoStack(type, numbers: questionMarks)
+			questionMarks.forEach({
+				!lastTimeNumbers.contains($0) ? questions.append(getBeginnerQuestion($0)!) : print("get same question within 3 times")
+			})
+
         case 1:
-            let lastTimeNumbers = testedNumbersInStack(1)
             questionMarks = getRandomNumbers(numberOfQuestions, uiform: 233, without: lastTimeNumbers)
-            saveNumbersIntoStack(1, numbers: questionMarks)
-            for i in questionMarks {
-                if let _ = lastTimeNumbers.indexOf(i) {
-                    fatalError("get same question within 3 times")
-                }
-            }
-            for i in questionMarks { questions.append(getIntermediateQuestions(i)!) }
-            
+            saveNumbersIntoStack(type, numbers: questionMarks)
+			questionMarks.forEach({
+				!lastTimeNumbers.contains($0) ? questions.append(getIntermediateQuestions($0)!) : print("get same question within 3 times")
+			})
+		case 2:
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 238, without: lastTimeNumbers)
+			saveNumbersIntoStack(type, numbers: questionMarks)
+			questionMarks.forEach({
+				!lastTimeNumbers.contains($0) ? questions.append(getAdvancedQuestion($0)!) : print("get same question within 3 times")
+			})
+
         default:
             break
             
         }
-        
+
         return questions
     }
     
@@ -51,18 +52,9 @@ extension Question {
         
         repeat {
             let number = Int(arc4random_uniform(uiform))
-            
-            if let sameAtIndex = result.indexOf(number) {
-                result.removeAtIndex(sameAtIndex)
-            }
-            
             result.append(number)
-            
-            for tested in without {
-                if let index = result.indexOf(tested) {
-                    result.removeAtIndex(index)
-                }
-            }
+            result = uniq(result)
+			result = result.filter({ !without.contains($0) })
             
         } while result.count < amount
         
@@ -82,6 +74,10 @@ extension Question {
             let tested_1_0 = userDefaults.objectForKey("Tested_1_0") as? [Int] ?? [-1]
             userDefaults.setObject(tested_1_0, forKey: "Tested_1_1")
             userDefaults.setObject(numbers, forKey: "Tested_1_0")
+		case 2:
+			let tested_1_0 = userDefaults.objectForKey("Tested_2_0") as? [Int] ?? [-1]
+			userDefaults.setObject(tested_1_0, forKey: "Tested_2_1")
+			userDefaults.setObject(numbers, forKey: "Tested_2_0")
         default:
             break
         }
@@ -92,15 +88,28 @@ extension Question {
     func testedNumbersInStack(type: Int) -> [Int] {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         var numbers = [Int]()
-        
-        if type == 0 {
-            numbers = userDefaults.objectForKey("Tested_0_0") as? [Int] ?? [-1]
-            numbers += userDefaults.objectForKey("Tested_0_1") as? [Int] ?? [-1]
-        } else {
-            numbers = userDefaults.objectForKey("Tested_1_0") as? [Int] ?? [-1]
-            numbers += userDefaults.objectForKey("Tested_1_1") as? [Int] ?? [-1]
-        }
-        
+
+		switch type {
+		case 0:
+			numbers = userDefaults.objectForKey("Tested_0_0") as? [Int] ?? [-1]
+			numbers += userDefaults.objectForKey("Tested_0_1") as? [Int] ?? [-1]
+		case 1:
+			numbers = userDefaults.objectForKey("Tested_1_0") as? [Int] ?? [-1]
+			numbers += userDefaults.objectForKey("Tested_1_1") as? [Int] ?? [-1]
+		case 2:
+			numbers = userDefaults.objectForKey("Tested_2_0") as? [Int] ?? [-1]
+			numbers += userDefaults.objectForKey("Tested_2_1") as? [Int] ?? [-1]
+		default:
+			break
+		}
+//        if type == 0 {
+//            numbers = userDefaults.objectForKey("Tested_0_0") as? [Int] ?? [-1]
+//            numbers += userDefaults.objectForKey("Tested_0_1") as? [Int] ?? [-1]
+//        } else {
+//            numbers = userDefaults.objectForKey("Tested_1_0") as? [Int] ?? [-1]
+//            numbers += userDefaults.objectForKey("Tested_1_1") as? [Int] ?? [-1]
+//        }
+//        
         return numbers
     }
 }
