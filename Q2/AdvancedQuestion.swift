@@ -1204,6 +1204,71 @@ extension Question {
 			question.rightAnswer = "变频"
 			question.wrongAnswer = "限幅"
 			return question
+		case 238:
+			question.question = "共发射极偏置电路中，在直流通路中计算静态工作点的方法称为："
+			question.rightAnswer = "图形分析法"
+			question.wrongAnswer = "近似估算法"
+			return question
+		case 239:
+			question.question = "根据电磁感应定律e＝－N（⊿Φ/⊿t）求出的感应电动势，是在⊿t这段时间内的"
+			question.rightAnswer = "平均值"
+			question.wrongAnswer = "瞬时值"
+			return question
+		case 240:
+			question.question = "使用SB-10型普通示波器观察信号波形时，欲使显示波形稳定，可以调节："
+			question.rightAnswer = "辅助聚焦"
+			question.wrongAnswer = "辉度"
+			return question
+		case 241:
+			question.question = "集成运算放大器的开环差模电压放大倍数高，说明："
+			question.rightAnswer = "运算精度高"
+			question.wrongAnswer = "共模抑制能力强"
+			return question
+		case 242:
+			question.question = "或非门的逻辑功能为："
+			question.rightAnswer = "入1出0，全0出1"
+			question.wrongAnswer = "入1出1，全0出0 "
+			return question
+		case 243:
+			question.question = "TTL与非门输入端全部接高电平时，输出为："
+			question.rightAnswer = "低电平"
+			question.wrongAnswer = "高电平"
+			return question
+		case 244:
+			question.question = "一异步三位二进制加法计数器，当第4个CP脉冲过后，计数器状态变为："
+			question.rightAnswer = "100"
+			question.wrongAnswer = "010"
+			return question
+		case 245:
+			question.question = "一异步三位二进制加法计数器，当第8个CP脉冲过后，计数器状态变为："
+			question.rightAnswer = "000"
+			question.wrongAnswer = "100"
+			return question
+		case 246:
+			question.question = "如果需要寄存两位二进制数码，需用几个触发器？"
+			question.rightAnswer = "2个"
+			question.wrongAnswer = "4个"
+			return question
+		case 247:
+			question.question = "寄存器主要由什么组成？"
+			question.rightAnswer = "触发器和门电路"
+			question.wrongAnswer = "多谐振荡器"
+			return question
+		case 248:
+			question.question = "最常用的显示器件是："
+			question.rightAnswer = "七段数码显示器"
+			question.wrongAnswer = "九段数码显示器"
+			return question
+		case 249:
+			question.question = "逆变电路输出频率较高时，电路中的开关元件应采用："
+			question.rightAnswer = "电力场效应管"
+			question.wrongAnswer = "可关断晶闸管"
+			return question
+		case 250:
+			question.question = "在斩波器中，采用电力场效应管可以："
+			question.rightAnswer = "提高斩波频率"
+			question.wrongAnswer = "降低斩波频率"
+			return question
 		default:
 			break
 		}

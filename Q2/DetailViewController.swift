@@ -32,6 +32,7 @@ class DetailViewController: UIViewController {
 		textView.contentSize = CGSize(width: label.frame.width, height: label.frame.height)
 		textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 10, right: 5)
 		textView.text = knowledege.textBody
+		textView.tintColor = UIColor.themeRed()
 		textView.font = UIFont.systemFontOfSize(18)
 		textView.editable = false
 		textView.contentOffset = CGPoint(x: 0.0, y: 0.0)

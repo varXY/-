@@ -25,7 +25,6 @@ struct Primatic {
 	}
 
 	init(VC: HomepageViewController) {
-
 		let buttonPoints = getPrismaticButtons()
 		getbackgroundViews(buttonPoints)
 		getDescribeViews(CGPoint(x: 20, y: ScreenHeight - 65))
@@ -33,7 +32,6 @@ struct Primatic {
 		backgroundViews.forEach({ VC.view.addSubview($0) })
 		buttons.forEach({ VC.view.addSubview($0) })
 		discribeViews.forEach({ VC.view.addSubview($0) })
-
 	}
 
 
@@ -94,60 +92,49 @@ struct Primatic {
 		titleLabel.transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
 		button.addSubview(titleLabel)
 
-		titleLabel.font = UIFont.systemFontOfSize(18)
-		if ScreenHeight == 480 {
-			titleLabel.font = UIFont.systemFontOfSize(13)
-		}
+		titleLabel.font = ScreenHeight == 480 ? UIFont.systemFontOfSize(13) : UIFont.systemFontOfSize(18)
 		titleLabel.text = title
 		titleLabel.numberOfLines = 0
 		titleLabel.textColor = UIColor.blackColor()
 		titleLabel.textAlignment = .Center
-
 		return button
 	}
 
 	// MARK: - Describe View
 
 	mutating func getDescribeViews(topPoint: CGPoint)  {
-
 		let gaps: [CGFloat] = [0, 11]
-
 		let diagonalLength: CGFloat = 8
 		let sideLength = diagonalLength / sqrt(2)
 		let centerDistance = diagonalLength / 2
-
 		let xPositions = [
 			topPoint.x - gaps[0] - centerDistance,
 			topPoint.x,
 			topPoint.x + gaps[0] + centerDistance
 		]
 
-		let points = getNinePoints(xPositions, topY: topPoint.y, gaps: gaps, centerDistance: centerDistance)
 		let squareSize = CGSize(width: sideLength, height: sideLength)
-
-		for i in 0..<points.count {
+		let points = getNinePoints(xPositions, topY: topPoint.y, gaps: gaps, centerDistance: centerDistance)
+		points.forEach({
 			let view = UIView()
 			view.frame.size = squareSize
 			view.backgroundColor = UIColor.whiteColor()
 			view.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
-			view.center = points[i]
+			view.center = $0
 			discribeViews.append(view)
-		}
+		})
 
-		let descriptions = ["考试题目", "计算工具", "常用知识"]
 		let topLabelPoint = CGPoint(x: topPoint.x + 35, y: topPoint.y + 8)
-		var i = 0
-		repeat {
+		let descriptions = ["考试题目", "计算工具", "常用知识"]
+		descriptions.forEach({
 			let label = UILabel()
-			label.text = descriptions[i]
+			label.text = $0
 			label.font = UIFont.systemFontOfSize(11)
 			label.textColor = UIColor.whiteColor()
 			label.sizeToFit()
-			label.center = CGPoint(x: topLabelPoint.x, y: topLabelPoint.y + 19.5 * CGFloat(i))
+			label.center = CGPoint(x: topLabelPoint.x, y: topLabelPoint.y + 19.5 * CGFloat(descriptions.indexOf($0)!))
 			discribeViews.append(label)
-
-			i += 1
-		} while i < descriptions.count
+		})
 
 	}
 
@@ -172,8 +159,8 @@ struct Primatic {
 				for k in 0..<points.count {
 					points[k].y += Size.gaps[0] + Size.centerDistance
 				}
-
 			}
+
 			var j = 0
 			repeat {
 				if !buttonPoints.contains(points[j]) {
@@ -210,14 +197,13 @@ struct Primatic {
 
 	func randomRedColor() -> UIColor {
 		let alpha: CGFloat = CGFloat(random() % 10) * 0.1
-		print(alpha)
 		let color = UIColor(red: 254/255, green: 51/255, blue: 42/255, alpha: alpha)
 		return color
 	}
 
 
-
-
-
-
 }
+
+
+
+

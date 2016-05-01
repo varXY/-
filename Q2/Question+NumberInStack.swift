@@ -12,12 +12,10 @@ import Foundation
 extension Question {
     
     func getQestions(numberOfQuestions: Int, type: Int) -> [Question] {
-		var lastTimeNumbers = [Int]()
         var questionMarks = [Int]()
         var questions = [Question]()
+		let lastTimeNumbers = testedNumbersInStack(type)
 
-		lastTimeNumbers = testedNumbersInStack(type)
-		
         switch type {
         case 0:
             questionMarks = getRandomNumbers(numberOfQuestions, uiform: 301, without: lastTimeNumbers)
@@ -25,7 +23,6 @@ extension Question {
 			questionMarks.forEach({
 				!lastTimeNumbers.contains($0) ? questions.append(getBeginnerQuestion($0)!) : print("get same question within 3 times")
 			})
-
         case 1:
             questionMarks = getRandomNumbers(numberOfQuestions, uiform: 233, without: lastTimeNumbers)
             saveNumbersIntoStack(type, numbers: questionMarks)
@@ -33,15 +30,13 @@ extension Question {
 				!lastTimeNumbers.contains($0) ? questions.append(getIntermediateQuestions($0)!) : print("get same question within 3 times")
 			})
 		case 2:
-			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 238, without: lastTimeNumbers)
+			questionMarks = getRandomNumbers(numberOfQuestions, uiform: 251, without: lastTimeNumbers)
 			saveNumbersIntoStack(type, numbers: questionMarks)
 			questionMarks.forEach({
 				!lastTimeNumbers.contains($0) ? questions.append(getAdvancedQuestion($0)!) : print("get same question within 3 times")
 			})
-
         default:
             break
-            
         }
 
         return questions
@@ -55,10 +50,8 @@ extension Question {
             result.append(number)
             result = uniq(result)
 			result = result.filter({ !without.contains($0) })
-            
         } while result.count < amount
-        
-        
+
         return result
     }
     
@@ -102,14 +95,7 @@ extension Question {
 		default:
 			break
 		}
-//        if type == 0 {
-//            numbers = userDefaults.objectForKey("Tested_0_0") as? [Int] ?? [-1]
-//            numbers += userDefaults.objectForKey("Tested_0_1") as? [Int] ?? [-1]
-//        } else {
-//            numbers = userDefaults.objectForKey("Tested_1_0") as? [Int] ?? [-1]
-//            numbers += userDefaults.objectForKey("Tested_1_1") as? [Int] ?? [-1]
-//        }
-//        
+
         return numbers
     }
 }

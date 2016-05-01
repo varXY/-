@@ -12,7 +12,7 @@ class Records {
 	var records = [Record]()
 	var showTimes: Int32 = 1
 
-	var type = 0
+	let type: Int
 
 	init(type: Int) {
 		self.type = type

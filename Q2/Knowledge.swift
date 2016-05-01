@@ -21,12 +21,24 @@ class Knowledge {
 
 	func getAll(number: Int) -> [[Knowledge]] {
 		var allIcons = [[Knowledge]]()
-
+//		for i in 0..<(SectionTitle(rawValue: number)?.titles)!.count {
+//			var icons = [Knowledge]()
+//			for j in 0..<titlesInSection.index(number, i).titles.count {
+//				switch number {
+//				case 0: icons.append(unitAtIndex((i, j)))
+//				case 1: icons.append(iconAtIndex((i, j)))
+//				case 1: icons.append(introAtIndex((i, j)))
+//				default: break
+//				}
+//			}
+//			allIcons.append(icons)
+//		}
+//		return allIcons
 		switch number {
 		case 0:
 			for i in 0..<SectionTitle.zero.titles.count {
 				var icons = [Knowledge]()
-				let rows = titlesInSection.index(0, i).titles.count
+				let rows = titlesInSection.index(number, i).titles.count
 				for j in 0..<rows {
 					let icon = unitAtIndex((i, j))
 					icons.append(icon)
@@ -38,7 +50,7 @@ class Knowledge {
 		case 1:
 			for i in 0..<SectionTitle.one.titles.count {
 				var icons = [Knowledge]()
-				let rows = titlesInSection.index(1, i).titles.count
+				let rows = titlesInSection.index(number, i).titles.count
 				for j in 0..<rows {
 					let icon = iconAtIndex((i, j))
 					icons.append(icon)
@@ -50,7 +62,7 @@ class Knowledge {
 		case 2:
 			for i in 0..<SectionTitle.two.titles.count {
 				var icons = [Knowledge]()
-				let rows = titlesInSection.index(2, i).titles.count
+				let rows = titlesInSection.index(number, i).titles.count
 				for j in 0..<rows {
 					let icon = introAtIndex((i, j))
 					icons.append(icon)
@@ -69,27 +81,18 @@ class Knowledge {
 	func getSearchedAll(searchText: String) -> [[Knowledge]] {
 		let all = getAll(1)
 		var searchedAll = [[Knowledge]]()
+
 		var i = 0
-
 		for icons in all {
-
 			i += 1
 
 			let result = icons.filter({ (icon) -> Bool in
-				let text = icon.title
-				if text.rangeOfString(searchText) != nil {
-					return true
-				}
+				if icon.title.rangeOfString(searchText) != nil { return true }
 				return false
 			})
 
-			if !result.isEmpty {
-				searchedAll.append(result)
-			}
-
-			if i == all.count {
-				break
-			}
+			if !result.isEmpty { searchedAll.append(result) }
+			if i == all.count { break }
 		}
 
 		return searchedAll
@@ -101,34 +104,28 @@ class Knowledge {
 
 	func unitAtIndex(index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()
-
 		knowledge.sectionTitle = SectionTitle.zero.titles[index.0]
 		knowledge.title = titlesInSection.index(0, index.0).titles[index.1]
 		knowledge.subtitle = Unit.index(0, index.0).unitSubtitles[index.1]
 		knowledge.stringImage = Unit.index(0, index.0).stringImage[index.1]
 		knowledge.textBody = textBodies.index(index.0, index.1).unitBody
-
 		return knowledge
 	}
 
 	func iconAtIndex(index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()
-
-		let name = titlesInSection.index(1, index.0).titles[index.1]
 		knowledge.sectionTitle = SectionTitle.one.titles[index.0]
+		let name = titlesInSection.index(1, index.0).titles[index.1]
 		knowledge.title = name
 		knowledge.Image = UIImage(named: name)!
-
 		return knowledge
 	}
 
 	func introAtIndex(index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()
-
 		knowledge.sectionTitle = SectionTitle.two.titles[index.0]
 		knowledge.title = titlesInSection.index(2, index.0).titles[index.1]
 		knowledge.textBody = textBodies.index(index.0, index.1).introBody
-		
 		return knowledge
 	}
 	

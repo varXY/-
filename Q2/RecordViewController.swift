@@ -14,10 +14,14 @@ class RecordViewController: UIViewController {
 
 	var beginnerRecords = [Record]()
 	var intermediateRecords = [Record]()
+	var advancedRecords = [Record]()
+
+	var type: Int!
 
 	var scrollView = UIScrollView()
 	var tableView0 = UITableView()
 	var tableView1 = UITableView()
+	var tableView2 = UITableView()
 
 	var segmentControl = UISegmentedControl()
 	var segmentWay = false
@@ -27,9 +31,9 @@ class RecordViewController: UIViewController {
 		view.backgroundColor = UIColor.backgroundColor()
 		automaticallyAdjustsScrollViewInsets = true
 
-		segmentControl = UISegmentedControl(items: ["初级", "中级"])
-		for i in 0..<2 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
-		segmentControl.selectedSegmentIndex = 0
+		segmentControl = UISegmentedControl(items: ["初级", "中级", "高级"])
+		for i in 0..<3 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
+		segmentControl.selectedSegmentIndex = type
         segmentControl.addTarget(self, action: #selector(segmentSelected(_:)), forControlEvents: UIControlEvents.ValueChanged)
 		navigationItem.titleView = segmentControl
 
@@ -37,9 +41,10 @@ class RecordViewController: UIViewController {
 		navigationItem.rightBarButtonItem = quitButton
 
 		scrollView.frame = view.bounds
-		scrollView.contentSize = CGSize(width: view.frame.width * 2, height: 0)
+		scrollView.contentSize = CGSize(width: view.frame.width * 3, height: 0)
 		scrollView.pagingEnabled = true
 		scrollView.delegate = self
+		scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width * CGFloat(type), y: 0.0)
 		view.addSubview(scrollView)
 
 		tableView0 = getTableView(CGRectMake(0, 0, view.frame.width, view.frame.height - 64))
@@ -47,6 +52,9 @@ class RecordViewController: UIViewController {
 
 		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
 		scrollView.addSubview(tableView1)
+
+		tableView2 = getTableView(CGRectMake(view.frame.width * 2, 0, view.frame.width, view.frame.height - 64))
+		scrollView.addSubview(tableView2)
 
 	}
 
@@ -102,6 +110,8 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 			return beginnerRecords.count != 0 ? beginnerRecords.count : 1
 		case tableView1:
 			return intermediateRecords.count != 0 ? intermediateRecords.count : 1
+		case tableView2:
+			return advancedRecords.count != 0 ? advancedRecords.count : 1
 		default:
 			return 1
 		}
@@ -115,16 +125,15 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cellID = "RecordCell"
 		var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as? RecordCell
-
-		if cell == nil {
-			cell = RecordCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID)
-		}
+		if cell == nil { cell = RecordCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID) }
 
 		switch tableView {
 		case tableView0:
 			beginnerRecords.count != 0 ? cell?.configureForRecordCell(beginnerRecords[indexPath.row]) : cell?.showNoRecord()
 		case tableView1:
 			intermediateRecords.count != 0 ? cell?.configureForRecordCell(intermediateRecords[indexPath.row]) : cell?.showNoRecord()
+		case tableView2:
+			advancedRecords.count != 0 ? cell?.configureForRecordCell(advancedRecords[indexPath.row]) : cell?.showNoRecord()
 		default:
 			break
 		}
@@ -146,7 +155,10 @@ extension RecordViewController: UIScrollViewDelegate {
 
 			if scrollView.contentOffset.x == scrollView.bounds.size.width {
 				segmentControl.selectedSegmentIndex = 1
+			}
 
+			if scrollView.contentOffset.x == scrollView.bounds.size.width * 2 {
+				segmentControl.selectedSegmentIndex = 2
 			}
 
 		}

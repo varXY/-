@@ -33,9 +33,9 @@ class QuestionViewController: UIViewController {
 
 	var record: ((rightCount: Int, date: NSDate) -> Void)?
 
-	var beginnerRecords = Records(type: 0)
-	var intermediateRecords = Records(type: 1)
-	var advancedRecords = Records(type: 2)
+	var beginnerRecords: Records!
+	var intermediateRecords: Records!
+	var advancedRecords: Records!
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
@@ -74,45 +74,12 @@ class QuestionViewController: UIViewController {
 
 	}
 
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-
-		if let page = self.view.viewWithTag(9999999) {
-
-			let seeButton = page.viewWithTag(12345) as! UIButton
-			seeButton.hidden = false
-			seeButton.transform = CGAffineTransformIdentity
-			seeButton.backgroundColor = UIColor.whiteColor()
-			if let label = seeButton.subviews[0] as? UILabel {
-				label.textColor = UIColor.themeRed()
-			}
-			seeButton.genAnimation(.Appear, delayTime: 0.0, distance: 40)
-
-			let quitButton = page.viewWithTag(123456) as! UIButton
-			quitButton.hidden = false
-			quitButton.transform = CGAffineTransformIdentity
-			quitButton.backgroundColor = UIColor.whiteColor()
-			if let label = quitButton.subviews[0] as? UILabel {
-				label.textColor = UIColor.themeRed()
-			}
-			quitButton.genAnimation(.Appear, delayTime: 0.1, distance: 70)
-		}
-
-		let userDefaults = NSUserDefaults.standardUserDefaults()
-		if let sound = userDefaults.valueForKey(SettingDefault.sound) as? Bool {
-			self.sound = sound
-		}
-
-	}
-
-
 	func chosen(sender: UIButton) {
 		getResult(sender)
 		disableAndColorButtons(sender)
 		currentPage += 1
 		currentPage == 10 ? testIsOver() : genJumpButton()
 	}
-
 
 	func getResult(sender: UIButton) {
 
@@ -173,7 +140,7 @@ class QuestionViewController: UIViewController {
 	func testIsOver() {
 		record?(rightCount: rightCount, date: NSDate())
 
-		delay(seconds: 2.0, completion: { () -> () in
+		delay(seconds: 1.5, completion: { () -> () in
 			UIView.animateWithDuration(0.8, animations: { () -> Void in
 				self.scrollView.alpha = 0.0
 				self.scrollView.removeFromSuperview()
@@ -182,24 +149,60 @@ class QuestionViewController: UIViewController {
 			})
 		})
 
-		delay(seconds: 3.0, completion: { () -> () in
-			let finalView = self.viewGenerator.showTestFinalPage(self.rightCount)
-			finalView.tag = 9999999
-			self.view.addSubview(finalView)
+		delay(seconds: 2.5, completion: { () -> () in
+			let finalViews = FinalViews(rightCount: self.rightCount)
+			self.view.addSubview(finalViews.finalLabel)
+			finalViews.buttons.forEach({
+				self.view.addSubview($0)
+				let index = finalViews.buttons.indexOf($0)!
+				$0.genAnimation(.Appear, delayTime: 0.1 * Double(index) , distance: 40 + 30 * CGFloat(index))
 
-			if let button = finalView.viewWithTag(12345) as? UIButton {
-				button.addTarget(self, action: #selector(self.seeAnsweredQA(_:)), forControlEvents: .TouchUpInside)
-				button.genAnimation(.Appear, delayTime: 0.0, distance: 40)
-			}
-
-			if let button = finalView.viewWithTag(123456) as? UIButton {
-				button.addTarget(self, action: #selector(self.animatedAndQuit(_:)), forControlEvents: .TouchUpInside)
-				button.genAnimation(.Appear, delayTime: 0.1, distance: 70)
-			}
-
+				$0.addTarget(self, action: #selector(self.touchDown(_:)), forControlEvents: .TouchDown)
+				$0.addTarget(self, action: #selector(self.touchUpOutSide(_:)), forControlEvents: .TouchUpOutside)
+				$0.addTarget(self, action: #selector(self.touchUpInside(_:)), forControlEvents: .TouchUpInside)
+			})
 
 		})
 
+	}
+
+	func touchDown(sender: UIButton) {
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: { 
+			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
+			}) { (_) in
+		}
+	}
+
+	func touchUpOutSide(sender: UIButton) {
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: {
+			sender.transform = CGAffineTransformIdentity
+		}) { (_) in
+		}
+	}
+
+	func touchUpInside(sender: UIButton) {
+		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: {
+			sender.transform = CGAffineTransformIdentity
+		}) { (_) in
+			switch (sender.titleLabel?.text)! {
+			case "查看题目":
+				let answeredQAVC = AnsweredQAViewController()
+				answeredQAVC.questions = self.questions
+				answeredQAVC.rightOrWrong = self.rightOrWrong
+				self.presentViewController(NavigationController(viewController: answeredQAVC), animated: true, completion: nil)
+			case "答题记录":
+				let recordVC = RecordViewController()
+				recordVC.beginnerRecords = self.beginnerRecords.records
+				recordVC.intermediateRecords = self.intermediateRecords.records
+				recordVC.advancedRecords = self.advancedRecords.records
+				recordVC.type = self.type
+				self.presentViewController(NavigationController(viewController: recordVC), animated: true, completion: nil)
+			case "返回主页":
+				self.quit()
+			default:
+				break
+			}
+		}
 	}
 
 	func showRightOrWrongView(rightOrWrong: String) {
@@ -220,7 +223,7 @@ class QuestionViewController: UIViewController {
 					view.backgroundColor = UIColor(patternImage: UIImage(named: "下一题")!)
 					view.alpha = 1.0
 					view.frame.origin.y -= 30
-					self.viewGenerator.addShadowForView(view)
+					view.addShadow()
 					}, completion: nil)
 			}
 
@@ -303,53 +306,6 @@ class QuestionViewController: UIViewController {
 		}
 
 	}
-
-
-	func seeAnsweredQA(sender: UIButton) {
-
-		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: {
-			sender.backgroundColor = UIColor.backgroundColor()
-			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
-			if let label = sender.subviews[0] as? UILabel {
-				label.textColor = UIColor.grayColor()
-			}
-
-			}, completion: nil)
-
-		let answeredQAVC = AnsweredQAViewController()
-		answeredQAVC.questions = questions
-		answeredQAVC.rightOrWrong = rightOrWrong
-
-		let answeredQANavi = NavigationController(viewController: answeredQAVC)
-
-		delay(seconds: 0.2) { () -> () in
-			self.presentViewController(answeredQANavi, animated: true, completion: nil)
-		}
-
-	}
-
-	func animatedAndQuit(sender: UIButton) {
-
-		let recordVC = RecordViewController()
-		recordVC.beginnerRecords = self.advancedRecords.records
-		recordVC.intermediateRecords = self.intermediateRecords.records
-		let detailNavi = NavigationController(viewController: recordVC)
-		presentViewController(detailNavi, animated: true, completion: nil)
-
-
-//		UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: {
-//			sender.backgroundColor = UIColor.backgroundColor()
-//			sender.transform = CGAffineTransformMakeScale(0.9, 0.9)
-//			if let label = sender.subviews[0] as? UILabel {
-//				label.textColor = UIColor.grayColor()
-//			}
-//		}, completion: nil)
-//
-//		delay(seconds: 0.2) { () -> () in
-//			self.quit()
-//		}
-	}
-
 
 	// MARK: - Sound Effect
 

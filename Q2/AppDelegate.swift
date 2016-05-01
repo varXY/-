@@ -110,6 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let infoVC = HomepageViewController()
 		infoVC.beginnerRecords = beginnerRecords
 		infoVC.intermediateRecords = intermediateRecords
+		infoVC.advancedRecords = advancedRecords
 
         let testInfoNavi = NavigationController(rootViewController: infoVC)
         testInfoNavi.setNavigationBarHidden(true, animated: true)

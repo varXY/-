@@ -48,7 +48,6 @@ class HomepageViewController: UIViewController {
         infoButton.addTarget(self, action: #selector(infoButtonTapped), forControlEvents: .TouchUpInside)
         infoButton.exclusiveTouch = true
         view.addSubview(infoButton)
-
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -75,7 +74,6 @@ class HomepageViewController: UIViewController {
 			sender.transform = CGAffineTransformScale(sender.transform, 0.8, 0.8)
 			titleLabel.textColor = UIColor.themeRed()
 			}, completion:  nil)
-
 	}
 
     func touchUpOutside(sender: UIButton) {
@@ -85,7 +83,6 @@ class HomepageViewController: UIViewController {
 			sender.transform = CGAffineTransformScale(sender.transform, (1.0 / 0.8), (1.0 / 0.8))
 			titleLabel.textColor = UIColor.blackColor()
 			}, completion:  nil)
-
     }
 
 	func touchUpInside(sender: UIButton) {
@@ -98,37 +95,10 @@ class HomepageViewController: UIViewController {
 				let index = sender.tag - 100
 				self.gotoVCBaseOnIndex(index)
 		})
-
 	}
 
 	func gotoVCBaseOnIndex(index: Int) {
 		switch index {
-//		case 0:
-//			setSoundAndVibration()
-//
-//			let type = 2
-//			let questionVC = QuestionViewController()
-//			questionVC.type = type
-//			questionVC.sound = sound
-//			questionVC.vibration = vibration
-//			questionVC.record = { [weak self] rightCount, date in
-//				let record = Record(record: rightCount, date: date)
-//				switch type {
-//				case 0: self!.beginnerRecords.records.insert(record, atIndex: 0)
-//				case 1: self!.intermediateRecords.records.insert(record, atIndex: 0)
-//				default: break
-//				}
-//			}
-//
-//			questionVC.hidesBottomBarWhenPushed = true
-//			navigationController?.pushViewController(questionVC, animated: true)
-
-//			let recordVC = RecordViewController()
-//			recordVC.beginnerRecords = self.beginnerRecords.records
-//			recordVC.intermediateRecords = self.intermediateRecords.records
-//			let detailNavi = NavigationController(viewController: recordVC)
-//			presentViewController(detailNavi, animated: true, completion: nil)
-
 		case 0, 1, 2:
 			setSoundAndVibration()
 
@@ -137,18 +107,27 @@ class HomepageViewController: UIViewController {
 			questionVC.type = type
 			questionVC.sound = sound
 			questionVC.vibration = vibration
+
+			questionVC.beginnerRecords = beginnerRecords
+			questionVC.intermediateRecords = intermediateRecords
+			questionVC.advancedRecords = advancedRecords
+
 			questionVC.record = { [weak self] rightCount, date in
 				let record = Record(record: rightCount, date: date)
-				switch type {
-				case 0: self!.beginnerRecords.records.insert(record, atIndex: 0)
-				case 1: self!.intermediateRecords.records.insert(record, atIndex: 0)
-				case 2: self!.advancedRecords.records.insert(record, atIndex: 0)
-				default: break
+				switch questionVC.type {
+				case 0:
+					self!.beginnerRecords.records.insert(record, atIndex: 0)
+					questionVC.beginnerRecords = self!.beginnerRecords
+				case 1:
+					self!.intermediateRecords.records.insert(record, atIndex: 0)
+					questionVC.intermediateRecords = self!.intermediateRecords
+				case 2:
+					self!.advancedRecords.records.insert(record, atIndex: 0)
+					questionVC.advancedRecords = self!.advancedRecords
+				default:
+					break
 				}
 
-				questionVC.beginnerRecords = self!.beginnerRecords
-				questionVC.intermediateRecords = self!.intermediateRecords
-				questionVC.advancedRecords = self!.advancedRecords
 			}
 
 			questionVC.hidesBottomBarWhenPushed = true
@@ -170,7 +149,6 @@ class HomepageViewController: UIViewController {
 			break
 
 		}
-
 	}
 
 	func setSoundAndVibration() {
@@ -200,7 +178,6 @@ class HomepageViewController: UIViewController {
 		let settingVC = SettingTableViewController()
 		let settingNavi = NavigationController(rootViewController: settingVC)
 		presentViewController(settingNavi, animated: true, completion: nil)
-
     }
 
 }
