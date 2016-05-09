@@ -97,12 +97,9 @@ class ContentViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		switch index {
-		case 0:
-			return 78
-		case 1:
-			return 60
-		default:
-			return 60
+		case 0: return 78
+		case 1: return 60
+		default: return 60
 		}
 	}
 
@@ -132,12 +129,9 @@ class ContentViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
 		switch index {
-		case 0:
-			return indexPath
-		case 1:
-			return nil
-		default:
-			return indexPath
+		case 0: return indexPath
+		case 1: return nil
+		default: return indexPath
 		}
 	}
 

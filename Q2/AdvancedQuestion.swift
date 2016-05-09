@@ -186,8 +186,8 @@ extension Question {
 			return question
 		case 34:
 			question.question = "转子供电式三相并励交流换向器电动机的调速范围在多少以内时，调速平滑性很高？"
-			question.rightAnswer = "3：1"
-			question.wrongAnswer = "5：1"
+			question.rightAnswer = "3:1"
+			question.wrongAnswer = "5:1"
 			return question
 		case 35:
 			question.question = "变频调速中的变频电源是什么之间的接口？"
