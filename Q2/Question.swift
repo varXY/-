@@ -1191,8 +1191,8 @@ struct Question {
 			return question
 		case 233:
 			question.question = "磁通的单位是："
-			question.rightAnswer = "WB"
-			question.wrongAnswer = "MB"
+			question.rightAnswer = "Wb"
+			question.wrongAnswer = "Mb"
 			return question
 		case 234:
 			question.question = "对称三相电势在任一瞬间的什么等于零？"
