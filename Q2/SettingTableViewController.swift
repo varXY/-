@@ -19,7 +19,7 @@ struct SettingDefault {
 
 class SettingTableViewController: UITableViewController {
 
-	let titles = [["声音", "振动"], ["评分留言", "分享"], ["支持开发者"]]
+	let titles = [["声音", "振动"], ["评分留言", "分享"], ["意见建议"]]
 	var switchControl_S: UISwitch!
 	var switchControl_V: UISwitch!
 	let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -224,7 +224,7 @@ class SettingTableViewController: UITableViewController {
 			}
 
 		case 2:
-			connectToStore()
+			menuViewControllerSendSupportEmail()
 
 		default: break
 		}

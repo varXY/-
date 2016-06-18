@@ -271,16 +271,16 @@ class QuestionViewController: UIViewController {
 
 
 	func jumpToPage(page: Int) {
-
-		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: { 
-			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
-			}, completion: nil)
-
-//		let duration = Double(ScreenWidth / 640)
 //
-//		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+//		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: { 
 //			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
 //			}, completion: nil)
+
+		let duration = Double(ScreenWidth / 640)
+
+		UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
+			}, completion: nil)
 
 	}
 

@@ -61,11 +61,12 @@ extension UIButton {
 				}, completion: nil)
 
 		case .Bigger:
+			let oldAlpha = self.alpha
 			alpha = 0.0
 			transform = CGAffineTransformScale(self.transform, 0.1, 0.1)
 
 			UIView.animateWithDuration(0.5, delay: delayTime, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
-				self.alpha = 1.0
+				self.alpha = oldAlpha
 				self.transform = CGAffineTransformScale(self.transform, 1.0 / 0.1, 1.0 / 0.1)
 				}, completion: nil)
 

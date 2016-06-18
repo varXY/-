@@ -36,6 +36,7 @@ class HomepageViewController: UIViewController {
 		bigButtons = prismatic.buttons
 
 		bigButtons.forEach({
+//			$0.alpha = 0.9
 			$0.addTarget(self, action: #selector(touchDown(_:)), forControlEvents: .TouchDown)
 			$0.addTarget(self, action: #selector(touchUpOutside(_:)), forControlEvents: .TouchUpOutside)
 			$0.addTarget(self, action: #selector(touchUpInside(_:)), forControlEvents: .TouchUpInside)
