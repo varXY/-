@@ -24,7 +24,6 @@ class NavigationController: UINavigationController {
 		navigationBar.translucent = false
         
 		delegate = self
-        
 	}
 
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
