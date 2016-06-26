@@ -107,13 +107,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// MARK: Base
 
-		let infoVC = HomepageViewController()
-		infoVC.beginnerRecords = beginnerRecords
-		infoVC.intermediateRecords = intermediateRecords
-		infoVC.advancedRecords = advancedRecords
+//		let infoVC = HomepageViewController()
+//		infoVC.beginnerRecords = beginnerRecords
+//		infoVC.intermediateRecords = intermediateRecords
+//		infoVC.advancedRecords = advancedRecords
+        
+        let mainVC = MainViewController()
+        mainVC.beginnerRecords = beginnerRecords
+        mainVC.intermediateRecords = intermediateRecords
+        mainVC.advancedRecords = advancedRecords
 
-        let testInfoNavi = NavigationController(rootViewController: infoVC)
-        testInfoNavi.setNavigationBarHidden(true, animated: true)
+        let testInfoNavi = NavigationController(rootViewController: mainVC)
+//        testInfoNavi.setNavigationBarHidden(true, animated: true)
 		window?.rootViewController = testInfoNavi
 		window?.makeKeyAndVisible()
 

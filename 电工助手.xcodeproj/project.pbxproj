@@ -52,6 +52,7 @@
 		31D669011BA80BE200A21AF1 /* EquationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D669001BA80BE200A21AF1 /* EquationCell.swift */; };
 		31E8CA1D1BAB923100C611C0 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */; };
 		31F9AC321C261CAB0072A116 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F9AC311C261CAB0072A116 /* NavigationController.swift */; };
+		A85A67911D2015CD00B8225C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85A67901D2015CD00B8225C /* MainViewController.swift */; };
 		C302F35E1C5A132A0043E35D /* UIImage+ColorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302F35D1C5A132A0043E35D /* UIImage+ColorImage.swift */; };
 		C316E0A21C5852D600E0F0DF /* Question+NumberInStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */; };
 		C329FDAD1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = C329FDAC1C3BA96300BA1189 /* UINavigationController+FDFullscreenPopGesture.m */; };
@@ -118,6 +119,7 @@
 		31D669001BA80BE200A21AF1 /* EquationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EquationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31E8CA1C1BAB923100C611C0 /* NumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		31F9AC311C261CAB0072A116 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A85A67901D2015CD00B8225C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C302F35D1C5A132A0043E35D /* UIImage+ColorImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorImage.swift"; sourceTree = "<group>"; };
 		C316E0A11C5852D600E0F0DF /* Question+NumberInStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Question+NumberInStack.swift"; sourceTree = "<group>"; };
 		C329FDAA1C3BA96300BA1189 /* 电工助手-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "电工助手-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				31F9AC311C261CAB0072A116 /* NavigationController.swift */,
 				31033AA51BA3BD0300DC9141 /* HomepageViewController.swift */,
+				A85A67901D2015CD00B8225C /* MainViewController.swift */,
 				C3C0D6871C5EFF0A0081E6C2 /* SettingTableViewController.swift */,
 				318C118D1BA4EAB000CA1EC9 /* Info Controller */,
 				31033AAE1BA4093C00DC9141 /* Test Controller */,
@@ -498,6 +501,7 @@
 				3123D1511CD5854C00D44DA0 /* UIView+.swift in Sources */,
 				314DFCDF1BA42EBB00E79557 /* DescribeCell.swift in Sources */,
 				314DFCEA1BA42F0E00E79557 /* HudView.swift in Sources */,
+				A85A67911D2015CD00B8225C /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
