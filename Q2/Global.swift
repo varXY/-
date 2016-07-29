@@ -44,6 +44,5 @@ func delay(seconds seconds: Double, completion:()->()) {
 	dispatch_after(popTime, dispatch_get_main_queue()) {
 		completion()
 	}
-
 }
 

@@ -30,4 +30,5 @@ extension UIColor {
 	class func rightGreen() -> UIColor {
 		return UIColor(red: 30/255, green: 240/255, blue: 30/255, alpha: 1.0)
 	}
+    
 }

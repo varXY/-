@@ -73,8 +73,6 @@ extension UIButton {
 		default:
 			break
 		}
-
 	}
-
 	
 }

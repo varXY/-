@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         title = "电工助手"
         
-        let infoButton = UIBarButtonItem(title: "设置", style: .Plain, target: self, action: #selector(infoButtonTapped))
+        let infoButton = UIBarButtonItem(image: UIImage(named: "电工试题"), style: .Plain, target: self, action: #selector(infoButtonTapped))
         navigationItem.rightBarButtonItem = infoButton
         
         tableView = UITableView(frame: view.bounds, style: .Grouped)
@@ -69,7 +69,6 @@ class MainViewController: UIViewController {
                 default:
                     break
                 }
-                
             }
             
             questionVC.hidesBottomBarWhenPushed = true
@@ -151,6 +150,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.imageView?.image = UIImage(named: "电工试题")
         cell.imageView?.tintColor = UIColor.themeRed()
         
+        cell.selectedBackgroundView = UIView()
+        cell.selectedBackgroundView!.backgroundColor = UIColor.lightRedColor()
+        
         switch indexPath.section {
         case 0:
             cell.textLabel?.text = ["初级试题", "中级试题", "高级试题"][indexPath.row]
@@ -170,6 +172,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         gotoVCBaseOnIndexPath(indexPath)
     }
 }
+
 
 
 

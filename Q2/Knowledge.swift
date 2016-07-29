@@ -18,22 +18,9 @@ class Knowledge {
 	var Image = UIImage()
 	var textBody: String = ""
 
-
 	func getAll(number: Int) -> [[Knowledge]] {
 		var allIcons = [[Knowledge]]()
-//		for i in 0..<(SectionTitle(rawValue: number)?.titles)!.count {
-//			var icons = [Knowledge]()
-//			for j in 0..<titlesInSection.index(number, i).titles.count {
-//				switch number {
-//				case 0: icons.append(unitAtIndex((i, j)))
-//				case 1: icons.append(iconAtIndex((i, j)))
-//				case 1: icons.append(introAtIndex((i, j)))
-//				default: break
-//				}
-//			}
-//			allIcons.append(icons)
-//		}
-//		return allIcons
+
 		switch number {
 		case 0:
 			for i in 0..<SectionTitle.zero.titles.count {
@@ -74,7 +61,6 @@ class Knowledge {
 		default:
 			return [[Knowledge]]()
 		}
-
 	}
 	
 
@@ -96,7 +82,6 @@ class Knowledge {
 		}
 
 		return searchedAll
-
 	}
 
 

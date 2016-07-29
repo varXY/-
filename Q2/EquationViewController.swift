@@ -54,7 +54,6 @@ class EquationViewController: UIViewController {
 		textFields.forEach({ tableView.addSubview($0) })
 
 		customTextField(index)
-
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -80,7 +79,6 @@ class EquationViewController: UIViewController {
 
 
 	func customTextField(index: Int) {
-
 		if index == 1 {
 			let lightGrayColor = UIColor.lightGrayColor().CGColor
 
@@ -113,9 +111,7 @@ class EquationViewController: UIViewController {
 			label_3.adjustsFontSizeToFitWidth = true
 			tableView.addSubview(label_3)
 		}
-
 	}
-
 
 	func showAlert() {
 		let alertController = UIAlertController(title: "输入有误", message: "功率因素在0到1之间", preferredStyle: .Alert)
@@ -123,7 +119,6 @@ class EquationViewController: UIViewController {
 		alertController.addAction(action)
 		presentViewController(alertController, animated: true, completion: nil)
 	}
-
 
 }
 
@@ -175,7 +170,6 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate, UI
 extension EquationViewController: UITextFieldDelegate {
 
 	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-
 		if allowInput.indexOf(string) == nil && !string.isEmpty {
 			return false
 		}
@@ -187,10 +181,8 @@ extension EquationViewController: UITextFieldDelegate {
 		calculateWith(self.index, tag: textField.tag, content: content)
 		
 		return true
-
 	}
 
-	
 }
 
 
@@ -211,7 +203,6 @@ extension EquationViewController {
 
 
 	func calculate_0(tag: Int, content: Double) {
-
 		switch tag {
 		case 400:
 			A = content
@@ -247,13 +238,10 @@ extension EquationViewController {
 		default:
 			break
 		}
-
-
 	}
 
 
 	func calculate_1(tag: Int, content: Double) {
-
 		switch tag {
 		case 400:
 			A = content
@@ -316,7 +304,6 @@ extension EquationViewController {
 		default:
 			break
 		}
-
 	}
 
 	func calculate_2(tag: Int, content: Double) {
@@ -389,7 +376,6 @@ extension EquationViewController {
 				}
 			}
 		}
-
 	}
 
 	func getOneFromThree(zeroIndex: Int) {
@@ -421,7 +407,6 @@ extension EquationViewController {
 		let afterCut: Double = floor(x)
 
 		if afterCut == x {
-//			let value = Int(round(afterCut))
 			var string = "\(afterCut)"
 			string = String(string.characters.dropLast())
 			string = String(string.characters.dropLast())
@@ -429,7 +414,6 @@ extension EquationViewController {
 		} else {
 			return "\(x)"
 		}
-
 	}
 
 

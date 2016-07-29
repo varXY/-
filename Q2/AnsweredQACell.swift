@@ -17,7 +17,6 @@ class AnsweredQACell: UITableViewCell {
 
 	var QLabelHeight = CGFloat()
 
-
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -36,7 +35,6 @@ class AnsweredQACell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
 	func configureForAnsweredQACell(QLabel: UILabel, rightOrWrong: Int, row: Int, rightAnswer: String) {
 		func copyLabel(label: UILabel) {
 			self.QLabel.frame = label.frame
@@ -51,8 +49,6 @@ class AnsweredQACell: UITableViewCell {
 		rowLabel.text = String(row)       
 		rowLabel.textColor = rightOrWrong == 1 ? UIColor.rightGreen() : UIColor.themeRed()
 	}
-
-
 
 }
 

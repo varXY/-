@@ -40,7 +40,7 @@ extension UIImage {
                     }
                 }
             }
-            })
+        })
         
     }
 }

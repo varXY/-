@@ -39,7 +39,6 @@ class HudView: UIView {
 	}
 
 	func showAnimated(animated: Bool) {
-
 		if animated {
 			alpha = 0
 			transform = CGAffineTransformMakeScale(1.3, 1.3)
@@ -48,8 +47,6 @@ class HudView: UIView {
 				self.alpha = 1
 				self.transform = CGAffineTransformIdentity
 			}, completion: nil)
-			
 		}
-
 	}
 }

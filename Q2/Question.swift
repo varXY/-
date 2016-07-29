@@ -13,7 +13,6 @@ struct Question {
 	var question: String = ""
 	var rightAnswer: String = ""
 	var wrongAnswer: String = ""
-
 	
 	func getBeginnerQuestion(number: Int) -> Question? {
 		var question = Question()
@@ -1141,8 +1140,8 @@ struct Question {
 			return question
 		case 223:
 			question.question = "相线与零线间的电压就叫相电压。"
-			question.rightAnswer = "错误"
-			question.wrongAnswer = "正确"
+			question.rightAnswer = "正确"
+			question.wrongAnswer = "错误"
 			return question
 		case 224:
 			question.question = "从各相首端引出的导线叫相线，俗称火线。"

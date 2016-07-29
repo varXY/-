@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 extension UIView {
 
 	func addShadow() {
@@ -19,4 +18,5 @@ extension UIView {
 		self.layer.shadowColor = UIColor.lightGrayColor().CGColor
 		self.layer.shadowOffset = CGSizeMake(0, 0)
 	}
+    
 }

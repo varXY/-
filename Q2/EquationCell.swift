@@ -14,7 +14,6 @@ class EquationCell: UITableViewCell {
 	var titleLabel = UILabel()
 	var unitLabel = UILabel()
 	var equalLabel = UILabel()
-
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)

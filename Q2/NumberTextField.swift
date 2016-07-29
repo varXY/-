@@ -34,4 +34,5 @@ class NumberTextField: UITextField {
 		textField.textAlignment = .Right
 		return textField
 	}
+    
 }

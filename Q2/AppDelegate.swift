@@ -56,15 +56,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		switch (shortCutType) {
 		case ShortcutIdentifier.First.type:
-			topVC.gotoVCBaseOnIndex(1)
+			topVC.gotoVCBaseOnIndex(5)
 			handled = true
 			break
 		case ShortcutIdentifier.Second.type:
-			topVC.gotoVCBaseOnIndex(2)
+			topVC.gotoVCBaseOnIndex(4)
 			handled = true
 			break
 		case ShortcutIdentifier.Third.type:
-			topVC.gotoVCBaseOnIndex(5)
+			topVC.gotoVCBaseOnIndex(6)
 			handled = true
 			break
 		default:
@@ -91,14 +91,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 
 		if let shortcutItems = application.shortcutItems where shortcutItems.isEmpty {
-
-			let shortcut1 = UIApplicationShortcutItem(type: ShortcutIdentifier.First.type, localizedTitle: "初级试题", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Play), userInfo: [
+            let icon = UIApplicationShortcutIcon(templateImageName: "公式换算")
+            
+			let shortcut1 = UIApplicationShortcutItem(type: ShortcutIdentifier.First.type, localizedTitle: "算电量", localizedSubtitle: nil, icon: icon, userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
-			let shortcut2 = UIApplicationShortcutItem(type: ShortcutIdentifier.Second.type, localizedTitle: "中级试题", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(type: .Play), userInfo: [
+			let shortcut2 = UIApplicationShortcutItem(type: ShortcutIdentifier.Second.type, localizedTitle: "算功率", localizedSubtitle: nil, icon: icon, userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
-			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "算电量", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
+			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "算电阻", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
 				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
 				])
 
@@ -107,18 +108,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// MARK: Base
 
-//		let infoVC = HomepageViewController()
-//		infoVC.beginnerRecords = beginnerRecords
-//		infoVC.intermediateRecords = intermediateRecords
-//		infoVC.advancedRecords = advancedRecords
+		let infoVC = HomepageViewController()
+		infoVC.beginnerRecords = beginnerRecords
+		infoVC.intermediateRecords = intermediateRecords
+		infoVC.advancedRecords = advancedRecords
         
-        let mainVC = MainViewController()
-        mainVC.beginnerRecords = beginnerRecords
-        mainVC.intermediateRecords = intermediateRecords
-        mainVC.advancedRecords = advancedRecords
+//        let mainVC = MainViewController()
+//        mainVC.beginnerRecords = beginnerRecords
+//        mainVC.intermediateRecords = intermediateRecords
+//        mainVC.advancedRecords = advancedRecords
 
-        let testInfoNavi = NavigationController(rootViewController: mainVC)
-//        testInfoNavi.setNavigationBarHidden(true, animated: true)
+        let testInfoNavi = NavigationController(rootViewController: infoVC)
+        testInfoNavi.setNavigationBarHidden(true, animated: true)
 		window?.rootViewController = testInfoNavi
 		window?.makeKeyAndVisible()
 
@@ -145,7 +146,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(application: UIApplication) {
 		saveRecord()
 	}
-
 
 }
 
