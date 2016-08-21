@@ -14,28 +14,28 @@ class NavigationController: UINavigationController {
 	convenience init(viewController: UIViewController) {
 		self.init(rootViewController: viewController)
 	}
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+        
 		navigationBar.barTintColor = UIColor.themeRed()
-		navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-		navigationBar.tintColor = UIColor.whiteColor()
-		navigationBar.translucent = false
+		navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+		navigationBar.tintColor = UIColor.white
+		navigationBar.isTranslucent = false
         
 		delegate = self
-	}
-
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
 	}
 	
 	func captureScreen() -> UIImage {
 
-		let screen = UIApplication.sharedApplication().windows[0]
+		let screen = UIApplication.shared.windows[0]
 
 		UIGraphicsBeginImageContextWithOptions(screen.frame.size, false, 0)
-		view.drawViewHierarchyInRect(screen.bounds, afterScreenUpdates: true)
+		view.drawHierarchy(in: screen.bounds, afterScreenUpdates: true)
 		let image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 
@@ -47,8 +47,8 @@ class NavigationController: UINavigationController {
 			rect = CGRect(x: 0, y: 20, width: ScreenWidth * 2, height: ScreenHeight * 2 - 20)
 		}
 
-		let cuttedmage = CGImageCreateWithImageInRect(image.CGImage, rect)
-		let resultImage = UIImage(CGImage: cuttedmage!)
+		let cuttedmage = image?.cgImage?.cropping(to: rect)
+		let resultImage = UIImage(cgImage: cuttedmage!)
 
 		return resultImage
 	}
@@ -56,7 +56,7 @@ class NavigationController: UINavigationController {
 
 extension NavigationController: UINavigationControllerDelegate {
     
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
 //        if viewController.isKindOfClass(HomepageViewController) {
 //            self.setNavigationBarHidden(true, animated: true)

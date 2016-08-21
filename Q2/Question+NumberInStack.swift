@@ -11,7 +11,7 @@ import Foundation
 
 extension Question {
     
-    func getQestions(numberOfQuestions: Int, type: Int) -> [Question] {
+    func getQestions(_ numberOfQuestions: Int, type: Int) -> [Question] {
         var questionMarks = [Int]()
         var questions = [Question]()
 		let lastTimeNumbers = testedNumbersInStack(type)
@@ -42,7 +42,7 @@ extension Question {
         return questions
     }
     
-    func getRandomNumbers(amount: Int, uiform: UInt32, without: [Int]) -> [Int] {
+    func getRandomNumbers(_ amount: Int, uiform: UInt32, without: [Int]) -> [Int] {
         var result = [Int]()
         
         repeat {
@@ -55,22 +55,22 @@ extension Question {
         return result
     }
     
-    func saveNumbersIntoStack(type: Int, numbers: [Int]) {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+    func saveNumbersIntoStack(_ type: Int, numbers: [Int]) {
+        let userDefaults = UserDefaults.standard
         
         switch type {
         case 0:
-            let tested_0_0 = userDefaults.objectForKey("Tested_0_0") as? [Int] ?? [-1]
-            userDefaults.setObject(tested_0_0, forKey: "Tested_0_1")
-            userDefaults.setObject(numbers, forKey: "Tested_0_0")
+            let tested_0_0 = userDefaults.object(forKey: "Tested_0_0") as? [Int] ?? [-1]
+            userDefaults.set(tested_0_0, forKey: "Tested_0_1")
+            userDefaults.set(numbers, forKey: "Tested_0_0")
         case 1:
-            let tested_1_0 = userDefaults.objectForKey("Tested_1_0") as? [Int] ?? [-1]
-            userDefaults.setObject(tested_1_0, forKey: "Tested_1_1")
-            userDefaults.setObject(numbers, forKey: "Tested_1_0")
+            let tested_1_0 = userDefaults.object(forKey: "Tested_1_0") as? [Int] ?? [-1]
+            userDefaults.set(tested_1_0, forKey: "Tested_1_1")
+            userDefaults.set(numbers, forKey: "Tested_1_0")
 		case 2:
-			let tested_1_0 = userDefaults.objectForKey("Tested_2_0") as? [Int] ?? [-1]
-			userDefaults.setObject(tested_1_0, forKey: "Tested_2_1")
-			userDefaults.setObject(numbers, forKey: "Tested_2_0")
+			let tested_1_0 = userDefaults.object(forKey: "Tested_2_0") as? [Int] ?? [-1]
+			userDefaults.set(tested_1_0, forKey: "Tested_2_1")
+			userDefaults.set(numbers, forKey: "Tested_2_0")
         default:
             break
         }
@@ -78,20 +78,20 @@ extension Question {
 		userDefaults.synchronize()
     }
     
-    func testedNumbersInStack(type: Int) -> [Int] {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+    func testedNumbersInStack(_ type: Int) -> [Int] {
+        let userDefaults = UserDefaults.standard
         var numbers = [Int]()
 
 		switch type {
 		case 0:
-			numbers = userDefaults.objectForKey("Tested_0_0") as? [Int] ?? [-1]
-			numbers += userDefaults.objectForKey("Tested_0_1") as? [Int] ?? [-1]
+			numbers = userDefaults.object(forKey: "Tested_0_0") as? [Int] ?? [-1]
+			numbers += userDefaults.object(forKey: "Tested_0_1") as? [Int] ?? [-1]
 		case 1:
-			numbers = userDefaults.objectForKey("Tested_1_0") as? [Int] ?? [-1]
-			numbers += userDefaults.objectForKey("Tested_1_1") as? [Int] ?? [-1]
+			numbers = userDefaults.object(forKey: "Tested_1_0") as? [Int] ?? [-1]
+			numbers += userDefaults.object(forKey: "Tested_1_1") as? [Int] ?? [-1]
 		case 2:
-			numbers = userDefaults.objectForKey("Tested_2_0") as? [Int] ?? [-1]
-			numbers += userDefaults.objectForKey("Tested_2_1") as? [Int] ?? [-1]
+			numbers = userDefaults.object(forKey: "Tested_2_0") as? [Int] ?? [-1]
+			numbers += userDefaults.object(forKey: "Tested_2_1") as? [Int] ?? [-1]
 		default:
 			break
 		}

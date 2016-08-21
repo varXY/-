@@ -33,12 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		case Third
 
 		init?(fullType: String) {
-			guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
+			guard let last = fullType.components(separatedBy: ".").last else { return nil }
 			self.init(rawValue: last)
 		}
 
 		var type: String {
-			return NSBundle.mainBundle().bundleIdentifier! + ".\(self.rawValue)"
+			return Bundle.main.bundleIdentifier! + ".\(self.rawValue)"
 		}
 	}
 
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var launchedShortcutItem: UIApplicationShortcutItem?
 
-	func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
+	func handleShortCutItem(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
 		var handled = false
 
 		guard ShortcutIdentifier(fullType: shortcutItem.type) != nil else { return false }
@@ -77,9 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	// MARK: Application Life Cycle
 
 
-	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		window = UIWindow(frame: UIScreen.mainScreen().bounds)
-		window!.backgroundColor = UIColor.whiteColor()
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+		window = UIWindow(frame: UIScreen.main.bounds)
+		window!.backgroundColor = UIColor.white
 
 		// MARK: Shortcut
 
@@ -90,17 +90,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			shouldPerformAdditionalDelegateHandling = false
 		}
 
-		if let shortcutItems = application.shortcutItems where shortcutItems.isEmpty {
+		if let shortcutItems = application.shortcutItems , shortcutItems.isEmpty {
             let icon = UIApplicationShortcutIcon(templateImageName: "公式换算")
             
 			let shortcut1 = UIApplicationShortcutItem(type: ShortcutIdentifier.First.type, localizedTitle: "算电量", localizedSubtitle: nil, icon: icon, userInfo: [
-				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
+				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.play.rawValue
 				])
 			let shortcut2 = UIApplicationShortcutItem(type: ShortcutIdentifier.Second.type, localizedTitle: "算功率", localizedSubtitle: nil, icon: icon, userInfo: [
-				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
+				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.play.rawValue
 				])
 			let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "算电阻", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
-				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.Play.rawValue
+				AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.play.rawValue
 				])
 
 			application.shortcutItems = [shortcut1, shortcut2, shortcut3]
@@ -128,22 +128,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return shouldPerformAdditionalDelegateHandling
 	}
 
-	func applicationDidBecomeActive(application: UIApplication) {
+	func applicationDidBecomeActive(_ application: UIApplication) {
 		guard let shortcut = launchedShortcutItem else { return }
-		handleShortCutItem(shortcut)
+		let _ = handleShortCutItem(shortcut)
 		launchedShortcutItem = nil
 	}
 
-	func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
 		let handledShortCutItem = handleShortCutItem(shortcutItem)
 		completionHandler(handledShortCutItem)
 	}
 
-	func applicationDidEnterBackground(application: UIApplication) {
+	func applicationDidEnterBackground(_ application: UIApplication) {
 		saveRecord()
 	}
 
-	func applicationWillTerminate(application: UIApplication) {
+	func applicationWillTerminate(_ application: UIApplication) {
 		saveRecord()
 	}
 

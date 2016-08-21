@@ -10,7 +10,7 @@ import Foundation
 
 extension Question {
 
-	func getAdvancedQuestion(number: Int) -> Question? {
+	func getAdvancedQuestion(_ number: Int) -> Question? {
 		var question = Question()
 
 		switch number {

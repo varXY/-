@@ -19,11 +19,11 @@ class DetailViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
 		self.title = knowledege.title
 
 		label.frame = CGRect(x: 0, y: 0, width: ScreenWidth - 10, height: ScreenHeight - 64)
-		label.font = UIFont.systemFontOfSize(18)
+		label.font = UIFont.systemFont(ofSize: 18)
 		label.numberOfLines = 0
 		label.text = knowledege.textBody
 		label.sizeToFit()
@@ -33,8 +33,8 @@ class DetailViewController: UIViewController {
 		textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 10, right: 5)
 		textView.text = knowledege.textBody
 		textView.tintColor = UIColor.themeRed()
-		textView.font = UIFont.systemFontOfSize(18)
-		textView.editable = false
+		textView.font = UIFont.systemFont(ofSize: 18)
+		textView.isEditable = false
 		textView.contentOffset = CGPoint(x: 0.0, y: 0.0)
 		view.addSubview(textView)
 

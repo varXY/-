@@ -20,7 +20,7 @@ class Records {
 	}
 
 	func documentDiretory() -> String {
-		let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+		let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
 		return paths[0]
 	}
 
@@ -35,21 +35,21 @@ class Records {
 
 	func saveRecords() {
 		let data = NSMutableData()
-		let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-		archiver.encodeObject(records, forKey: "Records")
-		archiver.encodeInt32(showTimes, forKey: "ShowTimes")
+		let archiver = NSKeyedArchiver(forWritingWith: data)
+		archiver.encode(records, forKey: "Records")
+		// archiver.encode(showTimes, forKey: "ShowTimes")
 		archiver.finishEncoding()
-		data.writeToFile(dataFilePath(), atomically: true)
+		data.write(toFile: dataFilePath(), atomically: true)
 	}
 
 	func loadRecords() {
 		let path = dataFilePath()
 
-		if NSFileManager.defaultManager().fileExistsAtPath(path) {
-			if let data = NSData(contentsOfFile: path) {
-				let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-				records = unarchiver.decodeObjectForKey("Records") as! [Record]
-				showTimes = unarchiver.decodeInt32ForKey("ShowTimes")
+		if FileManager.default.fileExists(atPath: path) {
+			if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+				let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+				records = unarchiver.decodeObject(forKey: "Records") as! [Record]
+				showTimes = unarchiver.decodeInt32(forKey: "ShowTimes")
 				unarchiver.finishDecoding()
 			}
 		}

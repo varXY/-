@@ -18,9 +18,9 @@ struct FinalViews {
 		let labelLength = ScreenHeight / 2 - 20
 		finalLabel = UILabel(frame: CGRect(x: (ScreenWidth - labelLength) / 2, y: (ScreenHeight / 2 - labelLength) / 2, width: labelLength, height: labelLength))
 		finalLabel.numberOfLines = 0
-		finalLabel.textAlignment = .Center
-		finalLabel.textColor = UIColor.whiteColor()
-		finalLabel.font = UIFont.boldSystemFontOfSize(22)
+		finalLabel.textAlignment = .center
+		finalLabel.textColor = UIColor.white
+		finalLabel.font = UIFont.boldSystemFont(ofSize: 22)
 		finalLabel.backgroundColor = UIColor.lightRedColor()
 		finalLabel.layer.cornerRadius = labelLength / 2
 		finalLabel.clipsToBounds = true
@@ -44,18 +44,18 @@ struct FinalViews {
 		let height: CGFloat = ScreenHeight == 480 ? 40 : 60
 		let buttonSize = CGSize(width: ScreenWidth - 60, height: height)
 		let buttonFrames = [
-			CGRectMake(30, ScreenHeight * 0.45, buttonSize.width, buttonSize.height),
-			CGRectMake(30, ScreenHeight * 0.45 + (height + ScreenHeight * 0.013), buttonSize.width, buttonSize.height),
-			CGRectMake(30, ScreenHeight * 0.45 + (height + ScreenHeight * 0.013) * 2, buttonSize.width, buttonSize.height)
+			CGRect(x: 30, y: ScreenHeight * 0.45, width: buttonSize.width, height: buttonSize.height),
+			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.013), width: buttonSize.width, height: buttonSize.height),
+			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.013) * 2, width: buttonSize.width, height: buttonSize.height)
 		]
 		let buttonTitles = ["查看题目", "答题记录", "返回主页"]
 		buttons = buttonFrames.map({
-			let button = UIButton(type: .System)
+			let button = UIButton(type: .system)
 			button.frame = $0
-			button.setTitle(buttonTitles[buttonFrames.indexOf($0)!], forState: .Normal)
-			button.titleLabel!.font = UIFont.systemFontOfSize(17)
+			button.setTitle(buttonTitles[buttonFrames.index(of: $0)!], for: UIControlState())
+			button.titleLabel!.font = UIFont.systemFont(ofSize: 17)
 			button.tintColor = UIColor.themeRed()
-			button.backgroundColor = UIColor.whiteColor()
+			button.backgroundColor = UIColor.white
 			button.layer.cornerRadius = globalRadius
 			button.addShadow()
 			button.alpha = 0.7

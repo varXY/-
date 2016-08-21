@@ -32,57 +32,57 @@ class RecordViewController: UIViewController {
 		automaticallyAdjustsScrollViewInsets = true
 
 		segmentControl = UISegmentedControl(items: ["初级", "中级", "高级"])
-		for i in 0..<3 { segmentControl.setWidth(70, forSegmentAtIndex: i) }
+		for i in 0..<3 { segmentControl.setWidth(70, forSegmentAt: i) }
 		segmentControl.selectedSegmentIndex = type
-        segmentControl.addTarget(self, action: #selector(segmentSelected(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        segmentControl.addTarget(self, action: #selector(segmentSelected(_:)), for: UIControlEvents.valueChanged)
 		navigationItem.titleView = segmentControl
 
-		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(close))
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
 		navigationItem.rightBarButtonItem = quitButton
 
 		scrollView.frame = view.bounds
 		scrollView.contentSize = CGSize(width: view.frame.width * 3, height: 0)
-		scrollView.pagingEnabled = true
+		scrollView.isPagingEnabled = true
 		scrollView.delegate = self
 		scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width * CGFloat(type), y: 0.0)
 		view.addSubview(scrollView)
 
-		tableView0 = getTableView(CGRectMake(0, 0, view.frame.width, view.frame.height - 64))
+		tableView0 = getTableView(CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 64))
 		scrollView.addSubview(tableView0)
 
-		tableView1 = getTableView(CGRectMake(view.frame.width, 0, view.frame.width, view.frame.height - 64))
+		tableView1 = getTableView(CGRect(x: view.frame.width, y: 0, width: view.frame.width, height: view.frame.height - 64))
 		scrollView.addSubview(tableView1)
 
-		tableView2 = getTableView(CGRectMake(view.frame.width * 2, 0, view.frame.width, view.frame.height - 64))
+		tableView2 = getTableView(CGRect(x: view.frame.width * 2, y: 0, width: view.frame.width, height: view.frame.height - 64))
 		scrollView.addSubview(tableView2)
 
 	}
 
-	func getTableView(rect: CGRect) -> UITableView {
+	func getTableView(_ rect: CGRect) -> UITableView {
 		let tableView = UITableView()
 		tableView.frame = rect
 		tableView.backgroundColor = UIColor.backgroundColor()
-		tableView.separatorStyle = .None
+		tableView.separatorStyle = .none
 		tableView.allowsSelection = false
 		tableView.delegate = self
 		tableView.dataSource = self
 
-		let footer = UIView(frame: CGRectMake(0, 0, view.frame.width, 5))
-		footer.backgroundColor = UIColor.clearColor()
+		let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 5))
+		footer.backgroundColor = UIColor.clear
 		tableView.tableFooterView = footer
 
 		return tableView
 	}
     
-    func segmentSelected(sender: UISegmentedControl) {
+    func segmentSelected(_ sender: UISegmentedControl) {
         segmentWay = true
         jumpToPage(sender.selectedSegmentIndex)
     }
 
-	func jumpToPage(page: Int) {
+	func jumpToPage(_ page: Int) {
 //		let duration = Double(ScreenWidth / 640)
 
-		UIView.performSystemAnimation(.Delete, onViews: [], options: [], animations: { 
+		UIView.perform(.delete, on: [], options: [], animations: { 
 			self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(page), y: 0.0)
 			}) { (_) in
 				self.segmentWay = false
@@ -97,14 +97,14 @@ class RecordViewController: UIViewController {
 	}
 
 	func close() {
-		dismissViewControllerAnimated(true, completion: nil)
+		dismiss(animated: true, completion: nil)
 	}
 
 }
 
 extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch tableView {
 		case tableView0:
 			return beginnerRecords.count != 0 ? beginnerRecords.count : 1
@@ -118,14 +118,14 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
 	}
 
-	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 60
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cellID = "RecordCell"
-		var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as? RecordCell
-		if cell == nil { cell = RecordCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellID) }
+		var cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? RecordCell
+		if cell == nil { cell = RecordCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID) }
 
 		switch tableView {
 		case tableView0:
@@ -146,7 +146,7 @@ extension RecordViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension RecordViewController: UIScrollViewDelegate {
 
-	func scrollViewDidScroll(scrollView: UIScrollView) {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if scrollView == self.scrollView && segmentWay == false {
 			
 			if scrollView.contentOffset.x == 0 {

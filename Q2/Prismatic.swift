@@ -62,7 +62,7 @@ struct Primatic {
 		
 	}
 
-	func getNinePoints(xPositions: [CGFloat], topY: CGFloat, gaps: [CGFloat], centerDistance: CGFloat) -> [CGPoint] {
+	func getNinePoints(_ xPositions: [CGFloat], topY: CGFloat, gaps: [CGFloat], centerDistance: CGFloat) -> [CGPoint] {
 		let point_0 = CGPoint(x: xPositions[1], y: topY + gaps[0] + centerDistance)
 		let point_1 = CGPoint(x: xPositions[0], y: point_0.y + gaps[0] + centerDistance)
 		let point_2 = CGPoint(x: xPositions[2], y: point_0.y + gaps[0] + centerDistance)
@@ -80,29 +80,29 @@ struct Primatic {
 		return points
 	}
 
-	func prismaticButton(title: String, center: CGPoint, size: CGSize) -> UIButton {
-		let button = UIButton(type: .System)
-		button.backgroundColor = UIColor.whiteColor()
+	func prismaticButton(_ title: String, center: CGPoint, size: CGSize) -> UIButton {
+		let button = UIButton(type: .system)
+		button.backgroundColor = UIColor.white
 		button.frame.size = size
 		button.center = center
-		button.exclusiveTouch = true
-		button.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+		button.isExclusiveTouch = true
+		button.transform = CGAffineTransform(rotationAngle: CGFloat(45 * M_PI / 180))
 
-		let titleLabel = UILabel(frame: CGRectMake(0, 0, size.width, size.height))
-		titleLabel.transform = CGAffineTransformMakeRotation(CGFloat(-45 * M_PI / 180))
+		let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+		titleLabel.transform = CGAffineTransform(rotationAngle: CGFloat(-45 * M_PI / 180))
 		button.addSubview(titleLabel)
 
-		titleLabel.font = ScreenHeight == 480 ? UIFont.systemFontOfSize(13) : UIFont.systemFontOfSize(18)
+		titleLabel.font = ScreenHeight == 480 ? UIFont.systemFont(ofSize: 13) : UIFont.systemFont(ofSize: 18)
 		titleLabel.text = title
 		titleLabel.numberOfLines = 0
-		titleLabel.textColor = UIColor.blackColor()
-		titleLabel.textAlignment = .Center
+		titleLabel.textColor = UIColor.black
+		titleLabel.textAlignment = .center
 		return button
 	}
 
 	// MARK: - Describe View
 
-	mutating func getDescribeViews(topPoint: CGPoint)  {
+	mutating func getDescribeViews(_ topPoint: CGPoint)  {
 		let gaps: [CGFloat] = [0, 11]
 		let diagonalLength: CGFloat = 8
 		let sideLength = diagonalLength / sqrt(2)
@@ -118,8 +118,8 @@ struct Primatic {
 		points.forEach({
 			let view = UIView()
 			view.frame.size = squareSize
-			view.backgroundColor = UIColor.whiteColor()
-			view.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+			view.backgroundColor = UIColor.white
+			view.transform = CGAffineTransform(rotationAngle: CGFloat(45 * M_PI / 180))
 			view.center = $0
 			discribeViews.append(view)
 		})
@@ -129,10 +129,10 @@ struct Primatic {
 		descriptions.forEach({
 			let label = UILabel()
 			label.text = $0
-			label.font = UIFont.systemFontOfSize(11)
-			label.textColor = UIColor.whiteColor()
+			label.font = UIFont.systemFont(ofSize: 11)
+			label.textColor = UIColor.white
 			label.sizeToFit()
-			label.center = CGPoint(x: topLabelPoint.x, y: topLabelPoint.y + 19.5 * CGFloat(descriptions.indexOf($0)!))
+			label.center = CGPoint(x: topLabelPoint.x, y: topLabelPoint.y + 19.5 * CGFloat(descriptions.index(of: $0)!))
 			discribeViews.append(label)
 		})
 
@@ -140,17 +140,17 @@ struct Primatic {
 
 	// MARK: - Backgound View
 
-	mutating func getbackgroundViews(buttonPoints: [CGPoint]) {
-
-		let xPositions = [
-			ScreenCenter.x - (Size.gaps[0] + Size.centerDistance) * 3,
-			ScreenCenter.x - (Size.gaps[0] + Size.centerDistance) * 2,
-			ScreenCenter.x - Size.gaps[0] - Size.centerDistance,
-			ScreenCenter.x,
-			ScreenCenter.x + Size.gaps[0] + Size.centerDistance,
-			ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 2,
-			ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 3
-		]
+	mutating func getbackgroundViews(_ buttonPoints: [CGPoint]) {
+        
+        let x0 = ScreenCenter.x - (Size.gaps[0] + Size.centerDistance) * 3
+        let x1 = ScreenCenter.x - (Size.gaps[0] + Size.centerDistance) * 2
+        let x2 = ScreenCenter.x - Size.gaps[0] - Size.centerDistance
+        let x3 = ScreenCenter.x
+        let x4 = ScreenCenter.x + Size.gaps[0] + Size.centerDistance
+        let x5 = ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 2
+        let x6 = ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 3
+        
+		let xPositions = [x0, x1,x2, x3, x4, x5, x6]
 
 		var i = 0
 		repeat {
@@ -168,7 +168,7 @@ struct Primatic {
 					view.frame.size = CGSize(width: Size.sideLength, height: Size.sideLength)
 					view.center = points[j]
 					view.backgroundColor = UIColor.themeRed()
-					view.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+					view.transform = CGAffineTransform(rotationAngle: CGFloat(45 * M_PI / 180))
 					backgroundViews.append(view)
 				}
 				j += 1
@@ -178,7 +178,7 @@ struct Primatic {
 		} while i < xPositions.count
 	}
 
-	func verticalSixPoints(xPositon: CGFloat) -> [CGPoint] {
+	func verticalSixPoints(_ xPositon: CGFloat) -> [CGPoint] {
 		var sixPoints = [CGPoint]()
 
 		let topPoint = CGPoint(x: xPositon, y: ScreenCenter.y - (Size.diagonalLength + Size.gaps[1]) * 2.5)
@@ -196,7 +196,7 @@ struct Primatic {
 	}
 
 	func randomRedColor() -> UIColor {
-		let alpha: CGFloat = CGFloat(random() % 10) * 0.1
+		let alpha: CGFloat = CGFloat(arc4random() % 10) * 0.1
 		let color = UIColor(red: 254/255, green: 51/255, blue: 42/255, alpha: alpha)
 		return color
 	}

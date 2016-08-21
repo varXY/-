@@ -18,7 +18,7 @@ class IntroCell: UITableViewCell {
 		selectedBackgroundView!.backgroundColor = UIColor.lightRedColor()
 	}
 
-	func configureForIntroCell(knowledge: Knowledge) {
+	func configureForIntroCell(_ knowledge: Knowledge) {
 		titlelabel.text = knowledge.title
 	}
 }

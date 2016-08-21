@@ -23,7 +23,7 @@ class DescribeCell: UITableViewCell {
 		selectedBackgroundView!.backgroundColor = UIColor.lightRedColor()
     }
 
-	func configureForDescribeCell(knowledge: Knowledge) {
+	func configureForDescribeCell(_ knowledge: Knowledge) {
 		titleLabel.text = knowledge.title
 		detailLabel.text = knowledge.subtitle
 		picLabel.text = knowledge.stringImage

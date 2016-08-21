@@ -18,7 +18,7 @@ class Knowledge {
 	var Image = UIImage()
 	var textBody: String = ""
 
-	func getAll(number: Int) -> [[Knowledge]] {
+	func getAll(_ number: Int) -> [[Knowledge]] {
 		var allIcons = [[Knowledge]]()
 
 		switch number {
@@ -64,7 +64,7 @@ class Knowledge {
 	}
 	
 
-	func getSearchedAll(searchText: String) -> [[Knowledge]] {
+	func getSearchedAll(_ searchText: String) -> [[Knowledge]] {
 		let all = getAll(1)
 		var searchedAll = [[Knowledge]]()
 
@@ -73,7 +73,7 @@ class Knowledge {
 			i += 1
 
 			let result = icons.filter({ (icon) -> Bool in
-				if icon.title.rangeOfString(searchText) != nil { return true }
+				if icon.title.range(of: searchText) != nil { return true }
 				return false
 			})
 
@@ -87,7 +87,7 @@ class Knowledge {
 
 	//MARK: - Individual
 
-	func unitAtIndex(index: (Int, Int)) -> Knowledge {
+	func unitAtIndex(_ index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()
 		knowledge.sectionTitle = SectionTitle.zero.titles[index.0]
 		knowledge.title = titlesInSection.index(0, index.0).titles[index.1]
@@ -97,7 +97,7 @@ class Knowledge {
 		return knowledge
 	}
 
-	func iconAtIndex(index: (Int, Int)) -> Knowledge {
+	func iconAtIndex(_ index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()
 		knowledge.sectionTitle = SectionTitle.one.titles[index.0]
 		let name = titlesInSection.index(1, index.0).titles[index.1]
@@ -106,7 +106,7 @@ class Knowledge {
 		return knowledge
 	}
 
-	func introAtIndex(index: (Int, Int)) -> Knowledge {
+	func introAtIndex(_ index: (Int, Int)) -> Knowledge {
 		let knowledge = Knowledge()
 		knowledge.sectionTitle = SectionTitle.two.titles[index.0]
 		knowledge.title = titlesInSection.index(2, index.0).titles[index.1]

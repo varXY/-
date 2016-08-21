@@ -11,27 +11,27 @@ import UIKit
 
 class NumberTextField: UITextField {
 
-	override func editingRectForBounds(bounds: CGRect) -> CGRect {
+	override func editingRect(forBounds bounds: CGRect) -> CGRect {
 		return CGRect(x: 5, y: 0, width: bounds.width - 10, height: bounds.height)
 	}
 
-	override func textRectForBounds(bounds: CGRect) -> CGRect {
+	override func textRect(forBounds bounds: CGRect) -> CGRect {
 		return CGRect(x: 5, y: 0, width: bounds.width - 10, height: bounds.height)
 	}
 
-	override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
+	override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
 		return CGRect(x: 5, y: 0, width: bounds.width - 10, height: bounds.height)
 	}
 
-	class func getTextFields(frame: CGRect) -> NumberTextField {
+	class func getTextFields(_ frame: CGRect) -> NumberTextField {
 		let textField = NumberTextField()
 		textField.frame = frame
 		textField.layer.cornerRadius = globalRadius
 		textField.layer.borderWidth = 1.0
 		textField.tintColor = UIColor.themeRed()
-		textField.layer.borderColor = UIColor.themeRed().CGColor
-		textField.keyboardType = .DecimalPad
-		textField.textAlignment = .Right
+		textField.layer.borderColor = UIColor.themeRed().cgColor
+		textField.keyboardType = .decimalPad
+		textField.textAlignment = .right
 		return textField
 	}
     

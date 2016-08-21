@@ -25,12 +25,12 @@ class RecordCell: UITableViewCell {
 		contentView.addSubview(colorView)
 
 		recordLabel.frame = CGRect(x: ScreenWidth - 60, y: 10, width: 50, height: 44)
-		recordLabel.textColor = UIColor.lightGrayColor()
+		recordLabel.textColor = UIColor.lightGray
 		contentView.addSubview(recordLabel)
 
 		dateLabel.frame = CGRect(x: 20, y: 10, width: ScreenWidth - 80, height: 44)
-		dateLabel.textColor = UIColor.blackColor()
-		dateLabel.font = UIFont.boldSystemFontOfSize(18)
+		dateLabel.textColor = UIColor.black
+		dateLabel.font = UIFont.boldSystemFont(ofSize: 18)
 		contentView.addSubview(dateLabel)
 	}
 
@@ -39,14 +39,14 @@ class RecordCell: UITableViewCell {
 	}
 
 
-	func configureForRecordCell(record: Record) {
+	func configureForRecordCell(_ record: Record) {
 		colorView.frame = CGRect(x: 0, y: 5, width: ScreenWidth / 10 * CGFloat(record.record), height: 55)
 		recordLabel.text = "\(record.record)/10"
-		dateLabel.text = "\(dateFormatter.stringFromDate(record.date))"
+		dateLabel.text = "\(dateFormatter.string(from: record.date))"
 	}
 
 	func showNoRecord() {
-		dateLabel.textColor = UIColor.grayColor()
+		dateLabel.textColor = UIColor.gray
 		dateLabel.text = "你还没有答题记录。"
 	}
 

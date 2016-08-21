@@ -12,12 +12,12 @@ import Foundation
 
 struct ViewGenerator {
 
-	func genQA(superView: UIView, page: Int, questions: [Question]) {
+	func genQA(_ superView: UIView, page: Int, questions: [Question]) {
 		let label = UILabel()
 		label.frame = CGRect(x: 15 + ScreenWidth * CGFloat(page), y: ScreenHeight / 5.5 - 64, width: ScreenWidth - 30, height: 200)
 		label.numberOfLines = 0
 		label.backgroundColor = UIColor.backgroundColor()
-		label.font = UIFont.systemFontOfSize(23)
+		label.font = UIFont.systemFont(ofSize: 23)
 		label.text = questions[page].question
 		label.sizeToFit()
 		superView.addSubview(label)
@@ -34,33 +34,33 @@ struct ViewGenerator {
 
 		let ramdom = arc4random_uniform(2)
 		if ramdom == 0 {
-			button1.setTitle(questions[page].rightAnswer, forState: .Normal)
-			button2.setTitle(questions[page].wrongAnswer, forState: .Normal)
+			button1.setTitle(questions[page].rightAnswer, for: UIControlState())
+			button2.setTitle(questions[page].wrongAnswer, for: UIControlState())
 		} else {
-			button1.setTitle(questions[page].wrongAnswer, forState: .Normal)
-			button2.setTitle(questions[page].rightAnswer, forState: .Normal)
+			button1.setTitle(questions[page].wrongAnswer, for: UIControlState())
+			button2.setTitle(questions[page].rightAnswer, for: UIControlState())
 		}
 	}
 
-	func genChoiceButton(point: CGPoint, tag: Int) -> UIButton {
-		let button = UIButton(type: .System)
+	func genChoiceButton(_ point: CGPoint, tag: Int) -> UIButton {
+		let button = UIButton(type: .system)
 		button.frame.origin = point
 		button.frame.size = CGSize(width: ScreenWidth - 40, height: 60)
-		button.tintColor = UIColor.blackColor()
+		button.tintColor = UIColor.black
 		button.layer.cornerRadius = globalRadius
 		button.clipsToBounds = true
-		button.exclusiveTouch = true
+		button.isExclusiveTouch = true
 		button.addShadow()
 
-		button.titleLabel?.font = UIFont.systemFontOfSize(20)
-		button.backgroundColor = UIColor.whiteColor()
+		button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+		button.backgroundColor = UIColor.white
 		button.tag = tag
 
 		return button
 	}
 
 
-	func genRightOrWrongViewForQA(rightOrWrong: String, page: Int) -> UIView {
+	func genRightOrWrongViewForQA(_ rightOrWrong: String, page: Int) -> UIView {
 		let view = UIView(frame: CGRect(x: ScreenCenter.x - 50 + ScreenWidth * CGFloat(page), y: ScreenCenter.y - 50 - 64 - 30, width: 100, height: 100))
 		view.layer.cornerRadius = view.frame.size.width / 2
 
@@ -73,19 +73,19 @@ struct ViewGenerator {
 		return view
 	}
 
-	func genJumpButtonForQA(superView: UIView, page: Int) {
+	func genJumpButtonForQA(_ superView: UIView, page: Int) {
 		let buttonWidth: CGFloat = 100
 		let buttonHeight:CGFloat = 100
 		let x = ScreenWidth * CGFloat(page) + ScreenCenter.x - buttonWidth / 2
 		let y = ScreenCenter.y - buttonWidth / 2 - 64 - 30
 
-		let jumpButton = UIButton(type: .System)
-		jumpButton.backgroundColor = UIColor.clearColor()
+		let jumpButton = UIButton(type: .system)
+		jumpButton.backgroundColor = UIColor.clear
 		jumpButton.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
 		jumpButton.layer.cornerRadius = buttonWidth / 2
 		jumpButton.clipsToBounds = true
 		jumpButton.tag = page + 2333
-        jumpButton.exclusiveTouch = true
+        jumpButton.isExclusiveTouch = true
 		superView.addSubview(jumpButton)
 	}
 
@@ -99,14 +99,14 @@ struct ViewGenerator {
 		}
 
 		let view = UIView(frame: frame)
-		view.backgroundColor = UIColor.clearColor()
+		view.backgroundColor = UIColor.clear
 
 		let indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 		indexes.forEach({
 			let littleView = UIView(frame: CGRect(x: 5 + 13 * $0, y: 5, width: 8, height: 8))
 			littleView.layer.cornerRadius = 4
 			littleView.clipsToBounds = true
-			littleView.backgroundColor = UIColor.grayColor()
+			littleView.backgroundColor = UIColor.gray
 			littleView.tag = $0 + 500
 			view.addSubview(littleView)
 		})

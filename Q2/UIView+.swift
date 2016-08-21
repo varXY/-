@@ -15,8 +15,8 @@ extension UIView {
 		self.layer.masksToBounds = false
 		self.layer.shadowRadius = 3
 		self.layer.shadowOpacity = 0.3
-		self.layer.shadowColor = UIColor.lightGrayColor().CGColor
-		self.layer.shadowOffset = CGSizeMake(0, 0)
+		self.layer.shadowColor = UIColor.lightGray.cgColor
+		self.layer.shadowOffset = CGSize(width: 0, height: 0)
 	}
     
 }

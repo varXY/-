@@ -31,20 +31,21 @@ class EquationViewController: UIViewController {
 	var tableView = UITableView()
 	var textFields = [UITextField]()
 
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
-	}
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor()
 		title = Equation(rawValue: index)?.navigationTitle
-
+        
 		getWords(index)
 
-		tableView = UITableView(frame: view.bounds, style: .Grouped)
+		tableView = UITableView(frame: view.bounds, style: .grouped)
 		tableView.backgroundColor = UIColor.backgroundColor()
-		tableView.scrollEnabled = true
+		tableView.isScrollEnabled = true
 		tableView.allowsSelection = false
 		tableView.dataSource = self
 		tableView.delegate = self
@@ -56,12 +57,12 @@ class EquationViewController: UIViewController {
 		customTextField(index)
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		textFields[0].becomeFirstResponder()
 	}
 
-	func getWords(index: Int) {
+	func getWords(_ index: Int) {
 		sectionTitle = Equation(rawValue: index)!.sectionTitle
 		firstWords = Equation(rawValue: index)!.firstWords
 		lastWords = Equation(rawValue: index)!.lastWords
@@ -78,9 +79,9 @@ class EquationViewController: UIViewController {
 	}
 
 
-	func customTextField(index: Int) {
+	func customTextField(_ index: Int) {
 		if index == 1 {
-			let lightGrayColor = UIColor.lightGrayColor().CGColor
+			let lightGrayColor = UIColor.lightGray.cgColor
 
 			textFields[4].layer.borderColor = lightGrayColor
 			textFields[5].layer.borderColor = lightGrayColor
@@ -88,8 +89,8 @@ class EquationViewController: UIViewController {
 			textFields[4].placeholder = ""
 			textFields[5].placeholder = ""
 
-			textFields[4].userInteractionEnabled = false
-			textFields[5].userInteractionEnabled = false
+			textFields[4].isUserInteractionEnabled = false
+			textFields[5].isUserInteractionEnabled = false
 		}
 
 		if index == 3 {
@@ -100,24 +101,24 @@ class EquationViewController: UIViewController {
 			let label_0 = UILabel(frame: CGRect(x: x, y: textFields[0].frame.origin.y, width: 35, height: CellHeight - 6))
 			label_0.text = "×10⁻⁸"
 			label_0.textColor = UIColor.themeRed()
-			label_0.textAlignment = .Left
+			label_0.textAlignment = .left
 			label_0.adjustsFontSizeToFitWidth = true
 			tableView.addSubview(label_0)
 
 			let label_3 = UILabel(frame: CGRect(x: x, y: textFields[2].frame.origin.y, width: 35, height: CellHeight - 6))
 			label_3.text = "×10⁻⁶"
 			label_3.textColor = UIColor.themeRed()
-			label_3.textAlignment = .Left
+			label_3.textAlignment = .left
 			label_3.adjustsFontSizeToFitWidth = true
 			tableView.addSubview(label_3)
 		}
 	}
 
 	func showAlert() {
-		let alertController = UIAlertController(title: "输入有误", message: "功率因素在0到1之间", preferredStyle: .Alert)
-		let action = UIAlertAction(title: "确定", style: .Default, handler: nil)
+		let alertController = UIAlertController(title: "输入有误", message: "功率因素在0到1之间", preferredStyle: .alert)
+		let action = UIAlertAction(title: "确定", style: .default, handler: nil)
 		alertController.addAction(action)
-		presentViewController(alertController, animated: true, completion: nil)
+		present(alertController, animated: true, completion: nil)
 	}
 
 }
@@ -128,20 +129,20 @@ class EquationViewController: UIViewController {
 
 extension EquationViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return firstWords.count
 	}
 
-	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return CellHeight
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cellID = "EquationCell"
-		var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as? EquationCell
+		var cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? EquationCell
 
 		if cell == nil {
-			cell = EquationCell(style: .Default, reuseIdentifier: cellID)
+			cell = EquationCell(style: .default, reuseIdentifier: cellID)
 		}
 		
 		cell!.configureForEquationCell(firstWords[indexPath.row], last: lastWords[indexPath.row])
@@ -149,15 +150,15 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate, UI
 		return cell!
 	}
 
-	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		return 30
 	}
 
-	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return sectionTitle
 	}
 
-	func scrollViewDidScroll(scrollView: UIScrollView) {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		textFields.forEach({ $0.resignFirstResponder() })
 	}
 
@@ -169,13 +170,13 @@ extension EquationViewController: UITableViewDataSource, UITableViewDelegate, UI
 
 extension EquationViewController: UITextFieldDelegate {
 
-	func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-		if allowInput.indexOf(string) == nil && !string.isEmpty {
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		if allowInput.index(of: string) == nil && !string.isEmpty {
 			return false
 		}
 
 		let oldText: NSString = textField.text!
-		let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
+		let newText: NSString = oldText.replacingCharacters(in: range, with: string)
 		
 		content = newText.doubleValue
 		calculateWith(self.index, tag: textField.tag, content: content)
@@ -191,7 +192,7 @@ extension EquationViewController: UITextFieldDelegate {
 
 extension EquationViewController {
 
-	func calculateWith(index: Int, tag: Int, content: Double) {
+	func calculateWith(_ index: Int, tag: Int, content: Double) {
 		switch index {
 		case 0: calculate_0(tag, content: content)
 		case 1: calculate_1(tag, content: content)
@@ -202,7 +203,7 @@ extension EquationViewController {
 	}
 
 
-	func calculate_0(tag: Int, content: Double) {
+	func calculate_0(_ tag: Int, content: Double) {
 		switch tag {
 		case 400:
 			A = content
@@ -241,7 +242,7 @@ extension EquationViewController {
 	}
 
 
-	func calculate_1(tag: Int, content: Double) {
+	func calculate_1(_ tag: Int, content: Double) {
 		switch tag {
 		case 400:
 			A = content
@@ -306,7 +307,7 @@ extension EquationViewController {
 		}
 	}
 
-	func calculate_2(tag: Int, content: Double) {
+	func calculate_2(_ tag: Int, content: Double) {
 
 		switch tag {
 		case 400:
@@ -345,7 +346,7 @@ extension EquationViewController {
 		}
 	}
 
-	func calculate_3(tag: Int, content: Double) {
+	func calculate_3(_ tag: Int, content: Double) {
 		let textFieldIndex = (tag / 400) - 1
 
 		switch textFieldIndex {
@@ -360,7 +361,7 @@ extension EquationViewController {
 		let zeros = numbers.filter({ $0 == 0 })
 
 		if zeros.count == 1 {
-			let zeroIndex = numbers.indexOf(0)
+			let zeroIndex = numbers.index(of: 0)
 
 			if zeroIndex != textFieldIndex {
 				lastCalculatedIndex = zeroIndex!
@@ -378,7 +379,7 @@ extension EquationViewController {
 		}
 	}
 
-	func getOneFromThree(zeroIndex: Int) {
+	func getOneFromThree(_ zeroIndex: Int) {
 		var result: Double = 0
 
 		switch zeroIndex {
@@ -403,7 +404,7 @@ extension EquationViewController {
 
 	// Get string value
 
-	func sv(x: Double) -> String {
+	func sv(_ x: Double) -> String {
 		let afterCut: Double = floor(x)
 
 		if afterCut == x {

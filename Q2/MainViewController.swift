@@ -19,18 +19,19 @@ class MainViewController: UIViewController {
     var sound: Bool!
     var vibration: Bool!
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "电工助手"
         
-        let infoButton = UIBarButtonItem(image: UIImage(named: "电工试题"), style: .Plain, target: self, action: #selector(infoButtonTapped))
+        let infoButton = UIBarButtonItem(image: UIImage(named: "电工试题"), style: .plain, target: self, action: #selector(infoButtonTapped))
         navigationItem.rightBarButtonItem = infoButton
         
-        tableView = UITableView(frame: view.bounds, style: .Grouped)
+        tableView = UITableView(frame: view.bounds, style: .grouped)
         tableView.backgroundColor = UIColor.backgroundColor()
         tableView.frame.size.height -= 64
         tableView.dataSource = self
@@ -38,7 +39,7 @@ class MainViewController: UIViewController {
         view.addSubview(tableView)
     }
     
-    func gotoVCBaseOnIndexPath(indexPath: NSIndexPath) {
+    func gotoVCBaseOnIndexPath(_ indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             setSoundAndVibration()
@@ -58,13 +59,13 @@ class MainViewController: UIViewController {
                 let record = Record(record: rightCount, date: date)
                 switch questionVC.type {
                 case 0:
-                    self!.beginnerRecords.records.insert(record, atIndex: 0)
+                    self!.beginnerRecords.records.insert(record, at: 0)
                     questionVC.beginnerRecords = self!.beginnerRecords
                 case 1:
-                    self!.intermediateRecords.records.insert(record, atIndex: 0)
+                    self!.intermediateRecords.records.insert(record, at: 0)
                     questionVC.intermediateRecords = self!.intermediateRecords
                 case 2:
-                    self!.advancedRecords.records.insert(record, atIndex: 0)
+                    self!.advancedRecords.records.insert(record, at: 0)
                     questionVC.advancedRecords = self!.advancedRecords
                 default:
                     break
@@ -93,20 +94,20 @@ class MainViewController: UIViewController {
     }
     
     func setSoundAndVibration() {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let sound = defaults.valueForKey(SettingDefault.sound) as? Bool {
+        if let sound = defaults.value(forKey: SettingDefault.sound) as? Bool {
             self.sound = sound
         } else {
             self.sound = true
-            defaults.setBool(true, forKey: SettingDefault.sound)
+            defaults.set(true, forKey: SettingDefault.sound)
         }
         
-        if let vibration = defaults.valueForKey(SettingDefault.vibration) as? Bool {
+        if let vibration = defaults.value(forKey: SettingDefault.vibration) as? Bool {
             self.vibration = vibration
         } else {
             self.vibration = true
-            defaults.setBool(true, forKey: SettingDefault.vibration)
+            defaults.set(true, forKey: SettingDefault.vibration)
         }
         
         defaults.synchronize()
@@ -115,17 +116,17 @@ class MainViewController: UIViewController {
     func infoButtonTapped() {
         let settingVC = SettingTableViewController()
         let settingNavi = NavigationController(rootViewController: settingVC)
-        presentViewController(settingNavi, animated: true, completion: nil)
+        present(settingNavi, animated: true, completion: nil)
     }
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0, 2:
             return 3
@@ -136,17 +137,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ["答题练习", "计算工具", "常用知识"][section]
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
-        cell.accessoryType = .DisclosureIndicator
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.accessoryType = .disclosureIndicator
         cell.imageView?.image = UIImage(named: "电工试题")
         cell.imageView?.tintColor = UIColor.themeRed()
         
@@ -167,8 +168,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         gotoVCBaseOnIndexPath(indexPath)
     }
 }

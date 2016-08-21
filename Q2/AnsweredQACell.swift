@@ -21,10 +21,10 @@ class AnsweredQACell: UITableViewCell {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
 		rowLabel.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
-		rowLabel.font = UIFont.boldSystemFontOfSize(20)
-		rowLabel.textAlignment = .Center
+		rowLabel.font = UIFont.boldSystemFont(ofSize: 20)
+		rowLabel.textAlignment = .center
 
-		ALabel.textColor = UIColor.grayColor()
+		ALabel.textColor = UIColor.gray
 
 		contentView.addSubview(QLabel)
 		contentView.addSubview(rowLabel)
@@ -35,8 +35,8 @@ class AnsweredQACell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func configureForAnsweredQACell(QLabel: UILabel, rightOrWrong: Int, row: Int, rightAnswer: String) {
-		func copyLabel(label: UILabel) {
+	func configureForAnsweredQACell(_ QLabel: UILabel, rightOrWrong: Int, row: Int, rightAnswer: String) {
+		func copyLabel(_ label: UILabel) {
 			self.QLabel.frame = label.frame
 			self.QLabel.numberOfLines = 0
 			self.QLabel.text = label.text

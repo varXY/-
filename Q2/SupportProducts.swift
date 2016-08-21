@@ -32,6 +32,6 @@ public enum SupportProducts {
 }
 
 /// Return the resourcename for the product identifier.
-func resourceNameForProductIdentifier(productIdentifier: String) -> String? {
-	return productIdentifier.componentsSeparatedByString(".").last
+func resourceNameForProductIdentifier(_ productIdentifier: String) -> String? {
+	return productIdentifier.components(separatedBy: ".").last
 }

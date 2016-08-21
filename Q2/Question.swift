@@ -14,7 +14,7 @@ struct Question {
 	var rightAnswer: String = ""
 	var wrongAnswer: String = ""
 	
-	func getBeginnerQuestion(number: Int) -> Question? {
+	func getBeginnerQuestion(_ number: Int) -> Question? {
 		var question = Question()
 
 		switch number {
@@ -1535,7 +1535,7 @@ struct Question {
 		return nil
 	}
 
-	func getIntermediateQuestions(number: Int) -> Question? {
+	func getIntermediateQuestions(_ number: Int) -> Question? {
 		var question = Question()
 
 		switch number {

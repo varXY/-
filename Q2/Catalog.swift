@@ -11,13 +11,13 @@ import UIKit
 
 
 enum AnimationType {
-	case Appear
-	case Disappear
-	case Touched
-	case IsRightAnswer
-	case Bigger
-	case BiggerAndAppear
-	case Other
+	case appear
+	case disappear
+	case touched
+	case isRightAnswer
+	case bigger
+	case biggerAndAppear
+	case other
 }
 
 enum Equation: Int {
@@ -67,7 +67,7 @@ enum Equation: Int {
 		case .zero:
 			return "电压U，电阻R，电流I"
 		case .one:
-			return "电压U，电流I，功率P，功率因素PF（小于等于1）"
+			return "电压U，电流I，功率P，功率因素PF(≤1)"
 		case .two:
 			return "功率P，时间t（大写），电量W（单位：度）"
 		case .three:

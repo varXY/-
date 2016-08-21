@@ -12,17 +12,17 @@ class HudView: UIView {
 
 	var text = ""
 
-	class func hudInView(view: UIView, animated: Bool) -> HudView {
+	class func hudInView(_ view: UIView, animated: Bool) -> HudView {
 		let hudView = HudView(frame: view.bounds)
-		hudView.opaque = false
+		hudView.isOpaque = false
 		view.addSubview(hudView)
-		view.userInteractionEnabled = false
+		view.isUserInteractionEnabled = false
 		hudView.showAnimated(animated)
 		
 		return hudView
 	}
 
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		let boxWidth: CGFloat = 130
 		let boxHeight: CGFloat = 130
 
@@ -32,20 +32,20 @@ class HudView: UIView {
 		UIColor(white: 1.0, alpha: 1.0).setFill()
 		roundedRect.fill()
 
-		let attribs = [NSFontAttributeName: UIFont.systemFontOfSize(22.0), NSForegroundColorAttributeName: UIColor.blackColor()]
-		let textSize = text.sizeWithAttributes(attribs)
+		let attribs = [NSFontAttributeName: UIFont.systemFont(ofSize: 22.0), NSForegroundColorAttributeName: UIColor.black]
+		let textSize = text.size(attributes: attribs)
 		let textPoint = CGPoint(x: center.x - round(textSize.width / 2), y: bounds.size.height / 2 - round(textSize.height / 2))
-		text.drawAtPoint(textPoint, withAttributes: attribs)
+		text.draw(at: textPoint, withAttributes: attribs)
 	}
 
-	func showAnimated(animated: Bool) {
+	func showAnimated(_ animated: Bool) {
 		if animated {
 			alpha = 0
-			transform = CGAffineTransformMakeScale(1.3, 1.3)
+			transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
 
-			UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+			UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
 				self.alpha = 1
-				self.transform = CGAffineTransformIdentity
+				self.transform = CGAffineTransform.identity
 			}, completion: nil)
 		}
 	}

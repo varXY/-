@@ -20,23 +20,26 @@ class EquationCell: UITableViewCell {
 		frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: CellHeight)
 
 		titleLabel.frame = CGRect(x: 15, y: 0, width: 40, height: self.frame.height)
-		titleLabel.font = UIFont.boldSystemFontOfSize(20)
-		titleLabel.textAlignment = .Center
+		titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+		titleLabel.textAlignment = .center
 		titleLabel.textColor = UIColor.themeRed()
+        titleLabel.adjustsFontSizeToFitWidth = true
 		contentView.addSubview(titleLabel)
 
 		equalLabel.frame = CGRect(x: 55, y: 0, width: 20, height: self.frame.height)
-		equalLabel.textAlignment = .Right
-		equalLabel.textColor = UIColor.lightGrayColor()
+		equalLabel.textAlignment = .right
+		equalLabel.textColor = UIColor.lightGray
+        equalLabel.adjustsFontSizeToFitWidth = true
 		contentView.addSubview(equalLabel)
 
 		unitLabel.frame = CGRect(x: ScreenWidth - 55, y: 0, width: 40, height: self.frame.height)
-		unitLabel.textColor = UIColor.lightGrayColor()
-		unitLabel.textAlignment = .Left
+		unitLabel.textColor = UIColor.lightGray
+		unitLabel.textAlignment = .left
+        unitLabel.adjustsFontSizeToFitWidth = true
 		contentView.addSubview(unitLabel)
 	}
 
-	func configureForEquationCell(first: String, last: String) {
+	func configureForEquationCell(_ first: String, last: String) {
 		titleLabel.text = first
 		equalLabel.text = ""
 		unitLabel.text = last

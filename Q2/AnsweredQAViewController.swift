@@ -17,16 +17,17 @@ class AnsweredQAViewController: UIViewController {
 
 	var tableView = UITableView()
 
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
-	}
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.backgroundColor()
 		title = "题目&答案"
 
-		let quitButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(close))
+		let quitButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
 		navigationItem.rightBarButtonItem = quitButton
 
 		tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 64)
@@ -38,11 +39,11 @@ class AnsweredQAViewController: UIViewController {
 
 
 
-	func qLabel(question: Question) -> UILabel {
+	func qLabel(_ question: Question) -> UILabel {
 		let qLabel = UILabel()
 		qLabel.frame = CGRect(x: 35, y: 10, width: ScreenWidth - 45, height: 150)
 		qLabel.numberOfLines = 0
-		qLabel.lineBreakMode = .ByClipping
+		qLabel.lineBreakMode = .byClipping
 		qLabel.text = question.question
 		qLabel.sizeToFit()
 
@@ -50,28 +51,28 @@ class AnsweredQAViewController: UIViewController {
 	}
 
 	func close() {
-		dismissViewControllerAnimated(true, completion: nil)
+		dismiss(animated: true, completion: nil)
 	}
 
 }
 
 extension AnsweredQAViewController: UITableViewDataSource, UITableViewDelegate {
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 10
 	}
 
-	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		let label = qLabel(questions[indexPath.row])
 		return label.frame.height + 45
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cellID = "AnsweredQACell"
-		var cell = tableView.dequeueReusableCellWithIdentifier(cellID) as? AnsweredQACell
+		var cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? AnsweredQACell
 
 		if cell == nil {
-			cell = AnsweredQACell(style: .Default, reuseIdentifier: cellID)
+			cell = AnsweredQACell(style: .default, reuseIdentifier: cellID)
 		}
 
 		let label = qLabel(questions[indexPath.row])
