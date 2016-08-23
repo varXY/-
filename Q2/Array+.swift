@@ -9,7 +9,7 @@
 import Foundation
 
 // 数组去重
-func uniq<S: Sequence, E: Hashable where E==S.Iterator.Element>(_ source: S) -> [E] {
+func uniq<S: Sequence, E: Hashable>(_ source: S) -> [E] where E==S.Iterator.Element {
 	var seen: [E:Bool] = [:]
 	return source.filter({ (v) -> Bool in
 		return seen.updateValue(true, forKey: v) == nil

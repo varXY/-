@@ -175,8 +175,8 @@ extension EquationViewController: UITextFieldDelegate {
 			return false
 		}
 
-		let oldText: NSString = textField.text!
-		let newText: NSString = oldText.replacingCharacters(in: range, with: string)
+		let oldText: NSString = textField.text! as NSString
+		let newText: NSString = oldText.replacingCharacters(in: range, with: string) as NSString
 		
 		content = newText.doubleValue
 		calculateWith(self.index, tag: textField.tag, content: content)

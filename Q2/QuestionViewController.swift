@@ -31,7 +31,7 @@ class QuestionViewController: UIViewController {
 	var rightSound: AVAudioPlayer!
 	var wrongSound: AVAudioPlayer!
 
-	var record: ((rightCount: Int, date: Date) -> Void)?
+	var record: ((_ rightCount: Int, _ date: Date) -> Void)?
 
 	var beginnerRecords: Records!
 	var intermediateRecords: Records!
@@ -138,7 +138,7 @@ class QuestionViewController: UIViewController {
 
 
 	func testIsOver() {
-		record?(rightCount: rightCount, date: Date())
+		record?(rightCount, Date())
 
 		delay(seconds: 1.5, completion: { () -> () in
 			UIView.animate(withDuration: 0.8, animations: { () -> Void in
@@ -148,20 +148,23 @@ class QuestionViewController: UIViewController {
 				self.title = "完成"
 			})
 		})
-
+        
+        let finalViews = FinalViews(rightCount: self.rightCount)
+        finalViews.buttons.forEach({
+            $0.isUserInteractionEnabled = false
+            $0.addTarget(self, action: #selector(self.touchDown(_:)), for: .touchDown)
+            $0.addTarget(self, action: #selector(self.touchUpOutSide(_:)), for: .touchUpOutside)
+            $0.addTarget(self, action: #selector(self.touchUpInside(_:)), for: .touchUpInside)
+        })
+        
 		delay(seconds: 2.5, completion: { () -> () in
-			let finalViews = FinalViews(rightCount: self.rightCount)
-			self.view.addSubview(finalViews.finalLabel)
-			finalViews.buttons.forEach({
-				self.view.addSubview($0)
-				let index = finalViews.buttons.index(of: $0)!
-				$0.genAnimation(.appear, delayTime: 0.1 * Double(index) , distance: 40 + 30 * CGFloat(index))
-
-				$0.addTarget(self, action: #selector(self.touchDown(_:)), for: .touchDown)
-				$0.addTarget(self, action: #selector(self.touchUpOutSide(_:)), for: .touchUpOutside)
-				$0.addTarget(self, action: #selector(self.touchUpInside(_:)), for: .touchUpInside)
-			})
-
+            self.view.addSubview(finalViews.finalLabel)
+            finalViews.buttons.forEach({
+                self.view.addSubview($0)
+                let index = finalViews.buttons.index(of: $0)!
+                $0.genAnimation(.appear, delayTime: 0.1 * Double(index) , distance: 40 + 30 * CGFloat(index))
+                $0.isUserInteractionEnabled = true
+            })
 		})
 
 	}

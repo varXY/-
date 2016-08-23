@@ -75,9 +75,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	// MARK: Application Life Cycle
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.backgroundColor = UIColor.white
+        
+        // MARK: Shortcut
+        
+        var shouldPerformAdditionalDelegateHandling = true
+        
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            launchedShortcutItem = shortcutItem
+            shouldPerformAdditionalDelegateHandling = false
+        }
+        
+        if let shortcutItems = application.shortcutItems , shortcutItems.isEmpty {
+            let icon = UIApplicationShortcutIcon(templateImageName: "公式换算")
+            
+            let shortcut1 = UIApplicationShortcutItem(type: ShortcutIdentifier.First.type, localizedTitle: "算电量", localizedSubtitle: nil, icon: icon, userInfo: [
+                AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.play.rawValue
+                ])
+            let shortcut2 = UIApplicationShortcutItem(type: ShortcutIdentifier.Second.type, localizedTitle: "算功率", localizedSubtitle: nil, icon: icon, userInfo: [
+                AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.play.rawValue
+                ])
+            let shortcut3 = UIApplicationShortcutItem(type: ShortcutIdentifier.Third.type, localizedTitle: "算电阻", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "公式换算"), userInfo: [
+                AppDelegate.applicationShortcutUserInfoIconKey: UIApplicationShortcutIconType.play.rawValue
+                ])
+            
+            application.shortcutItems = [shortcut1, shortcut2, shortcut3]
+        }
+        
+        // MARK: Base
+        
+        let infoVC = HomepageViewController()
+        infoVC.beginnerRecords = beginnerRecords
+        infoVC.intermediateRecords = intermediateRecords
+        infoVC.advancedRecords = advancedRecords
+        
+        //        let mainVC = MainViewController()
+        //        mainVC.beginnerRecords = beginnerRecords
+        //        mainVC.intermediateRecords = intermediateRecords
+        //        mainVC.advancedRecords = advancedRecords
+        
+        let testInfoNavi = NavigationController(rootViewController: infoVC)
+        testInfoNavi.setNavigationBarHidden(true, animated: true)
+        window?.rootViewController = testInfoNavi
+        window?.makeKeyAndVisible()
+        
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+        
+        return shouldPerformAdditionalDelegateHandling
+    }
 
-
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window!.backgroundColor = UIColor.white
 
@@ -85,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		var shouldPerformAdditionalDelegateHandling = true
 
-		if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+		if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem as NSObject] as? UIApplicationShortcutItem {
 			launchedShortcutItem = shortcutItem
 			shouldPerformAdditionalDelegateHandling = false
 		}
@@ -134,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		launchedShortcutItem = nil
 	}
 
-	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+	private func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
 		let handledShortCutItem = handleShortCutItem(shortcutItem)
 		completionHandler(handledShortCutItem)
 	}

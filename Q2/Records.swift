@@ -16,7 +16,7 @@ class Records {
 
 	init(type: Int) {
 		self.type = type
-		loadRecords()
+        loadRecords(type: type)
 	}
 
 	func documentDiretory() -> String {
@@ -24,7 +24,7 @@ class Records {
 		return paths[0]
 	}
 
-	func dataFilePath() -> String {
+    func dataFilePath(type: Int) -> String {
 		switch type {
 		case 0: return "\(documentDiretory())/Records.plist"
 		case 1: return "\(documentDiretory())/Records1.plist"
@@ -37,13 +37,13 @@ class Records {
 		let data = NSMutableData()
 		let archiver = NSKeyedArchiver(forWritingWith: data)
 		archiver.encode(records, forKey: "Records")
-		// archiver.encode(showTimes, forKey: "ShowTimes")
+        archiver.encode(showTimes, forKey: "ShowTimes")
 		archiver.finishEncoding()
-		data.write(toFile: dataFilePath(), atomically: true)
+		data.write(toFile: dataFilePath(type: type), atomically: true)
 	}
 
-	func loadRecords() {
-		let path = dataFilePath()
+    func loadRecords(type: Int) {
+		let path = dataFilePath(type: type)
 
 		if FileManager.default.fileExists(atPath: path) {
 			if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {

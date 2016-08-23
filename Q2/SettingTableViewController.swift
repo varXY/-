@@ -71,7 +71,7 @@ class SettingTableViewController: UITableViewController {
 		let link = URL(string: appStoreURLString)!
 		let image = UIImage(named: "Screen Shot")!
 
-		let arr: [AnyObject] = [text, link, image]
+		let arr: [AnyObject] = [text as AnyObject, link as AnyObject, image]
 
 		let shareVC = UIActivityViewController(activityItems: arr, applicationActivities: [])
 

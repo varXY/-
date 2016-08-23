@@ -24,7 +24,7 @@ class Record: NSObject, NSCoding {
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		record = aDecoder.decodeObject(forKey: "Record") as! Int
+        record = (aDecoder.decodeObject(forKey: "Record") as! Int?) ?? 0
 		date = aDecoder.decodeObject(forKey: "Date") as! Date
 		super.init()
 	}

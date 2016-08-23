@@ -15,7 +15,7 @@ public let IAPHelperProductPurchasedNotification = "IAPHelperProductPurchasedNot
 public typealias ProductIdentifier = String
 
 /// Completion handler called when products are fetched.
-public typealias RequestProductsCompletionHandler = (success: Bool, products: [SKProduct]) -> ()
+public typealias RequestProductsCompletionHandler = (_ success: Bool, _ products: [SKProduct]) -> ()
 
 
 /// A Helper class for In-App-Purchases, it can fetch products, tell you if a product has been purchased,
@@ -31,15 +31,15 @@ public class IAPHelper : NSObject  {
 	SKPaymentQueue.default().add(self)
   }
 
-	private let productIdentifiers: Set<ProductIdentifier>
-	private var purchasedProductIdentifiers = Set<ProductIdentifier>()
+	let productIdentifiers: Set<ProductIdentifier>
+	var purchasedProductIdentifiers = Set<ProductIdentifier>()
 
-	private var productsRequest: SKProductsRequest?
-	private var completionHandler: RequestProductsCompletionHandler?
+	var productsRequest: SKProductsRequest?
+	var completionHandler0: RequestProductsCompletionHandler?
   
   /// Gets the list of SKProducts from the Apple server calls the handler with the list of products.
   public func requestProductsWithCompletionHandler(_ handler: RequestProductsCompletionHandler) {
-	completionHandler = handler
+	completionHandler0 = handler
 	productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
 	productsRequest?.delegate = self
 	productsRequest?.start()
@@ -74,7 +74,7 @@ extension IAPHelper: SKProductsRequestDelegate {
 
 	public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
 		print("Loaded list of products")
-		completionHandler!(success: true, products: response.products)
+		completionHandler0!(true, response.products)
 		clearRequest()
 
 		for p in response.products {
@@ -84,14 +84,14 @@ extension IAPHelper: SKProductsRequestDelegate {
 
 	public func request(_ request: SKRequest, didFailWithError error: Error) {
 		print("Failed to load list of products.")
-		completionHandler!(success: false, products: [])
+		completionHandler0!(false, [])
 		print("Error: \(error)")
 		clearRequest()
 	}
 
 	private func clearRequest() {
 		productsRequest = nil
-		completionHandler = nil
+		completionHandler0 = nil
 	}
 }
 
