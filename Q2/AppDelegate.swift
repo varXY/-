@@ -190,11 +190,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationDidEnterBackground(_ application: UIApplication) {
-		saveRecord()
+//		saveRecord()
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
-		saveRecord()
+//		saveRecord()
 	}
 
 }

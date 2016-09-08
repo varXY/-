@@ -40,6 +40,9 @@ struct ViewGenerator {
 			button1.setTitle(questions[page].wrongAnswer, for: UIControlState())
 			button2.setTitle(questions[page].rightAnswer, for: UIControlState())
 		}
+        
+        button1.titleLabel?.adjustsFontSizeToFitWidth = true
+        button2.titleLabel?.adjustsFontSizeToFitWidth = true
 	}
 
 	func genChoiceButton(_ point: CGPoint, tag: Int) -> UIButton {

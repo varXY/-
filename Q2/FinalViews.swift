@@ -45,7 +45,7 @@ struct FinalViews {
 		let buttonSize = CGSize(width: ScreenWidth - 60, height: height)
 		let buttonFrames = [
 			CGRect(x: 30, y: ScreenHeight * 0.45, width: buttonSize.width, height: buttonSize.height),
-			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.026), width: buttonSize.width, height: buttonSize.height),
+			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + 30), width: buttonSize.width, height: buttonSize.height),
 //			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.013) * 2, width: buttonSize.width, height: buttonSize.height)
 		]
 		let buttonTitles = ["查看题目", "返回主页"]
