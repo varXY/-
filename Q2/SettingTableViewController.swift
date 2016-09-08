@@ -198,7 +198,7 @@ class SettingTableViewController: UITableViewController {
 			cell.addSubview(switchControl!)
 		default:
 			cell.textLabel?.textAlignment = .center
-			cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+			cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
 		}
 
 		return cell

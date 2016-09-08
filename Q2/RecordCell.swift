@@ -42,7 +42,7 @@ class RecordCell: UITableViewCell {
 	func configureForRecordCell(_ record: Record) {
 		colorView.frame = CGRect(x: 0, y: 5, width: ScreenWidth / 10 * CGFloat(record.record), height: 55)
 		recordLabel.text = "\(record.record)/10"
-		dateLabel.text = "\(dateFormatter.string(from: record.date))"
+		dateLabel.text = "\(dateFormatter.string(from: record.date as Date))"
 	}
 
 	func showNoRecord() {

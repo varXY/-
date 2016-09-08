@@ -112,7 +112,7 @@ class HomepageViewController: UIViewController {
 			questionVC.advancedRecords = advancedRecords
 
 			questionVC.record = { [weak self] rightCount, date in
-				let record = Record(record: rightCount, date: date)
+				let record = Record(record: rightCount, date: date as NSDate)
 				switch questionVC.type {
 				case 0:
 					self!.beginnerRecords.records.insert(record, at: 0)

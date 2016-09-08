@@ -45,10 +45,10 @@ struct FinalViews {
 		let buttonSize = CGSize(width: ScreenWidth - 60, height: height)
 		let buttonFrames = [
 			CGRect(x: 30, y: ScreenHeight * 0.45, width: buttonSize.width, height: buttonSize.height),
-			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.013), width: buttonSize.width, height: buttonSize.height),
-			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.013) * 2, width: buttonSize.width, height: buttonSize.height)
+			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.026), width: buttonSize.width, height: buttonSize.height),
+//			CGRect(x: 30, y: ScreenHeight * 0.45 + (height + ScreenHeight * 0.013) * 2, width: buttonSize.width, height: buttonSize.height)
 		]
-		let buttonTitles = ["查看题目", "答题记录", "返回主页"]
+		let buttonTitles = ["查看题目", "返回主页"]
 		buttons = buttonFrames.map({
 			let button = UIButton(type: .system)
 			button.frame = $0
