@@ -38,7 +38,7 @@ public class IAPHelper : NSObject  {
 	var completionHandler0: RequestProductsCompletionHandler?
   
   /// Gets the list of SKProducts from the Apple server calls the handler with the list of products.
-  public func requestProductsWithCompletionHandler(_ handler: RequestProductsCompletionHandler) {
+  public func requestProductsWithCompletionHandler(_ handler: @escaping RequestProductsCompletionHandler) {
 	completionHandler0 = handler
 	productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
 	productsRequest?.delegate = self

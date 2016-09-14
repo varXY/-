@@ -26,7 +26,7 @@ extension UIImage {
         return image!
     }
     
-    class func imageWithURL(_ url: URL, done: finished) {
+    class func imageWithURL(_ url: URL, done: @escaping finished) {
         
         let session = URLSession.shared
         
