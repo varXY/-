@@ -16,7 +16,7 @@ struct Primatic {
 	var discribeViews = [UIView]()
 
 	struct Size {
-		static let gaps = [CGFloat(sqrt(0.5)), sqrt(2)]
+        static let gaps: [CGFloat] = [0.7071, 1.4142]
 		static let allGapLength = gaps[0] * 2 + gaps[1] * 3
 		static let topGap = ScreenHeight == 480 ? 20 : round(ScreenHeight * 0.071)
 		static let diagonalLength = (ScreenHeight - topGap - allGapLength - topGap) / 4
@@ -26,6 +26,7 @@ struct Primatic {
 
 	init(VC: HomepageViewController) {
 		let buttonPoints = getPrismaticButtons()
+        
 		getbackgroundViews(buttonPoints)
 		getDescribeViews(CGPoint(x: 20, y: ScreenHeight - 65))
 
@@ -150,7 +151,7 @@ struct Primatic {
         let x5 = ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 2
         let x6 = ScreenCenter.x + (Size.gaps[0] + Size.centerDistance) * 3
         
-		let xPositions = [x0, x1,x2, x3, x4, x5, x6]
+		let xPositions = [x0, x1, x2, x3, x4, x5, x6]
 
 		var i = 0
 		repeat {
@@ -160,7 +161,7 @@ struct Primatic {
 					points[k].y += Size.gaps[0] + Size.centerDistance
 				}
 			}
-
+            
 			var j = 0
 			repeat {
 				if !buttonPoints.contains(points[j]) {
@@ -170,7 +171,8 @@ struct Primatic {
 					view.backgroundColor = UIColor.themeRed()
 					view.transform = CGAffineTransform(rotationAngle: CGFloat(45 * M_PI / 180))
 					backgroundViews.append(view)
-				}
+                }
+                
 				j += 1
 			} while j < points.count
 
